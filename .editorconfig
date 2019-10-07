@@ -8,17 +8,26 @@ indent_size = 4
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.{xml,config,csproj}]
+[*.{xml,config,csproj,json}]
 indent_size = 2
 
-[*.md]
+[*.{md,bat,cmd}]
 indent_size = 2
 trim_trailing_whitespace = false
 insert_final_newline = false
 
 
-; CSharp code style settings
 [*.cs]
-
 # CA2007: Consider calling ConfigureAwait on the awaited task
 dotnet_diagnostic.CA2007.severity = none
+
+# private fields with underscore prefix => private int _myValue;
+dotnet_naming_rule.private_members_with_underscore.symbols  = private_fields
+dotnet_naming_rule.private_members_with_underscore.style    = prefix_underscore
+dotnet_naming_rule.private_members_with_underscore.severity = suggestion
+
+dotnet_naming_symbols.private_fields.applicable_kinds           = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+
+dotnet_naming_style.prefix_underscore.capitalization = camel_case
+dotnet_naming_style.prefix_underscore.required_prefix = _
