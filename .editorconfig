@@ -12,7 +12,6 @@ insert_final_newline = true
 indent_size = 2
 
 [*.{md,bat,cmd}]
-indent_size = 2
 trim_trailing_whitespace = false
 insert_final_newline = false
 
