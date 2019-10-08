@@ -12,6 +12,7 @@ Sample boilerplate of `.NET Core 2.2` application.
     1. [Integration tests](test\HappyCode.NetCoreBoilerplate.Api.IntegrationTests\EmployeesTests.cs)
     1. [Unit tests](test\HappyCode.NetCoreBoilerplate.Api.UnitTests\Controllers\EmployeesControllerTests.cs)
 1. Code quality
+    1. [editorconfig](.editorconfig)
     1. Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers). [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
     1. [Rules](HappyCode.NetCoreBoilerplate.ruleset)
 
@@ -19,9 +20,9 @@ Sample boilerplate of `.NET Core 2.2` application.
 
 ### Api
 
-[HappyCode.NetCoreBoilerplate.Api](src\HappyCode.NetCoreBoilerplate.Api)
+[HappyCode.NetCoreBoilerplate.Api](src/HappyCode.NetCoreBoilerplate.Api)
 
-* Simple Startup class - [Startup.cs](src\HappyCode.NetCoreBoilerplate.Api\Startup.cs)
+* Simple Startup class - [Startup.cs](src/HappyCode.NetCoreBoilerplate.Api/Startup.cs)
   * MvcCore
   * DbContext (with MySQL)
   * Swagger
@@ -29,38 +30,38 @@ Sample boilerplate of `.NET Core 2.2` application.
   * HostedService
   * HttpClient
   * HealthCheck
-* Very simple exemplary API controller - [EmployeesController.cs](src\HappyCode.NetCoreBoilerplate.Api\Controllers\EmployeesController.cs)
-* Example of BackgroundService - [PingWebsiteBackgroundService.cs](src\HappyCode.NetCoreBoilerplate.Api\BackgroundServices\PingWebsiteBackgroundService.cs)
+* Very simple exemplary API controller - [EmployeesController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/EmployeesController.cs)
+* Example of BackgroundService - [PingWebsiteBackgroundService.cs](src/HappyCode.NetCoreBoilerplate.Api/BackgroundServices/PingWebsiteBackgroundService.cs)
 
 ### Core
 
-[HappyCode.NetCoreBoilerplate.Core](src\HappyCode.NetCoreBoilerplate.Core)
+[HappyCode.NetCoreBoilerplate.Core](src/HappyCode.NetCoreBoilerplate.Core)
 
-* Simple DbContext - [EmployeesContext.cs](src\HappyCode.NetCoreBoilerplate.Core\EmployeesContext.cs)
-* Exemplary repository - [EmployeeRepository.cs](src\HappyCode.NetCoreBoilerplate.Core\Repositories\EmployeeRepository.cs)
+* Simple DbContext - [EmployeesContext.cs](src/HappyCode.NetCoreBoilerplate.Core/EmployeesContext.cs)
+* Exemplary repository - [EmployeeRepository.cs](src/HappyCode.NetCoreBoilerplate.Core/Repositories/EmployeeRepository.cs)
 
 ## Tests
 
 ### Integration tests
 
-[HappyCode.NetCoreBoilerplate.Api.IntegrationTests](test\HappyCode.NetCoreBoilerplate.Api.IntegrationTests)
+[HappyCode.NetCoreBoilerplate.Api.IntegrationTests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests)
 
-* Fixture with TestServer - [TestServerClientFixture.cs](test\HappyCode.NetCoreBoilerplate.Api.IntegrationTests\Infrastructure\TestServerClientFixture.cs)
-* TestStartup with InMemory database - [TestStartup.cs](test\HappyCode.NetCoreBoilerplate.Api.IntegrationTests\Infrastructure\TestStartup.cs)
-* Simpe data feeder - [EmployeeContextDataFeeder.cs](test\HappyCode.NetCoreBoilerplate.Api.IntegrationTests\Infrastructure\EmployeeContextDataFeeder.cs)
-* Exemplary tests - [EmployeesTests.cs](test\HappyCode.NetCoreBoilerplate.Api.IntegrationTests\EmployeesTests.cs)
+* Fixture with TestServer - [TestServerClientFixture.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestServerClientFixture.cs)
+* TestStartup with InMemory database - [TestStartup.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestStartup.cs)
+* Simpe data feeder - [EmployeeContextDataFeeder.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/EmployeeContextDataFeeder.cs)
+* Exemplary tests - [EmployeesTests.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs)
 
 ### Unit tests
 
-[HappyCode.NetCoreBoilerplate.Api.UnitTests](test\HappyCode.NetCoreBoilerplate.Api.UnitTests)
+[HappyCode.NetCoreBoilerplate.Api.UnitTests](test/HappyCode.NetCoreBoilerplate.Api.UnitTests)
 
-* Exemplary tests - [EmployeesControllerTests.cs](test\HappyCode.NetCoreBoilerplate.Api.UnitTests\Controllers\EmployeesControllerTests.cs)
+* Exemplary tests - [EmployeesControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Controllers/EmployeesControllerTests.cs)
 
-[HappyCode.NetCoreBoilerplate.Core.UnitTests](test\HappyCode.NetCoreBoilerplate.Core.UnitTests)
+[HappyCode.NetCoreBoilerplate.Core.UnitTests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests)
 
-* Some test classes to be able mock DbContext - [TestAsyncEnumerable.cs](test\HappyCode.NetCoreBoilerplate.Core.UnitTests\Infrastructure\TestAsyncEnumerable.cs), [TestAsyncEnumerator.cs](test\HappyCode.NetCoreBoilerplate.Core.UnitTests\Infrastructure\TestAsyncEnumerator.cs), [TestAsyncQueryProvider.cs](test\HappyCode.NetCoreBoilerplate.Core.UnitTests\Infrastructure\TestAsyncQueryProvider.cs)
-* Extension method to quickly mock of DbSet - [EnumerableExtensions.cs](test\HappyCode.NetCoreBoilerplate.Core.UnitTests\Infrastructure\EnumerableExtensions.cs)
-* Exemplary tests - [EmployeeRepositoryTests.cs](test\HappyCode.NetCoreBoilerplate.Core.UnitTests\Repositories\EmployeeRepositoryTests.cs)
+* Some test classes to be able mock DbContext - [TestAsyncEnumerable.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/TestAsyncEnumerable.cs), [TestAsyncEnumerator.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/TestAsyncEnumerator.cs), [TestAsyncQueryProvider.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/TestAsyncQueryProvider.cs)
+* Extension method to quickly mock of DbSet - [EnumerableExtensions.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/EnumerableExtensions.cs)
+* Exemplary tests - [EmployeeRepositoryTests.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/EmployeeRepositoryTests.cs)
 
 ## To Do
 
