@@ -1,12 +1,6 @@
 namespace HappyCode.NetCoreBoilerplate.Core.Repositories
 {
-    public interface IRepository<TEntity>
-        where TEntity : class
-    {
-
-    }
-
-    public abstract class RepositoryBase<TEntity> : IRepository<TEntity>
+    public abstract class RepositoryBase<TEntity>
         where TEntity : class
     {
         protected EmployeesContext DbContext { get; }

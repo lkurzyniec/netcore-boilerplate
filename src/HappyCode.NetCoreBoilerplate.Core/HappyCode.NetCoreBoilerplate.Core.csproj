@@ -4,6 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <CodeAnalysisRuleSet>../../HappyCode.NetCoreBoilerplate.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1591</NoWarn>
   </PropertyGroup>

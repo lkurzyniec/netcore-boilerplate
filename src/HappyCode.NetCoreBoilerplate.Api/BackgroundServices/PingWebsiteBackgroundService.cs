@@ -40,7 +40,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, $"Error during ping");
+                    _logger.LogError(ex, "Error during ping");
                 }
                 await Task.Delay(TimeSpan.FromMinutes(_configuration.Value.TimeIntervalInMinutes), cancellationToken);
             }
