@@ -22,14 +22,14 @@ namespace HappyCode.NetCoreBoilerplate.Api
             _configuration = configuration;
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore()
                 .AddApiExplorer()       //required when AddMvcCore() instead of AddMvc()
                 .AddJsonFormatters()    //required when AddMvcCore() instead of AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
-            services.AddDbContext<EmployeesContext>(options => options.UseMySQL(_configuration.GetConnectionString("SimpleMySQL")), ServiceLifetime.Transient);
+            services.AddDbContext<EmployeesContext>(options => options.UseMySQL(_configuration.GetConnectionString("SimpleMySqlDb")), ServiceLifetime.Transient);
 
             services.AddSwaggerGen(c =>
             {
@@ -45,12 +45,12 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddHealthChecks();
         }
 
-        public void ConfigureContainer(ContainerBuilder builder)
+        public virtual void ConfigureContainer(ContainerBuilder builder)
         {
             ContainerConfigurator.RegisterModules(builder);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
