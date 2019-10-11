@@ -6,6 +6,8 @@ dotnet: 2.2
 branches:
   only:
     - master
+install:
+  - gem install travis
 script:
   - dotnet build -c Release --no-cache ./src/HappyCode.NetCoreBoilerplate.Api/
 after_success:
@@ -14,5 +16,7 @@ after_success:
   - dotnet test ./test/HappyCode.NetCoreBoilerplate.Core.UnitTests/
 notifications:
   email:
+    recipients:
+      - secure: "KYY0tCAOmkehrygbw81/K/dyhZ6qfKYXi93dyCC9/+F3OQtv3uh7Hf8tSZn5cJTYbvV7SVEfY+Kug0Pwsn5gBvMVYCyOqQr4J7Wg59pgsjL60UEtDf/ZqmFi8Zrz6UwrRGa66FNYeHdf22p2QY/AISZ3jmfmmwRL/HqvmFVZRyOLftYIqZ5/+AWziGOIon1drtRc4QThbyyaCimw2cMRu7B9uso48HCKYAx4m4SUJx/7IPr2xK6hEiZKLRm2vGgz99nkkvfSPbfFg1Lr4j3Rl7dy+Cibzx/JATcLB+h6Osvno9Gi526sCI0KXAeyYBKb1Iu1r9Rpbd1ENmyKMrxNd4+FInePdCJHsa9yM+DDkyb/Lygs9jT86raCRaFk4zvDxkYPi4LB/A3p2Lhjmr2Gp+4+s/ugnexQTGw5/eACCm4BPVnN1AZEkqaAW8MbFwhiHwzyswKbeYUDsXXGjJna8JzOogWiXoXRqC03rOvsHhaeE34EBV0xFT+md2Gy9quti+OY4KndERq7f3filVS3fiQsuUb56B0lOmsWAQBo/t8tsvatpdc58RsEnlDVWcZWx38z+vf69xCGklUIvSbhmySBpGdq5WOwCGq0W8EIfQdKVS1ALjKSJwtWm7SjXLOwJC6XbRuuzyHcGbqh/CCTGaL63QtfSHfC6Ek3/NFcCXo="
     on_success: never
     on_failure: always

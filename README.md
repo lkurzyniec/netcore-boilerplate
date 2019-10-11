@@ -2,6 +2,8 @@
 
 Sample boilerplate of `.NET Core 2.2` application.
 
+[![Build Status](https://travis-ci.com/lkurzyniec/netcore-boilerplate.svg?branch=master)](https://travis-ci.com/lkurzyniec/netcore-boilerplate)
+
 ## Source code contains
 
 1. [Autofac](https://autofac.org/)
@@ -77,7 +79,6 @@ Sample boilerplate of `.NET Core 2.2` application.
 * logging by Serilog
 * docker for API
 * docker-compose for API and DB
-* CI build result (Travis CI, AppVeyor, Azure, ?)
 * feature branch with .NET Core 3.0 (IMHO not yet ready for PROD)
 * move README info to Wiki, leave here real boilerplate info
 
