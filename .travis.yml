@@ -6,8 +6,6 @@ dotnet: 2.2
 branches:
   only:
     - master
-install:
-  - gem install travis
 script:
   - dotnet build -c Release --no-cache ./src/HappyCode.NetCoreBoilerplate.Api/
 after_success:
