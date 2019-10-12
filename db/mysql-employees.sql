@@ -80,4 +80,7 @@ UPDATE employees
     SET dept_no = 'd003'
     WHERE emp_no IN (4, 5, 6, 7);
 
+CREATE USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'simplepwd';
+GRANT ALL ON employees.* TO 'user'@'localhost';
+
 flush /*!50503 binary */ logs;

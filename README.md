@@ -73,17 +73,24 @@ Sample boilerplate of `.NET Core 2.2` application.
 
 ![HappyCode.NetCoreBoilerplate.Core.UnitTests](https://kurzyniec.pl/wp-content/uploads/2019/10/netcore-boilerplate-utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
 
+## Start the application
+
+### Standalone
+
+At first, you need to have up and running [MySQL](https://www.mysql.com/downloads/) service on `localhost` with initialized database by [this script](db/mysql-employees.sql).
+
+Then the application (API) can be started by `dotnet run` command executed in the `/src/HappyCode.NetCoreBoilerplate.Api` directory, by default it will be available under `http://localhost:5000`, but keep in mind that documentation is available under `http://localhost:5000/swagger/`. Remember to double check the connection string in [appsettings.json](src/HappyCode.NetCoreBoilerplate.Api/appsettings.json) file, current setup is for `docker-compose`.
+
+### Docker (recommended)
+
+Just run `docker-compose up` command in root directory.
+
 ## To Do
 
 * EF Core with MsSQL (Microsoft)
 * logging by Serilog
-* docker-compose for API and DB
 * feature branch with .NET Core 3.0 (IMHO not yet ready for PROD)
 * move README info to Wiki, leave here real boilerplate info
-
-## Start application
-
-Application can be started by `dotnet run` command executed in the `/src/HappyCode.NetCoreBoilerplate.Api` directory, by default it will be available under `http://localhost:5000`.
 
 ## Run unit tests
 
