@@ -73,5 +73,48 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             emp.Id.ShouldBe(empId);
             emp.LastName.ShouldBe(lastName);
         }
+
+        [Fact]
+        public async Task Delete_should_call_DeleteByIdAsync_onto_repository()
+        {
+            //given
+            const int empId = 11;
+
+            //when
+            await Controller.Delete(11, default);
+
+            //then
+            _employeeRepositoryMock.Verify(x => x.DeleteByIdAsync(empId, It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task Delete_should_return_NotFound_when_repository_return_false()
+        {
+            //given
+            _employeeRepositoryMock.Setup(x => x.DeleteByIdAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(false);
+
+            //when
+            var result = await Controller.Delete(1, default) as StatusCodeResult;
+
+            //then
+            result.ShouldNotBeNull();
+            result.StatusCode.ShouldBe(StatusCodes.Status404NotFound);
+        }
+
+        [Fact]
+        public async Task Delete_should_return_NoContent_when_repository_return_true()
+        {
+            //given
+            _employeeRepositoryMock.Setup(x => x.DeleteByIdAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(true);
+
+            //when
+            var result = await Controller.Delete(1, default) as StatusCodeResult;
+
+            //then
+            result.ShouldNotBeNull();
+            result.StatusCode.ShouldBe(StatusCodes.Status204NoContent);
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         [Fact]
         public async Task Get_should_return_NotFound_when_no_employee()
         {
-            var result = await _client.GetAsync($"api/employees/99");
+            var result = await _client.GetAsync($"api/employees/123456");
 
             result.StatusCode.ShouldBe(HttpStatusCode.NotFound);
         }
@@ -34,6 +34,22 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             result.StatusCode.ShouldBe(HttpStatusCode.OK);
             var emp = await result.Content.ReadAsJsonAsync<EmployeeDto>();
             emp.LastName.ShouldBe("Anderson");
+        }
+
+        [Fact]
+        public async Task Delete_should_return_NoContent_when_delete_employee()
+        {
+            var result = await _client.DeleteAsync($"api/employees/99");
+
+            result.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+        }
+
+        [Fact]
+        public async Task Delete_should_return_NotFound_when_no_employee()
+        {
+            var result = await _client.DeleteAsync($"api/employees/98765");
+
+            result.StatusCode.ShouldBe(HttpStatusCode.NotFound);
         }
     }
 }

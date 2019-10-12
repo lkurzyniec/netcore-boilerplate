@@ -77,7 +77,7 @@ Sample boilerplate of `.NET Core 2.2` application.
 
 ### Standalone
 
-At first, you need to have up and running [MySQL](https://www.mysql.com/downloads/) service on `localhost` with initialized database by [this script](db/mysql-employees.sql).
+At first, you need to have up and running [MySQL](https://www.mysql.com/downloads/) database server on localhost with initialized database by [this script](db/mysql-employees.sql).
 
 Then the application (API) can be started by `dotnet run` command executed in the `/src/HappyCode.NetCoreBoilerplate.Api` directory, by default it will be available under `http://localhost:5000`, but keep in mind that documentation is available under `http://localhost:5000/swagger/`. Remember to double check the connection string in [appsettings.json](src/HappyCode.NetCoreBoilerplate.Api/appsettings.json) file, current setup is for `docker-compose`.
 

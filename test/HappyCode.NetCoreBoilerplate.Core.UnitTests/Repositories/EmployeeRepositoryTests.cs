@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure;
@@ -24,17 +25,16 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         }
 
         [Fact]
-        public async Task Db_should_return_expected_employee()
+        public async Task GetOldestAsync_should_return_expected_employee()
         {
             //given
-            var users = new List<Employee>
+            var employees = new List<Employee>
             {
                 new Employee { EmpNo = 22, LastName = "Richard", BirthDate = new DateTime(1983, 07, 21) },
                 new Employee { EmpNo = 45, LastName = "Hudson", BirthDate = new DateTime(1962, 09, 30) },
                 new Employee { EmpNo = 54, LastName = "Bias", BirthDate = new DateTime(1976, 11, 11) },
             };
-
-            _dbContextMock.Setup(x => x.Employees).Returns(users.GetMockDbSet().Object);
+            _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSet().Object);
 
             //when
             var emp = await _repository.GetOldestAsync(default);
@@ -42,6 +42,46 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             //then
             emp.Id.ShouldBe(45);
             emp.LastName.ShouldBe("Hudson");
+        }
+
+        [Fact]
+        public async Task DeleteByIdAsync_should_return_false_when_employee_not_found()
+        {
+            //given
+            _dbContextMock.Setup(x => x.Employees).Returns(Enumerable.Empty<Employee>().GetMockDbSet().Object);
+
+            //when
+            var result = await _repository.DeleteByIdAsync(99, default);
+
+            //then
+            result.ShouldBe(false);
+
+            _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never);
+        }
+
+        [Fact]
+        public async Task DeleteByIdAsync_should_return_true_and_save_when_employee_found()
+        {
+            //given
+            const int empId = 22;
+
+            var employees = new List<Employee>
+            {
+                new Employee { EmpNo = empId },
+            };
+            _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSet().Object);
+
+            _dbContextMock.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(1);
+
+            //when
+            var result = await _repository.DeleteByIdAsync(empId, default);
+
+            //then
+            result.ShouldBe(true);
+
+            _dbContextMock.Verify(x => x.Employees.Remove(It.Is<Employee>(y => y.EmpNo == empId)), Times.Once);
+            _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
     }
 }

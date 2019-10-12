@@ -26,6 +26,17 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
             };
             dbContext.Employees.Add(emp1);
 
+            var emp2 = new Employee
+            {
+                EmpNo = 99,
+                FirstName = "Person",
+                LastName = "ToDelete",
+                BirthDate = new DateTime(2019, 10, 13),
+                Gender = "M",
+                Department = dept1,
+            };
+            dbContext.Employees.Add(emp2);
+
             dbContext.SaveChanges();
         }
     }

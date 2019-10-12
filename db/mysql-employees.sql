@@ -58,7 +58,7 @@ CREATE TABLE departments (
     manger_no   INT             NOT NULL,
     PRIMARY KEY (dept_no),
     UNIQUE  KEY (dept_name),
-    FOREIGN KEY (manger_no)       REFERENCES employees (emp_no)    ON DELETE CASCADE
+    FOREIGN KEY (manger_no) REFERENCES employees (emp_no) ON DELETE CASCADE
 );
 
 INSERT INTO departments VALUES

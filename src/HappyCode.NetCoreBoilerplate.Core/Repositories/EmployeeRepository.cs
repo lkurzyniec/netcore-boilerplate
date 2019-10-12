@@ -13,6 +13,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
         Task<EmployeeDto> GetByIdAsync(int id, CancellationToken cancellationToken);
         Task<EmployeeDetailsDto> GetByIdWithDetailsAsync(object id, CancellationToken cancellationToken);
         Task<EmployeeDto> GetOldestAsync(CancellationToken cancellationToken);
+        Task<bool> DeleteByIdAsync(int id, CancellationToken cancellationToken);
     }
 
     public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
@@ -70,6 +71,19 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
             }
 
             return emp.MapToDto();
+        }
+
+        public async Task<bool> DeleteByIdAsync(int id, CancellationToken cancellationToken)
+        {
+            var emp = await DbContext.Employees
+                .SingleOrDefaultAsync(x => x.EmpNo == id);
+            if (emp == null)
+            {
+                return false;
+            }
+
+            DbContext.Employees.Remove(emp);
+            return await DbContext.SaveChangesAsync(cancellationToken) > 0;
         }
     }
 }

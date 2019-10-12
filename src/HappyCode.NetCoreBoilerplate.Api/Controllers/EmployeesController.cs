@@ -60,5 +60,20 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
             }
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Delete(
+            int id,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await _employeeRepository.DeleteByIdAsync(id, cancellationToken);
+            if (result)
+            {
+                return NoContent();
+            }
+            return NotFound();
+        }
     }
 }
