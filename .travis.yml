@@ -8,7 +8,6 @@ branches:
     - master
 script:
   - dotnet build -c Release --no-cache ./src/HappyCode.NetCoreBoilerplate.Api/
-after_success:
   - dotnet test ./test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/
   - dotnet test ./test/HappyCode.NetCoreBoilerplate.Api.UnitTests/
   - dotnet test ./test/HappyCode.NetCoreBoilerplate.Core.UnitTests/

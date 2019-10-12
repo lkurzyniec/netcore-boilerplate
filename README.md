@@ -11,7 +11,7 @@ Sample boilerplate of `.NET Core 2.2` application.
 1. [EF Core](https://docs.microsoft.com/ef/)
     1. [MySQL provider from Oracle](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core.html)
 1. Tests
-    1. [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs)
+    1. [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs) with InMemory database
     1. [Unit tests](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Controllers/EmployeesControllerTests.cs)
 1. Code quality
     1. [editorconfig](.editorconfig)
@@ -77,7 +77,6 @@ Sample boilerplate of `.NET Core 2.2` application.
 
 * EF Core with MsSQL (Microsoft)
 * logging by Serilog
-* docker for API
 * docker-compose for API and DB
 * feature branch with .NET Core 3.0 (IMHO not yet ready for PROD)
 * move README info to Wiki, leave here real boilerplate info
