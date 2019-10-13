@@ -1,6 +1,6 @@
 using System;
 
-namespace HappyCode.NetCoreBoilerplate.Api.Configurations
+namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
 {
     public class PingWebsiteConfiguration
     {

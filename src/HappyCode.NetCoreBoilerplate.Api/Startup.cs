@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using HappyCode.NetCoreBoilerplate.Api.Configurations;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -24,9 +25,14 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore()
-                .AddApiExplorer()       //required when AddMvcCore() instead of AddMvc()
-                .AddJsonFormatters()    //required when AddMvcCore() instead of AddMvc()
+            services.AddMvcCore(options =>
+                {
+                    options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                    options.Filters.Add(typeof(ValidateModelStateFilter));
+                })
+                .AddApiExplorer()
+                .AddDataAnnotations()
+                .AddJsonFormatters()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             services.AddDbContext<EmployeesContext>(options => options.UseMySQL(_configuration.GetConnectionString("SimpleMySqlDb")), ServiceLifetime.Transient);

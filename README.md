@@ -17,6 +17,9 @@ Sample boilerplate of `.NET Core 2.2` application.
     1. [editorconfig](.editorconfig)
     1. Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
     1. [Rules](HappyCode.NetCoreBoilerplate.ruleset)
+1. Docker
+    1. [Dockerfile](dockerfile)
+    1. [Docker-compose](docker-compose.yml)
 
 ## Architecture
 
@@ -32,6 +35,10 @@ Sample boilerplate of `.NET Core 2.2` application.
   * HostedService
   * HttpClient
   * HealthCheck
+* Filters
+  * Global exception filter - [HttpGlobalExceptionFilter](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/HttpGlobalExceptionFilter.cs)
+  * Action filter to validate `ModelState` - [ValidateModelStateFilter](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ValidateModelStateFilter.cs)
+* Container registration place - [ContainerConfigurator](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Configurations/ContainerConfigurator.cs)
 * Very simple exemplary API controller - [EmployeesController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/EmployeesController.cs)
 * Example of BackgroundService - [PingWebsiteBackgroundService.cs](src/HappyCode.NetCoreBoilerplate.Api/BackgroundServices/PingWebsiteBackgroundService.cs)
 
@@ -77,13 +84,16 @@ Sample boilerplate of `.NET Core 2.2` application.
 
 ### Standalone
 
-At first, you need to have up and running [MySQL](https://www.mysql.com/downloads/) database server on localhost with initialized database by [this script](db/mysql-employees.sql).
+At first, you need to have up and running [MySQL](https://www.mysql.com/downloads/) database server on localhost with initialized
+database by [this script](db/mysql-employees.sql).
 
-Then the application (API) can be started by `dotnet run` command executed in the `/src/HappyCode.NetCoreBoilerplate.Api` directory, by default it will be available under `http://localhost:5000`, but keep in mind that documentation is available under `http://localhost:5000/swagger/`. Remember to double check the connection string in [appsettings.json](src/HappyCode.NetCoreBoilerplate.Api/appsettings.json) file, current setup is for `docker-compose`.
+Then the application (API) can be started by `dotnet run` command executed in the `/src/HappyCode.NetCoreBoilerplate.Api` directory.
+By default it will be available under `http://localhost:5000`, but keep in mind that documentation is available under
+`http://localhost:5000/swagger/`.
 
 ### Docker (recommended)
 
-Just run `docker-compose up` command in root directory.
+Just run `docker-compose up` command in root directory and after successful start of services visit `http://localhost:5000/swagger/`.
 
 ## To Do
 

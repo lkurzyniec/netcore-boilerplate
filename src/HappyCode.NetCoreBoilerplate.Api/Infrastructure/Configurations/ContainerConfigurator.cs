@@ -1,7 +1,7 @@
 using Autofac;
 using HappyCode.NetCoreBoilerplate.Core.RegisterModules;
 
-namespace HappyCode.NetCoreBoilerplate.Api.Configurations
+namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
 {
     public static class ContainerConfigurator
     {
