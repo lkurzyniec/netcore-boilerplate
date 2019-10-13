@@ -4,7 +4,7 @@
     <Copyright>Copyright © happy+code 2019</Copyright>
   </PropertyGroup>
   <PropertyGroup>
-    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)HappyCode.NetCoreBoilerplate.ruleset</CodeAnalysisRuleSet>
  </PropertyGroup>
