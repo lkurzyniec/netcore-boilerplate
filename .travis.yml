@@ -7,10 +7,8 @@ branches:
   only:
     - master
 script:
-  - dotnet build -c Release --no-cache ./src/HappyCode.NetCoreBoilerplate.Api/
-  - dotnet test ./test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/
-  - dotnet test ./test/HappyCode.NetCoreBoilerplate.Api.UnitTests/
-  - dotnet test ./test/HappyCode.NetCoreBoilerplate.Core.UnitTests/
+  - dotnet build -c Release --no-cache ./NetCoreBoilerplate.sln
+  - dotnet test -c Release --no-build ./NetCoreBoilerplate.sln
 notifications:
   email:
     recipients:
