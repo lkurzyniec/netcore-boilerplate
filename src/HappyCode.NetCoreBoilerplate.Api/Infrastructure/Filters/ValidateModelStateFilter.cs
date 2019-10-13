@@ -16,8 +16,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
             var validationErrors = context.ModelState
                 .Keys
                 .SelectMany(k => context.ModelState[k].Errors)
-                .Select(e => e.ErrorMessage)
-                .ToArray();
+                .Select(e => e.ErrorMessage);
 
             context.Result = new BadRequestObjectResult(new ErrorResponse
             {
