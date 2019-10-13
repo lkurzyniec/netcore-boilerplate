@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Łukasz Kurzyniec</Authors>
+    <Copyright>Copyright © happy+code 2019</Copyright>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)HappyCode.NetCoreBoilerplate.ruleset</CodeAnalysisRuleSet>
+ </PropertyGroup>
+</Project>

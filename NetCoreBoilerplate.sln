@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6D3497A0-339F-4545-86B8-7E015B468025}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}"
+	ProjectSection(SolutionItems) = preProject
+		test\Directory.Build.props = test\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.Api", "src\HappyCode.NetCoreBoilerplate.Api\HappyCode.NetCoreBoilerplate.Api.csproj", "{C29597BD-2BE6-4E35-B6BF-E3D416AE3661}"
 EndProject
@@ -16,6 +19,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.Api.UnitTests", "test\HappyCode.NetCoreBoilerplate.Api.UnitTests\HappyCode.NetCoreBoilerplate.Api.UnitTests.csproj", "{1606FA62-EA72-4F99-971C-0DA67D910188}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.Core.UnitTests", "test\HappyCode.NetCoreBoilerplate.Core.UnitTests\HappyCode.NetCoreBoilerplate.Core.UnitTests.csproj", "{E7FD0B44-8ACA-4EA6-8A38-E6D346462273}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9D8D97C-B58E-4A12-A7FE-D93A71CFFB73}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.travis.yml = .travis.yml
+		Directory.Build.props = Directory.Build.props
+		HappyCode.NetCoreBoilerplate.ruleset = HappyCode.NetCoreBoilerplate.ruleset
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
