@@ -1,22 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-
-  <PropertyGroup>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
-    <CodeAnalysisRuleSet>../../HappyCode.NetCoreBoilerplate.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.6">
