@@ -1,10 +1,9 @@
 using System;
 using Autofac.Extensions.DependencyInjection;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Serilog;
-using Serilog.Core;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -12,7 +11,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
     {
         public static void Main(string[] args)
         {
-            Log.Logger = CreateLogger();
+            Log.Logger = SerilogConfigurator.CreateLogger();
 
             try
             {
@@ -33,19 +32,5 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 .UseSerilog()
                 .ConfigureServices(services => services.AddAutofac())
                 .UseStartup<Startup>();
-
-        private static Logger CreateLogger()
-        {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
-                .AddJsonFile("appsettings.local.json", optional: true)
-                .Build();
-
-            var logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
-            return logger;
-        }
     }
 }
