@@ -21,11 +21,16 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
         {
             services.AddMvcCore()
                 .AddJsonFormatters()
+                .AddDataAnnotations()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             services.AddDbContext<EmployeesContext>(options =>
             {
                 options.UseInMemoryDatabase("employees");
+            });
+            services.AddDbContext<CarsContext>(options =>
+            {
+                options.UseInMemoryDatabase("cars");
             });
         }
 
@@ -33,13 +38,16 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
         {
             base.ConfigureContainer(builder);
 
-            // builder.RegisterType<SomeService>().As<ISomeService>();  //if needed owerride registration with own test fakes
+            // builder.RegisterType<SomeService>().As<ISomeService>();  //if needed override registration with own test fakes
         }
 
         public override void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var context = app.ApplicationServices.GetService<EmployeesContext>();
-            EmployeeContextDataFeeder.Feed(context);
+            var employeesContext = app.ApplicationServices.GetService<EmployeesContext>();
+            EmployeesContextDataFeeder.Feed(employeesContext);
+
+            var carsContext = app.ApplicationServices.GetService<CarsContext>();
+            CarsContextDataFeeder.Feed(carsContext);
 
             app.UseMvc();
         }

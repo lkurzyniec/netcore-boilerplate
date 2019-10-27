@@ -7,7 +7,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
     {
         public static void RegisterModules(ContainerBuilder builder)
         {
-            builder.RegisterModule<RepositoriesRegisterModule>();
+            builder.RegisterModule<GeneralRegisterModule>();
         }
     }
 }

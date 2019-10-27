@@ -20,9 +20,6 @@
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "http://*:5000",
-      },
-      "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Views"
       }
     },
     {

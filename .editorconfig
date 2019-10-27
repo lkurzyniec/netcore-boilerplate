@@ -14,6 +14,8 @@ insert_final_newline = false
 [*.cs]
 indent_size = 4
 
+dotnet_sort_system_directives_first = true
+
 # private fields with underscore prefix => private int _myValue;
 dotnet_naming_rule.private_members_with_underscore.symbols  = private_fields
 dotnet_naming_rule.private_members_with_underscore.style    = prefix_underscore
@@ -22,5 +24,5 @@ dotnet_naming_rule.private_members_with_underscore.severity = suggestion
 dotnet_naming_symbols.private_fields.applicable_kinds           = field
 dotnet_naming_symbols.private_fields.applicable_accessibilities = private
 
-dotnet_naming_style.prefix_underscore.capitalization = camel_case
+dotnet_naming_style.prefix_underscore.capitalization  = camel_case
 dotnet_naming_style.prefix_underscore.required_prefix = _

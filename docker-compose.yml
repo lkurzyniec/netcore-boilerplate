@@ -14,12 +14,6 @@ services:
       MYSQL_DATABASE: employees
       MYSQL_USER: user
       MYSQL_PASSWORD: simplepwd
-    healthcheck:
-      test: mysql -p$$MYSQL_ROOT_PASSWORD -e 'select 1' || exit 1
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    restart: always
     volumes:
       - dbdata:/var/lib/mysql
       - ./db/mysql-employees.sql:/docker-entrypoint-initdb.d/init.sql
@@ -33,12 +27,6 @@ services:
       - 5000:80
     depends_on:
       - mysql
-    healthcheck:
-      test: curl -f http://localhost:80/healthcheck/ || exit 1
-      interval: 1m
-      timeout: 3s
-      retries: 3
-      start_period: 5s
 
 volumes:
   dbdata:

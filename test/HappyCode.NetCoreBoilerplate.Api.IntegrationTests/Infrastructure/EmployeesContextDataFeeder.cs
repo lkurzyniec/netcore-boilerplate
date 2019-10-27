@@ -4,7 +4,7 @@ using HappyCode.NetCoreBoilerplate.Core.Models;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
 {
-    public class EmployeeContextDataFeeder
+    public class EmployeesContextDataFeeder
     {
         public static void Feed(EmployeesContext dbContext)
         {

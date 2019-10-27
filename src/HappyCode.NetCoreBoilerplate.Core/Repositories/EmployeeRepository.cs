@@ -5,11 +5,13 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Extensions;
+using System.Collections.Generic;
 
 namespace HappyCode.NetCoreBoilerplate.Core.Repositories
 {
     public interface IEmployeeRepository
     {
+        Task<List<EmployeeDto>> GetAllAsync(CancellationToken cancellationToken);
         Task<EmployeeDto> GetByIdAsync(int id, CancellationToken cancellationToken);
         Task<EmployeeDetailsDto> GetByIdWithDetailsAsync(object id, CancellationToken cancellationToken);
         Task<EmployeeDto> GetOldestAsync(CancellationToken cancellationToken);
@@ -21,6 +23,15 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
         public EmployeeRepository(EmployeesContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public async Task<List<EmployeeDto>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            var employees = await DbContext.Employees
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
+
+            return employees.Select(EmployeeExtensions.MapToDto).ToList();
         }
 
         public async Task<EmployeeDto> GetByIdAsync(int id, CancellationToken cancellationToken)
