@@ -21,6 +21,7 @@ Boilerplate of API in `.NET Core 2.2`.
 1. Docker
     1. [Dockerfile](dockerfile)
     1. [Docker-compose](docker-compose.yml)
+1. [Serilog](https://serilog.net/)
 
 ## Architecture
 
@@ -110,7 +111,6 @@ Run `dotnet test` command in the root directory, it will look for test projects 
 
 ## To Do
 
-* logging by [Serilog](https://serilog.net/)
 * [DbUp](http://dbup.github.io/) as a database migration tool
 * feature branch with .NET Core 3.0 (IMHO not yet ready for PROD)
 * move README info to Wiki, leave here real boilerplate info
