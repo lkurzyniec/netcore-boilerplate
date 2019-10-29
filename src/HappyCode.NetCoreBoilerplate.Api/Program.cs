@@ -22,8 +22,11 @@ namespace HappyCode.NetCoreBoilerplate.Api
             catch (Exception ex)
             {
                 Log.Logger.Fatal(ex, "Application start-up failed");
-                Log.CloseAndFlush();
                 throw;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
             }
         }
 
