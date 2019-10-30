@@ -24,6 +24,7 @@ Boilerplate of API in `.NET Core 2.2`.
         * `mysql:8` with DB initialization
         * `mcr.microsoft.com/mssql/server:2017-latest` with DB initialization
         * `netcore-boilerplate:local`
+1. [Serilog](https://serilog.net/)
 
 ## Architecture
 
@@ -120,7 +121,6 @@ Run `dotnet test` command in the root directory, it will look for test projects 
 
 ## To Do
 
-* logging by [Serilog](https://serilog.net/)
 * [DbUp](http://dbup.github.io/) as a database migration tool
 * feature branch with .NET Core 3.0 (IMHO not yet ready for PROD)
 * move README info to Wiki, leave here real boilerplate info
