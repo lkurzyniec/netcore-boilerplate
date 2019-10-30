@@ -9,18 +9,21 @@ Boilerplate of API in `.NET Core 2.2`.
 1. [Autofac](https://autofac.org/)
 1. [Swagger](https://swagger.io/) + [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)
 1. [EF Core](https://docs.microsoft.com/ef/)
-    1. [MySQL provider from Oracle](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core.html)
-    1. [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
+    * [MySQL provider from Oracle](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core.html)
+    * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
 1. Tests
-    1. [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs) with InMemory database
-    1. [Unit tests](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Controllers/EmployeesControllerTests.cs)
+    * [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs) with InMemory database
+    * [Unit tests](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Controllers/EmployeesControllerTests.cs)
 1. Code quality
-    1. [editorconfig](.editorconfig)
-    1. Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
-    1. [Rules](HappyCode.NetCoreBoilerplate.ruleset)
+    * [editorconfig](.editorconfig)
+    * Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
+    * [Rules](HappyCode.NetCoreBoilerplate.ruleset)
 1. Docker
-    1. [Dockerfile](dockerfile)
-    1. [Docker-compose](docker-compose.yml)
+    * [Dockerfile](dockerfile)
+    * [Docker-compose](docker-compose.yml)
+        * `mysql:8` with DB initialization
+        * `mcr.microsoft.com/mssql/server:2017-latest` with DB initialization
+        * `netcore-boilerplate:local`
 
 ## Architecture
 
@@ -83,6 +86,15 @@ Boilerplate of API in `.NET Core 2.2`.
 
 ![HappyCode.NetCoreBoilerplate.Core.UnitTests](https://kurzyniec.pl/wp-content/uploads/2019/10/netcore-boilerplate-utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
 
+## How to adopt to your project
+
+Generally it is totally up to you! But in case you do not have any plan, You can follow below simple steps:
+
+1. Download/clone/fork repository
+1. Remove components and/or classes that you do not need to
+1. Rename files (e.g. sln, csproj, ruleset), folders, namespaces etc.
+1. Give us a star!
+
 ## Build the solution
 
 Just execute `dotnet build` in the root directory, it takes `HappyCode.NetCoreBoilerplate.sln` and build everything.
@@ -92,7 +104,7 @@ Just execute `dotnet build` in the root directory, it takes `HappyCode.NetCoreBo
 ### Standalone
 
 At first, you need to have up and running [MySQL](https://www.mysql.com/downloads/) and [MsSQL](https://www.microsoft.com/sql-server/sql-server-downloads) database servers on localhost with initialized
-database by [mysql script](db/mysql-employees.sql) and [mssql script](db/mssql-cars.sql).
+database by [mysql script](db/mysql/mysql-employees.sql) and [mssql script](db/mssql/mssql-cars.sql).
 
 Then the application (API) can be started by `dotnet run` command executed in the `/src/HappyCode.NetCoreBoilerplate.Api` directory.
 By default it will be available under `http://localhost:5000`, but keep in mind that documentation is available under
@@ -101,8 +113,6 @@ By default it will be available under `http://localhost:5000`, but keep in mind 
 ### Docker (recommended)
 
 Just run `docker-compose up` command in the root directory and after successful start of services visit `http://localhost:5000/swagger/`.
-
-It will run only MySQL database, without MsSQL database unfortunately.
 
 ## Run unit tests
 
@@ -123,7 +133,7 @@ If:
 * you learn something,
 * you are using it in your project/application,
 
-then please give me a star, appreciate my work. Thanks!
+then please give us a star, appreciate our work. Thanks!
 
 ## Contribution
 
@@ -134,4 +144,4 @@ For pull request please follow this rules:
 * Commit messages should be clear and as much as possible descriptive.
 * Rebase if required.
 * Make sure that your code compile and run locally.
-* Changes do not break any code quality rules.
+* Changes do not break any tests and code quality rules.

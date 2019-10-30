@@ -16,7 +16,23 @@ services:
       MYSQL_PASSWORD: simplepwd
     volumes:
       - dbdata:/var/lib/mysql
-      - ./db/mysql-employees.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/mysql/mysql-employees.sql:/docker-entrypoint-initdb.d/init.sql
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: mssql
+    command: /bin/bash ./entrypoint.sh
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - SA_PASSWORD=SomeStrongPwd123
+    volumes:
+      - dbdata:/var/opt/mssql/data
+      - ./db/mssql/docker-entrypoint.sh:/entrypoint.sh
+      - ./db/mssql/docker-db-init.sh:/db-init.sh
+      - ./db/mssql/mssql-cars.sql:/db-init.sql
 
   netcore-boilerplate:
     image: netcore-boilerplate:local
@@ -27,6 +43,7 @@ services:
       - 5000:80
     depends_on:
       - mysql
+      - mssql
 
 volumes:
   dbdata:
