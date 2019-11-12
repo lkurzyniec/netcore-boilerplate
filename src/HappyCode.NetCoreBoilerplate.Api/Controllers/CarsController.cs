@@ -21,7 +21,6 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<CarDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(
-            [FromHeader(Name = "x-correlation-id")] string correlationId = null,
             CancellationToken cancellationToken = default)
         {
             var result = await _carService.GetAllSortedByPlateAsync(cancellationToken);
