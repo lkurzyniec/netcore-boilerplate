@@ -22,6 +22,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(
             int id,
+            [FromHeader(Name = "x-correlation-id")] string correlationId = null,
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.GetByIdAsync(id, cancellationToken);
@@ -37,6 +38,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetWithDetails(
             int id,
+            [FromHeader(Name = "x-correlation-id")] string correlationId = null,
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.GetByIdWithDetailsAsync(id, cancellationToken);
@@ -51,6 +53,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetOldest(
+            [FromHeader(Name = "x-correlation-id")] string correlationId = null,
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.GetOldestAsync(cancellationToken);
@@ -66,6 +69,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(
             int id,
+            [FromHeader(Name = "x-correlation-id")] string correlationId = null,
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.DeleteByIdAsync(id, cancellationToken);

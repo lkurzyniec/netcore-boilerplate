@@ -4,6 +4,9 @@ Boilerplate of API in `.NET Core 2.2`.
 
 [![Build Status](https://travis-ci.com/lkurzyniec/netcore-boilerplate.svg?branch=master)](https://travis-ci.com/lkurzyniec/netcore-boilerplate)
 
+Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code. It is kind of a template - instead
+of starting an empty project and adding the same snippets each time, you can use the boilerplate that already contains such code.
+
 ## Source code contains
 
 1. [Autofac](https://autofac.org/)
@@ -25,6 +28,8 @@ Boilerplate of API in `.NET Core 2.2`.
         * `mcr.microsoft.com/mssql/server:2017-latest` with DB initialization
         * `netcore-boilerplate:local`
 1. [Serilog](https://serilog.net/)
+    * Sink: [Async](https://github.com/serilog/serilog-sinks-async)
+    * Enrich: [CorrelationId](https://github.com/ekmsystems/serilog-enrichers-correlation-id)
 
 ## Architecture
 

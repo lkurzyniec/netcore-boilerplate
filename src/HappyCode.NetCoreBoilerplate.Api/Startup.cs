@@ -35,6 +35,8 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 .AddJsonFormatters()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<EmployeesContext>(options => options.UseMySQL(_configuration.GetConnectionString("MySqlDb")), ServiceLifetime.Transient);
             services.AddDbContext<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")), ServiceLifetime.Transient);
 
