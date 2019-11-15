@@ -1,0 +1,27 @@
+name: Build & Test
+
+on: push
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      
+    - name: Print info
+      run: |
+        echo User $GITHUB_ACTOR triggered build on $GITHUB_REF by $GITHUB_SHA commit.
+      
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+  
+    - name: Build sln
+      run: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
+      
+    - name: Test sln
+      if: success()
+      run: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
