@@ -3,12 +3,28 @@ mono: none
 sudo: required
 dist: xenial
 dotnet: 2.2
+
 branches:
   only:
     - /.*/
-script:
-  - dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
-  - dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
+
+before_install:
+  - echo Action $TRAVIS_EVENT_TYPE triggered build by $TRAVIS_COMMIT commit.
+
+jobs:
+  include:
+    - stage: "Build&Test"
+      name: "Build"
+      script: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
+    - name: "Test"
+      script: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
+
+    - stage: CodeCoverage
+      install: dotnet tool install --global Codecov.Tool
+      script:
+        - dotnet test ./test/HappyCode.NetCoreBoilerplate.Core.UnitTests/HappyCode.NetCoreBoilerplate.Core.UnitTests.csproj /p:CollectCoverage=true  /p:CoverletOutput=../CoverageResults/ /p:CoverletOutputFormat="opencover"
+        - codecov -f ./test/CoverageResults/coverage.opencover.xml -t $CODECOV_TOKEN
+
 notifications:
   email:
     recipients:

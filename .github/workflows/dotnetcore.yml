@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build-and-test:
-    name: Build & Test
+    name: GitHub Build&Test
     runs-on: ubuntu-latest
 
     steps:

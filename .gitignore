@@ -126,6 +126,10 @@ _TeamCity*
 .axoCover/*
 !.axoCover/settings.json
 
+# Coverlet is a Code Coverage Tool
+coverage*.json
+coverage*.xml
+
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
