@@ -13,17 +13,19 @@ before_install:
 
 jobs:
   include:
-    - stage: "Build&Test"
-      name: "Build"
-      script: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
-    - name: "Test"
-      script: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
+    - stage: "Build & Test"
+      name: "Build & Test"
+      script:
+        - dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
+        - dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
 
-    - stage: CodeCoverage
+    - stage: "Code Coverage"
+      name: "Code Coverage"
       install: dotnet tool install --global Codecov.Tool
       script:
-        - dotnet test ./test/HappyCode.NetCoreBoilerplate.Core.UnitTests/HappyCode.NetCoreBoilerplate.Core.UnitTests.csproj /p:CollectCoverage=true  /p:CoverletOutput=../CoverageResults/ /p:CoverletOutputFormat="opencover"
-        - codecov -f ./test/CoverageResults/coverage.opencover.xml -t $CODECOV_TOKEN
+        - dotnet test ./test/HappyCode.NetCoreBoilerplate.Core.UnitTests/HappyCode.NetCoreBoilerplate.Core.UnitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../CoverageResults/
+        - dotnet test ./test/HappyCode.NetCoreBoilerplate.Api.UnitTests/HappyCode.NetCoreBoilerplate.Api.UnitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../CoverageResults/ /p:MergeWith="../CoverageResults/coverage.json" /p:CoverletOutputFormat="opencover"
+        - $HOME/.dotnet/tools/codecov -f ./test/CoverageResults/coverage.opencover.xml -t $CODECOV_TOKEN
 
 notifications:
   email:
