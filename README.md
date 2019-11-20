@@ -1,8 +1,10 @@
 # netcore-boilerplate
 
-Boilerplate of API in `.NET Core 2.2`.
+Boilerplate of API in `.NET Core 2.2`
 
-[![Build Status](https://travis-ci.com/lkurzyniec/netcore-boilerplate.svg?branch=master)](https://travis-ci.com/lkurzyniec/netcore-boilerplate)
+| Travis CI     | GitHub        | Codecov       |
+|:-------------:|:-------------:|:-------------:|
+| [![Travis CI Build Status](https://travis-ci.com/lkurzyniec/netcore-boilerplate.svg?branch=master)](https://travis-ci.com/lkurzyniec/netcore-boilerplate) | [![GitHub Build Status](https://github.com/lkurzyniec/netcore-boilerplate/workflows/Build%20%26%20Test/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) |
 
 Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code. It is kind of a template - instead
 of starting an empty project and adding the same snippets each time, you can use the boilerplate that already contains such code.
@@ -18,9 +20,12 @@ of starting an empty project and adding the same snippets each time, you can use
     * [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs) with InMemory database
     * [Unit tests](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Controllers/EmployeesControllerTests.cs)
 1. Code quality
-    * [editorconfig](.editorconfig)
+    * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
     * Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
     * [Rules](HappyCode.NetCoreBoilerplate.ruleset)
+    * Code coverage
+        * [Coverlet](https://github.com/tonerdo/coverlet)
+        * [Codecov](https://codecov.io/)
 1. Docker
     * [Dockerfile](dockerfile)
     * [Docker-compose](docker-compose.yml)
@@ -30,6 +35,9 @@ of starting an empty project and adding the same snippets each time, you can use
 1. [Serilog](https://serilog.net/)
     * Sink: [Async](https://github.com/serilog/serilog-sinks-async)
     * Enrich: [CorrelationId](https://github.com/ekmsystems/serilog-enrichers-correlation-id)
+1. Continuous integration
+    * [Travis CI](https://travis-ci.org/) ([.travis.yml](.travis.yml))
+    * [GitHub Actions](https://github.com/features/actions) ([dotnetcore.yml](.github/workflows/dotnetcore.yml))
 
 ## Architecture
 
