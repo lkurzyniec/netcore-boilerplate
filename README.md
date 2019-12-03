@@ -35,6 +35,7 @@ of starting an empty project and adding the same snippets each time, you can use
 1. [Serilog](https://serilog.net/)
     * Sink: [Async](https://github.com/serilog/serilog-sinks-async)
     * Enrich: [CorrelationId](https://github.com/ekmsystems/serilog-enrichers-correlation-id)
+1. [DbUp](http://dbup.github.io/) as a db migration tool
 1. Continuous integration
     * [Travis CI](https://travis-ci.org/) ([.travis.yml](.travis.yml))
     * [GitHub Actions](https://github.com/features/actions) ([dotnetcore.yml](.github/workflows/dotnetcore.yml))
@@ -72,6 +73,15 @@ of starting an empty project and adding the same snippets each time, you can use
 * Exemplary MsSQL service - [CarService.cs](src/HappyCode.NetCoreBoilerplate.Core/Services/CarService.cs)
 
 ![HappyCode.NetCoreBoilerplate.Core](https://kurzyniec.pl/wp-content/uploads/2019/10/netcore-boilerplate-core.png "HappyCode.NetCoreBoilerplate.Core")
+
+## DB Migrations
+
+[HappyCode.NetCoreBoilerplate.Db](src/HappyCode.NetCoreBoilerplate.Db)
+
+* Sample migration scripts, both `.sql` and `.cs` - [S001_AddCarTypesTable.sql](src/HappyCode.NetCoreBoilerplate.Db/Scripts/Sql/S001_AddCarTypesTable.sql), [S002_ModifySomeRows.cs](src/HappyCode.NetCoreBoilerplate.Db/Scripts/Code/S002_ModifySomeRows.cs)
+* Console application as a simple db migration tool - [Program.cs](src/HappyCode.NetCoreBoilerplate.Db/Program.cs)
+
+![HappyCode.NetCoreBoilerplate.Db](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-db.png "HappyCode.NetCoreBoilerplate.Db")
 
 ## Tests
 
@@ -120,7 +130,7 @@ Just execute `dotnet build` in the root directory, it takes `HappyCode.NetCoreBo
 At first, you need to have up and running [MySQL](https://www.mysql.com/downloads/) and [MsSQL](https://www.microsoft.com/sql-server/sql-server-downloads) database servers on localhost with initialized
 database by [mysql script](db/mysql/mysql-employees.sql) and [mssql script](db/mssql/mssql-cars.sql).
 
-Then the application (API) can be started by `dotnet run` command executed in the `/src/HappyCode.NetCoreBoilerplate.Api` directory.
+Then the application (API) can be started by `dotnet run` command executed in the `src/HappyCode.NetCoreBoilerplate.Api` directory.
 By default it will be available under `http://localhost:5000`, but keep in mind that documentation is available under
 `http://localhost:5000/swagger/`.
 
@@ -128,15 +138,17 @@ By default it will be available under `http://localhost:5000`, but keep in mind 
 
 Just run `docker-compose up` command in the root directory and after successful start of services visit `http://localhost:5000/swagger/`.
 
+### Migrations
+
+When the entire environment is up and running, you can additionally run a migration tool to add some new schema objects into MsSQL DB. To do that, go to `src/HappyCode.NetCoreBoilerplate.Db` directory and execute `dotnet run` command.
+
 ## Run unit tests
 
 Run `dotnet test` command in the root directory, it will look for test projects in `HappyCode.NetCoreBoilerplate.sln` and run them.
 
 ## To Do
 
-* [DbUp](http://dbup.github.io/) as a database migration tool
 * feature branch with .NET Core 3.0 (IMHO not yet ready for PROD)
-* move README info to Wiki, leave here real boilerplate info
 
 ## Be like a star, give me a star! :star:
 
