@@ -5,7 +5,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
-    <PackageReference Include="Moq" Version="4.13.0" />
+    <PackageReference Include="MockQueryable.Moq" Version="3.0.1" />
+    <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="Moq.AutoMocker.NETStandard" Version="0.5.0.9" />
     <PackageReference Include="Shouldly" Version="3.0.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -16,5 +17,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\HappyCode.NetCoreBoilerplate.Core\HappyCode.NetCoreBoilerplate.Core.csproj" />
   </ItemGroup>
-
 </Project>

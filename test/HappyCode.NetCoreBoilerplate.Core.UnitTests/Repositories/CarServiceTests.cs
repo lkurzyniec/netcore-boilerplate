@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Services;
@@ -34,7 +32,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
                 new Car{ Id = 2, Plate = "AA 44" },
                 new Car{ Id = 3, Plate = "CC 44" },
             };
-            _dbContextMock.Setup(x => x.Cars).Returns(cars.GetMockDbSet().Object);
+            _dbContextMock.Setup(x => x.Cars).Returns(cars.GetMockDbSetObject());
 
             //when
             var result = await _service.GetAllSortedByPlateAsync(default);

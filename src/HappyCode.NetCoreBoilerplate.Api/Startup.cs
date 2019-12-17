@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
+using Microsoft.Extensions.Hosting;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -32,7 +33,6 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 })
                 .AddApiExplorer()
                 .AddDataAnnotations()
-                .AddJsonFormatters()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             services.AddHttpContextAccessor();
@@ -42,7 +42,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Simple Api", Version = "v1" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Simple Api", Version = "v1" });      //needs to be fixed after official release of Swashbuckle.AspNetCore 5.x
                 c.DescribeAllParametersInCamelCase();
                 c.OrderActionsBy(x => x.RelativePath);
             });
@@ -59,16 +59,20 @@ namespace HappyCode.NetCoreBoilerplate.Api
             ContainerConfigurator.RegisterModules(builder);
         }
 
-        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHealthChecks("/healthcheck");
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/healthcheck");
+            });
 
-            app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

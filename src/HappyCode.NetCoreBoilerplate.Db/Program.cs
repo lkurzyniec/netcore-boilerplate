@@ -12,7 +12,7 @@ namespace HappyCode.NetCoreBoilerplate.Db
     {
         private static Regex _runPattern = new Regex(@".*");
 
-        static int Main(string[] args)
+        public static int Main(string[] args)
         {
             var configuration = LoadAppConfiguration();
             var upgradeOptions = configuration.GetSection("UpgradeOptions").Get<UpgradeOptions>();

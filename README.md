@@ -1,6 +1,6 @@
 # netcore-boilerplate
 
-Boilerplate of API in `.NET Core 2.2`
+Boilerplate of API in `.NET Core 3.1`
 
 | Travis CI     | GitHub        | Codecov       |
 |:-------------:|:-------------:|:-------------:|
@@ -78,8 +78,8 @@ of starting an empty project and adding the same snippets each time, you can use
 
 [HappyCode.NetCoreBoilerplate.Db](src/HappyCode.NetCoreBoilerplate.Db)
 
-* Sample migration scripts, both `.sql` and `.cs` - [S001_AddCarTypesTable.sql](src/HappyCode.NetCoreBoilerplate.Db/Scripts/Sql/S001_AddCarTypesTable.sql), [S002_ModifySomeRows.cs](src/HappyCode.NetCoreBoilerplate.Db/Scripts/Code/S002_ModifySomeRows.cs)
 * Console application as a simple db migration tool - [Program.cs](src/HappyCode.NetCoreBoilerplate.Db/Program.cs)
+* Sample migration scripts, both `.sql` and `.cs` - [S001_AddCarTypesTable.sql](src/HappyCode.NetCoreBoilerplate.Db/Scripts/Sql/S001_AddCarTypesTable.sql), [S002_ModifySomeRows.cs](src/HappyCode.NetCoreBoilerplate.Db/Scripts/Code/S002_ModifySomeRows.cs)
 
 ![HappyCode.NetCoreBoilerplate.Db](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-db.png "HappyCode.NetCoreBoilerplate.Db")
 
@@ -148,7 +148,7 @@ Run `dotnet test` command in the root directory, it will look for test projects 
 
 ## To Do
 
-* feature branch with .NET Core 3.0 (IMHO not yet ready for PROD)
+* any idea?
 
 ## Be like a star, give me a star! :star:
 

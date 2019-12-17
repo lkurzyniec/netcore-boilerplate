@@ -1,15 +1,16 @@
 using System;
+using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
     public static class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Log.Logger = SerilogConfigurator.CreateLogger();
 
@@ -17,7 +18,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
             {
                 Log.Logger.Information("Starting up");
                 using var webHost = CreateWebHostBuilder(args).Build();
-                webHost.Run();
+                await webHost.RunAsync();
             }
             catch (Exception ex)
             {
@@ -30,10 +31,13 @@ namespace HappyCode.NetCoreBoilerplate.Api
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .ConfigureServices(services => services.AddAutofac())
-                .UseStartup<Startup>();
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

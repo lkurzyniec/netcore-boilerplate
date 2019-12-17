@@ -34,7 +34,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
                 new Employee { EmpNo = 45, LastName = "Hudson", BirthDate = new DateTime(1962, 09, 30) },
                 new Employee { EmpNo = 54, LastName = "Bias", BirthDate = new DateTime(1976, 11, 11) },
             };
-            _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSet().Object);
+            _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
 
             //when
             var emp = await _repository.GetOldestAsync(default);
@@ -48,7 +48,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         public async Task DeleteByIdAsync_should_return_false_when_employee_not_found()
         {
             //given
-            _dbContextMock.Setup(x => x.Employees).Returns(Enumerable.Empty<Employee>().GetMockDbSet().Object);
+            _dbContextMock.Setup(x => x.Employees).Returns(Enumerable.Empty<Employee>().GetMockDbSetObject);
 
             //when
             var result = await _repository.DeleteByIdAsync(99, default);
@@ -69,7 +69,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             {
                 new Employee { EmpNo = empId },
             };
-            _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSet().Object);
+            _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
 
             _dbContextMock.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(1);

@@ -1,5 +1,8 @@
 <Project>
   <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
     <Authors>Łukasz Kurzyniec</Authors>
     <Copyright>Copyright © happy+code 2019</Copyright>
   </PropertyGroup>
