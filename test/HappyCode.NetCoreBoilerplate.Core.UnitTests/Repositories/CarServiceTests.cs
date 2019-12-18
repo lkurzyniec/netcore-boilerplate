@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Services;
 using HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -17,7 +18,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
 
         public CarServiceTests()
         {
-            _dbContextMock = new Mock<CarsContext>();
+            _dbContextMock = new Mock<CarsContext>(new DbContextOptionsBuilder<CarsContext>().Options);
 
             _service = new CarService(_dbContextMock.Object);
         }

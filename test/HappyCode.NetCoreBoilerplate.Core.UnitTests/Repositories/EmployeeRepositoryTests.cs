@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -19,7 +20,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
 
         public EmployeeRepositoryTests()
         {
-            _dbContextMock = new Mock<EmployeesContext>();
+            _dbContextMock = new Mock<EmployeesContext>(new DbContextOptionsBuilder<EmployeesContext>().Options);
 
             _repository = new EmployeeRepository(_dbContextMock.Object);
         }
