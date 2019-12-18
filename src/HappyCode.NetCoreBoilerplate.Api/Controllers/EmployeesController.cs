@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
@@ -15,6 +16,15 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         public EmployeesController(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<EmployeeDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Get(
+            CancellationToken cancellationToken = default)
+        {
+            var result = await _employeeRepository.GetAllAsync(cancellationToken);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -37,8 +38,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
             services.AddHttpContextAccessor();
 
-            services.AddDbContext<EmployeesContext>(options => options.UseMySQL(_configuration.GetConnectionString("MySqlDb")), ServiceLifetime.Transient);
-            services.AddDbContext<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")), ServiceLifetime.Transient);
+            //there is a difference between AddDbContext() and AddDbContextPool(), more info https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling and https://stackoverflow.com/questions/48443567/adddbcontext-or-adddbcontextpool
+            services.AddDbContextPool<EmployeesContext>(options => options.UseMySql(_configuration.GetConnectionString("MySqlDb")));
+            services.AddDbContextPool<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")));
 
             services.AddSwaggerGen(c =>
             {
@@ -64,6 +66,10 @@ namespace HappyCode.NetCoreBoilerplate.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                var option = new RewriteOptions();
+                option.AddRedirect("^$", "swagger");
+                app.UseRewriter(option);
             }
 
             app.UseRouting();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -7,10 +7,6 @@ namespace HappyCode.NetCoreBoilerplate.Core
 {
     public partial class EmployeesContext : DbContext
     {
-        public EmployeesContext()
-        {
-        }
-
         public EmployeesContext(DbContextOptions<EmployeesContext> options)
             : base(options)
         {
