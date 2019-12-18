@@ -148,7 +148,11 @@ Run `dotnet test` command in the root directory, it will look for test projects 
 
 ## To Do
 
-* any idea?
+* any idea? Please create an issue.
+
+## Migrate from ASP .NET Core 2.2 to 3.1
+
+Need to migrate from `.NET Core 2.2` to `.NET Core 3.1`? There's an [Microsoft article](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-3.1&tabs=visual-studio) about this, but you can also, just in case, take a look at my [migration commit](https://github.com/lkurzyniec/netcore-boilerplate/commit/45764d631bce10b0d4d8db47f786ad696fa65d67) where you can find the complete list of required changes.
 
 ## Be like a star, give me a star! :star:
 
