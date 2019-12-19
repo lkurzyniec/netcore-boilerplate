@@ -2,16 +2,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
 {
     public class HttpGlobalExceptionFilter : IExceptionFilter
     {
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         private readonly ILogger<HttpGlobalExceptionFilter> _logger;
 
-        public HttpGlobalExceptionFilter(IHostingEnvironment env, ILogger<HttpGlobalExceptionFilter> logger)
+        public HttpGlobalExceptionFilter(IWebHostEnvironment env, ILogger<HttpGlobalExceptionFilter> logger)
         {
             _env = env;
             _logger = logger;
