@@ -61,7 +61,7 @@ of starting an empty project and adding the same snippets each time, you can use
 * Simple exemplary API controllers - [EmployeesController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/EmployeesController.cs), [CarsController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/CarsController.cs)
 * Example of BackgroundService - [PingWebsiteBackgroundService.cs](src/HappyCode.NetCoreBoilerplate.Api/BackgroundServices/PingWebsiteBackgroundService.cs)
 
-![HappyCode.NetCoreBoilerplate.Api](https://kurzyniec.pl/wp-content/uploads/2019/10/netcore-boilerplate-api.png "HappyCode.NetCoreBoilerplate.Api")
+![HappyCode.NetCoreBoilerplate.Api](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-api.png "HappyCode.NetCoreBoilerplate.Api")
 
 ### Core
 
@@ -72,7 +72,7 @@ of starting an empty project and adding the same snippets each time, you can use
 * Exemplary MySQL repository - [EmployeeRepository.cs](src/HappyCode.NetCoreBoilerplate.Core/Repositories/EmployeeRepository.cs)
 * Exemplary MsSQL service - [CarService.cs](src/HappyCode.NetCoreBoilerplate.Core/Services/CarService.cs)
 
-![HappyCode.NetCoreBoilerplate.Core](https://kurzyniec.pl/wp-content/uploads/2019/10/netcore-boilerplate-core.png "HappyCode.NetCoreBoilerplate.Core")
+![HappyCode.NetCoreBoilerplate.Core](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-core.png "HappyCode.NetCoreBoilerplate.Core")
 
 ## DB Migrations
 
@@ -94,7 +94,7 @@ of starting an empty project and adding the same snippets each time, you can use
 * Simple data feeders - [EmployeeContextDataFeeder.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/EmployeeContextDataFeeder.cs), [CarsContextDataFeeder.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/CarsContextDataFeeder.cs)
 * Exemplary tests - [EmployeesTests.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs), [CarsTests.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/CarsTests.cs)
 
-![HappyCode.NetCoreBoilerplate.Api.IntegrationTests](https://kurzyniec.pl/wp-content/uploads/2019/10/netcore-boilerplate-itests.png "HappyCode.NetCoreBoilerplate.Api.IntegrationTests")
+![HappyCode.NetCoreBoilerplate.Api.IntegrationTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-itests.png "HappyCode.NetCoreBoilerplate.Api.IntegrationTests")
 
 ### Unit tests
 
@@ -104,11 +104,10 @@ of starting an empty project and adding the same snippets each time, you can use
 
 [HappyCode.NetCoreBoilerplate.Core.UnitTests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests)
 
-* Some test classes to be able mock DbContext - [TestAsyncEnumerable.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/TestAsyncEnumerable.cs), [TestAsyncEnumerator.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/TestAsyncEnumerator.cs), [TestAsyncQueryProvider.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/TestAsyncQueryProvider.cs)
-* Extension method to quickly mock of DbSet - [EnumerableExtensions.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/EnumerableExtensions.cs)
+* Extension methods to mock `DbSet` faster - [EnumerableExtensions.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/EnumerableExtensions.cs)
 * Exemplary tests - [EmployeeRepositoryTests.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/EmployeeRepositoryTests.cs), [CarServiceTests.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/CarServiceTests.cs)
 
-![HappyCode.NetCoreBoilerplate.Core.UnitTests](https://kurzyniec.pl/wp-content/uploads/2019/10/netcore-boilerplate-utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
+![HappyCode.NetCoreBoilerplate.Core.UnitTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
 
 ## How to adopt to your project
 
@@ -146,13 +145,13 @@ When the entire environment is up and running, you can additionally run a migrat
 
 Run `dotnet test` command in the root directory, it will look for test projects in `HappyCode.NetCoreBoilerplate.sln` and run them.
 
-## To Do
-
-* any idea? Please create an issue.
-
 ## Migrate from ASP .NET Core 2.2 to 3.1
 
 Need to migrate from `.NET Core 2.2` to `.NET Core 3.1`? There's an [Microsoft article](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-3.1&tabs=visual-studio) about this, but you can also, just in case, take a look at my [migration commit](https://github.com/lkurzyniec/netcore-boilerplate/commit/45764d631bce10b0d4d8db47f786ad696fa65d67) where you can find the complete list of required changes.
+
+## To Do
+
+* any idea? Please create an issue.
 
 ## Be like a star, give me a star! :star:
 
