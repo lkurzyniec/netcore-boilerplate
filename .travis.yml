@@ -25,7 +25,7 @@ jobs:
       script:
         - dotnet test ./test/HappyCode.NetCoreBoilerplate.Core.UnitTests/HappyCode.NetCoreBoilerplate.Core.UnitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../CoverageResults/
         - dotnet test ./test/HappyCode.NetCoreBoilerplate.Api.UnitTests/HappyCode.NetCoreBoilerplate.Api.UnitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../CoverageResults/ /p:MergeWith="../CoverageResults/coverage.json" /p:CoverletOutputFormat="opencover"
-        - $HOME/.dotnet/tools/codecov -f ./test/CoverageResults/coverage.opencover.xml -t $CODECOV_TOKEN
+        #- $HOME/.dotnet/tools/codecov -f ./test/CoverageResults/coverage.opencover.xml -t $CODECOV_TOKEN
 
 notifications:
   email:
