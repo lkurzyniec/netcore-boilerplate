@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +12,8 @@ using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.OpenApi.Models;
+using System;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -29,8 +30,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
         {
             services.AddMvcCore(options =>
                 {
-                    options.Filters.Add(typeof(HttpGlobalExceptionFilter));
-                    options.Filters.Add(typeof(ValidateModelStateFilter));
+                    options.Filters.Add<HttpGlobalExceptionFilter>();
+                    options.Filters.Add<ValidateModelStateFilter>();
+                    options.Filters.Add<ApiKeyAuthorizationFilter>();
                 })
                 .AddApiExplorer()
                 .AddDataAnnotations()
@@ -42,12 +44,8 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddDbContextPool<EmployeesContext>(options => options.UseMySql(_configuration.GetConnectionString("MySqlDb")));
             services.AddDbContextPool<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")));
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Simple Api", Version = "v1" });      //needs to be fixed after official release of Swashbuckle.AspNetCore 5.x
-                c.DescribeAllParametersInCamelCase();
-                c.OrderActionsBy(x => x.RelativePath);
-            });
+            services.Configure<ApiKeyConfiguration>(_configuration.GetSection("ApiKey"));
+            services.AddSwaggerGen(opt => SwaggerConfigurator.Configure(opt, _configuration.GetValue<string>("ApiKey:SecretKey")));
 
             services.Configure<PingWebsiteConfiguration>(_configuration.GetSection("PingWebsite"));
             services.AddHostedService<PingWebsiteBackgroundService>();
@@ -76,7 +74,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHealthChecks("/healthcheck");
+                endpoints.MapHealthChecks("/health");
             });
 
             app.UseSwagger();
