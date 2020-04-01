@@ -12,8 +12,6 @@ using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Rewrite;
-using Microsoft.OpenApi.Models;
-using System;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
