@@ -18,7 +18,12 @@ of starting an empty project and adding the same snippets each time, you can use
     * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
 1. Tests
     * [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs) with InMemory database
-    * [Unit tests](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Controllers/EmployeesControllerTests.cs)
+    * [Unit tests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/EmployeeRepositoryTests.cs)
+        * [xUnit](https://xunit.net/)
+        * [Moq](https://github.com/moq/moq4)
+        * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
+        * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
+        * [FluentAssertions](https://fluentassertions.com/)
 1. Code quality
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
     * Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))

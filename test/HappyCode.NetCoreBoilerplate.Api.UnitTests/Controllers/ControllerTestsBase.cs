@@ -1,5 +1,5 @@
-using Moq.AutoMock;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
+using Moq.AutoMock;
 
 namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
 {

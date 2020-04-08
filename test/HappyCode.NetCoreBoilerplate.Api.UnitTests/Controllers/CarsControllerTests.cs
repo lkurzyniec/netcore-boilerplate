@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoFixture.Xunit2;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
@@ -32,16 +33,12 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             _carServiceMock.Verify(x => x.GetAllSortedByPlateAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
 
-        [Fact]
-        public async Task Get_should_return_Ok_with_expected_result()
+        [Theory, AutoData]
+        public async Task Get_should_return_Ok_with_expected_result(IEnumerable<CarDto> cars)
         {
             //given
             _carServiceMock.Setup(x => x.GetAllSortedByPlateAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new List<CarDto>
-                {
-                    new CarDto{},
-                    new CarDto{},
-                });
+                .ReturnsAsync(cars);
 
             //when
             var result = await Controller.Get(default) as OkObjectResult;
@@ -50,8 +47,8 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             result.Should().NotBeNull();
             result.StatusCode.Should().Be(StatusCodes.Status200OK);
             result.Value.Should().BeAssignableTo<IEnumerable<CarDto>>();
-            var cars = result.Value as IEnumerable<CarDto>;
-            cars.Should().HaveCount(2);
+            var value = result.Value as IEnumerable<CarDto>;
+            value.Should().HaveCount(cars.Count());
         }
     }
 }

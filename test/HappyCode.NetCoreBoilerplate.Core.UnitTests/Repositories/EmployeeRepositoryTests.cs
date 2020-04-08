@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoFixture;
+using AutoFixture.Xunit2;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
@@ -15,6 +15,8 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
 {
     public class EmployeeRepositoryTests
     {
+        private static readonly Fixture _fixture = new Fixture();
+
         private readonly EmployeeRepository _repository;
         private readonly Mock<EmployeesContext> _dbContextMock;
 
@@ -29,22 +31,23 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         public async Task GetOldestAsync_should_return_expected_employee()
         {
             //given
-            var employees = new List<Employee>
-            {
-                new Employee { EmpNo = 22, LastName = "Richard", BirthDate = new DateTime(1983, 07, 21) },
-                new Employee { EmpNo = 45, LastName = "Hudson", BirthDate = new DateTime(1962, 09, 30) },
-                new Employee { EmpNo = 54, LastName = "Bias", BirthDate = new DateTime(1976, 11, 11) },
-            };
+            var employees = _fixture.Build<Employee>()
+                .Without(x => x.LeadingDepartments)
+                .Without(x => x.Department)
+                .CreateMany(20);
+
             _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
 
             //when
             var emp = await _repository.GetOldestAsync(default);
 
             //then
-            emp.Id.Should().Be(45);
+            var theOldest = employees.OrderBy(x => x.BirthDate).First();
+
+            emp.Id.Should().Be(theOldest.EmpNo);
             emp.LastName.Should()
                 .NotBeNullOrEmpty()
-                .And.Be("Hudson");
+                .And.Be(theOldest.LastName);
         }
 
         [Fact]
@@ -62,16 +65,16 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never);
         }
 
-        [Fact]
-        public async Task DeleteByIdAsync_should_return_true_and_save_when_employee_found()
+        [Theory, AutoData]
+        public async Task DeleteByIdAsync_should_return_true_and_save_when_employee_found(int empId)
         {
             //given
-            const int empId = 22;
+            var employees = _fixture.Build<Employee>()
+                .Without(x => x.LeadingDepartments)
+                .Without(x => x.Department)
+                .With(x => x.EmpNo, empId)
+                .CreateMany(1);
 
-            var employees = new List<Employee>
-            {
-                new Employee { EmpNo = empId },
-            };
             _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
 
             _dbContextMock.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()))
