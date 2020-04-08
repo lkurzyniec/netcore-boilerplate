@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
-using Shouldly;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
@@ -24,9 +24,9 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         {
             var result = await _client.GetAsync($"api/cars");
 
-            result.StatusCode.ShouldBe(HttpStatusCode.OK);
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
             var cars = await result.Content.ReadAsJsonAsync<List<CarDto>>();
-            cars.Count.ShouldBeGreaterThan(0);
+            cars.Count.Should().BeGreaterThan(0);
         }
     }
 }

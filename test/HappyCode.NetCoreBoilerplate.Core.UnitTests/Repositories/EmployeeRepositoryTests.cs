@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using Shouldly;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
@@ -41,8 +41,10 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             var emp = await _repository.GetOldestAsync(default);
 
             //then
-            emp.Id.ShouldBe(45);
-            emp.LastName.ShouldBe("Hudson");
+            emp.Id.Should().Be(45);
+            emp.LastName.Should()
+                .NotBeNullOrEmpty()
+                .And.Be("Hudson");
         }
 
         [Fact]
@@ -55,7 +57,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             var result = await _repository.DeleteByIdAsync(99, default);
 
             //then
-            result.ShouldBe(false);
+            result.Should().Be(false);
 
             _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never);
         }
@@ -79,7 +81,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             var result = await _repository.DeleteByIdAsync(empId, default);
 
             //then
-            result.ShouldBe(true);
+            result.Should().Be(true);
 
             _dbContextMock.Verify(x => x.Employees.Remove(It.Is<Employee>(y => y.EmpNo == empId)), Times.Once);
             _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);

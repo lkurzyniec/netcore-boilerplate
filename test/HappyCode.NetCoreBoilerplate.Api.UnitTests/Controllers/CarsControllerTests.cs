@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Shouldly;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
@@ -47,11 +47,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             var result = await Controller.Get(default) as OkObjectResult;
 
             //then
-            result.ShouldNotBeNull();
-            result.StatusCode.ShouldBe(StatusCodes.Status200OK);
-            result.Value.ShouldBeAssignableTo<IEnumerable<CarDto>>();
+            result.Should().NotBeNull();
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
+            result.Value.Should().BeAssignableTo<IEnumerable<CarDto>>();
             var cars = result.Value as IEnumerable<CarDto>;
-            cars.Count().ShouldBe(2);
+            cars.Should().HaveCount(2);
         }
     }
 }

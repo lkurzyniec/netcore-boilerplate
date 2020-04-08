@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Services;
 using HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using Shouldly;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
@@ -39,7 +39,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             var result = await _service.GetAllSortedByPlateAsync(default);
 
             //then
-            result.First().Id.ShouldBe(2);
+            result.First().Id.Should().Be(2);
         }
     }
 }

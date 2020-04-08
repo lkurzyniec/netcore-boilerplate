@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
-using Shouldly;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
@@ -23,7 +23,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         {
             var result = await _client.GetAsync($"api/employees/123456");
 
-            result.StatusCode.ShouldBe(HttpStatusCode.NotFound);
+            result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
         [Fact]
@@ -31,9 +31,9 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         {
             var result = await _client.GetAsync($"api/employees/1");
 
-            result.StatusCode.ShouldBe(HttpStatusCode.OK);
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
             var emp = await result.Content.ReadAsJsonAsync<EmployeeDto>();
-            emp.LastName.ShouldBe("Anderson");
+            emp.LastName.Should().Be("Anderson");
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         {
             var result = await _client.DeleteAsync($"api/employees/99");
 
-            result.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+            result.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         {
             var result = await _client.DeleteAsync($"api/employees/98765");
 
-            result.StatusCode.ShouldBe(HttpStatusCode.NotFound);
+            result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
     }
 }

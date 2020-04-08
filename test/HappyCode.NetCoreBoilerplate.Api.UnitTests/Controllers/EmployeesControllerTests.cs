@@ -1,12 +1,12 @@
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Shouldly;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
@@ -44,8 +44,8 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             var result = await Controller.Get(1, default) as StatusCodeResult;
 
             //then
-            result.ShouldNotBeNull();
-            result.StatusCode.ShouldBe(StatusCodes.Status404NotFound);
+            result.Should().NotBeNull();
+            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
 
         [Fact]
@@ -66,12 +66,14 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             var result = await Controller.Get(1, default) as OkObjectResult;
 
             //then
-            result.ShouldNotBeNull();
-            result.StatusCode.ShouldBe(StatusCodes.Status200OK);
-            result.Value.ShouldBeAssignableTo<EmployeeDto>();
+            result.Should().NotBeNull();
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
+            result.Value.Should().BeAssignableTo<EmployeeDto>();
             var emp = result.Value as EmployeeDto;
-            emp.Id.ShouldBe(empId);
-            emp.LastName.ShouldBe(lastName);
+            emp.Id.Should().Be(empId);
+            emp.LastName.Should()
+                .NotBeNullOrEmpty()
+                .And.Be(lastName);
         }
 
         [Fact]
@@ -98,8 +100,8 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             var result = await Controller.Delete(1, default) as StatusCodeResult;
 
             //then
-            result.ShouldNotBeNull();
-            result.StatusCode.ShouldBe(StatusCodes.Status404NotFound);
+            result.Should().NotBeNull();
+            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
 
         [Fact]
@@ -113,8 +115,8 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             var result = await Controller.Delete(1, default) as StatusCodeResult;
 
             //then
-            result.ShouldNotBeNull();
-            result.StatusCode.ShouldBe(StatusCodes.Status204NoContent);
+            result.Should().NotBeNull();
+            result.StatusCode.Should().Be(StatusCodes.Status204NoContent);
         }
     }
 }
