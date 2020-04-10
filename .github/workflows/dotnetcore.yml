@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.100
+        dotnet-version: 3.1.201
 
     - name: Build sln
       run: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
@@ -25,3 +25,14 @@ jobs:
     - name: Test sln
       if: success()
       run: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
+
+    - name: Collect code coverage
+      if: success()
+      run: dotnet test -c Release --no-build /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /maxcpucount:1 /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./test/coverage.opencover.xml
+        flags: unittests

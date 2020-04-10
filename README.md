@@ -118,7 +118,7 @@ of starting an empty project and adding the same snippets each time, you can use
 
 ![HappyCode.NetCoreBoilerplate.Core.UnitTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
 
-## How to adopt to your project
+## How to adapt to your project
 
 Generally it is totally up to you! But in case you do not have any plan, You can follow below simple steps:
 
