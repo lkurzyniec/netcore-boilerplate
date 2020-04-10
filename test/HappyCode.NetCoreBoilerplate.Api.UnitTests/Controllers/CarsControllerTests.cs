@@ -24,24 +24,24 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         }
 
         [Fact]
-        public async Task Get_should_call_GetAllSortedByPlateAsync_onto_service()
+        public async Task GetAll_should_call_GetAllSortedByPlateAsync_onto_service()
         {
             //when
-            await Controller.Get(default);
+            await Controller.GetAll(default);
 
             //then
             _carServiceMock.Verify(x => x.GetAllSortedByPlateAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Theory, AutoData]
-        public async Task Get_should_return_Ok_with_expected_result(IEnumerable<CarDto> cars)
+        public async Task GetAll_should_return_Ok_with_expected_result(IEnumerable<CarDto> cars)
         {
             //given
             _carServiceMock.Setup(x => x.GetAllSortedByPlateAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(cars);
 
             //when
-            var result = await Controller.Get(default) as OkObjectResult;
+            var result = await Controller.GetAll(default) as OkObjectResult;
 
             //then
             result.Should().NotBeNull();

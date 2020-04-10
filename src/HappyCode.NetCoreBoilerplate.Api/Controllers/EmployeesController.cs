@@ -20,7 +20,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<EmployeeDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetAll(
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.GetAllAsync(cancellationToken);

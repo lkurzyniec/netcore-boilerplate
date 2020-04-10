@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoFixture.Xunit2;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
@@ -18,6 +20,24 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         public EmployeesControllerTests()
         {
             _employeeRepositoryMock = Mocker.GetMock<IEmployeeRepository>();
+        }
+
+        [Theory, AutoData]
+        public async Task GetAll_should_return_expected_results(List<EmployeeDto> employees)
+        {
+            //given
+            _employeeRepositoryMock.Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(employees);
+
+            //when
+            var result = await Controller.GetAll(default) as OkObjectResult;
+
+            //then
+            result.Should().NotBeNull();
+            result.Value.Should().BeAssignableTo<IEnumerable<EmployeeDto>>()
+                .And.BeEquivalentTo(employees);
+
+            _employeeRepositoryMock.Verify(x => x.GetAllAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
