@@ -27,6 +27,24 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _repository = new EmployeeRepository(_dbContextMock.Object);
         }
 
+        [Theory, AutoData]
+        public async Task GetByIdAsync_should_return_expected_employee(int empId)
+        {
+            //given
+            var employee = _fixture.Build<Employee>()
+                .Without(x => x.LeadingDepartments)
+                .Without(x => x.Department)
+                .With(x => x.EmpNo, empId)
+                .Create();
+            _dbContextMock.Setup(x => x.Employees).Returns(new[] { employee }.GetMockDbSetObject());
+
+            //when
+            var emp = await _repository.GetByIdAsync(empId, default);
+
+            //then
+            emp.Id.Should().Be(empId);
+        }
+
         [Fact]
         public async Task GetOldestAsync_should_return_expected_employee()
         {
