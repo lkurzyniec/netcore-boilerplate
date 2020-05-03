@@ -18,12 +18,16 @@ of starting an empty project and adding the same snippets each time, you can use
     * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
 1. Tests
     * [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs) with InMemory database
-    * [Unit tests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/EmployeeRepositoryTests.cs)
+        * [FluentAssertions](https://fluentassertions.com/)
         * [xUnit](https://xunit.net/)
-        * [Moq](https://github.com/moq/moq4)
-        * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
+    * [Unit tests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/EmployeeRepositoryTests.cs)
         * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
         * [FluentAssertions](https://fluentassertions.com/)
+        * [Moq](https://github.com/moq/moq4)
+        * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
+        * [xUnit](https://xunit.net/)
+    * [Load tests](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/EmployeesBenchmarks.cs)
+        * [BenchmarkDotNet](https://benchmarkdotnet.org/)
 1. Code quality
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
     * Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
@@ -118,6 +122,17 @@ of starting an empty project and adding the same snippets each time, you can use
 
 ![HappyCode.NetCoreBoilerplate.Core.UnitTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
 
+### Load tests
+
+[HappyCode.NetCoreBoilerplate.Api.LoadTests](test/HappyCode.NetCoreBoilerplate.Api.LoadTests)
+
+* Fixture with HttpClient - [HttpClientFixture.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Infrastructure/HttpClientFixture.cs)
+* Base class for each Benchmarks - [BenchmarksBase.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/BenchmarksBase.cs)
+* Exemplary tests - [EmployeesBenchmarks.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/EmployeesBenchmarks.cs), [CarsBenchmarks.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/CarsBenchmarks.cs)
+* Console application as a entry point for `BenchmarkDotNet` tests runner - [Program.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Program.cs)
+
+![HappyCode.NetCoreBoilerplate.Api.IntegrationTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-itests.png "HappyCode.NetCoreBoilerplate.Api.IntegrationTests")
+
 ## How to adapt to your project
 
 Generally it is totally up to you! But in case you do not have any plan, You can follow below simple steps:
@@ -139,12 +154,12 @@ At first, you need to have up and running [MySQL](https://www.mysql.com/download
 database by [mysql script](db/mysql/mysql-employees.sql) and [mssql script](db/mssql/mssql-cars.sql).
 
 Then the application (API) can be started by `dotnet run` command executed in the `src/HappyCode.NetCoreBoilerplate.Api` directory.
-By default it will be available under `http://localhost:5000/`, but keep in mind that documentation is available under
-`http://localhost:5000/swagger/`.
+By default it will be available under http://localhost:5000/, but keep in mind that documentation is available under
+http://localhost:5000/swagger/.
 
 ### Docker (recommended)
 
-Just run `docker-compose up` command in the root directory and after successful start of services visit `http://localhost:5000/swagger/`.
+Just run `docker-compose up` command in the root directory and after successful start of services visit http://localhost:5000/swagger/.
 
 ### Migrations
 
@@ -153,6 +168,10 @@ When the entire environment is up and running, you can additionally run a migrat
 ## Run unit tests
 
 Run `dotnet test` command in the root directory, it will look for test projects in `HappyCode.NetCoreBoilerplate.sln` and run them.
+
+## Run load tests
+
+When the application is up and running with all required components, you can run `dotnet run -c Release` command in the `test/HappyCode.NetCoreBoilerplate.Api.LoadTests` directory to perform all load tests. You can also customize run of load tests by adding proper command parameters, which are described on [here](https://benchmarkdotnet.org/articles/guides/console-args.html).
 
 ## Migrate from ASP .NET Core 2.2 to 3.1
 

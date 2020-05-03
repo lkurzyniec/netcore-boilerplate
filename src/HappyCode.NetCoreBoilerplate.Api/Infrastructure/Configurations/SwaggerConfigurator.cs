@@ -17,7 +17,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
                 Contact = new OpenApiContact
                 {
                     Name = "Łukasz Kurzyniec",
-                    Url = new Uri("https://kurzynieswaggerOptions.pl/"),
+                    Url = new Uri("https://kurzyniec.pl/"),
                 }
             });
 
