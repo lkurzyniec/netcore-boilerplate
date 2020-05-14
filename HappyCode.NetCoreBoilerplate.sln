@@ -23,7 +23,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9D8D97C-B58E-4A12-A7FE-D93A71CFFB73}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		.travis.yml = .travis.yml
 		Directory.Build.props = Directory.Build.props
 		HappyCode.NetCoreBoilerplate.ruleset = HappyCode.NetCoreBoilerplate.ruleset
 		README.md = README.md
@@ -31,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.Db", "src\HappyCode.NetCoreBoilerplate.Db\HappyCode.NetCoreBoilerplate.Db.csproj", "{AE04301F-4E74-48DA-BFF9-D879618DA124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HappyCode.NetCoreBoilerplate.Api.LoadTests", "test\HappyCode.NetCoreBoilerplate.Api.LoadTests\HappyCode.NetCoreBoilerplate.Api.LoadTests.csproj", "{E18EED63-7FDE-449B-9FA3-27FD677CD3FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.Api.LoadTests", "test\HappyCode.NetCoreBoilerplate.Api.LoadTests\HappyCode.NetCoreBoilerplate.Api.LoadTests.csproj", "{E18EED63-7FDE-449B-9FA3-27FD677CD3FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

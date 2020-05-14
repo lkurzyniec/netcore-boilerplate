@@ -126,6 +126,8 @@ of starting an empty project and adding the same snippets each time, you can use
 
 ### Load tests
 
+> **Keep in mind that entire environment has to be up and running.**
+
 [HappyCode.NetCoreBoilerplate.Api.LoadTests](test/HappyCode.NetCoreBoilerplate.Api.LoadTests)
 
 * Base class for controller - [LoadTestsBase.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/LoadTestsBase.cs)
