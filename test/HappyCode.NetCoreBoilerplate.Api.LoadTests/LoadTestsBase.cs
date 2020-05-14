@@ -7,7 +7,7 @@ using NBomber.Contracts;
 using NBomber.CSharp;
 using NBomber.Http.CSharp;
 
-namespace HappyCode.NetCoreBoilerplate.Api.LoadTests.Controllers
+namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
 {
     public abstract class LoadTestsBase
     {

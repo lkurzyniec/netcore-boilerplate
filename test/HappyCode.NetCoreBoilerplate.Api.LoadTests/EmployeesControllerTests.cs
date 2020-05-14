@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace HappyCode.NetCoreBoilerplate.Api.LoadTests.Controllers
+namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
 {
     public class EmployeesControllerTests : LoadTestsBase
     {
