@@ -17,13 +17,19 @@ of starting an empty project and adding the same snippets each time, you can use
     * [MySQL provider from Pomelo Foundation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)
     * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
 1. Tests
-    * [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs) with InMemory database
-    * [Unit tests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/EmployeeRepositoryTests.cs)
-        * [xUnit](https://xunit.net/)
+    * Integration tests with InMemory database
+        * [FluentAssertions]
+        * [xUnit]
+    * Unit tests
+        * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
+        * [FluentAssertions]
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
-        * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
-        * [FluentAssertions](https://fluentassertions.com/)
+        * [xUnit]
+    * Load tests
+        * [FluentAssertions]
+        * [NBomber](https://nbomber.com/)
+        * [xUnit]
 1. Code quality
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
     * Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
@@ -118,6 +124,17 @@ of starting an empty project and adding the same snippets each time, you can use
 
 ![HappyCode.NetCoreBoilerplate.Core.UnitTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
 
+### Load tests
+
+> **Keep in mind that entire environment has to be up and running.**
+
+[HappyCode.NetCoreBoilerplate.Api.LoadTests](test/HappyCode.NetCoreBoilerplate.Api.LoadTests)
+
+* Base class for controller - [LoadTestsBase.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/LoadTestsBase.cs)
+* Exemplary tests - [EmployeesControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/EmployeesControllerTests.cs), [CarsControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/CarsControllerTests.cs)
+
+![HappyCode.NetCoreBoilerplate.Api.LoadTests](https://kurzyniec.pl/wp-content/uploads/2020/05/netcore-boilerplate-ltests.png "HappyCode.NetCoreBoilerplate.Api.LoadTests")
+
 ## How to adapt to your project
 
 Generally it is totally up to you! But in case you do not have any plan, You can follow below simple steps:
@@ -139,12 +156,12 @@ At first, you need to have up and running [MySQL](https://www.mysql.com/download
 database by [mysql script](db/mysql/mysql-employees.sql) and [mssql script](db/mssql/mssql-cars.sql).
 
 Then the application (API) can be started by `dotnet run` command executed in the `src/HappyCode.NetCoreBoilerplate.Api` directory.
-By default it will be available under `http://localhost:5000/`, but keep in mind that documentation is available under
-`http://localhost:5000/swagger/`.
+By default it will be available under http://localhost:5000/, but keep in mind that documentation is available under
+http://localhost:5000/swagger/.
 
 ### Docker (recommended)
 
-Just run `docker-compose up` command in the root directory and after successful start of services visit `http://localhost:5000/swagger/`.
+Just run `docker-compose up` command in the root directory and after successful start of services visit http://localhost:5000/swagger/.
 
 ### Migrations
 
@@ -182,3 +199,6 @@ For pull request please follow this rules:
 * Rebase if required.
 * Make sure that your code compile and run locally.
 * Changes do not break any tests and code quality rules.
+
+[FluentAssertions]: https://fluentassertions.com/
+[xUnit]: https://xunit.net/

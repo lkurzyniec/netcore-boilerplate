@@ -23,13 +23,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9D8D97C-B58E-4A12-A7FE-D93A71CFFB73}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		.travis.yml = .travis.yml
 		Directory.Build.props = Directory.Build.props
 		HappyCode.NetCoreBoilerplate.ruleset = HappyCode.NetCoreBoilerplate.ruleset
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.Db", "src\HappyCode.NetCoreBoilerplate.Db\HappyCode.NetCoreBoilerplate.Db.csproj", "{AE04301F-4E74-48DA-BFF9-D879618DA124}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.Api.LoadTests", "test\HappyCode.NetCoreBoilerplate.Api.LoadTests\HappyCode.NetCoreBoilerplate.Api.LoadTests.csproj", "{E18EED63-7FDE-449B-9FA3-27FD677CD3FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +62,10 @@ Global
 		{AE04301F-4E74-48DA-BFF9-D879618DA124}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE04301F-4E74-48DA-BFF9-D879618DA124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE04301F-4E74-48DA-BFF9-D879618DA124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E18EED63-7FDE-449B-9FA3-27FD677CD3FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E18EED63-7FDE-449B-9FA3-27FD677CD3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E18EED63-7FDE-449B-9FA3-27FD677CD3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E18EED63-7FDE-449B-9FA3-27FD677CD3FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +77,7 @@ Global
 		{1606FA62-EA72-4F99-971C-0DA67D910188} = {8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}
 		{E7FD0B44-8ACA-4EA6-8A38-E6D346462273} = {8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}
 		{AE04301F-4E74-48DA-BFF9-D879618DA124} = {6D3497A0-339F-4545-86B8-7E015B468025}
+		{E18EED63-7FDE-449B-9FA3-27FD677CD3FD} = {8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE6D8568-233C-4A49-84FF-2FE6C0DE238C}
