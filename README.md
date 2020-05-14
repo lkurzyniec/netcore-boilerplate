@@ -17,17 +17,17 @@ of starting an empty project and adding the same snippets each time, you can use
     * [MySQL provider from Pomelo Foundation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)
     * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
 1. Tests
-    * [Integration tests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs) with InMemory database
+    * Integration tests with InMemory database
         * [FluentAssertions](https://fluentassertions.com/)
         * [xUnit](https://xunit.net/)
-    * [Unit tests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/EmployeeRepositoryTests.cs)
+    * Unit tests
         * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
         * [FluentAssertions](https://fluentassertions.com/)
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
         * [xUnit](https://xunit.net/)
-    * [Load tests](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/EmployeesBenchmarks.cs)
-        * [BenchmarkDotNet](https://benchmarkdotnet.org/)
+    * Load tests
+        * [NBomber](https://nbomber.com/)
 1. Code quality
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
     * Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
@@ -126,10 +126,8 @@ of starting an empty project and adding the same snippets each time, you can use
 
 [HappyCode.NetCoreBoilerplate.Api.LoadTests](test/HappyCode.NetCoreBoilerplate.Api.LoadTests)
 
-* Fixture with HttpClient - [HttpClientFixture.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Infrastructure/HttpClientFixture.cs)
-* Base class for each Benchmarks - [BenchmarksBase.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/BenchmarksBase.cs)
-* Exemplary tests - [EmployeesBenchmarks.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/EmployeesBenchmarks.cs), [CarsBenchmarks.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/CarsBenchmarks.cs)
-* Console application as a entry point for `BenchmarkDotNet` tests runner - [Program.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Program.cs)
+* Base class for controller - [LoadTestsBase.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/LoadTestsBase.cs)
+* Exemplary tests - [EmployeesControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/EmployeesControllerTests.cs), [CarsControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/CarsControllerTests.cs)
 
 ![HappyCode.NetCoreBoilerplate.Api.IntegrationTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-itests.png "HappyCode.NetCoreBoilerplate.Api.IntegrationTests")
 
