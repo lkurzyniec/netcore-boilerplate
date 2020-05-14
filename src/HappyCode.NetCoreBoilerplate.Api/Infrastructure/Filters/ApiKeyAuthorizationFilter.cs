@@ -11,9 +11,9 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
     {
         private static readonly Regex _apiKeyRegex = new Regex(@"^[Aa][Pp][Ii][Kk][Ee][Yy]\s+(?<ApiKey>.+)$", RegexOptions.Compiled);
 
-        private readonly IOptions<ApiKeyConfiguration> _options;
+        private readonly IOptions<ApiKeySettings> _options;
 
-        public ApiKeyAuthorizationFilter(IOptions<ApiKeyConfiguration> options)
+        public ApiKeyAuthorizationFilter(IOptions<ApiKeySettings> options)
         {
             _options = options;
         }

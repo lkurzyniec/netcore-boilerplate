@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
+using HappyCode.NetCoreBoilerplate.Core.Settings;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -13,12 +13,12 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<PingWebsiteBackgroundService> _logger;
-        private readonly IOptions<PingWebsiteConfiguration> _configuration;
+        private readonly IOptions<PingWebsiteSettings> _configuration;
 
         public PingWebsiteBackgroundService(
             IHttpClientFactory httpClientFactory,
             ILogger<PingWebsiteBackgroundService> logger,
-            IOptions<PingWebsiteConfiguration> configuration)
+            IOptions<PingWebsiteSettings> configuration)
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;

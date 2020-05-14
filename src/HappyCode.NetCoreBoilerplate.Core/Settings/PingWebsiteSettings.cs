@@ -1,8 +1,8 @@
 using System;
 
-namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
+namespace HappyCode.NetCoreBoilerplate.Core.Settings
 {
-    public class PingWebsiteConfiguration
+    public class PingWebsiteSettings
     {
         public Uri Url { get; set; }
         public int TimeIntervalInMinutes { get; set; }

@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Rewrite;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
+using HappyCode.NetCoreBoilerplate.Core.Settings;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -42,10 +43,10 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddDbContextPool<EmployeesContext>(options => options.UseMySql(_configuration.GetConnectionString("MySqlDb")));
             services.AddDbContextPool<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")));
 
-            services.Configure<ApiKeyConfiguration>(_configuration.GetSection("ApiKey"));
-            services.AddSwaggerGen(opt => SwaggerConfigurator.Configure(opt, _configuration.GetValue<string>("ApiKey:SecretKey")));
+            services.Configure<ApiKeySettings>(_configuration.GetSection("ApiKey"));
+            services.AddSwagger(_configuration);
 
-            services.Configure<PingWebsiteConfiguration>(_configuration.GetSection("PingWebsite"));
+            services.Configure<PingWebsiteSettings>(_configuration.GetSection("PingWebsite"));
             services.AddHostedService<PingWebsiteBackgroundService>();
             services.AddHttpClient(nameof(PingWebsiteBackgroundService));
 
@@ -54,7 +55,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
         public virtual void ConfigureContainer(ContainerBuilder builder)
         {
-            ContainerConfigurator.RegisterModules(builder);
+            ContainerRegistration.RegisterModules(builder);
         }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,10 +63,6 @@ namespace HappyCode.NetCoreBoilerplate.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-                var option = new RewriteOptions();
-                option.AddRedirect("^$", "swagger");
-                app.UseRewriter(option);
             }
 
             app.UseRouting();
