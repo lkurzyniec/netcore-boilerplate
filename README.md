@@ -18,16 +18,18 @@ of starting an empty project and adding the same snippets each time, you can use
     * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
 1. Tests
     * Integration tests with InMemory database
-        * [FluentAssertions](https://fluentassertions.com/)
-        * [xUnit](https://xunit.net/)
+        * [FluentAssertions]
+        * [xUnit]
     * Unit tests
         * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
-        * [FluentAssertions](https://fluentassertions.com/)
+        * [FluentAssertions]
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
-        * [xUnit](https://xunit.net/)
+        * [xUnit]
     * Load tests
+        * [FluentAssertions]
         * [NBomber](https://nbomber.com/)
+        * [xUnit]
 1. Code quality
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
     * Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
@@ -129,7 +131,7 @@ of starting an empty project and adding the same snippets each time, you can use
 * Base class for controller - [LoadTestsBase.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/LoadTestsBase.cs)
 * Exemplary tests - [EmployeesControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/EmployeesControllerTests.cs), [CarsControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/CarsControllerTests.cs)
 
-![HappyCode.NetCoreBoilerplate.Api.IntegrationTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-itests.png "HappyCode.NetCoreBoilerplate.Api.IntegrationTests")
+![HappyCode.NetCoreBoilerplate.Api.LoadTests](https://kurzyniec.pl/wp-content/uploads/2020/05/netcore-boilerplate-ltests.png "HappyCode.NetCoreBoilerplate.Api.LoadTests")
 
 ## How to adapt to your project
 
@@ -167,10 +169,6 @@ When the entire environment is up and running, you can additionally run a migrat
 
 Run `dotnet test` command in the root directory, it will look for test projects in `HappyCode.NetCoreBoilerplate.sln` and run them.
 
-## Run load tests
-
-When the application is up and running with all required components, you can run `dotnet run -c Release` command in the `test/HappyCode.NetCoreBoilerplate.Api.LoadTests` directory to perform all load tests. You can also customize run of load tests by adding proper command parameters, which are described on [here](https://benchmarkdotnet.org/articles/guides/console-args.html).
-
 ## Migrate from ASP .NET Core 2.2 to 3.1
 
 Need to migrate from `.NET Core 2.2` to `.NET Core 3.1`? There's an [Microsoft article](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-3.1&tabs=visual-studio) about this, but you can also, just in case, take a look at my [migration commit](https://github.com/lkurzyniec/netcore-boilerplate/commit/45764d631bce10b0d4d8db47f786ad696fa65d67) where you can find the complete list of required changes.
@@ -199,3 +197,6 @@ For pull request please follow this rules:
 * Rebase if required.
 * Make sure that your code compile and run locally.
 * Changes do not break any tests and code quality rules.
+
+[FluentAssertions]: https://fluentassertions.com/
+[xUnit]: https://xunit.net/

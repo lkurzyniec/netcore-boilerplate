@@ -36,7 +36,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         private void AssertResults(NodeStats stats)
         {
             var scenarioStats = stats.ScenarioStats.First();
-            scenarioStats.LatencyCount.Less800.Should().Be(stats.RequestCount);
+            scenarioStats.LatencyCount.Less800.Should().BeGreaterOrEqualTo(stats.RequestCount - 10);
 
             var stepStats = stats.ScenarioStats.First().StepStats.First();
             stepStats.FailCount.Should().Be(0);
