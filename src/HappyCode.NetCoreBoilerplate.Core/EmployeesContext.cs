@@ -44,7 +44,7 @@ namespace HappyCode.NetCoreBoilerplate.Core
                 entity.HasIndex(e => e.DeptNo)
                     .HasName("dept_no");
 
-                entity.Property(e => e.EmpNo).ValueGeneratedNever();
+                entity.Property(e => e.EmpNo).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.FirstName).IsUnicode(false);
 

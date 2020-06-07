@@ -16,6 +16,8 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
         Task<EmployeeDetailsDto> GetByIdWithDetailsAsync(object id, CancellationToken cancellationToken);
         Task<EmployeeDto> GetOldestAsync(CancellationToken cancellationToken);
         Task<bool> DeleteByIdAsync(int id, CancellationToken cancellationToken);
+        Task<EmployeeDto> InsertAsync(EmployeePostDto employeePostDto, CancellationToken cancellationToken);
+        Task<EmployeeDto> UpdateAsync(int id, EmployeePutDto employeePutDto, CancellationToken cancellationToken);
     }
 
     public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
@@ -37,6 +39,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
         public async Task<EmployeeDto> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
             var emp = await DbContext.Employees
+                .AsNoTracking()
                 .SingleOrDefaultAsync(x => x.EmpNo == id);
             if (emp == null)
             {
@@ -80,6 +83,38 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
             {
                 return null;
             }
+
+            return emp.MapToDto();
+        }
+
+        public async Task<EmployeeDto> InsertAsync(EmployeePostDto employeePostDto, CancellationToken cancellationToken)
+        {
+            var employee = new Employee
+            {
+                FirstName = employeePostDto.FirstName,
+                LastName = employeePostDto.LastName,
+                BirthDate = employeePostDto.BirthDate.Value,
+                Gender = employeePostDto.Gender,
+            };
+
+            await DbContext.Employees.AddAsync(employee, cancellationToken);
+            await DbContext.SaveChangesAsync(cancellationToken);
+
+            return employee.MapToDto();
+        }
+
+        public async Task<EmployeeDto> UpdateAsync(int id, EmployeePutDto employeePutDto, CancellationToken cancellationToken)
+        {
+            var emp = await DbContext.Employees
+                .SingleOrDefaultAsync(x => x.EmpNo == id);
+            if (emp is null)
+            {
+                return null;
+            }
+
+            emp.LastName = employeePutDto.LastName;
+
+            await DbContext.SaveChangesAsync(cancellationToken);
 
             return emp.MapToDto();
         }

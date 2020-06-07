@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS employees,
 /*!50503 select CONCAT('storage engine: ', @@default_storage_engine) as INFO */;
 
 CREATE TABLE employees (
-    emp_no      INT             NOT NULL,
+    emp_no      INT             NOT NULL AUTO_INCREMENT,
     birth_date  DATE            NOT NULL,
     first_name  VARCHAR(14)     NOT NULL,
     last_name   VARCHAR(16)     NOT NULL,
@@ -43,14 +43,14 @@ CREATE TABLE employees (
     PRIMARY KEY (emp_no)
 );
 
-INSERT INTO employees VALUES
-    (1,'1972-05-13','Peter','Diaz','M'),
-    (2,'1987-09-25','Leon','Leonard','M'),
-    (3,'1974-05-10','Shirley','Baker','F'),
-    (4,'1986-08-17','David','Allen','M'),
-    (5,'1959-10-14','Nancy','Davis','F'),
-    (6,'1964-07-05','Michael','Wray','M'),
-    (7,'1980-10-08','Wanda','Inniss','F');
+INSERT INTO employees (birth_date, first_name, last_name, gender) VALUES
+    ('1972-05-13','Peter','Diaz','M'),
+    ('1987-09-25','Leon','Leonard','M'),
+    ('1974-05-10','Shirley','Baker','F'),
+    ('1986-08-17','David','Allen','M'),
+    ('1959-10-14','Nancy','Davis','F'),
+    ('1964-07-05','Michael','Wray','M'),
+    ('1980-10-08','Wanda','Inniss','F');
 
 CREATE TABLE departments (
     dept_no     CHAR(4)         NOT NULL,

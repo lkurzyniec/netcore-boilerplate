@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,6 +70,33 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
                 return NotFound();
             }
             return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Put(
+            [FromRoute] int id,
+            [FromBody] EmployeePutDto employeePutDto,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await _employeeRepository.UpdateAsync(id, employeePutDto, cancellationToken);
+            if (result is null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status201Created)]
+        public async Task<IActionResult> Post(
+            [FromBody] EmployeePostDto employeePostDto,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await _employeeRepository.InsertAsync(employeePostDto, cancellationToken);
+            Response.Headers.Add("x-date-created", DateTime.UtcNow.ToString("O"));
+            return CreatedAtAction("Get", new { id = result.Id }, result);
         }
 
         [HttpDelete("{id}")]

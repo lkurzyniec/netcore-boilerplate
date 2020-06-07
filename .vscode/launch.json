@@ -9,7 +9,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/netcoreapp2.2/HappyCode.NetCoreBoilerplate.Api.dll",
+      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/netcoreapp3.1/HappyCode.NetCoreBoilerplate.Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api",
       "stopAtEntry": false,

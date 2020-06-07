@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 
 namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
 {
-    public class PingWebsiteBackgroundService : BackgroundService
+    internal class PingWebsiteBackgroundService : BackgroundService
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<PingWebsiteBackgroundService> _logger;

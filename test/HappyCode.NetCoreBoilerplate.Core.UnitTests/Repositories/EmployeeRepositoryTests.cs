@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.Xunit2;
 using FluentAssertions;
+using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure;
@@ -105,6 +106,63 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             result.Should().Be(true);
 
             _dbContextMock.Verify(x => x.Employees.Remove(It.Is<Employee>(y => y.EmpNo == empId)), Times.Once);
+            _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Theory, AutoData]
+        public async Task InsertAsync_should_add_and_save(EmployeePostDto employeePostDto)
+        {
+            //given
+            var employees = _fixture.Build<Employee>()
+                .Without(x => x.LeadingDepartments)
+                .Without(x => x.Department)
+                .CreateMany(3);
+
+            _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
+
+            //when
+            var result = await _repository.InsertAsync(employeePostDto, default);
+
+            //then
+            result.Should().BeEquivalentTo(employeePostDto);
+
+            _dbContextMock.Verify(x => x.Employees.AddAsync(It.Is<Employee>(y => y.LastName == employeePostDto.LastName), It.IsAny<CancellationToken>()), Times.Once);
+            _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Theory, AutoData]
+        public async Task UpdateAsync_should_return_null_when_employee_not_found(int empId, EmployeePutDto employeePutDto)
+        {
+            //given
+            _dbContextMock.Setup(x => x.Employees).Returns(Enumerable.Empty<Employee>().GetMockDbSetObject);
+
+            //when
+            var result = await _repository.UpdateAsync(empId, employeePutDto, default);
+
+            //then
+            result.Should().BeNull();
+
+            _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never);
+        }
+
+        [Theory, AutoData]
+        public async Task UpdateAsync_should_update_the_entity_and_save_when_employee_found(int empId, EmployeePutDto employeePutDto)
+        {
+            //given
+            var employees = _fixture.Build<Employee>()
+                .Without(x => x.LeadingDepartments)
+                .Without(x => x.Department)
+                .With(x => x.EmpNo, empId)
+                .CreateMany(1);
+
+            _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
+
+            //when
+            var result = await _repository.UpdateAsync(empId, employeePutDto, default);
+
+            //then
+            result.LastName.Should().Be(employeePutDto.LastName);
+
             _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
     }

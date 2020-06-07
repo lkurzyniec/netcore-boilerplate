@@ -138,5 +138,61 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             result.Should().NotBeNull();
             result.StatusCode.Should().Be(StatusCodes.Status204NoContent);
         }
+
+        [Theory, AutoData]
+        public async Task Put_should_return_NotFound_when_repository_return_null(int empId, EmployeePutDto employeePutDto)
+        {
+            //given
+            _employeeRepositoryMock.Setup(x => x.UpdateAsync(empId, employeePutDto, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(() => null)
+                .Verifiable();
+
+            //when
+            var result = await Controller.Put(empId, employeePutDto, default) as StatusCodeResult;
+
+            //then
+            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+
+            _employeeRepositoryMock.Verify();
+        }
+
+        [Theory, AutoData]
+        public async Task Put_should_return_Ok_with_result_when_update_finished_with_success(int empId, EmployeePutDto employeePutDto, EmployeeDto employee)
+        {
+            //given
+            _employeeRepositoryMock.Setup(x => x.UpdateAsync(empId, employeePutDto, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(employee)
+                .Verifiable();
+
+            //when
+            var result = await Controller.Put(empId, employeePutDto, default) as OkObjectResult;
+
+            //then
+            result.Value.Should().BeAssignableTo<EmployeeDto>()
+                .And.BeEquivalentTo(employee);
+
+            _employeeRepositoryMock.Verify();
+        }
+
+        [Theory, AutoData]
+        public async Task Post_should_return_Created_with_result_and_header_when_insert_finished_with_success(EmployeePostDto employeePostDto, EmployeeDto employee)
+        {
+            //given
+            _employeeRepositoryMock.Setup(x => x.InsertAsync(employeePostDto, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(employee)
+                .Verifiable();
+
+            //when
+            var result = await Controller.Post(employeePostDto, default) as ObjectResult;
+
+            //then
+            result.StatusCode.Should().Be(StatusCodes.Status201Created);
+            result.Value.Should().BeAssignableTo<EmployeeDto>()
+                .And.BeEquivalentTo(employee);
+
+            Controller.HttpContext.Response.Headers.TryGetValue("x-date-created", out _).Should().BeTrue();
+
+            _employeeRepositoryMock.Verify();
+        }
     }
 }
