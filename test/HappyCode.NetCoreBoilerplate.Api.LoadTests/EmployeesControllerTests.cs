@@ -37,10 +37,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
 
             var post = CreateStep("/", "POST", request.ToStringContent());
 
-            var get = HttpStep.Create("get emp", ctx =>
+            var get = HttpStep.Create("get emp", async ctx =>
             {
                 var response = ctx.GetPreviousStepResponse<HttpResponseMessage>();
-                var content = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                var content = await response.Content.ReadAsStringAsync();
                 var emp = content.Deserialize<EmployeeDto>();
                 Trace.WriteLine($"The previous step created employee with Id = {emp.Id}");
 
