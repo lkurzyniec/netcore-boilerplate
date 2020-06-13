@@ -13,6 +13,8 @@ using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Hosting;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
 using HappyCode.NetCoreBoilerplate.Core.Settings;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -50,7 +52,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddHostedService<PingWebsiteBackgroundService>();
             services.AddHttpClient(nameof(PingWebsiteBackgroundService));
 
-            services.AddHealthChecks();
+            services.AddHealthChecks()
+                .AddMySql(_configuration.GetConnectionString("MySqlDb"))
+                .AddSqlServer(_configuration.GetConnectionString("MsSqlDb"));
         }
 
         public virtual void ConfigureContainer(ContainerBuilder builder)
@@ -69,7 +73,10 @@ namespace HappyCode.NetCoreBoilerplate.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHealthChecks("/health");
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+                });
             });
 
             app.UseSwagger();

@@ -4,7 +4,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <Authors>Łukasz Kurzyniec</Authors>
-    <Copyright>Copyright © happy+code 2019</Copyright>
+    <Copyright>Copyright © happy+code 2020</Copyright>
+    <Version>0.1.0</Version>
   </PropertyGroup>
   <PropertyGroup>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>

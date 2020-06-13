@@ -13,6 +13,7 @@ of starting an empty project and adding the same snippets each time, you can use
 
 1. [Autofac](https://autofac.org/)
 1. [Swagger](https://swagger.io/) + [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)
+1. [HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
 1. [EF Core](https://docs.microsoft.com/ef/)
     * [MySQL provider from Pomelo Foundation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)
     * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
@@ -64,7 +65,9 @@ of starting an empty project and adding the same snippets each time, you can use
   * Swagger and SwaggerUI (Swashbuckle)
   * HostedService
   * HttpClient
-  * HealthCheck
+  * HealthChecks
+    * MySQL
+    * MsSQL
 * Filters
   * Simple `ApiKey` Authorization filter - [ApiKeyAuthorizationFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ApiKeyAuthorizationFilter.cs)
   * Action filter to validate `ModelState` - [ValidateModelStateFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ValidateModelStateFilter.cs)
