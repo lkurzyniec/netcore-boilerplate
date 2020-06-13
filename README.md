@@ -165,6 +165,7 @@ http://localhost:5000/swagger/.
 ### Docker (recommended)
 
 Just run `docker-compose up` command in the root directory and after successful start of services visit http://localhost:5000/swagger/.
+To check that API has connection to both MySQL and MsSQL databases visit http://localhost:5000/health/.
 
 ### Migrations
 
