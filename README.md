@@ -195,7 +195,7 @@ then please give us a star, appreciate our work. Thanks!
 
 ## Buy me a coffee! :coffee:
 
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/lkurzyniec)
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/lato-blue.png)](https://www.buymeacoffee.com/lkurzyniec)
 
 [FluentAssertions]: https://fluentassertions.com/
 [xUnit]: https://xunit.net/
