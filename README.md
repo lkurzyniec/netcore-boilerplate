@@ -193,16 +193,9 @@ If:
 
 then please give us a star, appreciate our work. Thanks!
 
-## Contribution
+## Buy me a coffee! :coffee:
 
-You are very welcome to submit either issues or pull requests to this repository!
-
-For pull request please follow this rules:
-
-* Commit messages should be clear and as much as possible descriptive.
-* Rebase if required.
-* Make sure that your code compile and run locally.
-* Changes do not break any tests and code quality rules.
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/lkurzyniec)
 
 [FluentAssertions]: https://fluentassertions.com/
 [xUnit]: https://xunit.net/
