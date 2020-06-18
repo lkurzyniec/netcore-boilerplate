@@ -19,7 +19,7 @@ jobs:
   build-and-test:
     name: GitHub Build&Test
     runs-on: ubuntu-latest
-    if: env.SHOULD_RUN == 'true'
+    if: {{ env.SHOULD_RUN }} == 'true'
 
     steps:    
     - uses: actions/checkout@v1
