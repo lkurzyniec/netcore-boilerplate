@@ -20,7 +20,7 @@ jobs:
         dotnet-version: 3.1.201
 
     - name: Build sln
-      run: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
 
     - name: Test sln
       run: dotnet test -c Release --no-build --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
