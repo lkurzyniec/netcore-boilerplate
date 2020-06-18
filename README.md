@@ -51,6 +51,8 @@ of starting an empty project and adding the same snippets each time, you can use
 1. Continuous integration
     * ~~[Travis CI]~~(https://travis-ci.org/) ([travisci.yml](https://github.com/lkurzyniec/netcore-boilerplate/blob/bf65154b63f6a10d6753045c49cd378e53907816/.travis.yml))
     * [GitHub Actions](https://github.com/features/actions) ([dotnetcore.yml](.github/workflows/dotnetcore.yml))
+        * [Check Last Commit Message of a Pull Request](https://github.com/marketplace/actions/check-last-commit-message-of-a-pull-request) - returns `{ shouldRun: true }` if last commit message in a pr contains `skip ci` or `ci skip`
+        * [Cancel this build](https://github.com/marketplace/actions/cancel-this-build) - uses the GitHub API to cancel the currently running workflow
 
 ## Architecture
 
