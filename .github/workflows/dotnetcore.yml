@@ -8,9 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    
     - name: skip or not
+      id: skipornot
       uses: atlwendy/retrieve-commit-messages-from-pr@v3
     - name: output skip or not
       run: echo ::set-env name=SHOULD_RUN::${{ steps.skipornot.outputs.shouldRun }}
@@ -20,7 +19,7 @@ jobs:
       if: env.SHOULD_RUN == 'false'
     
   build-and-test:
-    name: GitHub Build&Test
+    name: build & test
     runs-on: ubuntu-latest
     needs: [skip-or-not]
 
@@ -39,7 +38,7 @@ jobs:
       run: dotnet test -c Release --no-build --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
 
   collect-code-coverage:
-    name: Code coverage
+    name: code coverage
     runs-on: ubuntu-latest
     needs: [build-and-test]
 
