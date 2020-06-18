@@ -8,7 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: skip or not
+      uses: atlwendy/retrieve-commit-messages-from-pr@v3
+    - name: output skip
+      run: echo ::set-env name=SHOULD_RUN::${{ steps.skipornot.outputs.shouldRun }}
+
     - uses: actions/checkout@v1
+      if: env.SHOULD_RUN == 'true'
 
     - name: Print info
       run: |
