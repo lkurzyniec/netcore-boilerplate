@@ -2,9 +2,9 @@
 
 Boilerplate of API in `.NET Core 3.1`
 
-| Travis CI     | GitHub        | Codecov       |
-|:-------------:|:-------------:|:-------------:|
-| [![Travis CI Build Status](https://travis-ci.com/lkurzyniec/netcore-boilerplate.svg?branch=master)](https://travis-ci.com/lkurzyniec/netcore-boilerplate) | [![GitHub Build Status](https://github.com/lkurzyniec/netcore-boilerplate/workflows/Build%20%26%20Test/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) |
+| GitHub        | Codecov       |
+|:-------------:|:-------------:|
+| [![GitHub Build Status](https://github.com/lkurzyniec/netcore-boilerplate/workflows/Build%20%26%20Test/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) |
 
 Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code. It is kind of a template - instead
 of starting an empty project and adding the same snippets each time, you can use the boilerplate that already contains such code.
@@ -49,7 +49,7 @@ of starting an empty project and adding the same snippets each time, you can use
     * Enrich: [CorrelationId](https://github.com/ekmsystems/serilog-enrichers-correlation-id)
 1. [DbUp](http://dbup.github.io/) as a db migration tool
 1. Continuous integration
-    * [Travis CI](https://travis-ci.org/) ([.travis.yml](.travis.yml))
+    * ~~[Travis CI]~~(https://travis-ci.org/) ([travisci.yml](.github/workflows/travisci.yml))
     * [GitHub Actions](https://github.com/features/actions) ([dotnetcore.yml](.github/workflows/dotnetcore.yml))
 
 ## Architecture
