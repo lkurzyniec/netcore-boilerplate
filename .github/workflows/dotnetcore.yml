@@ -12,14 +12,17 @@ jobs:
     
     - name: skip or not
       uses: atlwendy/retrieve-commit-messages-from-pr@v3
-
     - name: output skip or not
       run: echo ::set-env name=SHOULD_RUN::${{ steps.skipornot.outputs.shouldRun }}
+      
+    - name: cancelling
+      uses: andymckay/cancel-action@0.2
+      if: env.SHOULD_RUN == 'false'
     
   build-and-test:
     name: GitHub Build&Test
     runs-on: ubuntu-latest
-    if: {{ env.SHOULD_RUN }} == 'true'
+    needs: [skip-or-not]
 
     steps:    
     - uses: actions/checkout@v1
