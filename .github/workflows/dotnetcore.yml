@@ -39,7 +39,6 @@ jobs:
     name: Code coverage
     runs-on: ubuntu-latest
     needs: [build-and-test]
-    if: env.SHOULD_RUN == 'true'
 
     steps:
     - uses: actions/checkout@v1
