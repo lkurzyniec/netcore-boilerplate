@@ -3,22 +3,26 @@ name: Build & Test
 on: push
 
 jobs:
-  build-and-test:
-    name: GitHub Build&Test
+  skip-or-not:
+    name: skip or not
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v1
+    
     - name: skip or not
       uses: atlwendy/retrieve-commit-messages-from-pr@v3
-    - name: output skip
+
+    - name: output skip or not
       run: echo ::set-env name=SHOULD_RUN::${{ steps.skipornot.outputs.shouldRun }}
+    
+  build-and-test:
+    name: GitHub Build&Test
+    runs-on: ubuntu-latest
+    if: env.SHOULD_RUN == 'true'
 
+    steps:    
     - uses: actions/checkout@v1
-      if: env.SHOULD_RUN == 'true'
-
-    - name: Print info
-      run: |
-        echo User $GITHUB_ACTOR triggered build on $GITHUB_REF by $GITHUB_SHA commit.
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -34,6 +38,8 @@ jobs:
   collect-code-coverage:
     name: Code coverage
     runs-on: ubuntu-latest
+    needs: [build-and-test]
+    if: env.SHOULD_RUN == 'true'
 
     steps:
     - uses: actions/checkout@v1
