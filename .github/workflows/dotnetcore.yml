@@ -12,7 +12,7 @@ jobs:
       id: skipornot
       uses: atlwendy/retrieve-commit-messages-from-pr@v3
     - name: output skip or not
-      run: echo ::set-env name=SHOULD_RUN::${{ steps.skipornot.outputs.shouldRun }}
+      run: echo ::set-env name=SHOULD_RUN::false # ${{ steps.skipornot.outputs.shouldRun }}
       
     - name: cancelling
       uses: andymckay/cancel-action@0.2
