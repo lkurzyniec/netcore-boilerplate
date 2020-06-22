@@ -7,14 +7,7 @@ jobs:
     name: skip or not
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: hmarr/debug-action@v1.0.0
-    - id: fetch-payload-data-main
-      uses: hugoalh/GitHubAction.EventPayloadFetcher@v1.1.1
-    - run: echo ${{ steps.fetch-payload-data-main.outputs.data }}
-    - name: cancelling
-      uses: andymckay/cancel-action@0.2
-    
+    steps:    
     - name: info
       run: |
         echo User $GITHUB_ACTOR triggered build on $GITHUB_REF by $GITHUB_SHA commit.
