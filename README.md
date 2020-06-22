@@ -193,7 +193,7 @@ If:
 * you learn something,
 * you are using it in your project/application,
 
-then please give us a star, appreciate our work. Thanks!
+then please give me a star, appreciate my work. Thanks!
 
 ## Buy me a coffee! :coffee:
 
