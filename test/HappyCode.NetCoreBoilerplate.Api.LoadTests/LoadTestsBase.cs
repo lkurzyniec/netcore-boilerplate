@@ -3,9 +3,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using FluentAssertions;
+using HappyCode.NetCoreBoilerplate.Api.LoadTests.Extensions;
 using NBomber.Contracts;
 using NBomber.CSharp;
-using NBomber.Http.CSharp;
+using NBomber.Plugins.Http.CSharp;
 
 namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
 {
@@ -27,7 +28,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
             var scenario = CreateScenario(step);
 
             var stats = NBomberRunner.RegisterScenarios(new[] { scenario })
-                .RunTest();
+                .Run();
 
             AssertResults(stats);
         }
@@ -37,7 +38,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
             var scenario = CreateScenario(steps);
 
             var stats = NBomberRunner.RegisterScenarios(new[] { scenario })
-                .RunTest();
+                .Run();
 
             AssertResults(stats);
         }
@@ -58,7 +59,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
                         {
                             Trace.TraceError(await response.Content.ReadAsStringAsync());
                         }
-                        return response.IsSuccessStatusCode;
+                        return response.GetCheckResult(); ;
                     })
             );
         }
@@ -81,8 +82,8 @@ namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
                 .WithoutWarmUp()
                 .WithLoadSimulations(new[]
                 {
-                    Simulation.KeepConcurrentScenarios(copiesCount: 1, during: TimeSpan.FromSeconds(5)),
-                    //Simulation.InjectScenariosPerSec(copiesCount: 100, during: TimeSpan.FromSeconds(10)),
+                    Simulation.KeepConstant(copies: 1, during: TimeSpan.FromSeconds(5)),
+                    //Simulation.InjectPerSec(rate: 100, during: TimeSpan.FromSeconds(10)),
                 });
         }
     }

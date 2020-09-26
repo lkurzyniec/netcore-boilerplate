@@ -142,10 +142,10 @@ of starting an empty project and adding the same snippets each time, you can use
 
 Generally it is totally up to you! But in case you do not have any plan, You can follow below simple steps:
 
-1. Download/clone/fork repository
-1. Remove components and/or classes that you do not need to
-1. Rename files (e.g. sln, csproj, ruleset), folders, namespaces etc.
-1. Give us a star!
+1. Download/clone/fork repository :arrow_heading_down:
+1. Remove components and/or classes that you do not need to :fire:
+1. Rename files (e.g. sln, csproj, ruleset), folders, namespaces etc :memo:
+1. Appreciate the work :star:
 
 ## Build the solution
 
@@ -191,7 +191,7 @@ If:
 * you learn something,
 * you are using it in your project/application,
 
-then please give us a star, appreciate our work. Thanks!
+then please give me a `star`, appreciate my work. Thanks!
 
 ## Buy me a coffee! :coffee:
 

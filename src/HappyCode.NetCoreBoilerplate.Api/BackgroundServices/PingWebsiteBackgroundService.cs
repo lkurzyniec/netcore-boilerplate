@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 
 namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
 {
-    internal class PingWebsiteBackgroundService : BackgroundService
+    public class PingWebsiteBackgroundService : BackgroundService
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<PingWebsiteBackgroundService> _logger;
@@ -40,7 +40,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Error during ping");
+                    _logger.LogWarning(ex, "Error during ping");
                 }
                 await Task.Delay(TimeSpan.FromMinutes(_configuration.Value.TimeIntervalInMinutes), cancellationToken);
             }

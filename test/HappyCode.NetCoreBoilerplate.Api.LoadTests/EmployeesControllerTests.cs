@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.LoadTests.Extensions;
-using NBomber.Http.CSharp;
+using NBomber.Contracts;
+using NBomber.Plugins.Http.CSharp;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
@@ -48,7 +48,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.LoadTests
 
                 return Http.CreateRequest("GET", getUrl.ToString())
                     .WithHeader("Authorization", "ApiKey ABC-xyz")
-                    .WithCheck(response => Task.FromResult(response.IsSuccessStatusCode));
+                    .WithCheck(response => Task.FromResult(response.GetCheckResult()));
             });
 
             ExecuteLoadTests(post, get);
