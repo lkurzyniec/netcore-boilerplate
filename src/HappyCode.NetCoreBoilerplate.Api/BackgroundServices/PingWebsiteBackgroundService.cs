@@ -11,7 +11,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
 {
     public class PingWebsiteBackgroundService : BackgroundService
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _client;
         private readonly ILogger<PingWebsiteBackgroundService> _logger;
         private readonly IOptions<PingWebsiteSettings> _configuration;
 
@@ -20,7 +20,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
             ILogger<PingWebsiteBackgroundService> logger,
             IOptions<PingWebsiteSettings> configuration)
         {
-            _httpClientFactory = httpClientFactory;
+            _client = httpClientFactory.CreateClient(nameof(PingWebsiteBackgroundService));
             _logger = logger;
             _configuration = configuration;
         }
@@ -32,11 +32,8 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
                 _logger.LogInformation($"{nameof(PingWebsiteBackgroundService)} running at '{DateTime.Now}', pinging '{_configuration.Value.Url}'");
                 try
                 {
-                    using (var client = _httpClientFactory.CreateClient(nameof(PingWebsiteBackgroundService)))
-                    {
-                        var response = await client.GetAsync(_configuration.Value.Url, cancellationToken);
-                        _logger.LogInformation($"Is {_configuration.Value.Url.Authority} responding: {response.IsSuccessStatusCode}");
-                    }
+                    using var response = await _client.GetAsync(_configuration.Value.Url, cancellationToken);
+                    _logger.LogInformation($"Is '{_configuration.Value.Url.Authority}' responding: {response.IsSuccessStatusCode}");
                 }
                 catch (Exception ex)
                 {

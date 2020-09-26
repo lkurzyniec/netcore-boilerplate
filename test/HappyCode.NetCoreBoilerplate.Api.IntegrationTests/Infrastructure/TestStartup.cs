@@ -1,4 +1,5 @@
 using Autofac;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.FeatureManagement;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
 {
@@ -19,9 +21,16 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore()
+            services
+                .AddHttpContextAccessor()
+                .AddMvcCore(options =>
+                {
+                    options.Filters.Add<ValidateModelStateFilter>();
+                })
                 .AddDataAnnotations()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
+
+            services.AddFeatureManagement();
 
             services.AddDbContext<EmployeesContext>(options =>
             {

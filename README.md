@@ -13,6 +13,7 @@ of starting an empty project and adding the same snippets each time, you can use
 
 1. [Autofac](https://autofac.org/)
 1. [Swagger](https://swagger.io/) + [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)
+1. [FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet) (Feature Flags, Feature Toggles)
 1. [HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
 1. [EF Core](https://docs.microsoft.com/ef/)
     * [MySQL provider from Pomelo Foundation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)
@@ -63,8 +64,8 @@ of starting an empty project and adding the same snippets each time, you can use
   * DbContext (with MySQL)
   * DbContext (with MsSQL)
   * Swagger and SwaggerUI (Swashbuckle)
-  * HostedService
-  * HttpClient
+  * HostedService and HttpClient
+  * FeatureManagement
   * HealthChecks
     * MySQL
     * MsSQL
@@ -85,10 +86,14 @@ of starting an empty project and adding the same snippets each time, you can use
 
 [HappyCode.NetCoreBoilerplate.Core](src/HappyCode.NetCoreBoilerplate.Core)
 
-* Simple MySQL DbContext - [EmployeesContext.cs](src/HappyCode.NetCoreBoilerplate.Core/EmployeesContext.cs)
-* Simple MsSQL DbContext - [CarsContext.cs](src/HappyCode.NetCoreBoilerplate.Core/CarsContext.cs)
+* Dto models
+* DB models
+* Registration module - [GeneralRegisterModule.cs](src/HappyCode.NetCoreBoilerplate.Core/RegisterModules/GeneralRegisterModule.cs)
 * Exemplary MySQL repository - [EmployeeRepository.cs](src/HappyCode.NetCoreBoilerplate.Core/Repositories/EmployeeRepository.cs)
 * Exemplary MsSQL service - [CarService.cs](src/HappyCode.NetCoreBoilerplate.Core/Services/CarService.cs)
+* AppSettings models
+* Simple MySQL DbContext - [EmployeesContext.cs](src/HappyCode.NetCoreBoilerplate.Core/EmployeesContext.cs)
+* Simple MsSQL DbContext - [CarsContext.cs](src/HappyCode.NetCoreBoilerplate.Core/CarsContext.cs)
 
 ![HappyCode.NetCoreBoilerplate.Core](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-core.png "HappyCode.NetCoreBoilerplate.Core")
 
@@ -119,6 +124,7 @@ of starting an empty project and adding the same snippets each time, you can use
 [HappyCode.NetCoreBoilerplate.Api.UnitTests](test/HappyCode.NetCoreBoilerplate.Api.UnitTests)
 
 * Exemplary tests - [EmployeesControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Controllers/EmployeesControllerTests.cs)
+* Unit tests of [ApiKeyAuthorizationFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ApiKeyAuthorizationFilter.cs) - [ApiKeyAuthorizationFilterTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Infrastructure/Filters/ApiKeyAuthorizationFilterTests.cs)
 
 [HappyCode.NetCoreBoilerplate.Core.UnitTests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests)
 

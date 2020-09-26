@@ -1,9 +1,11 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
+using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
+using Microsoft.FeatureManagement;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
 {
@@ -12,14 +14,21 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
         private static readonly Regex _apiKeyRegex = new Regex(@"^[Aa][Pp][Ii][Kk][Ee][Yy]\s+(?<ApiKey>.+)$", RegexOptions.Compiled);
 
         private readonly IOptions<ApiKeySettings> _options;
+        private readonly IFeatureManager _featureManager;
 
-        public ApiKeyAuthorizationFilter(IOptions<ApiKeySettings> options)
+        public ApiKeyAuthorizationFilter(IOptions<ApiKeySettings> options, IFeatureManager featureManager)
         {
             _options = options;
+            _featureManager = featureManager;
         }
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
+            if (!_featureManager.IsEnabledAsync(FeatureFlags.ApiKey).GetAwaiter().GetResult())
+            {
+                return;
+            }
+
             if (!context.HttpContext.Request.Headers.TryGetValue("Authorization", out var values))
             {
                 context.Result = new UnauthorizedObjectResult("Authorization header is missing");

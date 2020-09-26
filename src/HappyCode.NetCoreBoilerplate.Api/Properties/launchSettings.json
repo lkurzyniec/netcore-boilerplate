@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:55810/",
-      "sslPort": 44340
+      "applicationUrl": "http://localhost:5000/",
+      "sslPort": 0
     }
   },
   "profiles": {
@@ -19,10 +19,11 @@
     "HappyCode.NetCoreBoilerplate.Api": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
+        "ASPNETCORE_URLS": "http://localhost:5000",
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      }
     }
   }
 }

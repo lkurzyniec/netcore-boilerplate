@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using AutoFixture.Xunit2;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
+using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement;
 using Moq;
 using Xunit;
 
@@ -193,6 +195,25 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             Controller.HttpContext.Response.Headers.TryGetValue("x-date-created", out _).Should().BeTrue();
 
             _employeeRepositoryMock.Verify();
+        }
+
+        [Fact]
+        public async Task GetOldest_should_return_Santa_when_feature_enabled()
+        {
+            //given
+            var featureManagerMock = Mocker.GetMock<IFeatureManager>();
+            featureManagerMock.Setup(x => x.IsEnabledAsync(FeatureFlags.Santa))
+                .ReturnsAsync(true)
+                .Verifiable();
+
+            //when
+            var result = await Controller.GetOldest(default) as ObjectResult;
+
+            //then
+            result.Should().NotBeNull();
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
+            result.Value.Should().BeAssignableTo<EmployeeDto>()
+                .Which.FirstName.Should().Be("Santa");
         }
     }
 }

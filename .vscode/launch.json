@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": ".NET Core Launch (web)",
+      "name": "Launch API",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
@@ -15,18 +15,12 @@
       "stopAtEntry": false,
       "serverReadyAction": {
         "action": "openExternally",
-        "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+        "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)",
       },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "http://*:5000",
       }
-    },
-    {
-      "name": ".NET Core Attach",
-      "type": "coreclr",
-      "request": "attach",
-      "processId": "${command:pickProcess}"
     }
   ]
 }

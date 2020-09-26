@@ -11,4 +11,8 @@ LABEL maintainer="Lukasz Kurzyniec (lkurzyniec@gmail.com)"
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS final
 WORKDIR /app
 COPY --from=publish /app .
+
+HEALTHCHECK --interval=5m --timeout=3s --start-period=10s --retries=1 \
+  CMD curl --fail http://localhost:80/health || exit 1
+
 ENTRYPOINT ["dotnet", "HappyCode.NetCoreBoilerplate.Api.dll"]

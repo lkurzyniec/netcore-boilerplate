@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 {
@@ -13,10 +15,12 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
     public class EmployeesController : ApiControllerBase
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IFeatureManager _featureManager;
 
-        public EmployeesController(IEmployeeRepository employeeRepository)
+        public EmployeesController(IEmployeeRepository employeeRepository, IFeatureManager featureManager)
         {
             _employeeRepository = employeeRepository;
+            _featureManager = featureManager;
         }
 
         [HttpGet]
@@ -64,6 +68,18 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         public async Task<IActionResult> GetOldest(
             CancellationToken cancellationToken = default)
         {
+            if (await _featureManager.IsEnabledAsync(FeatureFlags.Santa))
+            {
+                return Ok(new EmployeeDto
+                {
+                    Id = int.MaxValue,
+                    FirstName = "Santa",
+                    LastName = "Claus",
+                    BirthDate = new DateTime(270, 3, 15),
+                    Gender = "M",
+                });
+            }
+
             var result = await _employeeRepository.GetOldestAsync(cancellationToken);
             if (result == null)
             {
@@ -95,7 +111,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.InsertAsync(employeePostDto, cancellationToken);
-            Response.Headers.Add("x-date-created", DateTime.UtcNow.ToString("O"));
+            Response.Headers.Add("x-date-created", DateTime.UtcNow.ToString("s"));
             return CreatedAtAction("Get", new { id = result.Id }, result);
         }
 

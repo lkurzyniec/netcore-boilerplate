@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -23,7 +22,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         [Fact]
         public async Task Get_should_return_NotFound_when_no_employee()
         {
-            var result = await _client.GetAsync("api/employees/123456");
+            var result = await _client.GetAsync($"api/employees/{int.MaxValue}");
 
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }

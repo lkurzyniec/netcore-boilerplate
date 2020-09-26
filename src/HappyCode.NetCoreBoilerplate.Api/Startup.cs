@@ -15,6 +15,8 @@ using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
 using HappyCode.NetCoreBoilerplate.Core.Settings;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
+using Microsoft.FeatureManagement;
+using Microsoft.FeatureManagement.FeatureFilters;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -29,7 +31,10 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore(options =>
+            services
+                .AddHttpContextAccessor()
+                .AddRouting(options => options.LowercaseUrls = true)
+                .AddMvcCore(options =>
                 {
                     options.Filters.Add<HttpGlobalExceptionFilter>();
                     options.Filters.Add<ValidateModelStateFilter>();
@@ -38,8 +43,6 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 .AddApiExplorer()
                 .AddDataAnnotations()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
-
-            services.AddHttpContextAccessor();
 
             //there is a difference between AddDbContext() and AddDbContextPool(), more info https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling and https://stackoverflow.com/questions/48443567/adddbcontext-or-adddbcontextpool
             services.AddDbContext<EmployeesContext>(options => options.UseMySql(_configuration.GetConnectionString("MySqlDb")));
@@ -51,6 +54,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.Configure<PingWebsiteSettings>(_configuration.GetSection("PingWebsite"));
             services.AddHostedService<PingWebsiteBackgroundService>();
             services.AddHttpClient(nameof(PingWebsiteBackgroundService));
+
+            services.AddFeatureManagement()
+                .AddFeatureFilter<TimeWindowFilter>();
 
             services.AddHealthChecks()
                 .AddMySql(_configuration.GetConnectionString("MySqlDb"))
