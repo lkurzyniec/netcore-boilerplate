@@ -1,8 +1,7 @@
-using System;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 
-namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
+namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataFeeders
 {
     public class CarsContextDataFeeder
     {

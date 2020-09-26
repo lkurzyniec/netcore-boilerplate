@@ -7,7 +7,7 @@ using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
-using HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure;
+using HappyCode.NetCoreBoilerplate.Core.UnitTests.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;

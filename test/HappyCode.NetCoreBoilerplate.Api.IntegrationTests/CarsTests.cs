@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
+using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using Xunit;

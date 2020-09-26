@@ -1,5 +1,6 @@
 using Autofac;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
+using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataFeeders;
 using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

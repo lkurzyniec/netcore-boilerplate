@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MockQueryable.Moq;
 using Moq;
 
-namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure
+namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Extensions
 {
     internal static class EnumerableExtensions
     {

@@ -22,6 +22,7 @@ of starting an empty project and adding the same snippets each time, you can use
     * Integration tests with InMemory database
         * [FluentAssertions]
         * [xUnit]
+        * TestServer
     * Unit tests
         * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
         * [FluentAssertions]
@@ -80,7 +81,7 @@ of starting an empty project and adding the same snippets each time, you can use
 * Simple exemplary API controllers - [EmployeesController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/EmployeesController.cs), [CarsController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/CarsController.cs)
 * Example of BackgroundService - [PingWebsiteBackgroundService.cs](src/HappyCode.NetCoreBoilerplate.Api/BackgroundServices/PingWebsiteBackgroundService.cs)
 
-![HappyCode.NetCoreBoilerplate.Api](https://kurzyniec.pl/wp-content/uploads/2020/04/netcore-boilerplate-api.png "HappyCode.NetCoreBoilerplate.Api")
+![HappyCode.NetCoreBoilerplate.Api](.assets/api.png "HappyCode.NetCoreBoilerplate.Api")
 
 ### Core
 
@@ -95,7 +96,7 @@ of starting an empty project and adding the same snippets each time, you can use
 * Simple MySQL DbContext - [EmployeesContext.cs](src/HappyCode.NetCoreBoilerplate.Core/EmployeesContext.cs)
 * Simple MsSQL DbContext - [CarsContext.cs](src/HappyCode.NetCoreBoilerplate.Core/CarsContext.cs)
 
-![HappyCode.NetCoreBoilerplate.Core](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-core.png "HappyCode.NetCoreBoilerplate.Core")
+![HappyCode.NetCoreBoilerplate.Core](.assets/core.png "HappyCode.NetCoreBoilerplate.Core")
 
 ## DB Migrations
 
@@ -104,7 +105,7 @@ of starting an empty project and adding the same snippets each time, you can use
 * Console application as a simple db migration tool - [Program.cs](src/HappyCode.NetCoreBoilerplate.Db/Program.cs)
 * Sample migration scripts, both `.sql` and `.cs` - [S001_AddCarTypesTable.sql](src/HappyCode.NetCoreBoilerplate.Db/Scripts/Sql/S001_AddCarTypesTable.sql), [S002_ModifySomeRows.cs](src/HappyCode.NetCoreBoilerplate.Db/Scripts/Code/S002_ModifySomeRows.cs)
 
-![HappyCode.NetCoreBoilerplate.Db](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-db.png "HappyCode.NetCoreBoilerplate.Db")
+![HappyCode.NetCoreBoilerplate.Db](.assets/db.png "HappyCode.NetCoreBoilerplate.Db")
 
 ## Tests
 
@@ -112,26 +113,27 @@ of starting an empty project and adding the same snippets each time, you can use
 
 [HappyCode.NetCoreBoilerplate.Api.IntegrationTests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests)
 
-* Fixture with TestServer - [TestServerClientFixture.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestServerClientFixture.cs)
-* TestStartup with InMemory databases - [TestStartup.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestStartup.cs)
-* Simple data feeders - [EmployeeContextDataFeeder.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/EmployeeContextDataFeeder.cs), [CarsContextDataFeeder.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/CarsContextDataFeeder.cs)
+* Infrastructure
+  * Fixture with TestServer - [TestServerClientFixture.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestServerClientFixture.cs)
+  * TestStartup with InMemory databases - [TestStartup.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestStartup.cs)
+  * Simple data feeders - [EmployeeContextDataFeeder.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/DataFeeders/EmployeeContextDataFeeder.cs), [CarsContextDataFeeder.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/DataFeeders/CarsContextDataFeeder.cs)
 * Exemplary tests - [EmployeesTests.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/EmployeesTests.cs), [CarsTests.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/CarsTests.cs)
 
-![HappyCode.NetCoreBoilerplate.Api.IntegrationTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-itests.png "HappyCode.NetCoreBoilerplate.Api.IntegrationTests")
+![HappyCode.NetCoreBoilerplate.Api.IntegrationTests](.assets/itests.png "HappyCode.NetCoreBoilerplate.Api.IntegrationTests")
 
 ### Unit tests
 
 [HappyCode.NetCoreBoilerplate.Api.UnitTests](test/HappyCode.NetCoreBoilerplate.Api.UnitTests)
 
 * Exemplary tests - [EmployeesControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Controllers/EmployeesControllerTests.cs)
-* Unit tests of [ApiKeyAuthorizationFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ApiKeyAuthorizationFilter.cs) - [ApiKeyAuthorizationFilterTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Infrastructure/Filters/ApiKeyAuthorizationFilterTests.cs)
+* Unit tests of `ApiKeyAuthorizationFilter.cs` - [ApiKeyAuthorizationFilterTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Infrastructure/Filters/ApiKeyAuthorizationFilterTests.cs)
 
 [HappyCode.NetCoreBoilerplate.Core.UnitTests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests)
 
-* Extension methods to mock `DbSet` faster - [EnumerableExtensions.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Infrastructure/EnumerableExtensions.cs)
+* Extension methods to mock `DbSet` faster - [EnumerableExtensions.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Extensions/EnumerableExtensions.cs)
 * Exemplary tests - [EmployeeRepositoryTests.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Repositories/EmployeeRepositoryTests.cs), [CarServiceTests.cs](test/HappyCode.NetCoreBoilerplate.Core.UnitTests/Services/CarServiceTests.cs)
 
-![HappyCode.NetCoreBoilerplate.Core.UnitTests](https://kurzyniec.pl/wp-content/uploads/2019/12/netcore-boilerplate-utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
+![HappyCode.NetCoreBoilerplate.Core.UnitTests](.assets/utests.png "HappyCode.NetCoreBoilerplate.Core.UnitTests")
 
 ### Load tests
 
@@ -142,7 +144,7 @@ of starting an empty project and adding the same snippets each time, you can use
 * Base class for controller - [LoadTestsBase.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/LoadTestsBase.cs)
 * Exemplary tests - [EmployeesControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/EmployeesControllerTests.cs), [CarsControllerTests.cs](test/HappyCode.NetCoreBoilerplate.Api.LoadTests/Controllers/CarsControllerTests.cs)
 
-![HappyCode.NetCoreBoilerplate.Api.LoadTests](https://kurzyniec.pl/wp-content/uploads/2020/05/netcore-boilerplate-ltests.png "HappyCode.NetCoreBoilerplate.Api.LoadTests")
+![HappyCode.NetCoreBoilerplate.Api.LoadTests](.assets/ltests.png "HappyCode.NetCoreBoilerplate.Api.LoadTests")
 
 ## How to adapt to your project
 

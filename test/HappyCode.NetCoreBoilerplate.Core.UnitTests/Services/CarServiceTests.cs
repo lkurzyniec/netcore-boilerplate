@@ -6,7 +6,7 @@ using AutoFixture.Xunit2;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Services;
-using HappyCode.NetCoreBoilerplate.Core.UnitTests.Infrastructure;
+using HappyCode.NetCoreBoilerplate.Core.UnitTests.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;

@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
+namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions
 {
     internal static class HttpContentExtensions
     {
