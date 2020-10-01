@@ -1,10 +1,19 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /work
+
+COPY src/*/*.csproj ./
+RUN for projectFile in $(ls *.csproj); \
+do \
+  mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
+done
+
+RUN dotnet restore /work/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
+
 COPY src .
 
 FROM build AS publish
 WORKDIR /work/HappyCode.NetCoreBoilerplate.Api
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app --no-restore
 
 LABEL maintainer="Lukasz Kurzyniec (lkurzyniec@gmail.com)"
 
