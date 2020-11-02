@@ -32,7 +32,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
                 _logger.LogInformation($"{nameof(PingWebsiteBackgroundService)} running at '{DateTime.Now}', pinging '{_configuration.Value.Url}'");
                 try
                 {
-                    using var response = await _client.GetAsync(_configuration.Value.Url, cancellationToken);
+                    using var response = await _client.GetAsync(_configuration.Value.Url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
                     _logger.LogInformation($"Is '{_configuration.Value.Url.Authority}' responding: {response.IsSuccessStatusCode}");
                 }
                 catch (Exception ex)
