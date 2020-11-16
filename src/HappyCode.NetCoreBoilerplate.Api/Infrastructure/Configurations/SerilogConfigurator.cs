@@ -20,7 +20,6 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
             return new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
-                .AddJsonFile("appsettings.local.json", optional: true)
                 .Build();
         }
     }
