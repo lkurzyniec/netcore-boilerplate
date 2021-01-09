@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Autofac.Extensions.DependencyInjection;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -34,7 +33,6 @@ namespace HappyCode.NetCoreBoilerplate.Api
         public static IHostBuilder CreateWebHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
