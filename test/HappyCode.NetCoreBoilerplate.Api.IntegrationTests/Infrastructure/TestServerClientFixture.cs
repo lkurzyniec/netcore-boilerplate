@@ -1,5 +1,4 @@
 using System.Net.Http;
-using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Hosting;
@@ -14,7 +13,6 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
         public TestServerClientFixture()
         {
             var host = new HostBuilder()
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHost(webBuilder =>
                 {
                     webBuilder

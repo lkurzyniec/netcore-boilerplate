@@ -1,7 +1,7 @@
-using Autofac;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataFeeders;
 using HappyCode.NetCoreBoilerplate.Core;
+using HappyCode.NetCoreBoilerplate.Core.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +31,9 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
                 .AddDataAnnotations()
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
+            services.AddCoreComponents();
+            // services.AddTransient<ISomeService, SomeService>();  //if needed override registration with own test fakes
+
             services.AddFeatureManagement();
 
             services.AddDbContext<EmployeesContext>(options =>
@@ -41,13 +44,6 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
             {
                 options.UseInMemoryDatabase("cars");
             });
-        }
-
-        public override void ConfigureContainer(ContainerBuilder builder)
-        {
-            base.ConfigureContainer(builder);
-
-            // builder.RegisterType<SomeService>().As<ISomeService>();  //if needed override registration with own test fakes
         }
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
