@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
@@ -35,7 +36,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
         }
 
         [Fact]
-        public void When_feature_is_disabled_Then_should_immediately_returns()
+        public async Task When_feature_is_disabled_Then_should_immediately_returns()
         {
             //given
             _featureManagerMock.Setup(x => x.IsEnabledAsync(FeatureFlags.ApiKey))
@@ -43,7 +44,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
 
             //when
             var context = GetMockedContext(secretKey:null);
-            _filter.OnAuthorization(context);
+            await _filter.OnAuthorizationAsync(context);
 
             //then
             context.Result.Should().BeNull();
@@ -53,11 +54,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
         }
 
         [Fact]
-        public void When_Authorization_header_not_presented_Then_should_return_Unauthorized()
+        public async Task When_Authorization_header_not_presented_Then_should_return_Unauthorized()
         {
             //when
             var context = GetMockedContext(secretKey: null);
-            _filter.OnAuthorization(context);
+            await _filter.OnAuthorizationAsync(context);
 
             //then
             context.Result.Should().BeOfType<UnauthorizedObjectResult>()
@@ -68,11 +69,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
         }
 
         [Fact]
-        public void When_Authorization_header_is_empty_Then_should_return_Unauthorized()
+        public async Task When_Authorization_header_is_empty_Then_should_return_Unauthorized()
         {
             //when
             var context = GetMockedContext(secretKey: string.Empty);
-            _filter.OnAuthorization(context);
+            await _filter.OnAuthorizationAsync(context);
 
             //then
             context.Result.Should().BeOfType<UnauthorizedObjectResult>()
@@ -81,11 +82,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
         }
 
         [Fact]
-        public void When_Authorization_header_has_invalid_format_Then_should_return_Unauthorized()
+        public async Task When_Authorization_header_has_invalid_format_Then_should_return_Unauthorized()
         {
             //when
             var context = GetMockedContext(secretKey: $"Key {_key}");
-            _filter.OnAuthorization(context);
+            await _filter.OnAuthorizationAsync(context);
 
             //then
             context.Result.Should().BeOfType<UnauthorizedObjectResult>()
@@ -94,11 +95,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
         }
 
         [Fact]
-        public void When_Authorization_header_do_not_match_Then_should_return_Unauthorized()
+        public async Task When_Authorization_header_do_not_match_Then_should_return_Unauthorized()
         {
             //when
             var context = GetMockedContext(secretKey: "APIKey ABC");
-            _filter.OnAuthorization(context);
+            await _filter.OnAuthorizationAsync(context);
 
             //then
             context.Result.Should().BeOfType<UnauthorizedObjectResult>()
@@ -107,11 +108,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
         }
 
         [Fact]
-        public void When_Authorization_header_match_Then_result_should_be_null()
+        public async Task When_Authorization_header_match_Then_result_should_be_null()
         {
             //when
             var context = GetMockedContext(secretKey: $"APIKey {_key}");
-            _filter.OnAuthorization(context);
+            await _filter.OnAuthorizationAsync(context);
 
             //then
             context.Result.Should().BeNull();
