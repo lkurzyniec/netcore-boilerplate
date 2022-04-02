@@ -6,7 +6,6 @@ using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Hosting;
@@ -41,11 +40,10 @@ namespace HappyCode.NetCoreBoilerplate.Api
                     options.Filters.Add<ApiKeyAuthorizationFilter>();
                 })
                 .AddApiExplorer()
-                .AddDataAnnotations()
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                .AddDataAnnotations();
 
             //there is a difference between AddDbContext() and AddDbContextPool(), more info https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling and https://stackoverflow.com/questions/48443567/adddbcontext-or-adddbcontextpool
-            services.AddDbContext<EmployeesContext>(options => options.UseMySql(_configuration.GetConnectionString("MySqlDb")), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Singleton);
+            services.AddDbContext<EmployeesContext>(options => options.UseMySql(_configuration.GetConnectionString("MySqlDb"), ServerVersion.Parse("8")), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Singleton);
             services.AddDbContextPool<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")), poolSize: 10);
 
             services.Configure<ApiKeySettings>(_configuration.GetSection("ApiKey"));

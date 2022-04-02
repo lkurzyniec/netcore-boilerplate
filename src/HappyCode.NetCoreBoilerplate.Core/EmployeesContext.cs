@@ -1,7 +1,5 @@
-using System;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HappyCode.NetCoreBoilerplate.Core
 {
@@ -22,11 +20,11 @@ namespace HappyCode.NetCoreBoilerplate.Core
             modelBuilder.Entity<Department>(entity =>
             {
                 entity.HasIndex(e => e.DeptName)
-                    .HasName("dept_name")
+                    .HasDatabaseName("dept_name")
                     .IsUnique();
 
                 entity.HasIndex(e => e.MangerNo)
-                    .HasName("manger_no");
+                    .HasDatabaseName("manger_no");
 
                 entity.Property(e => e.DeptNo).ValueGeneratedNever();
 
@@ -42,7 +40,7 @@ namespace HappyCode.NetCoreBoilerplate.Core
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasIndex(e => e.DeptNo)
-                    .HasName("dept_no");
+                    .HasDatabaseName("dept_no");
 
                 entity.Property(e => e.EmpNo).ValueGeneratedOnAdd();
 

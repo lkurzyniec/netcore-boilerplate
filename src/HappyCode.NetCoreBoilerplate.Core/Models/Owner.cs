@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,8 +15,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
-        [Required]
-        [StringLength(101)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string FullName { get; set; }
 
 

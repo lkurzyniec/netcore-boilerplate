@@ -1,5 +1,3 @@
-using System;
-
 namespace HappyCode.NetCoreBoilerplate.Core.Dtos
 {
     public class EmployeeDto

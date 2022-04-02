@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HappyCode.NetCoreBoilerplate.Api.LoadTests.Extensions;
-using NBomber.Contracts;
 using NBomber.Plugins.Http.CSharp;
 using Xunit;
 
