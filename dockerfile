@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /work
 
 COPY src/*/*.csproj ./
@@ -17,7 +17,7 @@ RUN dotnet publish -c Release -o /app --no-restore
 
 LABEL maintainer="Lukasz Kurzyniec (lkurzyniec@gmail.com)"
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 WORKDIR /app
 COPY --from=publish /app .
 
