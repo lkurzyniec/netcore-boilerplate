@@ -1,7 +1,5 @@
-using System;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HappyCode.NetCoreBoilerplate.Core
 {

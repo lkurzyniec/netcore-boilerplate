@@ -5,7 +5,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Extensions;
-using System.Collections.Generic;
 
 namespace HappyCode.NetCoreBoilerplate.Core.Repositories
 {

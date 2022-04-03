@@ -1,5 +1,3 @@
-using System;
-
 namespace HappyCode.NetCoreBoilerplate.Core.Settings
 {
     public class PingWebsiteSettings

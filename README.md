@@ -1,6 +1,6 @@
 # netcore-boilerplate
 
-Boilerplate of API in `.NET Core 3.1`
+Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 6`
 
 | GitHub        | Codecov       |
 |:-------------:|:-------------:|
@@ -182,10 +182,6 @@ When the entire environment is up and running, you can additionally run a migrat
 ## Run unit tests
 
 Run `dotnet test` command in the root directory, it will look for test projects in `HappyCode.NetCoreBoilerplate.sln` and run them.
-
-## Migrate from ASP .NET Core 2.2 to 3.1
-
-Need to migrate from `.NET Core 2.2` to `.NET Core 3.1`? There's an [Microsoft article](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-3.1&tabs=visual-studio) about this, but you can also, just in case, take a look at my [migration commit](https://github.com/lkurzyniec/netcore-boilerplate/commit/45764d631bce10b0d4d8db47f786ad696fa65d67) where you can find the complete list of required changes.
 
 ## To Do
 

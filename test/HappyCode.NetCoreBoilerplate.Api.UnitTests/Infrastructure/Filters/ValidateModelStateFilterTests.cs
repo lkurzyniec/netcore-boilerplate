@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
-using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;

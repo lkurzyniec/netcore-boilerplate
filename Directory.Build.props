@@ -1,11 +1,11 @@
 <Project>
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>10</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Authors>Łukasz Kurzyniec</Authors>
-    <Copyright>Copyright © happy+code 2020</Copyright>
-    <Version>0.1.0</Version>
+    <Copyright>Copyright © happy+code Łukasz Kurzyniec 2022</Copyright>
+    <Version>1.0.0</Version>
   </PropertyGroup>
   <PropertyGroup>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
