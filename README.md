@@ -40,6 +40,7 @@ of starting an empty project and adding the same snippets each time, you can use
     * Code coverage
         * [Coverlet](https://github.com/tonerdo/coverlet)
         * [Codecov](https://codecov.io/)
+    * CI Code analysis with [CodeQL](https://codeql.github.com/)
 1. Docker
     * [Dockerfile](dockerfile)
     * [Docker-compose](docker-compose.yml)
@@ -52,7 +53,10 @@ of starting an empty project and adding the same snippets each time, you can use
 1. [DbUp](http://dbup.github.io/) as a db migration tool
 1. Continuous integration
     * ~~[Travis CI]~~(https://travis-ci.org/) ([travisci.yml](https://github.com/lkurzyniec/netcore-boilerplate/blob/bf65154b63f6a10d6753045c49cd378e53907816/.travis.yml))
-    * [GitHub Actions](https://github.com/features/actions) ([dotnetcore.yml](.github/workflows/dotnetcore.yml))
+    * [GitHub Actions](https://github.com/features/actions)
+        * [dotnetcore.yml](.github/workflows/dotnetcore.yml)
+        * [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)
+        * [docker.yml](.github/workflows/docker.yml)
 
 ## Architecture
 
