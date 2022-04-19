@@ -35,7 +35,10 @@ of starting an empty project and adding the same snippets each time, you can use
         * [xUnit]
 1. Code quality
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
-    * Analizers ([Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers), [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers))
+    * Analizers
+        * [Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers)
+        * [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers)
+        * [Microsoft.VisualStudio.Threading.Analyzers](https://github.com/microsoft/vs-threading))
     * [Rules](HappyCode.NetCoreBoilerplate.ruleset)
     * Code coverage
         * [Coverlet](https://github.com/tonerdo/coverlet)

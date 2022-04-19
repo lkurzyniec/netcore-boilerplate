@@ -19,7 +19,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<CarDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll(
+        public async Task<IActionResult> GetAllAsync(
             CancellationToken cancellationToken = default)
         {
             var result = await _carService.GetAllSortedByPlateAsync(cancellationToken);

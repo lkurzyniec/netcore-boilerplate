@@ -27,7 +27,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         public async Task GetAll_should_call_GetAllSortedByPlateAsync_onto_service()
         {
             //when
-            await Controller.GetAll(default);
+            await Controller.GetAllAsync(default);
 
             //then
             _carServiceMock.Verify(x => x.GetAllSortedByPlateAsync(It.IsAny<CancellationToken>()), Times.Once);
@@ -41,7 +41,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(cars);
 
             //when
-            var result = await Controller.GetAll(default) as OkObjectResult;
+            var result = await Controller.GetAllAsync(default) as OkObjectResult;
 
             //then
             result.Should().NotBeNull();

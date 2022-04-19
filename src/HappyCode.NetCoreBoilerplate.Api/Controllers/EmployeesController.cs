@@ -21,7 +21,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<EmployeeDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll(
+        public async Task<IActionResult> GetAllAsync(
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.GetAllAsync(cancellationToken);
@@ -31,7 +31,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetAsync(
             int id,
             CancellationToken cancellationToken = default)
         {
@@ -46,7 +46,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [HttpGet("{id}/details")]
         [ProducesResponseType(typeof(EmployeeDetailsDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetWithDetails(
+        public async Task<IActionResult> GetWithDetailsAsync(
             int id,
             CancellationToken cancellationToken = default)
         {
@@ -61,7 +61,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [HttpGet("oldest")]
         [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetOldest(
+        public async Task<IActionResult> GetOldestAsync(
             CancellationToken cancellationToken = default)
         {
             if (await _featureManager.IsEnabledAsync(FeatureFlags.Santa))
@@ -87,7 +87,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Put(
+        public async Task<IActionResult> PutAsync(
             [FromRoute] int id,
             [FromBody] EmployeePutDto employeePutDto,
             CancellationToken cancellationToken = default)
@@ -102,7 +102,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status201Created)]
-        public async Task<IActionResult> Post(
+        public async Task<IActionResult> PostAsync(
             [FromBody] EmployeePostDto employeePostDto,
             CancellationToken cancellationToken = default)
         {
@@ -114,7 +114,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete(
+        public async Task<IActionResult> DeleteAsync(
             int id,
             CancellationToken cancellationToken = default)
         {
