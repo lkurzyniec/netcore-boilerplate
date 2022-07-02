@@ -22,7 +22,7 @@ of starting an empty project and adding the same snippets each time, you can use
     * Integration tests with InMemory database
         * [FluentAssertions]
         * [xUnit]
-        * [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
+        * [Verify](https://github.com/VerifyTests/Verify/)
         * TestServer
     * Unit tests
         * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
@@ -121,7 +121,6 @@ of starting an empty project and adding the same snippets each time, you can use
 
 [HappyCode.NetCoreBoilerplate.Api.IntegrationTests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests)
 
-* Approvals - test results from [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
 * Infrastructure
   * Fixture with TestServer - [TestServerClientFixture.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestServerClientFixture.cs)
   * TestStartup with InMemory databases - [TestStartup.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestStartup.cs)
