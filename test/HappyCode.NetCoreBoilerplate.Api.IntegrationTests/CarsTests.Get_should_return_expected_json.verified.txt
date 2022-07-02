@@ -1,12 +1,22 @@
-﻿[
-  {
-    id: 1,
-    model: Toyota Avensis,
-    plate: DW 12345
+﻿{
+  Version: 1.1,
+  Status: 200 OK,
+  Content: {
+    Headers: {
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: [
+      {
+        id: 1,
+        model: Toyota Avensis,
+        plate: DW 12345
+      },
+      {
+        id: 2,
+        model: Mercedes-Benz,
+        plate: SB 98765
+      }
+    ]
   },
-  {
-    id: 2,
-    model: Mercedes-Benz,
-    plate: SB 98765
-  }
-]
+  Request: http://localhost/api/cars
+}

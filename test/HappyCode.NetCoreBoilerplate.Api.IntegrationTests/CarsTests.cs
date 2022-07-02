@@ -35,14 +35,13 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         }
 
         [Fact]
-        public async Task Get_should_return_expected_json()
+        public Task Get_should_return_expected_json()
         {
             //when
-            var result = await _client.GetAsync($"api/cars");
+            var result = _client.GetAsync($"api/cars");
 
             //then
-            var json = await result.Content.ReadAsStringAsync();
-            await Verifier.VerifyJson(json);
+            return Verifier.Verify(result);
         }
     }
 }
