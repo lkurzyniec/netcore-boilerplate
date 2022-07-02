@@ -7,21 +7,20 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataF
     {
         public static void Feed(CarsContext dbContext)
         {
-            var owner1 = new Owner
+            var cars = new[]
             {
-                FirstName = "Dom",
-                LastName = "Cobb",
+                new Car
+                {
+                    Plate = "DW 12345",
+                    Model = "Toyota Avensis",
+                },
+                new Car
+                {
+                    Plate = "SB 98765",
+                    Model = "Mercedes-Benz",
+                },
             };
-            dbContext.Owners.Add(owner1);
-
-            var car1 = new Car
-            {
-                Plate = "DW 12345",
-                Model = "Toyota Avensis",
-                Owner = owner1,
-            };
-            dbContext.Cars.Add(car1);
-
+            dbContext.Cars.AddRange(cars);
             dbContext.SaveChanges();
         }
     }
