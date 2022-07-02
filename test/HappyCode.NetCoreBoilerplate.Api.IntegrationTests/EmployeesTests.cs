@@ -2,15 +2,16 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ApprovalTests;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
+using VerifyXunit;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
 {
+    [UsesVerify]
     [Collection(nameof(TestServerClientCollection))]
     public class EmployeesTests
     {
@@ -39,7 +40,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
 
             //then
             result.EnsureSuccessStatusCode();
-            Approvals.VerifyJson(await result.Content.ReadAsStringAsync());
+            await Verifier.VerifyJson(await result.Content.ReadAsStringAsync());
         }
 
         [Fact]

@@ -1,0 +1,12 @@
+﻿[
+  {
+    id: 1,
+    model: Toyota Avensis,
+    plate: DW 12345
+  },
+  {
+    id: 2,
+    model: Mercedes-Benz,
+    plate: SB 98765
+  }
+]
