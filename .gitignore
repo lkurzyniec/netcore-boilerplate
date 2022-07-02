@@ -32,6 +32,7 @@ bld/
 
 # Visual Studio cache/options directory
 .vs/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -39,6 +40,9 @@ bld/
 # NUNIT
 *.VisualState.xml
 TestResult.xml
+
+# ApprovalTests.Net
+*.received.*
 
 # Build Results of an ATL Project
 [Dd]ebugPS/

@@ -22,6 +22,7 @@ of starting an empty project and adding the same snippets each time, you can use
     * Integration tests with InMemory database
         * [FluentAssertions]
         * [xUnit]
+        * [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
         * TestServer
     * Unit tests
         * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
@@ -38,8 +39,8 @@ of starting an empty project and adding the same snippets each time, you can use
     * Analizers
         * [Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers)
         * [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers)
-        * [Microsoft.VisualStudio.Threading.Analyzers](https://github.com/microsoft/vs-threading))
-    * [Rules](HappyCode.NetCoreBoilerplate.ruleset)
+        * [Microsoft.VisualStudio.Threading.Analyzers](https://github.com/microsoft/vs-threading)
+    * CodeAnalysisRules [HappyCode.NetCoreBoilerplate.ruleset](HappyCode.NetCoreBoilerplate.ruleset)
     * Code coverage
         * [Coverlet](https://github.com/tonerdo/coverlet)
         * [Codecov](https://codecov.io/)
@@ -120,6 +121,7 @@ of starting an empty project and adding the same snippets each time, you can use
 
 [HappyCode.NetCoreBoilerplate.Api.IntegrationTests](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests)
 
+* Approvals - test results from [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
 * Infrastructure
   * Fixture with TestServer - [TestServerClientFixture.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestServerClientFixture.cs)
   * TestStartup with InMemory databases - [TestStartup.cs](test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/Infrastructure/TestStartup.cs)
