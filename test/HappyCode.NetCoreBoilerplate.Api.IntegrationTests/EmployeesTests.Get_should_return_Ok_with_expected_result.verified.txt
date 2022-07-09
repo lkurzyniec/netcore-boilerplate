@@ -1,7 +1,17 @@
 ﻿{
-  birthDate: DateTime_1,
-  firstName: Thomas,
-  gender: M,
-  id: 1,
-  lastName: Anderson
+  Version: 1.1,
+  Status: 200 OK,
+  Content: {
+    Headers: {
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: {
+      birthDate: DateTime_1,
+      firstName: Thomas,
+      gender: M,
+      id: 1,
+      lastName: Anderson
+    }
+  },
+  Request: http://localhost/api/employees/1
 }
