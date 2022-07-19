@@ -1,7 +1,7 @@
 ---
 name: Build & Test
 
-on: push
+on: [push, workflow_dispatch]
 
 env:
   # Disable .NET Core welcome and telemetry messages
