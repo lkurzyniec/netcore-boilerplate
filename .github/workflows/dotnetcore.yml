@@ -22,7 +22,7 @@ jobs:
         echo User $GITHUB_ACTOR triggered build on $GITHUB_REF by $GITHUB_SHA commit.
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
 
@@ -40,7 +40,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
 
