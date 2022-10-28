@@ -1,15 +1,31 @@
 <Project>
   <PropertyGroup>
     <LangVersion>10</LangVersion>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
+  
   <PropertyGroup>
     <Authors>Łukasz Kurzyniec</Authors>
     <Copyright>Copyright © happy+code Łukasz Kurzyniec 2022</Copyright>
     <Version>1.2.1</Version>
   </PropertyGroup>
+  
   <PropertyGroup>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)HappyCode.NetCoreBoilerplate.ruleset</CodeAnalysisRuleSet>
  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(ProjectName.EndsWith(`Tests`))' == 'False'">
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.1.46">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>
