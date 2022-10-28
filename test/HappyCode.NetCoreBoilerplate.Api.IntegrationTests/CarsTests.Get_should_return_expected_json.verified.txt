@@ -1,4 +1,4 @@
-﻿{
+{
   Version: 1.1,
   Status: 200 OK,
   Content: {
@@ -8,13 +8,13 @@
     Value: [
       {
         id: 1,
-        model: Toyota Avensis,
-        plate: DW 12345
+        plate: DW 12345,
+        model: Toyota Avensis
       },
       {
         id: 2,
-        model: Mercedes-Benz,
-        plate: SB 98765
+        plate: SB 98765,
+        model: Mercedes-Benz
       }
     ]
   },
