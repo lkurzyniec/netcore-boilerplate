@@ -11,6 +11,7 @@ of starting an empty project and adding the same snippets each time, you can use
 
 ## Source code contains
 
+1. [Central Package Management (CPM)](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management)
 1. ~~[Autofac]~~(https://autofac.org/) (Removed in [PR19](https://github.com/lkurzyniec/netcore-boilerplate/pull/19))
 1. [Swagger](https://swagger.io/) + [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)
 1. [FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet) (Feature Flags, Feature Toggles)
@@ -53,7 +54,6 @@ of starting an empty project and adding the same snippets each time, you can use
         * `netcore-boilerplate:local`
 1. [Serilog](https://serilog.net/)
     * Sink: [Async](https://github.com/serilog/serilog-sinks-async)
-    * Enrich: [CorrelationId](https://github.com/ekmsystems/serilog-enrichers-correlation-id)
 1. [DbUp](http://dbup.github.io/) as a db migration tool
 1. Continuous integration
     * ~~[Travis CI]~~(https://travis-ci.org/) ([travisci.yml](https://github.com/lkurzyniec/netcore-boilerplate/blob/bf65154b63f6a10d6753045c49cd378e53907816/.travis.yml))

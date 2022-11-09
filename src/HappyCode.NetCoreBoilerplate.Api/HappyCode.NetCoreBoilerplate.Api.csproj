@@ -16,15 +16,14 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="6.0.2" />
-    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.2" />
-    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
-    <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.5.1" />
-    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
-    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
-    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
-    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.MySql" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
+    <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Enrichers.Environment" />
+    <PackageReference Include="Serilog.Sinks.Async" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>

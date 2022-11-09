@@ -1,0 +1,66 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <EnablePackageVersionOverride>false</EnablePackageVersionOverride>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="6.0.2" />
+    <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.2" />
+    <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
+    <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="2.5.1" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageVersion Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+    <PackageVersion Include="Serilog.Sinks.Async" Version="1.5.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="dbup-sqlserver" Version="4.6.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="AutoFixture" Version="4.17.0" />
+    <PackageVersion Include="AutoFixture.Xunit2" Version="4.17.0" />
+    <PackageVersion Include="coverlet.msbuild" Version="3.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="FluentAssertions" Version="6.8.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.10" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="6.0.10" />
+    <PackageVersion Include="MockQueryable.Moq" Version="6.0.1" />
+    <PackageVersion Include="Moq" Version="4.18.2" />
+    <PackageVersion Include="Moq.AutoMock" Version="3.4.0" />
+    <PackageVersion Include="NBomber.Http" Version="1.1.1" />
+    <PackageVersion Include="Verify.Http" Version="3.0.0" />
+    <PackageVersion Include="Verify.Xunit" Version="18.3.0" />
+    <PackageVersion Include="xunit" Version="2.4.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+  </ItemGroup>
+
+  <ItemGroup>
+    <GlobalPackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </GlobalPackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(ProjectName.EndsWith(`Tests`))' == 'False'">
+    <GlobalPackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.48">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </GlobalPackageReference>
+  </ItemGroup>
+</Project>
