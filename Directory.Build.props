@@ -1,13 +1,13 @@
 <Project>
   <PropertyGroup>
-    <LangVersion>10</LangVersion>
-    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>11</LangVersion>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   
   <PropertyGroup>
     <Authors>Łukasz Kurzyniec</Authors>
     <Copyright>Copyright © happy+code Łukasz Kurzyniec 2022</Copyright>
-    <Version>1.2.1</Version>
+    <Version>1.3.0</Version>
   </PropertyGroup>
   
   <PropertyGroup>

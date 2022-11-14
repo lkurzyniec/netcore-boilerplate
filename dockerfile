@@ -1,12 +1,13 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /work
 
 COPY ./Directory.Build.props ./
+COPY ./Directory.Packages.props ./
 COPY src/*/*.csproj ./
 RUN for projectFile in $(ls *.csproj); \
-do \
-  mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
-done
+  do \
+    mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
+  done
 
 ENV DOTNET_NOLOGO=true
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
@@ -14,6 +15,8 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 RUN dotnet restore /work/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
 
 COPY src .
+
+# --------------
 
 FROM build AS publish
 WORKDIR /work/HappyCode.NetCoreBoilerplate.Api
@@ -23,9 +26,9 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 RUN dotnet publish -c Release -o /app --no-restore
 
-LABEL maintainer="Lukasz Kurzyniec (lkurzyniec@gmail.com)"
+# --------------
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
 WORKDIR /app
 COPY --from=publish /app .
 
