@@ -28,16 +28,16 @@ jobs:
           count=${#arr[@]}
           echo "Types: ${arr[*]}"
           echo "Count: ${count}"
-          echo "::set-output name=types::${arr}"
-          echo "::set-output name=count::${count}"
+          echo "types=${arr[*]}" >> $GITHUB_OUTPUT
+          echo "count=${count}" >> $GITHUB_OUTPUT
 
       - name: Fetch Dependabot metadata
-        if: ${{ steps.update-types.outputs.count != "0" }}
+        if: ${{ fromJson(steps.update-types.outputs.count) > 0 }}
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@v1.3.5
 
       - name: Approve and auto-merge
-        if: ${{ steps.update-types.outputs.count != "0" && contains(steps.update-types.outputs.types, steps.dependabot-metadata.outputs.update-type) }}
+        if: ${{ fromJson(steps.update-types.outputs.count) > 0 && contains(steps.update-types.outputs.types, steps.dependabot-metadata.outputs.update-type) }}
         run: |
           gh pr edit "$PR_URL" --add-label "auto-merged"
           gh pr review --approve "$PR_URL"
@@ -45,3 +45,6 @@ jobs:
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Done!
+        run: echo "### Done! :rocket:" >> $GITHUB_STEP_SUMMARY
