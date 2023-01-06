@@ -1,17 +1,21 @@
 ---
 name: Build docker image
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
 
 jobs:
   build-image:
     name: Build docker image
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-      
+
     - name: Build and push
       uses: docker/build-push-action@v3
       with:

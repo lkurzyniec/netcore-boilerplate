@@ -4,6 +4,8 @@ name: "CodeQL"
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - '**.md'
   schedule:
     - cron: '13 6 * * 0'
 
