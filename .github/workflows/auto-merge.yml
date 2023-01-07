@@ -37,14 +37,23 @@ jobs:
         uses: dependabot/fetch-metadata@v1.3.5
 
       - name: Approve and auto-merge
+        id: auto-merge
         if: ${{ fromJson(steps.update-types.outputs.count) > 0 && contains(steps.update-types.outputs.types, steps.dependabot-metadata.outputs.update-type) }}
         run: |
           gh pr edit "$PR_URL" --add-label "auto-merged"
           gh pr review --approve "$PR_URL"
           gh pr merge --auto --squash "$PR_URL"
+          echo "STATUS=true" >> $GITHUB_OUTPUT
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Done!
-        run: echo "### Done! :rocket:" >> $GITHUB_STEP_SUMMARY
+        run: |
+          result="skip. :x:"
+          if [ "${STATUS}" == "true" ]; then
+              result=" auto-merge! :white_check_mark:"
+          fi
+          echo "### Done with ${result}" >> $GITHUB_STEP_SUMMARY
+        env:
+          STATUS: ${{ steps.auto-merge.outputs.STATUS }}
