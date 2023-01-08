@@ -1,5 +1,5 @@
 ---
-name: "CodeQL"
+name: "CodeQL Analysis"
 
 on:
   workflow_dispatch:

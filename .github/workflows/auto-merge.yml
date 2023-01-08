@@ -5,7 +5,7 @@ on:
   pull_request_target:
   workflow_dispatch:
   schedule:
-    - cron: '13 7 2 * *'
+    - cron: '13 7 * * *'
 
 permissions:
   pull-requests: write
