@@ -2,6 +2,7 @@
 name: Dependabot Approve and Merge
 
 on:
+  push:
   pull_request_target:
   workflow_dispatch:
   schedule:
@@ -17,8 +18,14 @@ jobs:
     name: Auto approve
     runs-on: ubuntu-latest
 
-    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
+    #if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
     steps:
+      - name: test
+        run: |
+          echo "${U}"
+        env:
+          U: ${{ github.event.pull_request }}
+
       - name: Fetch update types
         id: update-types
         env:
