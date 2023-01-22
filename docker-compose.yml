@@ -22,14 +22,15 @@ services:
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
+    user: root
     container_name: mssql
-    command: /bin/bash ./entrypoint.sh
+    command: /bin/bash /entrypoint.sh
     ports:
       - 1433:1433
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_PID=Express
-      - SA_PASSWORD=SomeStrongPwd123
+      - MSSQL_SA_PASSWORD=SomeStrongPwd123
     volumes:
       - dbdata:/var/opt/mssql/data
       - ./db/mssql/docker-entrypoint.sh:/entrypoint.sh
