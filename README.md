@@ -183,6 +183,9 @@ http://localhost:5000/swagger/.
 Just run `docker-compose up` command in the root directory and after successful start of services visit http://localhost:5000/swagger/.
 To check that API has connection to both MySQL and MsSQL databases visit http://localhost:5000/health/.
 
+> When running on `Linux` (i.e. [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)), make sure that all docker files
+([dockerfile](dockerfile), [docker-compose](docker-compose.yml) and all [mssql files](db/mssql)) have line endings `LF`.
+
 ### Migrations
 
 When the entire environment is up and running, you can additionally run a migration tool to add some new schema objects into MsSQL DB. To do that, go to `src/HappyCode.NetCoreBoilerplate.Db` directory and execute `dotnet run` command.
