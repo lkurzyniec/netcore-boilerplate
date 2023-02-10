@@ -2,6 +2,7 @@
 # docker-compose up -d
 # docker-compose up --build
 # docker-compose down
+# docker-compose down -v
 
 version: "3.6"
 
