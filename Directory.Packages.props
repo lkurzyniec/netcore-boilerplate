@@ -25,7 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="AutoFixture" Version="4.17.0" />
-    <PackageVersion Include="AutoFixture.Xunit2" Version="4.17.0" />
+    <PackageVersion Include="AutoFixture.Xunit2" Version="4.18.0" />
     <PackageVersion Include="coverlet.msbuild" Version="3.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
