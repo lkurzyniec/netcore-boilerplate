@@ -1,21 +1,20 @@
+using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
+using HappyCode.NetCoreBoilerplate.Core.Registrations;
+using HappyCode.NetCoreBoilerplate.Core.Settings;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
-using Swashbuckle.AspNetCore.SwaggerUI;
-using HappyCode.NetCoreBoilerplate.Core;
-using Microsoft.EntityFrameworkCore;
-using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
-using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Hosting;
-using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
-using HappyCode.NetCoreBoilerplate.Core.Settings;
-using HappyCode.NetCoreBoilerplate.Core.Extensions;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using HealthChecks.UI.Client;
 using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.FeatureFilters;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -42,10 +41,6 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 .AddApiExplorer()
                 .AddDataAnnotations();
 
-            //there is a difference between AddDbContext() and AddDbContextPool(), more info https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling and https://stackoverflow.com/questions/48443567/adddbcontext-or-adddbcontextpool
-            services.AddDbContext<EmployeesContext>(options => options.UseMySql(_configuration.GetConnectionString("MySqlDb"), ServerVersion.Parse("8.0")), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Singleton);
-            services.AddDbContextPool<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")), poolSize: 10);
-
             services.Configure<ApiKeySettings>(_configuration.GetSection("ApiKey"));
             services.AddSwagger(_configuration);
 
@@ -53,7 +48,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddHostedService<PingWebsiteBackgroundService>();
             services.AddHttpClient(nameof(PingWebsiteBackgroundService));
 
-            services.AddCoreComponents();
+            services.AddCoreComponents(_configuration);
 
             services.AddFeatureManagement()
                 .AddFeatureFilter<TimeWindowFilter>();
