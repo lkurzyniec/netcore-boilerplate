@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  # Disable .NET Core welcome and telemetry messages
+  # Disable .NET Core welcome
   DOTNET_NOLOGO: true
   # Disable .NET Core SDK telemetry
   DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -49,7 +49,7 @@ jobs:
         dotnet-version: 7.x
 
     - name: Collect code coverage
-      run: dotnet test -c Release /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet test --filter "FullyQualifiedName~UnitTests" "/p:ExcludeByFile=\"**/Program.cs,**/Startup.cs\"" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
