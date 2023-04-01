@@ -34,7 +34,7 @@ jobs:
       run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
 
     - name: Test sln
-      run: dotnet test -c Release --no-build --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet test -c Release --no-build /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
 
   collect-code-coverage:
     name: Code coverage
@@ -49,7 +49,7 @@ jobs:
         dotnet-version: 7.x
 
     - name: Collect code coverage
-      run: dotnet test -c Release --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet test -c Release /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
