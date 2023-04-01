@@ -1,21 +1,21 @@
+using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
+using HappyCode.NetCoreBoilerplate.Core;
+using HappyCode.NetCoreBoilerplate.Core.Registrations;
+using HappyCode.NetCoreBoilerplate.Core.Settings;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
-using Swashbuckle.AspNetCore.SwaggerUI;
-using HappyCode.NetCoreBoilerplate.Core;
-using Microsoft.EntityFrameworkCore;
-using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
-using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Hosting;
-using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
-using HappyCode.NetCoreBoilerplate.Core.Settings;
-using HappyCode.NetCoreBoilerplate.Core.Extensions;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using HealthChecks.UI.Client;
 using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.FeatureFilters;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {

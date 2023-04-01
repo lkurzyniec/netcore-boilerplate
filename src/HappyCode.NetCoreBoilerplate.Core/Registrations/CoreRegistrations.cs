@@ -2,9 +2,9 @@ using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using HappyCode.NetCoreBoilerplate.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HappyCode.NetCoreBoilerplate.Core.Extensions
+namespace HappyCode.NetCoreBoilerplate.Core.Registrations
 {
-    public static class DependencyInjectionExtensions
+    public static class CoreRegistrations
     {
         public static IServiceCollection AddCoreComponents(this IServiceCollection services)
         {
