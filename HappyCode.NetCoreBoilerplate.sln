@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ci", "ci", "{C20F30D0-1383-
 		.github\workflows\dotnetcore.yml = .github\workflows\dotnetcore.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.ArchitecturalTests", "test\HappyCode.NetCoreBoilerplate.ArchitecturalTests\HappyCode.NetCoreBoilerplate.ArchitecturalTests.csproj", "{C8166147-F446-4774-AFEC-9C1795B822B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{AE04301F-4E74-48DA-BFF9-D879618DA124}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE04301F-4E74-48DA-BFF9-D879618DA124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE04301F-4E74-48DA-BFF9-D879618DA124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8166147-F446-4774-AFEC-9C1795B822B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8166147-F446-4774-AFEC-9C1795B822B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8166147-F446-4774-AFEC-9C1795B822B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8166147-F446-4774-AFEC-9C1795B822B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{1606FA62-EA72-4F99-971C-0DA67D910188} = {8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}
 		{E7FD0B44-8ACA-4EA6-8A38-E6D346462273} = {8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}
 		{AE04301F-4E74-48DA-BFF9-D879618DA124} = {6D3497A0-339F-4545-86B8-7E015B468025}
+		{C8166147-F446-4774-AFEC-9C1795B822B8} = {8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE6D8568-233C-4A49-84FF-2FE6C0DE238C}
