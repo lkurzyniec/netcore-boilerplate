@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using NetArchTest.Rules;
 using Xunit;
 
-namespace HappyCode.NetCoreBoilerplate.ArchitectureTests
+namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
 {
-    public class CoreArchitectureTests
+    public class CoreArchitecturalTests
     {
         private static readonly Types _coreTypes = Types.InAssembly(typeof(FeatureFlags).Assembly);
 

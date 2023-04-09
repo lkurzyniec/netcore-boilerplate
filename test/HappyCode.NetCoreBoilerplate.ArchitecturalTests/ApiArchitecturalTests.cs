@@ -4,9 +4,9 @@ using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using NetArchTest.Rules;
 using Xunit;
 
-namespace HappyCode.NetCoreBoilerplate.ArchitectureTests
+namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
 {
-    public class ApiArchitectureTests
+    public class ApiArchitecturalTests
     {
         private static readonly Types _apiTypes = Types.InAssembly(typeof(Startup).Assembly);
 
