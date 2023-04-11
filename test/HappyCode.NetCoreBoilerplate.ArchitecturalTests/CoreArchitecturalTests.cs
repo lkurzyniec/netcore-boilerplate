@@ -1,4 +1,4 @@
-using FluentAssertions;
+using System;
 using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.EntityFrameworkCore;
 using NetArchTest.Rules;
@@ -18,7 +18,7 @@ namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
                 .HaveDependencyOn("Microsoft.AspNetCore")
                 .GetResult();
 
-            result.IsSuccessful.Should().BeTrue();
+            Assert.True(result.IsSuccessful, $"Failing Types: {string.Join("; ", result.FailingTypeNames ?? Array.Empty<string>())}");
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
                 .HaveDependencyOn("HappyCode.NetCoreBoilerplate.Core.Services")
                 .GetResult();
 
-            result.IsSuccessful.Should().BeTrue();
+            Assert.True(result.IsSuccessful, $"Failing Types: {string.Join("; ", result.FailingTypeNames ?? Array.Empty<string>())}");
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
                 .HaveNameEndingWith("Repository")
                 .GetResult();
 
-            result.IsSuccessful.Should().BeTrue();
+            Assert.True(result.IsSuccessful, $"Failing Types: {string.Join("; ", result.FailingTypeNames ?? Array.Empty<string>())}");
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
                 .HaveNameEndingWith("Service")
                 .GetResult();
 
-            result.IsSuccessful.Should().BeTrue();
+            Assert.True(result.IsSuccessful, $"Failing Types: {string.Join("; ", result.FailingTypeNames ?? Array.Empty<string>())}");
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
                 .HaveNameEndingWith("Dto")
                 .GetResult();
 
-            result.IsSuccessful.Should().BeTrue();
+            Assert.True(result.IsSuccessful, $"Failing Types: {string.Join("; ", result.FailingTypeNames ?? Array.Empty<string>())}");
         }
 
         [Fact]
@@ -87,7 +87,7 @@ namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
                 .HaveNameEndingWith("Context")
                 .GetResult();
 
-            result.IsSuccessful.Should().BeTrue();
+            Assert.True(result.IsSuccessful, $"Failing Types: {string.Join("; ", result.FailingTypeNames ?? Array.Empty<string>())}");
         }
     }
 }

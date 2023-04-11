@@ -32,7 +32,6 @@ of starting an empty project and adding the same snippets each time, you can use
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
         * [xUnit]
     * Architectural tests (conventional tests)
-        * [FluentAssertions]
         * [NetArchTest](https://github.com/BenMorris/NetArchTest)
         * [xUnit]
     * ~~Load tests~~ (Removed in [PR135](https://github.com/lkurzyniec/netcore-boilerplate/pull/135))

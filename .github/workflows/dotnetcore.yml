@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-and-test:
-    name: GitHub Build&Test
+    name: Build&Test
     runs-on: ubuntu-latest
 
     steps:

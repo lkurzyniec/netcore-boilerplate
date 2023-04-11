@@ -1,4 +1,4 @@
-using FluentAssertions;
+using System;
 using HappyCode.NetCoreBoilerplate.Api;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using NetArchTest.Rules;
@@ -22,7 +22,7 @@ namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
                 .Inherit(typeof(ApiControllerBase))
                 .GetResult();
 
-            result.IsSuccessful.Should().BeTrue();
+            Assert.True(result.IsSuccessful, $"Failing Types: {string.Join("; ", result.FailingTypeNames ?? Array.Empty<string>())}");
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace HappyCode.NetCoreBoilerplate.ArchitecturalTests
                 .HaveNameEndingWith("Controller")
                 .GetResult();
 
-            result.IsSuccessful.Should().BeTrue();
+            Assert.True(result.IsSuccessful, $"Failing Types: {string.Join("; ", result.FailingTypeNames ?? Array.Empty<string>())}");
         }
     }
 }
