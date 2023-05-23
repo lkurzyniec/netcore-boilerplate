@@ -1,5 +1,5 @@
 ---
-name: Build & Test
+name: Build, Test, Code coverage
 
 on:
   push:
@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-and-test:
-    name: Build&Test
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
