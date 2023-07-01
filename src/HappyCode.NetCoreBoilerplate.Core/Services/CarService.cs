@@ -11,7 +11,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Services
         Task<IEnumerable<CarDto>> GetAllSortedByPlateAsync(CancellationToken cancellationToken);
     }
 
-    public class CarService : ICarService
+    internal class CarService : ICarService
     {
         private readonly CarsContext _dbContext;
 

@@ -2,6 +2,7 @@ using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
+using HappyCode.NetCoreBoilerplate.BooksModule;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Registrations;
 using HappyCode.NetCoreBoilerplate.Core.Settings;
@@ -54,6 +55,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddHttpClient(nameof(PingWebsiteBackgroundService));
 
             services.AddCoreComponents();
+            services.AddBooksModule(_configuration);
 
             services.AddFeatureManagement()
                 .AddFeatureFilter<TimeWindowFilter>();
@@ -74,6 +76,8 @@ namespace HappyCode.NetCoreBoilerplate.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapBooksModule();
+
                 endpoints.MapHealthChecks("/health", new HealthCheckOptions
                 {
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
@@ -86,6 +90,8 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Simple Api V1");
                 c.DocExpansion(DocExpansion.None);
             });
+
+            app.InitBooksModule();
         }
     }
 }

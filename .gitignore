@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 dist/
+*.db
 
 # Git files
 *.orig
@@ -314,7 +315,6 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
-
 
 # Local config overrides
 appsettings.local.json
