@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="7.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
-    <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="7.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
     <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="2.6.1" />
     <PackageVersion Include="Serilog.AspNetCore" Version="7.0.0" />
     <PackageVersion Include="Serilog.Enrichers.Environment" Version="2.2.0" />
