@@ -1,0 +1,8 @@
+﻿{
+  Version: 1.1,
+  Status: 204 No Content,
+  RequestMessage: {
+    Method: DELETE,
+    Uri: http://localhost/api/books/1
+  }
+}

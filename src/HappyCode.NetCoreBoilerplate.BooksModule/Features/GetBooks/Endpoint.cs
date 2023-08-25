@@ -18,7 +18,7 @@ internal static class Endpoint
                     CancellationToken ct
                 ) =>
                 {
-                    return TypedResults.Ok(await db.GetBooksAsync(ct));
+                    return Results.Ok(await db.GetBooksAsync(ct));
                 })
             .Produces<IEnumerable<BookDto>>()
             .WithTags("Books");

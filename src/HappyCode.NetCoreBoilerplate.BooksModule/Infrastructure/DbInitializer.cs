@@ -24,5 +24,11 @@ CREATE TABLE IF NOT EXISTS Books
     public void Init()
     {
         _db.Execute(_createBooks);
+
+        var count = _db.ExecuteScalar<int>("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name = 'Books'");
+        if (count == 0)
+        {
+            throw new ApplicationException("SQLite DB not initialized properly");
+        }
     }
 }

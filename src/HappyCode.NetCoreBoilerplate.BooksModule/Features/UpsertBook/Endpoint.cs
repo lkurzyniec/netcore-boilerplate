@@ -1,5 +1,4 @@
 using HappyCode.NetCoreBoilerplate.BooksModule.Dtos;
-using HappyCode.NetCoreBoilerplate.BooksModule.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -15,13 +14,13 @@ internal static class Endpoint
             .MapPost(
                 "/",
                 async (
-                    IDbConnection db,
                     BookDto book,
+                    IDbConnection db,
                     CancellationToken ct
                 ) =>
                 {
                     await db.UpsertBookAsync(book, ct);
-                    return TypedResults.NoContent();
+                    return Results.NoContent();
                 })
             .Produces(StatusCodes.Status204NoContent)
             .WithTags("Books");

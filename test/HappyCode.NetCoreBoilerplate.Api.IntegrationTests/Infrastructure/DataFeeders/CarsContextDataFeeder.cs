@@ -3,7 +3,7 @@ using HappyCode.NetCoreBoilerplate.Core.Models;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataFeeders
 {
-    public class CarsContextDataFeeder
+    internal static class CarsContextDataFeeder
     {
         public static void Feed(CarsContext dbContext)
         {

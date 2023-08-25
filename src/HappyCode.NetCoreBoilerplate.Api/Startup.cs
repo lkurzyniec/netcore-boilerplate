@@ -33,8 +33,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
         {
             services
                 .AddHttpContextAccessor()
-                .AddRouting(options => options.LowercaseUrls = true)
-                .AddMvcCore(options =>
+                .AddRouting(options => options.LowercaseUrls = true);
+
+            services.AddMvcCore(options =>
                 {
                     options.Filters.Add<HttpGlobalExceptionFilter>();
                     options.Filters.Add<ValidateModelStateFilter>();

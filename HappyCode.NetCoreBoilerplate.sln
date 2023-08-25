@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.BooksModule", "src\HappyCode.NetCoreBoilerplate.BooksModule\HappyCode.NetCoreBoilerplate.BooksModule.csproj", "{75AF49EF-1411-408A-B9E7-CE8CADAB7FC8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests", "test\HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests\HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.csproj", "{B3E52219-7B85-42B3-B607-F323401AC878}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{75AF49EF-1411-408A-B9E7-CE8CADAB7FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75AF49EF-1411-408A-B9E7-CE8CADAB7FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75AF49EF-1411-408A-B9E7-CE8CADAB7FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3E52219-7B85-42B3-B607-F323401AC878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3E52219-7B85-42B3-B607-F323401AC878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3E52219-7B85-42B3-B607-F323401AC878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3E52219-7B85-42B3-B607-F323401AC878}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{AE04301F-4E74-48DA-BFF9-D879618DA124} = {6D3497A0-339F-4545-86B8-7E015B468025}
 		{C8166147-F446-4774-AFEC-9C1795B822B8} = {8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}
 		{75AF49EF-1411-408A-B9E7-CE8CADAB7FC8} = {6D3497A0-339F-4545-86B8-7E015B468025}
+		{B3E52219-7B85-42B3-B607-F323401AC878} = {8AC3899F-4C0B-4EF6-AD2B-97D91FE107F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE6D8568-233C-4A49-84FF-2FE6C0DE238C}

@@ -1,17 +1,16 @@
-using HappyCode.NetCoreBoilerplate.BooksModule.Dtos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using System.Data;
 
-namespace HappyCode.NetCoreBoilerplate.BooksModule.Features.GetBook;
+namespace HappyCode.NetCoreBoilerplate.BooksModule.Features.DeleteBook;
 
 internal static class Endpoint
 {
-    public static IEndpointRouteBuilder MapGetBookEndpoint(this IEndpointRouteBuilder endpoints)
+    public static IEndpointRouteBuilder MapDeleteBookEndpoint(this IEndpointRouteBuilder endpoints)
     {
         endpoints
-            .MapGet(
+            .MapDelete(
                 "/{id:int}",
                 async (
                     int id,
@@ -19,12 +18,12 @@ internal static class Endpoint
                     CancellationToken ct
                 ) =>
                 {
-                    var book = await db.GetBookAsync(id, ct);
-                    return book.Id is not null
-                        ? Results.Ok(book)
+                    var affected = await db.DeleteBookAsync(id, ct);
+                    return affected > 0
+                        ? Results.NoContent()
                         : Results.NotFound();
                 })
-            .Produces<BookDto>()
+            .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status404NotFound)
             .WithTags("Books");
         return endpoints;

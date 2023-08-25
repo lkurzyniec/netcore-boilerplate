@@ -1,4 +1,5 @@
 using System.Data;
+using HappyCode.NetCoreBoilerplate.BooksModule.Features.DeleteBook;
 using HappyCode.NetCoreBoilerplate.BooksModule.Features.GetBook;
 using HappyCode.NetCoreBoilerplate.BooksModule.Features.GetBooks;
 using HappyCode.NetCoreBoilerplate.BooksModule.Features.UpsertBook;
@@ -28,6 +29,7 @@ public static class BooksModuleConfigurations
             .MapGetBooksEndpoint()
             .MapGetBookEndpoint()
             .MapUpsertBookEndpoint()
+            .MapDeleteBookEndpoint()
             ;
 
     public static IApplicationBuilder InitBooksModule(this IApplicationBuilder app)

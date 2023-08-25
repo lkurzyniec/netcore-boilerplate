@@ -1,20 +1,29 @@
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace HappyCode.NetCoreBoilerplate.BooksModule.Infrastructure
 {
     internal class AuthFilter : IEndpointFilter
     {
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
 
-        public AuthFilter(IConfiguration configuration)
+        public AuthFilter(IConfiguration configuration, IWebHostEnvironment env)
         {
             _configuration = configuration;
+            _env = env;
         }
 
         public async ValueTask<object> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
         {
+            if (_env.IsEnvironment("Test"))
+            {
+                return await next(context);
+            }
+
             context.HttpContext.Request.Headers.TryGetValue("Authorization", out var values);
             var authorization = values.FirstOrDefault();
 
