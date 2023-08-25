@@ -2,7 +2,7 @@
 
 Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 7`
 
-|                                                                                    GitHub                                                                                     |                                                                        Codecov                                                                         |
+| GitHub | Codecov |
 |:-------------:|:-------------:|
 | [![GitHub Build Status](https://github.com/lkurzyniec/netcore-boilerplate/workflows/Build%20%26%20Test/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) |
 
