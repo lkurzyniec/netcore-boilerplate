@@ -2,7 +2,7 @@
 
 Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 7`
 
-| GitHub        | Codecov       |
+|                                                                                    GitHub                                                                                     |                                                                        Codecov                                                                         |
 |:-------------:|:-------------:|
 | [![GitHub Build Status](https://github.com/lkurzyniec/netcore-boilerplate/workflows/Build%20%26%20Test/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) |
 
@@ -19,11 +19,14 @@ of starting an empty project and adding the same snippets each time, you can use
 1. [EF Core](https://docs.microsoft.com/ef/)
     * [MySQL provider from Pomelo Foundation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)
     * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
+1. [Dapper](https://github.com/DapperLib/Dapper)
+    * [Microsoft.Data.Sqlite](https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/)
 1. Tests
     * Integration tests with InMemory database
         * [FluentAssertions]
         * [xUnit]
         * [Verify](https://github.com/VerifyTests/Verify/)
+        * [Verify.Http](https://github.com/VerifyTests/Verify.Http)
         * TestServer
     * Unit tests
         * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
@@ -38,7 +41,7 @@ of starting an empty project and adding the same snippets each time, you can use
         * ~~[NBomber]~~(https://nbomber.com/)
 1. Code quality
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
-    * Analizers
+    * Analyzers
         * [Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers)
         * [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers)
         * [Microsoft.VisualStudio.Threading.Analyzers](https://github.com/microsoft/vs-threading)
@@ -153,6 +156,37 @@ of starting an empty project and adding the same snippets each time, you can use
 * Exemplary tests - [ApiArchitecturalTests.cs](test/HappyCode.NetCoreBoilerplate.ArchitecturalTests/ApiArchitecturalTests.cs), [CoreArchitecturalTests.cs](test/HappyCode.NetCoreBoilerplate.ArchitecturalTests/CoreArchitecturalTests.cs)
 
 ![HappyCode.NetCoreBoilerplate.ArchitecturalTests](.assets/atests.png "HappyCode.NetCoreBoilerplate.ArchitecturalTests")
+
+## Books module
+
+Totally separate module, developed with a modular monolith approach.
+
+### Module
+
+The code organized around features (vertical slices).
+
+[HappyCode.NetCoreBoilerplate.BooksModule](src/HappyCode.NetCoreBoilerplate.BooksModule)
+
+* Features
+  * Delete book - [Endpoint.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Features/DeleteBook/Endpoint.cs), [Command.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Features/DeleteBook/Command.cs)
+  * Get book - [Endpoint.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Features/GetBook/Endpoint.cs), [Query.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Features/GetBook/Query.cs)
+  * Get books - [Endpoint.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Features/GetBooks/Endpoint.cs), [Query.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Features/GetBooks/Query.cs)
+  * Upsert book - [Endpoint.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Features/UpsertBook/Endpoint.cs), [Command.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Features/UpsertBook/Command.cs)
+* Sqlite db initializer - [DbInitializer.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/Infrastructure/DbInitializer.cs)
+* Module configuration place - [BooksModuleConfigurations.cs](src/HappyCode.NetCoreBoilerplate.BooksModule/BooksModuleConfigurations.cs)
+
+![HappyCode.NetCoreBoilerplate.BooksModule](.assets/books.png "HappyCode.NetCoreBoilerplate.BooksModule")
+
+### Integration Tests
+
+[HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests](test/HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests)
+
+* Infrastructure
+  * Fixture with TestServer - [TestServerClientFixture.cs](test/HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests/Infrastructure/TestServerClientFixture.cs)
+  * Very simple data feeder - [BooksDataFeeder.cs](test/HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests/Infrastructure/DataFeeders/BooksDataFeeder.cs)
+* Exemplary tests - [BooksTests.cs](test/HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests/BooksTests.cs)
+
+![HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests](.assets/books-tests.png "HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests")
 
 ## How to adapt to your project
 
