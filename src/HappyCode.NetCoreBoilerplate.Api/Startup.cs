@@ -63,7 +63,8 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
             services.AddHealthChecks()
                 .AddMySql(_configuration.GetConnectionString("MySqlDb"))
-                .AddSqlServer(_configuration.GetConnectionString("MsSqlDb"));
+                .AddSqlServer(_configuration.GetConnectionString("MsSqlDb"))
+                .AddBooksModule(_configuration);
         }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -32,6 +32,9 @@ public static class BooksModuleConfigurations
             .MapDeleteBookEndpoint()
             ;
 
+    public static IHealthChecksBuilder AddBooksModule(this IHealthChecksBuilder builder, IConfiguration configuration)
+        => builder.AddSqlite(configuration.GetConnectionString("SqliteDb"));
+
     public static IApplicationBuilder InitBooksModule(this IApplicationBuilder app)
     {
         var initializer = app.ApplicationServices.GetRequiredService<DbInitializer>();
