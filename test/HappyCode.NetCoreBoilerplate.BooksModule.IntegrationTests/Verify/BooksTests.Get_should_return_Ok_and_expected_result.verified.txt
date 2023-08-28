@@ -1,0 +1,14 @@
+﻿{
+  Version: 1.1,
+  Status: 200 OK,
+  Content: {
+    Headers: {
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: {
+      id: 1,
+      title: C# book
+    }
+  },
+  Request: http://localhost/api/books/1
+}

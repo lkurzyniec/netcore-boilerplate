@@ -11,7 +11,7 @@ using Microsoft.FeatureManagement;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
 {
-    public class TestStartup : Startup
+    internal class TestStartup : Startup
     {
         public TestStartup(IConfiguration configuration)
             : base(configuration)

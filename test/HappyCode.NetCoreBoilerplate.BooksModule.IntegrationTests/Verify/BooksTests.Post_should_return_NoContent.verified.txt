@@ -1,0 +1,17 @@
+﻿{
+  Version: 1.1,
+  Status: 204 No Content,
+  RequestMessage: {
+    Method: POST,
+    Uri: http://localhost/api/books,
+    Content: {
+      Headers: {
+        Content-Length: 27,
+        Content-Type: application/json; charset=utf-8
+      },
+      Value: {
+        title: Some_test_title
+      }
+    }
+  }
+}

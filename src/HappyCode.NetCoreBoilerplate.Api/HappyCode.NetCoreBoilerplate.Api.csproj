@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HappyCode.NetCoreBoilerplate.BooksModule\HappyCode.NetCoreBoilerplate.BooksModule.csproj" />
     <ProjectReference Include="..\HappyCode.NetCoreBoilerplate.Core\HappyCode.NetCoreBoilerplate.Core.csproj" />
   </ItemGroup>
 </Project>

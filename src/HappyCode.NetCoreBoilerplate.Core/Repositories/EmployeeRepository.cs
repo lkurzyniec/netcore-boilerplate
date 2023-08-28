@@ -19,7 +19,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
         Task<EmployeeDto> UpdateAsync(int id, EmployeePutDto employeePutDto, CancellationToken cancellationToken);
     }
 
-    public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
+    internal class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
         public EmployeeRepository(EmployeesContext dbContext) : base(dbContext)
         {
