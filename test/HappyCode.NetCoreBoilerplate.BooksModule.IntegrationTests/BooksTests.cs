@@ -26,7 +26,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.GetAsync("api/books");
 
             //then
-            return Verifier.Verify(result);
+            return VerifyResult(result);
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.GetAsync($"api/books/{int.MaxValue}");
 
             //then
-            return Verifier.Verify(result);
+            return VerifyResult(result);
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.GetAsync("api/books/1");
 
             //then
-            return Verifier.Verify(result);
+            return VerifyResult(result);
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.PostAsync("api/books", book.ToStringContent());
 
             //then
-            return Verifier.Verify(result);
+            return VerifyResult(result);
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.DeleteAsync("api/books/1");
 
             //then
-            return Verifier.Verify(result);
+            return VerifyResult(result);
         }
 
         [Fact]
@@ -79,7 +79,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.DeleteAsync($"api/books/{int.MaxValue}");
 
             //then
-            return Verifier.Verify(result);
+            return VerifyResult(result);
         }
+
+        private static Task VerifyResult(Task<HttpResponseMessage> result) =>
+            Verifier.Verify(result).UseDirectory("Verify");
     }
 }
