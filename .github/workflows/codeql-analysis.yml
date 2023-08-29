@@ -6,6 +6,7 @@ on:
   push:
     paths-ignore:
       - '**.md'
+      - '**.yml'
   schedule:
     - cron: '13 6 * * 0'
 
