@@ -3,7 +3,8 @@ name: Dependabot Approve and Merge
 
 on:
   pull_request_target:
-  workflow_dispatch:
+  schedule:
+    - cron: '10 6 * * *'
 
 permissions:
   pull-requests: write
