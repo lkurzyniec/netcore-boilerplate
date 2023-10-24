@@ -51,6 +51,7 @@
     </PackageVersion>
   </ItemGroup>
   <ItemGroup>
+    <PackageVersion Include="Azure.Identity" Version="1.10.3" />
     <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageVersion Include="System.Net.Http" Version="4.3.4" />
     <PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
