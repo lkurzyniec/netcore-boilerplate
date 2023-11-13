@@ -18,7 +18,7 @@
   <ItemGroup>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
     <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
-    <PackageVersion Include="Dapper" Version="2.1.15" />
+    <PackageVersion Include="Dapper" Version="2.1.21" />
     <PackageVersion Include="Microsoft.Data.Sqlite" Version="7.0.13" />
   </ItemGroup>
   <ItemGroup>
