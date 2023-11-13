@@ -42,7 +42,7 @@
     <PackageVersion Include="Moq" Version="4.18.4" />
     <PackageVersion Include="Moq.AutoMock" Version="3.5.0" />
     <PackageVersion Include="NetArchTest.Rules" Version="1.3.2" />
-    <PackageVersion Include="Verify.Http" Version="4.3.2" />
+    <PackageVersion Include="Verify.Http" Version="5.0.1" />
     <PackageVersion Include="Verify.Xunit" Version="22.2.0" />
     <PackageVersion Include="xunit" Version="2.6.1" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3">
