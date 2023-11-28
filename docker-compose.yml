@@ -4,7 +4,7 @@
 # docker-compose down
 # docker-compose down -v
 
-version: "3.6"
+version: "3.8"
 
 services:
   mysql:
@@ -44,7 +44,7 @@ services:
     build:
       context: .
     ports:
-      - 5000:80
+      - 5000:8080
     depends_on:
       - mysql
       - mssql
