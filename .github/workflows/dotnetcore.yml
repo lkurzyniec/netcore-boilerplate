@@ -52,7 +52,7 @@ jobs:
       run: dotnet test --filter "FullyQualifiedName~UnitTests" "/p:ExcludeByFile=\"**/Program.cs,**/Startup.cs,**/SerilogConfigurator.cs,**/Registrations/*.cs,**/*Context.cs\"" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./test/coverage.opencover.xml
