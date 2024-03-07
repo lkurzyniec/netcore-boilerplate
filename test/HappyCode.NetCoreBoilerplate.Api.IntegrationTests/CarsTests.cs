@@ -1,17 +1,11 @@
-using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
-using VerifyXunit;
-using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
 {
-    [UsesVerify]
     [Collection(nameof(TestServerClientCollection))]
     public class CarsTests
     {

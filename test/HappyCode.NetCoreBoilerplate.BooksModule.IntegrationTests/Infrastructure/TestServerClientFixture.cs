@@ -1,15 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Net.Http;
 using HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure.DataFeeders;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure
 {

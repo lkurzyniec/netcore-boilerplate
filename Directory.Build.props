@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <LangVersion>11</LangVersion>
+    <LangVersion>12</LangVersion>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 

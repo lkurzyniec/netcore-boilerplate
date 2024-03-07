@@ -1,14 +1,9 @@
-using System.Net.Http;
-using System.Threading.Tasks;
 using HappyCode.NetCoreBoilerplate.BooksModule.Dtos;
 using HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Extensions;
 using HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure;
-using VerifyXunit;
-using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
 {
-    [UsesVerify]
     [Collection(nameof(TestServerClientCollection))]
     public class BooksTests
     {

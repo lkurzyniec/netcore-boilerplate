@@ -2,11 +2,7 @@ using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataFeeders;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Registrations;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
