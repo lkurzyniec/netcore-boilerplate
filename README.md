@@ -1,6 +1,6 @@
 # netcore-boilerplate
 
-Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 7`
+Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 8`
 
 | GitHub | Codecov |
 |:-------------:|:-------------:|
@@ -8,6 +8,11 @@ Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 7`
 
 Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code. It is kind of a template - instead
 of starting an empty project and adding the same snippets each time, you can use the boilerplate that already contains such code.
+
+**Intention** - The intention behind this project is to mix a variety of different approaches to show different available paths. 
+That's why you can find here the Service approach mixed-up with Repository approach, or old-fashioned controllers mixed-up with 
+brand new minimal API in a separate module (modular approach). As well as, it's a kind of playground for exploring frameworks, packages, tooling. 
+At the end, You are in charge, so it's your decision to which path you would like to follow.
 
 ## Source code contains
 
@@ -203,26 +208,16 @@ Just execute `dotnet build` in the root directory, it takes `HappyCode.NetCoreBo
 
 ## Start the application
 
-### Standalone
-
-At first, you need to have up and running [MySQL](https://www.mysql.com/downloads/) and [MsSQL](https://www.microsoft.com/sql-server/sql-server-downloads) database servers on localhost with initialized
-database by [mysql script](db/mysql/mysql-employees.sql) and [mssql script](db/mssql/mssql-cars.sql).
-
-Then the application (API) can be started by `dotnet run` command executed in the `src/HappyCode.NetCoreBoilerplate.Api` directory.
-By default it will be available under http://localhost:5000/, but keep in mind that documentation is available under
-http://localhost:5000/swagger/.
-
-### Docker (recommended)
-
-Just run `docker-compose up` command in the root directory and after successful start of services visit http://localhost:5000/swagger/.
-To check that API has connection to both MySQL and MsSQL databases visit http://localhost:5000/health/.
-
 > When running on `Linux` (i.e. [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)), make sure that all docker files
 ([dockerfile](dockerfile), [docker-compose](docker-compose.yml) and all [mssql files](db/mssql)) have line endings `LF`.
 
+Just run `docker-compose up` command in the root directory. After successful build and start of all services visit http://localhost:5000/swagger/.
+To check that API has connection to both MySQL and MsSQL databases visit http://localhost:5000/health/.
+
 ### Migrations
 
-When the entire environment is up and running, you can additionally run a migration tool to add some new schema objects into MsSQL DB. To do that, go to `src/HappyCode.NetCoreBoilerplate.Db` directory and execute `dotnet run` command.
+When the entire environment is up and running, you can additionally run a migration tool to add some new schema objects into MsSQL DB. 
+To do that, go to `src/HappyCode.NetCoreBoilerplate.Db` directory and execute `dotnet run` command.
 
 ## Run unit tests
 

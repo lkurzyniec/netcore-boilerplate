@@ -4,55 +4,55 @@
     <EnablePackageVersionOverride>false</EnablePackageVersionOverride>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="7.0.0" />
-    <PackageVersion Include="AspNetCore.HealthChecks.Sqlite" Version="7.0.0" />
-    <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
-    <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
-    <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="3.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
-    <PackageVersion Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="8.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Sqlite" Version="8.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="3.2.0" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageVersion Include="Serilog.Enrichers.Environment" Version="2.3.0" />
     <PackageVersion Include="Serilog.Sinks.Async" Version="1.5.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
-    <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
-    <PackageVersion Include="Dapper" Version="2.1.24" />
-    <PackageVersion Include="Microsoft.Data.Sqlite" Version="7.0.13" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+    <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.1" />
+    <PackageVersion Include="Dapper" Version="2.1.35" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="8.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="dbup-sqlserver" Version="5.0.37" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
+    <PackageVersion Include="dbup-sqlserver" Version="5.0.40" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="AutoFixture" Version="4.18.0" />
-    <PackageVersion Include="AutoFixture.Xunit2" Version="4.18.0" />
-    <PackageVersion Include="coverlet.msbuild" Version="6.0.0">
+    <PackageVersion Include="AutoFixture" Version="4.18.1" />
+    <PackageVersion Include="AutoFixture.Xunit2" Version="4.18.1" />
+    <PackageVersion Include="coverlet.msbuild" Version="6.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
     <PackageVersion Include="FluentAssertions" Version="6.12.0" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.13" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="7.0.13" />
-    <PackageVersion Include="MockQueryable.Moq" Version="7.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.2" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="8.0.2" />
+    <PackageVersion Include="MockQueryable.Moq" Version="7.0.1" />
     <PackageVersion Include="Moq" Version="4.18.4" />
     <PackageVersion Include="Moq.AutoMock" Version="3.5.0" />
     <PackageVersion Include="NetArchTest.Rules" Version="1.3.2" />
-    <PackageVersion Include="Verify.Http" Version="5.0.1" />
-    <PackageVersion Include="Verify.Xunit" Version="22.2.0" />
-    <PackageVersion Include="xunit" Version="2.6.1" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.4">
+    <PackageVersion Include="Verify.Http" Version="6.0.0" />
+    <PackageVersion Include="Verify.Xunit" Version="23.3.0" />
+    <PackageVersion Include="xunit" Version="2.7.0" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Azure.Identity" Version="1.10.4" />
-    <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+    <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.2.0" />
     <PackageVersion Include="System.Net.Http" Version="4.3.4" />
     <PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
@@ -63,7 +63,7 @@
     </GlobalPackageReference>
   </ItemGroup>
   <ItemGroup Condition="'$(ProjectName.EndsWith(`Tests`))' == 'False'">
-    <GlobalPackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.8.14">
+    <GlobalPackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.9.28">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </GlobalPackageReference>

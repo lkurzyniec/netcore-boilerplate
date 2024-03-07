@@ -1,8 +1,4 @@
-using System.Net.Http;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Hosting;
-using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
 {

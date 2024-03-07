@@ -107,7 +107,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.InsertAsync(employeePostDto, cancellationToken);
-            Response.Headers.Add("x-date-created", DateTime.UtcNow.ToString("s"));
+            Response.Headers.Append("x-date-created", DateTime.UtcNow.ToString("s"));
             return CreatedAtAction("Get", new { id = result.Id }, result);
         }
 

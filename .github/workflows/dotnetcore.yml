@@ -28,7 +28,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 7.x
+        dotnet-version: 8.x
 
     - name: Build sln
       run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
@@ -46,7 +46,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 7.x
+        dotnet-version: 8.x
 
     - name: Collect code coverage
       run: dotnet test --filter "FullyQualifiedName~UnitTests" "/p:ExcludeByFile=\"**/Program.cs,**/Startup.cs,**/SerilogConfigurator.cs,**/Registrations/*.cs,**/*Context.cs\"" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
