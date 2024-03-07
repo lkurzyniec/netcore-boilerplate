@@ -13,7 +13,7 @@ COPY ./Directory.Packages.props ./
 COPY src/*/*.csproj ./
 RUN for projectFile in $(ls *.csproj); \
   do \
-    mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
+  mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
   done
 
 ENV DOTNET_NOLOGO=true
