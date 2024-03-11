@@ -39,7 +39,7 @@
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="8.0.2" />
     <PackageVersion Include="MockQueryable.Moq" Version="7.0.1" />
-    <PackageVersion Include="Moq" Version="4.18.4" />
+    <PackageVersion Include="Moq" Version="4.20.70" />
     <PackageVersion Include="Moq.AutoMock" Version="3.5.0" />
     <PackageVersion Include="NetArchTest.Rules" Version="1.3.2" />
     <PackageVersion Include="Verify.Http" Version="6.0.0" />
