@@ -6,40 +6,46 @@ on:
 
 permissions:
   pull-requests: write
-  contents: write
-  issues: write
 
 jobs:
-  dependabot:
-    name: Auto approve
+  automerge:
+    name: Auto merge
     runs-on: ubuntu-latest
 
-    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: github.actor == 'dependabot[bot]'
     steps:
-      - name: Fetch update types
-        id: update-types
+      - name: Fetch config
+        id: fetch-config
         env:
-          UPDATE_TYPES: ${{ secrets.UPDATE_TYPES }}
+          UPDATE_TYPES: ${{ vars.UPDATE_TYPES }}
+          OMIT_NAMES: ${{ vars.OMIT_NAMES }}
         run: |
           arr=(${UPDATE_TYPES//;/ })
           count=${#arr[@]}
+          arr2=(${OMIT_NAMES//;/ })
+          
           echo "Types: ${arr[*]}"
           echo "Count: ${count}"
+          echo "Omit: ${arr2[*]}"
           echo "types=${arr[*]}" >> $GITHUB_OUTPUT
           echo "count=${count}" >> $GITHUB_OUTPUT
+          echo "omit=${arr2[*]}" >> $GITHUB_OUTPUT
 
       - name: Fetch Dependabot metadata
-        if: ${{ fromJson(steps.update-types.outputs.count) > 0 }}
         id: dependabot-metadata
+        if: fromJson(steps.fetch-config.outputs.count) > 0
         uses: dependabot/fetch-metadata@v1.6.0
 
       - name: Approve and auto-merge
         id: auto-merge
-        if: ${{ fromJson(steps.update-types.outputs.count) > 0 && contains(steps.update-types.outputs.types, steps.dependabot-metadata.outputs.update-type) }}
+        if: |
+          fromJson(steps.fetch-config.outputs.count) > 0 
+          && contains(steps.fetch-config.outputs.types, steps.dependabot-metadata.outputs.update-type)
+          && !contains(steps.fetch-config.outputs.omit, steps.dependabot-metadata.outputs.dependency-names)
         run: |
-          gh pr edit "$PR_URL" --add-label "auto-merged"
           gh pr review --approve "$PR_URL"
           gh pr merge --auto --squash "$PR_URL"
+          gh pr edit "$PR_URL" --add-label "auto-merged"
           echo "STATUS=true" >> $GITHUB_OUTPUT
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
