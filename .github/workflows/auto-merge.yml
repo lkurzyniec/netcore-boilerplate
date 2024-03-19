@@ -6,6 +6,7 @@ on:
 
 permissions:
   pull-requests: write
+  issues: write
 
 jobs:
   automerge:
@@ -25,8 +26,8 @@ jobs:
           arr2=(${OMIT_NAMES//;/ })
           
           echo "Types: ${arr[*]}"
-          echo "Count: ${count}"
           echo "Omit: ${arr2[*]}"
+          
           echo "types=${arr[*]}" >> $GITHUB_OUTPUT
           echo "count=${count}" >> $GITHUB_OUTPUT
           echo "omit=${arr2[*]}" >> $GITHUB_OUTPUT
