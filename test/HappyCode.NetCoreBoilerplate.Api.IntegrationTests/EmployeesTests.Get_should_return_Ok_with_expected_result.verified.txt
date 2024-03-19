@@ -1,5 +1,4 @@
 {
-  Version: 1.1,
   Status: 200 OK,
   Content: {
     Headers: {
@@ -12,6 +11,5 @@
       lastName: Anderson,
       gender: M
     }
-  },
-  Request: http://localhost/api/employees/1
+  }
 }

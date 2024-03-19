@@ -1,5 +1,4 @@
 ﻿{
-  Version: 1.1,
   Status: 200 OK,
   Content: {
     Headers: {
@@ -19,6 +18,5 @@
         title: Some_test_title
       }
     ]
-  },
-  Request: http://localhost/api/books
+  }
 }
