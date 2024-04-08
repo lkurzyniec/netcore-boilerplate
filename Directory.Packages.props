@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="8.0.1" />
-    <PackageVersion Include="AspNetCore.HealthChecks.Sqlite" Version="8.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Sqlite" Version="8.0.1" />
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.1" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
     <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="3.2.0" />
