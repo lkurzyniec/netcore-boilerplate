@@ -8,6 +8,9 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /work
 
+ENV DOTNET_NOLOGO=true
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
+
 COPY ./Directory.Build.props ./
 COPY ./Directory.Packages.props ./
 COPY src/*/*.csproj ./
@@ -15,9 +18,6 @@ RUN for projectFile in $(ls *.csproj); \
   do \
   mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
   done
-
-ENV DOTNET_NOLOGO=true
-ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 RUN dotnet restore /work/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
 
