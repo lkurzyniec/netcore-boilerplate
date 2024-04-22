@@ -45,7 +45,7 @@
     <PackageVersion Include="Verify.Http" Version="6.2.0" />
     <PackageVersion Include="Verify.Xunit" Version="23.7.1" />
     <PackageVersion Include="xunit" Version="2.7.1" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.7">
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
