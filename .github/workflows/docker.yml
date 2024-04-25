@@ -16,7 +16,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: Build and push
+    - name: Build docker image
       uses: docker/build-push-action@v5
       with:
         cache-from: type=gha
