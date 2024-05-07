@@ -19,7 +19,7 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.Infrastructure
 
         public async ValueTask<object> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
         {
-            if (_env.IsEnvironment("Test"))
+            if (!_env.IsProduction())
             {
                 return await next(context);
             }

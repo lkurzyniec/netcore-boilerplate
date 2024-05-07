@@ -1,3 +1,4 @@
+using System.Linq;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
@@ -52,8 +53,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddSwagger(_configuration);
 
             services.Configure<PingWebsiteSettings>(_configuration.GetSection("PingWebsite"));
-            services.AddHostedService<PingWebsiteBackgroundService>();
             services.AddHttpClient(nameof(PingWebsiteBackgroundService));
+            services.AddHostedService<PingWebsiteBackgroundService>();
+            services.AddSingleton(x => x.GetServices<IHostedService>().OfType<IPingService>().Single());
 
             services.AddCoreComponents();
             services.AddBooksModule(_configuration);
