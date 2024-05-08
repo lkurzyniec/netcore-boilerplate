@@ -2,6 +2,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using HappyCode.NetCoreBoilerplate.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
@@ -25,6 +26,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
             if (!(await _featureManager.IsEnabledAsync(FeatureFlags.ApiKey)))
+            {
+                return;
+            }
+            bool hasAllowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<IAllowAnonymous>().Any();
+            if (hasAllowAnonymous)
             {
                 return;
             }

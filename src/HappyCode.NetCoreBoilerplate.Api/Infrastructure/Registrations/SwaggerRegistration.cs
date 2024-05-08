@@ -1,4 +1,5 @@
 using System.IO;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -36,23 +37,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations
                     Type = SecuritySchemeType.ApiKey,
                 });
 
-                swaggerOptions.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                     {
-                        new OpenApiSecurityScheme
-                        {
-                            Name = "ApiKey",
-                            Type = SecuritySchemeType.ApiKey,
-                            In = ParameterLocation.Header,
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "ApiKey",
-                            },
-                        },
-                        Array.Empty<string>()
-                     }
-                });
+                swaggerOptions.OperationFilter<SecurityRequirementSwaggerOperationFilter>();
             });
         }
     }
