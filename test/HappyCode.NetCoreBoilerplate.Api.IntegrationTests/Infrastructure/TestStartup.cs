@@ -1,5 +1,7 @@
+using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataFeeders;
+using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.Fakes;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Registrations;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +28,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
                 .AddDataAnnotations();
 
             services.AddCoreComponents();
-            // services.AddTransient<ISomeService, SomeService>();  //if needed override registration with own test fakes
+            services.AddSingleton<IPingService, FakePingService>();  //override registration with own fakes
 
             services.AddFeatureManagement();
 
