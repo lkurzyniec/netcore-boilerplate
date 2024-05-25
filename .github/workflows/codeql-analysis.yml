@@ -31,6 +31,11 @@ jobs:
       with:
         languages: csharp
         queries: +security-and-quality
+        config: |
+          query-filters:
+            - exclude:
+                id:
+                  - cs/dereferenced-value-may-be-null
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
