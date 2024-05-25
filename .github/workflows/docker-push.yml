@@ -1,13 +1,9 @@
 ---
-name: Docker image
+name: Docker push
 
 on:
   release:
     types: [published]
-  push:
-    paths-ignore:
-      - '**.md'
-  workflow_dispatch:
 
 env:
   BASE_TAG: lkurzyniec/netcore-boilerplate
@@ -15,32 +11,7 @@ env:
 jobs:
   build-and-test:
     name: Build and Test
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Setup Docker Buildx
-      uses: docker/setup-buildx-action@v3
-
-    - name: Build docker image
-      uses: docker/build-push-action@v5
-      with:
-        load: true
-        tags: ${{ env.BASE_TAG }}:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-
-    - name: Test container
-      run: |
-        docker run -d --rm -p 5000:8080 ${{ env.BASE_TAG }}:latest
-
-        echo "Taking a short nap..."
-        sleep 5s
-
-        echo "Checking health check endpoint..."
-        curl -Is http://localhost:5000/health | head -n 1
-        HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000/health)
-        echo "HTTP_CODE=$HTTP_CODE" >> $GITHUB_OUTPUT
-        echo "Done!"
+    uses: ./.github/workflows/docker-build.yml
 
   push:
     name: Push to Docker Hub
