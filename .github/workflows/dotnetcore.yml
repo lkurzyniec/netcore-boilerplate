@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-and-test:
-    name: Build and Test
+    name: dotnet Build and Test
     runs-on: ubuntu-latest
 
     steps:

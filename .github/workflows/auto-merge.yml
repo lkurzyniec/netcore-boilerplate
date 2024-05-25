@@ -25,10 +25,10 @@ jobs:
           arr=(${UPDATE_TYPES//;/ })
           count=${#arr[@]}
           arr2=(${OMIT_NAMES//;/ })
-          
+
           echo "Types: ${arr[*]}"
           echo "Omit: ${arr2[*]}"
-          
+
           echo "types=${arr[*]}" >> $GITHUB_OUTPUT
           echo "count=${count}" >> $GITHUB_OUTPUT
           echo "omit=${arr2[*]}" >> $GITHUB_OUTPUT
@@ -41,7 +41,7 @@ jobs:
       - name: Approve and auto-merge
         id: auto-merge
         if: |
-          fromJson(steps.fetch-config.outputs.count) > 0 
+          fromJson(steps.fetch-config.outputs.count) > 0
           && contains(steps.fetch-config.outputs.types, steps.dependabot-metadata.outputs.update-type)
           && !contains(steps.fetch-config.outputs.omit, steps.dependabot-metadata.outputs.dependency-names)
         run: |
