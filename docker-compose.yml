@@ -39,12 +39,14 @@ services:
       - ./db/mssql/mssql-cars.sql:/db-init.sql
 
   netcore-boilerplate:
-    image: netcore-boilerplate:local
+    image: netcore-boilerplate:compose
     container_name: netcore-boilerplate
     build:
       context: .
     ports:
       - 5000:8080
+    environment:
+      ASPNETCORE_ENVIRONMENT: DockerCompose
     depends_on:
       - mysql
       - mssql

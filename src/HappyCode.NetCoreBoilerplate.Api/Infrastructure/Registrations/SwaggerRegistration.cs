@@ -38,6 +38,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations
                 });
 
                 swaggerOptions.OperationFilter<SecurityRequirementSwaggerOperationFilter>();
+                swaggerOptions.DocumentFilter<FeatureFlagSwaggerDocumentFilter>();
             });
         }
     }

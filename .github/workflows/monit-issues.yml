@@ -1,3 +1,4 @@
+---
 name: Monit inactive issues
 on:
   schedule:

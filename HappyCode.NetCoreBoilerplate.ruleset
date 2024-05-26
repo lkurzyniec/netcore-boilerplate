@@ -15,4 +15,7 @@
   <Rules AnalyzerId="Microsoft.NetCore.Analyzers" RuleNamespace="Microsoft.NetCore.Analyzers">
     <Rule Id="CA1303" Action="Hidden" />
   </Rules>
+  <Rules AnalyzerId="Microsoft.VisualStudio.Threading.Analyzers.CSharp" RuleNamespace="Microsoft.VisualStudio.Threading.Analyzers.CSharp">
+    <Rule Id="VSTHRD002" Action="Info" />
+  </Rules>
 </RuleSet>

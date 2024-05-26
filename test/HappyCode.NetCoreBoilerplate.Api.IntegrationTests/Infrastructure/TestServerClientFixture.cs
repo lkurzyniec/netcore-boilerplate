@@ -9,16 +9,24 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
         public TestServerClientFixture()
         {
             var host = new HostBuilder()
+                .UseEnvironment("Test")
                 .ConfigureWebHost(webBuilder =>
                 {
                     webBuilder
-                        .UseEnvironment("Test")
+                        .UseConfiguration(LoadAppConfiguration())
                         .UseStartup<TestStartup>()
                         .UseTestServer();
                 })
                 .Start();
 
             Client = host.GetTestClient();
+        }
+
+        private static IConfigurationRoot LoadAppConfiguration()
+        {
+            return new ConfigurationBuilder()
+                .AddJsonFile($"appsettings.Test.json", optional: false)
+                .Build();
         }
     }
 

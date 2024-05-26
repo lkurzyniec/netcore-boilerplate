@@ -60,13 +60,16 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddCoreComponents();
             services.AddBooksModule(_configuration);
 
-            services.AddFeatureManagement()
-                .AddFeatureFilter<TimeWindowFilter>();
+            services.AddFeatureManagement();
 
-            services.AddHealthChecks()
-                .AddMySql(_configuration.GetConnectionString("MySqlDb"))
-                .AddSqlServer(_configuration.GetConnectionString("MsSqlDb"))
+            var healthChecksBuilder = services.AddHealthChecks()
                 .AddBooksModule(_configuration);
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == FeatureFlags.DockerCompose.ToString())
+            {
+                healthChecksBuilder
+                    .AddMySql(_configuration.GetConnectionString("MySqlDb"))
+                    .AddSqlServer(_configuration.GetConnectionString("MsSqlDb"));
+            }
         }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
