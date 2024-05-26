@@ -216,7 +216,7 @@ To check that API has connection to both MySQL and MsSQL databases visit http://
 
 ### Just a container
 
-When running just a container, then features like `cars` and `employees` are disabled.
+When running just a container, then features like `cars` and `employees` might be disabled.
 
 To do so, execute `docker build . -t netcore-boilerplate:local` in the root directory, and then `docker run --rm -p 5000:8080 --name netcore-boilerplate netcore-boilerplate:local`.
 After all, visit http://localhost:5000/swagger/.
