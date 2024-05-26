@@ -4,7 +4,7 @@ Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 8`
 
 | GitHub | Codecov |
 |:-------------:|:-------------:|
-| [![Build & Test](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml) [![Build docker image](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker.yml) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) |
+| [![Build & Test](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml) [![Build docker image](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) |
 
 Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code. It is kind of a template - instead
 of starting an empty project and adding the same snippets each time, you can use the boilerplate that already contains such code.

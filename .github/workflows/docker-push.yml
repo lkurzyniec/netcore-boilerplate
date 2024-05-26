@@ -2,8 +2,8 @@
 name: Docker push
 
 on:
-  workflow_dispatch:
-  push:
+  release:
+    types: [published]
 
 env:
   BASE_TAG: lkurzyniec/netcore-boilerplate
