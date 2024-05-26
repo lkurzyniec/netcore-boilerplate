@@ -4,9 +4,11 @@ using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement;
+using Microsoft.FeatureManagement.Mvc;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 {
+    [FeatureGate(FeatureFlags.DockerCompose)]
     [Route("api/employees")]
     public class EmployeesController : ApiControllerBase
     {
@@ -64,7 +66,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         public async Task<IActionResult> GetOldestAsync(
             CancellationToken cancellationToken = default)
         {
-            if (await _featureManager.IsEnabledAsync(FeatureFlags.Santa))
+            if (await _featureManager.IsEnabledAsync(FeatureFlags.Santa.ToString()))
             {
                 return Ok(new EmployeeDto
                 {

@@ -2,4 +2,9 @@
 coverage:
   precision: 0
   round: up
-  range: "30...100"
+  range: "40...60"
+
+  status:
+    project:
+      default:
+        target: 60

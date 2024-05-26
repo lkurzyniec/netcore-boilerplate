@@ -1,5 +1,5 @@
 ---
-name: "CodeQL Analysis"
+name: CodeQL Analysis
 
 on:
   workflow_dispatch:
@@ -11,8 +11,8 @@ on:
     - cron: '13 6 * * 0'
 
 jobs:
-  analyze:
-    name: Analyze
+  codeql-analyze:
+    name: CodeQL Analyze
     runs-on: ubuntu-latest
     permissions:
       security-events: write

@@ -9,9 +9,9 @@ Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 8`
 Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code. It is kind of a template - instead
 of starting an empty project and adding the same snippets each time, you can use the boilerplate that already contains such code.
 
-**Intention** - The intention behind this project is to mix a variety of different approaches to show different available paths. 
-That's why you can find here the Service approach mixed-up with Repository approach, or old-fashioned controllers mixed-up with 
-brand new minimal API in a separate module (modular approach). As well as, it's a kind of playground for exploring frameworks, packages, tooling. 
+**Intention** - The intention behind this project is to mix a variety of different approaches to show different available paths.
+That's why you can find here the Service approach mixed-up with Repository approach, or old-fashioned controllers mixed-up with
+brand new minimal API in a separate module (modular approach). As well as, it's a kind of playground for exploring frameworks, packages, tooling.
 At the end, You are in charge, so it's your decision to which path you would like to follow.
 
 ## Source code contains
@@ -54,13 +54,13 @@ At the end, You are in charge, so it's your decision to which path you would lik
     * Code coverage
         * [Coverlet](https://github.com/tonerdo/coverlet)
         * [Codecov](https://codecov.io/)
-    * CI Code analysis with [CodeQL](https://codeql.github.com/)
-1. Docker
+    * Code analysis with [CodeQL](https://codeql.github.com/)
+1. [Docker](https://www.docker.com/)
     * [Dockerfile](dockerfile)
     * [Docker-compose](docker-compose.yml)
         * `mysql:8` with DB initialization
         * `mcr.microsoft.com/mssql/server:2017-latest` with DB initialization
-        * `netcore-boilerplate:local`
+        * `netcore-boilerplate:compose`
 1. [Serilog](https://serilog.net/)
     * Sink: [Async](https://github.com/serilog/serilog-sinks-async)
 1. [DbUp](http://dbup.github.io/) as a db migration tool
@@ -69,7 +69,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
     * [GitHub Actions](https://github.com/features/actions)
         * [dotnetcore.yml](.github/workflows/dotnetcore.yml)
         * [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)
-        * [docker.yml](.github/workflows/docker.yml)
+        * [docker-build.yml](.github/workflows/docker-build.yml)
 
 ## Architecture
 
@@ -214,9 +214,16 @@ Just execute `dotnet build` in the root directory, it takes `HappyCode.NetCoreBo
 Just run `docker-compose up` command in the root directory. After successful build and start of all services visit http://localhost:5000/swagger/.
 To check that API has connection to both MySQL and MsSQL databases visit http://localhost:5000/health/.
 
+### Just a container
+
+When running just a container, then features like `cars` and `employees` are disabled.
+
+To do so, execute `docker build . -t netcore-boilerplate:local` in the root directory, and then `docker run --rm -p 5000:8080 --name netcore-boilerplate netcore-boilerplate:local`.
+After all, visit http://localhost:5000/swagger/.
+
 ### Migrations
 
-When the entire environment is up and running, you can additionally run a migration tool to add some new schema objects into MsSQL DB. 
+When the entire environment is up and running, you can additionally run a migration tool to add some new schema objects into MsSQL DB.
 To do that, go to `src/HappyCode.NetCoreBoilerplate.Db` directory and execute `dotnet run` command.
 
 ## Run unit tests

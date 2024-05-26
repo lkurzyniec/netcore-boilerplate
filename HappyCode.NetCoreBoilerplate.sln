@@ -33,7 +33,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ci", "ci", "{C20F30D0-1383-4834-805F-6526300F4D2D}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
-		.github\workflows\docker.yml = .github\workflows\docker.yml
+		.github\workflows\docker-build.yml = .github\workflows\docker-build.yml
 		.github\workflows\dotnetcore.yml = .github\workflows\dotnetcore.yml
 	EndProjectSection
 EndProject

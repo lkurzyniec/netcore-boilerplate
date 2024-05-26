@@ -22,8 +22,8 @@ jobs:
     if: |
       github.event_name == 'release' &&
       github.event.action == 'published' &&
-      github.ref_type == 'tag'
-    # && needs.build-and-test.outputs.HTTP_CODE == 200
+      github.ref_type == 'tag' &&
+      needs.build-and-test.outputs.HTTP_CODE == 200
 
     steps:
     - name: Grab a version

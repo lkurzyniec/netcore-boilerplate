@@ -25,7 +25,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
-            if (!(await _featureManager.IsEnabledAsync(FeatureFlags.ApiKey)))
+            if (!(await _featureManager.IsEnabledAsync(FeatureFlags.ApiKey.ToString())))
             {
                 return;
             }

@@ -7,6 +7,7 @@ using Microsoft.FeatureManagement.Mvc;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 {
+    [FeatureGate(FeatureFlags.DockerCompose)]
     [Route("api/cars")]
     public class CarsController : ApiControllerBase
     {

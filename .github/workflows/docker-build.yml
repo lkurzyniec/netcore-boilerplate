@@ -40,10 +40,10 @@ jobs:
         HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000/health)
         echo "HTTP_CODE=$HTTP_CODE" >> $GITHUB_OUTPUT
 
-        # echo "Validating response..."
-        # if [ "$HTTP_CODE" = "200" ]; then
-        #   echo "All is valid!"
-        # else
-        #   echo "Response is invalid!"
-        #   exit 1
-        # fi
+        echo "Validating response..."
+        if [ "$HTTP_CODE" = "200" ]; then
+          echo "All is valid!"
+        else
+          echo "Response is invalid!"
+          exit 1
+        fi
