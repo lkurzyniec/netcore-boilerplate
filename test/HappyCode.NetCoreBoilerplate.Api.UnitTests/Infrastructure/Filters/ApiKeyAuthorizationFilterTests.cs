@@ -29,7 +29,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
         {
             var options = Options.Create(new ApiKeySettings { SecretKey = _key });
             _featureManagerMock = new Mock<IFeatureManager>(MockBehavior.Strict);
-            _featureManagerMock.Setup(x => x.IsEnabledAsync(FeatureFlags.ApiKey))
+            _featureManagerMock.Setup(x => x.IsEnabledAsync(FeatureFlags.ApiKey.ToString()))
                 .ReturnsAsync(true);
 
             _filter = new ApiKeyAuthorizationFilter(options, _featureManagerMock.Object);
@@ -39,7 +39,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Infrastructure.Filters
         public async Task When_feature_is_disabled_Then_should_immediately_returns()
         {
             //given
-            _featureManagerMock.Setup(x => x.IsEnabledAsync(FeatureFlags.ApiKey))
+            _featureManagerMock.Setup(x => x.IsEnabledAsync(FeatureFlags.ApiKey.ToString()))
                 .ReturnsAsync(false);
 
             //when

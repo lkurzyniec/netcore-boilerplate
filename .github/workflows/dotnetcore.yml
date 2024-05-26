@@ -48,7 +48,7 @@ jobs:
         dotnet-version: 8.x
 
     - name: Collect code coverage
-      run: dotnet test --filter "FullyQualifiedName~UnitTests" "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet test --filter UnitTests "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
@@ -70,7 +70,7 @@ jobs:
         dotnet-version: 8.x
 
     - name: Collect code coverage
-      run: dotnet test --filter "FullyQualifiedName~IntegrationTests" "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet test --filter IntegrationTests "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4

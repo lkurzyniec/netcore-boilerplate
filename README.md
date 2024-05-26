@@ -39,22 +39,22 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
         * [xUnit]
-    * Architectural tests (conventional tests)
-        * [NetArchTest](https://github.com/BenMorris/NetArchTest)
-        * [xUnit]
     * ~~Load tests~~ (Removed in [PR135](https://github.com/lkurzyniec/netcore-boilerplate/pull/135))
         * ~~[NBomber]~~(https://nbomber.com/)
 1. Code quality
-    * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
+    * Architectural tests (conventional tests)
+        * [NetArchTest](https://github.com/BenMorris/NetArchTest)
+        * [xUnit]
     * Analyzers
         * [Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers)
         * [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers)
         * [Microsoft.VisualStudio.Threading.Analyzers](https://github.com/microsoft/vs-threading)
-    * CodeAnalysisRules [HappyCode.NetCoreBoilerplate.ruleset](HappyCode.NetCoreBoilerplate.ruleset)
+    * Code analysis rule set [HappyCode.NetCoreBoilerplate.ruleset](HappyCode.NetCoreBoilerplate.ruleset)
+    * Code analysis with [CodeQL](https://codeql.github.com/)
     * Code coverage
         * [Coverlet](https://github.com/tonerdo/coverlet)
         * [Codecov](https://codecov.io/)
-    * Code analysis with [CodeQL](https://codeql.github.com/)
+    * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
 1. [Docker](https://www.docker.com/)
     * [Dockerfile](dockerfile)
     * [Docker-compose](docker-compose.yml)

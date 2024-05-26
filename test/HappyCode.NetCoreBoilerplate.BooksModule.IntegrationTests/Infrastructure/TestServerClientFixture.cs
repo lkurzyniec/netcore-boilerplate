@@ -14,6 +14,7 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructu
                 .ConfigureWebHost(webBuilder =>
                 {
                     webBuilder
+                        .UseEnvironment("Test")
                         .ConfigureServices(services =>
                         {
                             var config = new ConfigurationBuilder()
@@ -31,7 +32,6 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructu
                             var db = app.ApplicationServices.GetService<IDbConnection>();
                             BooksDataFeeder.Feed(db);
                         })
-                        .UseEnvironment("Test")
                         .UseTestServer();
                 })
                 .Start();

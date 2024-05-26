@@ -202,7 +202,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         {
             //given
             var featureManagerMock = Mocker.GetMock<IFeatureManager>();
-            featureManagerMock.Setup(x => x.IsEnabledAsync(FeatureFlags.Santa))
+            featureManagerMock.Setup(x => x.IsEnabledAsync(FeatureFlags.Santa.ToString()))
                 .ReturnsAsync(true)
                 .Verifiable();
 
