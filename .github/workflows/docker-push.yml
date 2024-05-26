@@ -2,16 +2,20 @@
 name: Docker push
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+  push:
 
 env:
   BASE_TAG: lkurzyniec/netcore-boilerplate
 
 jobs:
   build-and-test:
-    name: Build and Test
     uses: ./.github/workflows/docker-build.yml
+
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    needs: build-and-test
 
   push:
     name: Push to Docker Hub
@@ -23,7 +27,7 @@ jobs:
       github.event_name == 'release' &&
       github.event.action == 'published' &&
       github.ref_type == 'tag' &&
-      needs.build-and-test.outputs.HTTP_CODE == 200
+      needs.build-and-test.outputs.test-http-code == 200
 
     steps:
     - name: Grab a version
