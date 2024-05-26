@@ -21,10 +21,18 @@ jobs:
     if: |
       github.event_name == 'release' &&
       github.event.action == 'published' &&
-      github.ref_type == 'tag' &&
-      needs.build-and-test.outputs.test-http-code == 200
+      github.ref_type == 'tag'
 
     steps:
+    - name: Status check
+      run: |
+        if [ "${{ needs.build-and-test.outputs.test-http-code }}" = "200" ]; then
+          echo "All is fine, let's publish a new version!"
+        else
+          echo "Status is invalid! Abort..."
+          exit 1
+        fi
+
     - name: Grab a version
       run: |
         version="${{ github.ref }}"
@@ -48,5 +56,5 @@ jobs:
       with:
         push: true
         tags: |
-          ${{ env.BASE_TAG }}:latest
           ${{ env.BASE_TAG }}:${{ env.VERSION }}
+          ${{ env.BASE_TAG }}:latest
