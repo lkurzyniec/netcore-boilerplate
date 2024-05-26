@@ -27,7 +27,7 @@ jobs:
     steps:
     - name: Grab a version
       run: |
-        version="{{ github.ref }}"
+        version="${{ github.ref }}"
         version="${version/refs\/tags\/v/}"
 
         echo "Version: ${version}"
