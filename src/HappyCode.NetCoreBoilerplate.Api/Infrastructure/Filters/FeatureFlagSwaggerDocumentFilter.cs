@@ -27,16 +27,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
             foreach (var apiDescription in context.ApiDescriptions)
             {
                 var featureGates = apiDescription.CustomAttributes().OfType<FeatureGateAttribute>();
-                foreach (var feature in featureGates.SelectMany(x => x.Features))
+                if (featureGates.SelectMany(x => x.Features).Any(f => !featureFlags[f]))
                 {
-                    if (!featureFlags[feature])
-                    {
-                        var route = "/" + apiDescription.RelativePath.TrimEnd('/');
-                        swaggerDoc.Paths.Remove(route);
-                        continue;
-                    }
+                    var route = "/" + apiDescription.RelativePath.TrimEnd('/');
+                    swaggerDoc.Paths.Remove(route);
                 }
-
             }
         }
     }
