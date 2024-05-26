@@ -7,6 +7,9 @@ on:
       - '**.md'
   workflow_dispatch:
   workflow_call:
+    outputs:
+      test-http-code:
+        value: ${{ jobs.build-and-test.outputs.test-http-code }}
 
 env:
   BASE_TAG: lkurzyniec/netcore-boilerplate
@@ -15,6 +18,8 @@ jobs:
   build-and-test:
     name: docker Build and Test
     runs-on: ubuntu-latest
+    outputs:
+      test-http-code: ${{ steps.test-container.outputs.HTTP_CODE }}
 
     steps:
     - name: Setup Docker Buildx
@@ -29,6 +34,7 @@ jobs:
         cache-to: type=gha,mode=max
 
     - name: Test container
+      id: test-container
       run: |
         docker run -d --rm -p 5000:8080 ${{ env.BASE_TAG }}:latest
 
