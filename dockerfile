@@ -3,6 +3,10 @@ USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 
+LABEL org.opencontainers.image.authors="Łukasz Kurzyniec" \
+      org.opencontainers.image.title="HappyCode.NetCoreBoilerplate" \
+      org.opencontainers.image.description="Simple API written in .NET 8."
+
 # --------------
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
