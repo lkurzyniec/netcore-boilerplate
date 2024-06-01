@@ -42,6 +42,6 @@ ENV DOTNET_NOLOGO=true
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 HEALTHCHECK --interval=5m --timeout=3s --start-period=10s --retries=1 \
-  CMD curl --fail http://localhost:8080/health || exit 1
+  CMD curl --fail http://localhost:8080/healthz/live || exit 1
 
 ENTRYPOINT ["dotnet", "HappyCode.NetCoreBoilerplate.Api.dll"]

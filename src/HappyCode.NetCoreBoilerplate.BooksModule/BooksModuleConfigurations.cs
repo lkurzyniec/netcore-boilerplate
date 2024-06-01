@@ -33,7 +33,7 @@ public static class BooksModuleConfigurations
             ;
 
     public static IHealthChecksBuilder AddBooksModule(this IHealthChecksBuilder builder, IConfiguration configuration)
-        => builder.AddSqlite(configuration.GetConnectionString("SqliteDb"));
+        => builder.AddSqlite(configuration.GetConnectionString("SqliteDb"), tags: ["ready"]);
 
     public static IApplicationBuilder InitBooksModule(this IApplicationBuilder app)
     {

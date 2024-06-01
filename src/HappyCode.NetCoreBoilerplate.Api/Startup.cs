@@ -64,11 +64,11 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
             var healthChecksBuilder = services.AddHealthChecks()
                 .AddBooksModule(_configuration);
-            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == FeatureFlags.DockerCompose.ToString())
+            if (new[] { "Development", FeatureFlags.DockerCompose.ToString() }.Contains(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")))
             {
                 healthChecksBuilder
-                    .AddMySql(_configuration.GetConnectionString("MySqlDb"))
-                    .AddSqlServer(_configuration.GetConnectionString("MsSqlDb"));
+                    .AddMySql(_configuration.GetConnectionString("MySqlDb"), tags: ["ready"])
+                    .AddSqlServer(_configuration.GetConnectionString("MsSqlDb"), tags: ["ready"]);
             }
         }
 
@@ -85,8 +85,13 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 endpoints.MapControllers();
                 endpoints.MapBooksModule();
 
-                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                endpoints.MapHealthChecks("/healthz/live", new HealthCheckOptions
                 {
+                    Predicate = _ => false,
+                });
+                endpoints.MapHealthChecks("/healthz/ready", new HealthCheckOptions
+                {
+                    Predicate = healthCheck => healthCheck.Tags.Contains("ready"),
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
                 });
             });

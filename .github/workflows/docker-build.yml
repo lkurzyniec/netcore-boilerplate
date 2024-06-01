@@ -42,8 +42,8 @@ jobs:
         sleep 5s
 
         echo "Checking health check endpoint..."
-        curl -Is http://localhost:5000/health | head -n 1
-        HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000/health)
+        curl -Is http://localhost:5000/healthz/ready | head -n 1
+        HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000/healthz/ready)
         echo "HTTP_CODE=$HTTP_CODE" >> $GITHUB_OUTPUT
 
         echo "Validating response..."
