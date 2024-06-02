@@ -49,7 +49,10 @@ jobs:
         date=$(date --rfc-3339=date)
         echo "DATE=${date}" >> $GITHUB_ENV
 
-        version="${{ github.event_name == 'release' && github.ref || format('{0}.', inputs.version) }}$date"
+        version="${{ github.event_name == 'release' && github.ref || format('{0}.', inputs.version) }}"
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          version="${version}${date}"
+        fi
         version="${version/refs\/tags\/v/}"
 
         echo "Version: ${version}"
