@@ -2,17 +2,46 @@
 
 Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 8`
 
-| GitHub | Codecov |
-|:-------------:|:-------------:|
-| [![Build & Test](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml) [![Build docker image](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) |
+| GitHub | Codecov | Docker Hub |
+|:------:|:-------:|:----------:|
+| [![Build & Test](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml) [![Build docker image](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) | [![Docker Image Version](https://img.shields.io/docker/v/lkurzyniec/netcore-boilerplate?logo=docker)](https://hub.docker.com/r/lkurzyniec/netcore-boilerplate) |
 
-Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code. It is kind of a template - instead
-of starting an empty project and adding the same snippets each time, you can use the boilerplate that already contains such code.
+Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code.
+It is kind of a template - instead of starting an empty project and adding the same snippets each time,
+you can use the boilerplate that already contains such code.
 
 **Intention** - The intention behind this project is to mix a variety of different approaches to show different available paths.
 That's why you can find here the Service approach mixed-up with Repository approach, or old-fashioned controllers mixed-up with
 brand new minimal API in a separate module (modular approach). As well as, it's a kind of playground for exploring frameworks, packages, tooling.
 At the end, You are in charge, so it's your decision to which path you would like to follow.
+
+## Table of content
+
+<!-- TOC start -->
+
+* [Source code contains](#source-code-contains)
+* [Run the solution](#run-the-solution)
+  * [Standalone](#standalone)
+  * [In docker](#in-docker)
+    * [Download form registry](#download-form-registry)
+    * [Build your own image](build-your-own-image)
+  * [Docker compose](#docker-compose)
+    * [Migrations](#migrations)
+* [How to adapt](#how-to-adapt)
+* [Architecture](#architecture)
+  * [Api](#api)
+  * [Core](#core)
+* [DB Migrations](#db-migrations)
+* [Tests](#tests)
+  * [Integration tests](#integration-tests)
+  * [Unit tests](#unit-tests)
+  * [Architectural tests](#architectural-tests)
+* [Books module](#books-module)
+  * [Module](#module)
+  * [Integration Tests](#integration-tests-1)
+* [To Do](#to-do)
+
+<!-- TOC end -->
 
 ## Source code contains
 
@@ -61,6 +90,10 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * `mysql:8` with DB initialization
         * `mcr.microsoft.com/mssql/server:2017-latest` with DB initialization
         * `netcore-boilerplate:compose`
+    * [Build and test](.github/workflows/docker-build.yml)
+    * [Push to registry](.github/workflows/docker-push.yml)
+        * [Docker Hub](https://hub.docker.com/r/lkurzyniec/netcore-boilerplate)
+        * [GitHub Container Registry](https://github.com/lkurzyniec/netcore-boilerplate/pkgs/container/netcore-boilerplate)
 1. [Serilog](https://serilog.net/)
     * Sink: [Async](https://github.com/serilog/serilog-sinks-async)
 1. [DbUp](http://dbup.github.io/) as a db migration tool
@@ -70,6 +103,61 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [dotnetcore.yml](.github/workflows/dotnetcore.yml)
         * [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)
         * [docker-build.yml](.github/workflows/docker-build.yml)
+
+## Run the solution
+
+To run the solution, use one of the options:
+
+* [Standalone](#standalone)
+* [In docker](#in-docker)
+* [Docker compose](#docker-compose) (recommended)
+
+After successful start of the solution in any of above option, check useful endpoints:
+
+* swagger - <http://localhost:5000/swagger/>
+* health check - <http://localhost:5000/healthz/ready>
+
+### Standalone
+
+> When running standalone, features like `cars` and `employees` might be disabled.
+
+Execute `dotnet run --project src/HappyCode.NetCoreBoilerplate.Api` in the root directory.
+
+### In docker
+
+> When running in docker, features like `cars` and `employees` are disabled.
+
+#### Download form registry
+
+> Image is published using [docker-push](.github/workflows/docker-push.yml) workflow.
+
+* Docker Hub - <https://hub.docker.com/r/lkurzyniec/netcore-boilerplate>
+* GitHub Container Registry - <https://github.com/lkurzyniec/netcore-boilerplate/pkgs/container/netcore-boilerplate>
+
+#### Build your own image
+
+To run in docker with your own image, execute `docker build . -t netcore-boilerplate:local` in the root directory to build an image, and then `docker run --rm -p 5000:8080 --name netcore-boilerplate netcore-boilerplate:local` to spin up a container with it.
+
+### Docker compose
+
+> When running on `Linux` (i.e. [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)), make sure that all docker files
+([dockerfile](dockerfile), [docker-compose](docker-compose.yml) and all [mssql files](db/mssql)) have line endings `LF`.
+
+Just run `docker-compose up` command in the root directory.
+
+#### Migrations
+
+When the entire environment is up and running, you can additionally run a migration tool to add some new schema objects into MsSQL DB.
+To do that, go to `src/HappyCode.NetCoreBoilerplate.Db` directory and execute `dotnet run` command.
+
+## How to adapt
+
+Generally it is totally up to you! But in case you do not have any plan, You can follow below simple steps:
+
+1. Download/clone/fork repository :arrow_heading_down:
+1. Remove components and/or classes that you do not need to :fire:
+1. Rename files (e.g. `sln` or `csproj`), folders, namespaces etc :memo:
+1. Appreciate the work :star:
 
 ## Architecture
 
@@ -193,46 +281,9 @@ The code organized around features (vertical slices).
 
 ![HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests](.assets/books-tests.png "HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests")
 
-## How to adapt to your project
-
-Generally it is totally up to you! But in case you do not have any plan, You can follow below simple steps:
-
-1. Download/clone/fork repository :arrow_heading_down:
-1. Remove components and/or classes that you do not need to :fire:
-1. Rename files (e.g. sln, csproj, ruleset), folders, namespaces etc :memo:
-1. Appreciate the work :star:
-
-## Build the solution
-
-Just execute `dotnet build` in the root directory, it takes `HappyCode.NetCoreBoilerplate.sln` and build everything.
-
-## Start the application
-
-> When running on `Linux` (i.e. [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)), make sure that all docker files
-([dockerfile](dockerfile), [docker-compose](docker-compose.yml) and all [mssql files](db/mssql)) have line endings `LF`.
-
-Just run `docker-compose up` command in the root directory. After successful build and start of all services visit http://localhost:5000/swagger/.
-To check that API has connection to both MySQL and MsSQL databases visit http://localhost:5000/health/.
-
-### Just a container
-
-When running just a container, then features like `cars` and `employees` might be disabled.
-
-To do so, execute `docker build . -t netcore-boilerplate:local` in the root directory, and then `docker run --rm -p 5000:8080 --name netcore-boilerplate netcore-boilerplate:local`.
-After all, visit http://localhost:5000/swagger/.
-
-### Migrations
-
-When the entire environment is up and running, you can additionally run a migration tool to add some new schema objects into MsSQL DB.
-To do that, go to `src/HappyCode.NetCoreBoilerplate.Db` directory and execute `dotnet run` command.
-
-## Run unit tests
-
-Run `dotnet test` command in the root directory, it will look for test projects in `HappyCode.NetCoreBoilerplate.sln` and run them.
-
 ## To Do
 
-* any idea? Please create an issue.
+* any idea? Please [create an issue](https://github.com/lkurzyniec/netcore-boilerplate/issues/new).
 
 ## Be like a star, give me a star! :star:
 
@@ -245,6 +296,8 @@ If:
 then please give me a `star`, appreciate my work. Thanks!
 
 ## Buy me a coffee! :coffee:
+
+You are also very welcome to acknowledge my time by buying me a small coffee.
 
 [![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/lato-blue.png)](https://www.buymeacoffee.com/lkurzyniec)
 
