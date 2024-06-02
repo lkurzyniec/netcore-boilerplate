@@ -22,7 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-test
     environment: docker
-    concurrency: docker
+    concurrency: docker-push
+    permissions:
+      packages: write
     if: |
       (github.event_name == 'release' &&
       github.event.action == 'published' &&
