@@ -47,7 +47,7 @@ jobs:
         date=$(date --rfc-3339=date)
         echo "DATE=${date}" >> $GITHUB_ENV
 
-        version="${{ github.event_name == 'release' && github.ref || format('{0}.{1}', inputs.version, env.DATE) }}"
+        version="${{ github.event_name == 'release' && github.ref || format('{0}.', inputs.version) }}$date"
         version="${version/refs\/tags\/v/}"
 
         echo "Version: ${version}"
@@ -67,7 +67,7 @@ jobs:
           org.opencontainers.image.source=${{ github.repositoryUrl }}
           org.opencontainers.image.url=${{ github.server_url }}/${{ github.repository }}
           org.opencontainers.image.version=${{ env.VERSION }}
-          org.opencontainers.image.revision={{sha}}
+          org.opencontainers.image.revision=${{ github.sha }}
           org.opencontainers.image.created=${{ env.DATE }}
 
     - name: Login to Docker Hub
