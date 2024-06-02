@@ -58,11 +58,6 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: |
-          ${{ env.BASE_TAG }}:${{ env.VERSION }}
-          ${{ env.BASE_TAG }}:latest
-          ghcr.io/${{ env.BASE_TAG }}:${{ env.VERSION }}
-          ghcr.io/${{ env.BASE_TAG }}:latest
         labels: |
           org.opencontainers.image.source=${{ github.repositoryUrl }}
           org.opencontainers.image.url=${{ github.server_url }}/${{ github.repository }}
@@ -88,4 +83,8 @@ jobs:
       with:
         push: true
         labels: ${{ steps.meta.outputs.labels }}
-        tags: ${{ steps.meta.outputs.tags }}
+        tags: |
+          ${{ env.BASE_TAG }}:${{ env.VERSION }}
+          ${{ env.BASE_TAG }}:latest
+          ghcr.io/${{ env.BASE_TAG }}:${{ env.VERSION }}
+          ghcr.io/${{ env.BASE_TAG }}:latest
