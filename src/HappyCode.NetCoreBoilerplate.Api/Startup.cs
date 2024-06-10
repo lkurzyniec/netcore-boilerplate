@@ -16,7 +16,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
-using Microsoft.FeatureManagement.FeatureFilters;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace HappyCode.NetCoreBoilerplate.Api
@@ -64,7 +63,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
             var healthChecksBuilder = services.AddHealthChecks()
                 .AddBooksModule(_configuration);
-            if (new[] { "Development", FeatureFlags.DockerCompose.ToString() }.Contains(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")))
+            if (_configuration.GetValue<bool>("FeatureManagement:DockerCompose"))
             {
                 healthChecksBuilder
                     .AddMySql(_configuration.GetConnectionString("MySqlDb"), tags: ["ready"])
@@ -82,18 +81,18 @@ namespace HappyCode.NetCoreBoilerplate.Api
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-                endpoints.MapBooksModule();
-
                 endpoints.MapHealthChecks("/healthz/live", new HealthCheckOptions
                 {
                     Predicate = _ => false,
-                });
+                }).ShortCircuit();
                 endpoints.MapHealthChecks("/healthz/ready", new HealthCheckOptions
                 {
                     Predicate = healthCheck => healthCheck.Tags.Contains("ready"),
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
-                });
+                }).ShortCircuit();
+
+                endpoints.MapControllers();
+                endpoints.MapBooksModule();
             });
 
             app.UseSwagger();

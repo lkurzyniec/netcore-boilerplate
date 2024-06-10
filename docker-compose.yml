@@ -46,7 +46,7 @@ services:
     ports:
       - 5000:8080
     environment:
-      ASPNETCORE_ENVIRONMENT: DockerCompose
+      FeatureManagement__DockerCompose: true
     depends_on:
       - mysql
       - mssql
