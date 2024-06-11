@@ -7,7 +7,9 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj"
+        "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj",
+        "-c",
+        "Debug",
       ],
       "problemMatcher": "$msCompile"
     }

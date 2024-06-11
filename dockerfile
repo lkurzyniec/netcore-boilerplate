@@ -1,3 +1,6 @@
+ARG VERSION=2.0.0
+ARG SHA=none
+
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
@@ -44,6 +47,9 @@ COPY --from=publish /app .
 
 ENV DOTNET_NOLOGO=true
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
+
+ENV HC_SHA=${SHA}
+ENV HC_VERSION=${VERSION}
 
 HEALTHCHECK --interval=5m --timeout=3s --start-period=10s --retries=1 \
   CMD curl --fail http://localhost:8080/healthz/live || exit 1

@@ -87,6 +87,9 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
+        build-args: |
+          VERSION=${{ env.VERSION }}
+          SHA=${{ github.sha }}
         labels: ${{ steps.meta.outputs.labels }}
         tags: |
           ${{ env.BASE_TAG }}:${{ env.VERSION }}
