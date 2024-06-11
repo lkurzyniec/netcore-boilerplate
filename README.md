@@ -244,6 +244,7 @@ Generally it is totally up to you! But in case you do not have any plan, You can
 * API Infrastructure Unit tests
   * [ApiKeyAuthorizationFilterTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Infrastructure/Filters/ApiKeyAuthorizationFilterTests.cs)
   * [ValidateModelStateFilterTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Infrastructure/Filters/ValidateModelStateFilterTests.cs)
+  * [VersionEnricherTests.cs](test/HappyCode.NetCoreBoilerplate.Api.UnitTests/Infrastructure/Logging/VersionEnricherTests.cs)
 
 [HappyCode.NetCoreBoilerplate.Core.UnitTests](test/HappyCode.NetCoreBoilerplate.Core.UnitTests)
 
