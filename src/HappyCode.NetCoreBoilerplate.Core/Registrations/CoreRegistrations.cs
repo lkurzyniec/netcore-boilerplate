@@ -1,3 +1,4 @@
+using HappyCode.NetCoreBoilerplate.Core.Providers;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using HappyCode.NetCoreBoilerplate.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Registrations
         {
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ICarService, CarService>();
+            services.AddSingleton<VersionProvider>();
 
             return services;
         }

@@ -1,3 +1,4 @@
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Logging;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Core;
@@ -11,6 +12,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
             var configuration = LoadAppConfiguration();
             return new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
+                .Enrich.With(new VersionEnricher(new ()))
                 .CreateLogger();
         }
 

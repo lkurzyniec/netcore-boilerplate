@@ -5,12 +5,14 @@ using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
 using HappyCode.NetCoreBoilerplate.BooksModule;
 using HappyCode.NetCoreBoilerplate.Core;
+using HappyCode.NetCoreBoilerplate.Core.Providers;
 using HappyCode.NetCoreBoilerplate.Core.Registrations;
 using HappyCode.NetCoreBoilerplate.Core.Settings;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -90,6 +92,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
                     Predicate = healthCheck => healthCheck.Tags.Contains("ready"),
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
                 }).ShortCircuit();
+
+                endpoints.MapGet("/version", (VersionProvider provider) => provider.VersionEntries)
+                    .ExcludeFromDescription();
 
                 endpoints.MapControllers();
                 endpoints.MapBooksModule();
