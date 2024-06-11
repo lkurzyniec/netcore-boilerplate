@@ -24,7 +24,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
   * [Standalone](#standalone)
   * [In docker](#in-docker)
     * [Download form registry](#download-form-registry)
-    * [Build your own image](build-your-own-image)
+    * [Build your own image](#build-your-own-image)
   * [Docker compose](#docker-compose)
     * [Migrations](#migrations)
 * [How to adapt](#how-to-adapt)
@@ -130,21 +130,22 @@ Execute `dotnet run --project src/HappyCode.NetCoreBoilerplate.Api` in the root 
 
 #### Download form registry
 
-> Image is published using [docker-push](.github/workflows/docker-push.yml) workflow.
-
 * Docker Hub - <https://hub.docker.com/r/lkurzyniec/netcore-boilerplate>
 * GitHub Container Registry - <https://github.com/lkurzyniec/netcore-boilerplate/pkgs/container/netcore-boilerplate>
 
+Simply execute `docker run --rm -p 5000:8080 --name netcore-boilerplate lkurzyniec/netcore-boilerplate` to download and spin up a container.
+
 #### Build your own image
 
-To run in docker with your own image, execute `docker build . -t netcore-boilerplate:local` in the root directory to build an image, and then `docker run --rm -p 5000:8080 --name netcore-boilerplate netcore-boilerplate:local` to spin up a container with it.
+To run in docker with your own image, execute `docker build . -t netcore-boilerplate:local` in the root directory to build an image,
+and then `docker run --rm -p 5000:8080 --name netcore-boilerplate netcore-boilerplate:local` to spin up a container with it.
 
 ### Docker compose
 
 > When running on `Linux` (i.e. [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)), make sure that all docker files
 ([dockerfile](dockerfile), [docker-compose](docker-compose.yml) and all [mssql files](db/mssql)) have line endings `LF`.
 
-Just run `docker-compose up` command in the root directory.
+Just execute `docker-compose up` command in the root directory.
 
 #### Migrations
 

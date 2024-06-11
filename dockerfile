@@ -1,6 +1,3 @@
-ARG VERSION=2.0.0
-ARG SHA=none
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
@@ -47,6 +44,9 @@ COPY --from=publish /app .
 
 ENV DOTNET_NOLOGO=true
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
+
+ARG VERSION=2.0.0
+ARG SHA=none
 
 ENV HC_SHA=${SHA}
 ENV HC_VERSION=${VERSION}
