@@ -5,21 +5,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch API",
+      "name": "Debug API",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/netcoreapp3.1/HappyCode.NetCoreBoilerplate.Api.dll",
+      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/net8.0/HappyCode.NetCoreBoilerplate.Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api",
       "stopAtEntry": false,
       "serverReadyAction": {
         "action": "openExternally",
-        "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger"
       },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://*:5000",
+        "ASPNETCORE_URLS": "http://localhost:5000",
       }
     }
   ]
