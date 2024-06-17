@@ -8,6 +8,8 @@ Log.Logger = SerilogConfigurator.CreateLogger();
 
 try
 {
+    BannerConfigurator.Print(!Console.IsOutputRedirected);
+
     Log.Logger.Information("Starting up...");
     using var webHost = CreateWebHostBuilder(args).Build();
     await webHost.RunAsync();

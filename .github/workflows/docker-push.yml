@@ -18,7 +18,7 @@ jobs:
     uses: ./.github/workflows/docker-build.yml
 
   push:
-    name: Push to Docker Hub
+    name: Push to registries
     runs-on: ubuntu-latest
     needs: build-and-test
     environment: docker
