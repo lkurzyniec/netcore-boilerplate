@@ -88,6 +88,7 @@ jobs:
       with:
         push: true
         provenance: mode=max
+        sbom: true
         build-args: |
           VERSION=${{ env.VERSION }}
           SHA=${{ github.sha }}
