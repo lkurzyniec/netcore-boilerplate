@@ -21,6 +21,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" />
+    <PackageReference Include="Microsoft.Identity.Client" />
     <PackageReference Include="Serilog.AspNetCore" />
     <PackageReference Include="Serilog.Enrichers.Environment" />
     <PackageReference Include="Serilog.Sinks.Async" />
