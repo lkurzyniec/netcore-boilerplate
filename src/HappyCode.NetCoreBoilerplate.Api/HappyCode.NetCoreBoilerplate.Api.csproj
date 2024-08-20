@@ -26,9 +26,6 @@
     <PackageReference Include="Serilog.Sinks.Async" />
     <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Azure.Identity" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HappyCode.NetCoreBoilerplate.BooksModule\HappyCode.NetCoreBoilerplate.BooksModule.csproj" />

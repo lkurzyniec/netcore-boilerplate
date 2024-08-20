@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <NuGetAuditMode>all</NuGetAuditMode>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,9 +17,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
-    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.Text.Json" />
     <PackageReference Include="Microsoft.Data.SqlClient" />
     <PackageReference Include="System.Text.RegularExpressions" />
   </ItemGroup>
