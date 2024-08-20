@@ -30,10 +30,10 @@ jobs:
         dotnet-version: 8.x
 
     - name: Build sln
-      run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
 
     - name: Test sln
-      run: dotnet test -c Release --no-build /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
 
   collect-unit-test-coverage:
     name: Unit test code coverage
