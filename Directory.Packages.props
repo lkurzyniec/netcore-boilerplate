@@ -13,7 +13,7 @@
     <PackageVersion Include="Serilog.AspNetCore" Version="8.0.2" />
     <PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1" />
     <PackageVersion Include="Serilog.Sinks.Async" Version="2.0.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.7.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.7.3" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
