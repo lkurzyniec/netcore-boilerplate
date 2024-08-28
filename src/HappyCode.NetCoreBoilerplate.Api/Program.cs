@@ -13,6 +13,7 @@ try
     Log.Logger.Information("Starting up...");
     using var webHost = CreateWebHostBuilder(args).Build();
     await webHost.RunAsync();
+    Log.Logger.Debug("I'm done, see ya later!");
 }
 catch (Exception ex)
 {
