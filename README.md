@@ -1,6 +1,6 @@
 # netcore-boilerplate
 
-Boilerplate of API in ~~`.NET Core 3.1`~~ `.NET 8`
+Boilerplate of API in `.NET 8`
 
 | GitHub | Codecov | Docker Hub |
 |:------:|:-------:|:----------:|
