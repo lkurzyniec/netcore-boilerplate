@@ -1,4 +1,8 @@
 {
+  "scanSettings": {
+    "configMode": "LOCAL",
+    "cloneSubmodules": true
+  }
   "checkRunSettings": {
     "vulnerableCheckRunConclusionLevel": "failure"
   },
