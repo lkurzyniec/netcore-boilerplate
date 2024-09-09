@@ -92,6 +92,8 @@ jobs:
         push: true
         provenance: mode=max
         sbom: true
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
         build-args: |
           VERSION=${{ env.VERSION }}
           SHA=${{ github.sha }}
