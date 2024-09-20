@@ -83,19 +83,14 @@ GO
 
 CREATE LOGIN [migrator] WITH PASSWORD = 'simplePWD123!'
 GO
-
 CREATE USER [migrator] FOR LOGIN [migrator] WITH DEFAULT_SCHEMA=[dbo]
 GO
-
 EXEC sp_addrolemember N'db_owner', N'migrator'
 GO
 
 CREATE LOGIN [user] WITH PASSWORD = 'simplePWD123!'
 GO
-
 CREATE USER [user] FOR LOGIN [user] WITH DEFAULT_SCHEMA=[dbo]
 GO
-
-GRANT ALL ON Cars TO [user];
-GRANT ALL ON Owners TO [user];
+GRANT CONTROL ON DATABASE::cars TO [user];
 GO

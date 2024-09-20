@@ -46,7 +46,6 @@ At the end, You are in charge, so it's your decision to which path you would lik
 ## Source code contains
 
 1. [Central Package Management (CPM)](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management)
-1. ~~[Autofac]~~(https://autofac.org/) (Removed in [PR19](https://github.com/lkurzyniec/netcore-boilerplate/pull/19))
 1. [Swagger](https://swagger.io/) + [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)
 1. [FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet) (Feature Flags, Feature Toggles)
 1. [HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
@@ -88,7 +87,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
     * [Dockerfile](dockerfile)
     * [Docker-compose](docker-compose.yml)
         * `mysql:8` with DB initialization
-        * `mcr.microsoft.com/mssql/server:2017-latest` with DB initialization
+        * `mcr.microsoft.com/mssql/server:2022-latest` with DB initialization
         * `netcore-boilerplate:compose`
     * [Build and test](.github/workflows/docker-build.yml)
     * [Push to registry](.github/workflows/docker-push.yml)
