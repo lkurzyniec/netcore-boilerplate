@@ -41,6 +41,21 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@0.24.0
+      with:
+        image-ref: ${{ env.BASE_TAG }}:latest
+        format: sarif
+        severity: CRITICAL,HIGH
+        exit-code: 1
+        output: trivy-results.sarif
+
+    - name: Upload Trivy scan results to GitHub Security
+      uses: github/codeql-action/upload-sarif@v2
+      if: github.ref == 'refs/heads/master'
+      with:
+        sarif_file: trivy-results.sarif
+
     - name: Test container
       id: test-container
       run: |
