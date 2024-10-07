@@ -60,7 +60,7 @@
     <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <GlobalPackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+    <GlobalPackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </GlobalPackageReference>
