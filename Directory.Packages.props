@@ -51,7 +51,7 @@
     </PackageVersion>
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Azure.Identity" Version="1.12.0" />
+    <PackageVersion Include="Azure.Identity" Version="1.12.1" />
     <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.2.2" />
     <PackageVersion Include="Microsoft.Identity.Client" Version="4.65.0" />
     <PackageVersion Include="System.Net.Http" Version="4.3.4" />
