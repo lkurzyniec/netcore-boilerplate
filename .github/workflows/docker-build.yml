@@ -28,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       test-http-code: ${{ steps.test-container.outputs.HTTP_CODE }}
+    permissions:
+      security-events: write
 
     steps:
     - name: Setup Docker Buildx
