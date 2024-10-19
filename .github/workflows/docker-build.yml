@@ -51,8 +51,9 @@ jobs:
         output: trivy-results.sarif
 
     - name: Upload Trivy scan results to GitHub Security
-      uses: github/codeql-action/upload-sarif@v2
-      if: github.ref == 'refs/heads/master'
+      uses: github/codeql-action/upload-sarif@v3
+      # if: github.ref == 'refs/heads/master'
+      if: always()
       with:
         sarif_file: trivy-results.sarif
 
