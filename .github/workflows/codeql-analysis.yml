@@ -2,11 +2,18 @@
 name: CodeQL Analysis
 
 on:
-  workflow_dispatch:
   push:
     paths-ignore:
       - '**.md'
       - '**.yml'
+
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+
+  workflow_dispatch:
+
   schedule:
     - cron: '13 6 * * 0'
 
