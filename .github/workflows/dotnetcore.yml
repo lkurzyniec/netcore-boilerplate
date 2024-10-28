@@ -45,7 +45,6 @@ jobs:
   collect-unit-test-coverage:
     name: Unit test code coverage
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
 
     steps:
     - uses: actions/checkout@v4
@@ -68,7 +67,6 @@ jobs:
   collect-integration-test-coverage:
     name: Integration test code coverage
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
 
     steps:
     - uses: actions/checkout@v4
