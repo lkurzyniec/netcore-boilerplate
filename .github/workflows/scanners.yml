@@ -43,8 +43,7 @@ jobs:
           severity: CRITICAL,HIGH
           ignore-unfixed: true
           scanners: vuln,secret,misconfig
-          # skip-dirs:
-          #   - ./test/**
+          skip-dirs: test
 
       - name: Run Trivy scanner (sarif)
         uses: aquasecurity/trivy-action@0.24.0
@@ -53,8 +52,8 @@ jobs:
           severity: CRITICAL,HIGH
           ignore-unfixed: true
           scanners: vuln,secret,misconfig
-          # skip-dirs:
-          #   - ./test/**
+          skip-dirs: test
+
           format: sarif
           output: trivy-results.sarif
           exit-code: 1
