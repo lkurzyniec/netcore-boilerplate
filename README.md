@@ -67,8 +67,10 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
         * [xUnit]
-    * ~~Load tests~~ (Removed in [PR135](https://github.com/lkurzyniec/netcore-boilerplate/pull/135))
-        * ~~[NBomber]~~(https://nbomber.com/)
+1. Security
+    * [Mend Bolt (WhiteSource Security Check)](https://www.mend.io/free-developer-tools/bolt/)
+    * [NuGet Audit](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages)
+    * [Trivy](https://trivy.dev/)
 1. Code quality
     * Architectural tests (conventional tests)
         * [NetArchTest](https://github.com/BenMorris/NetArchTest)
@@ -83,9 +85,6 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [Coverlet](https://github.com/tonerdo/coverlet)
         * [Codecov](https://codecov.io/)
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
-1. Security
-    * [NuGet Audit](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages)
-    * [Trivy](https://trivy.dev/)
 1. [Docker](https://www.docker.com/)
     * [Dockerfile](dockerfile)
     * [Docker-compose](docker-compose.yml)
