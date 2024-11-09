@@ -37,7 +37,7 @@ jobs:
           dotnet-version: 8.x
 
       - name: Build sln
-        run: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
+        run: dotnet build -c Release ./HappyCode.NetCoreBoilerplate.sln
 
       - name: Test sln
         run: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
