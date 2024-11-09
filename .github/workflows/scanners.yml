@@ -37,7 +37,7 @@ jobs:
         run: dotnet build -c Release ./src/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
 
       - name: Run Trivy scanner (table)
-        uses: aquasecurity/trivy-action@0.24.0
+        uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: fs
           severity: CRITICAL,HIGH
@@ -46,7 +46,7 @@ jobs:
           skip-dirs: test
 
       - name: Run Trivy scanner (sarif)
-        uses: aquasecurity/trivy-action@0.24.0
+        uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: fs
           severity: CRITICAL,HIGH
