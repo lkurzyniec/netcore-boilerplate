@@ -1,0 +1,68 @@
+---
+name: Scanners
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 5 * * Sun'
+
+jobs:
+  trivy-scan:
+    name: Trivy scan
+    runs-on: ubuntu-latest
+
+    permissions:
+      security-events: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+
+      - name: Build
+        run: dotnet build -c Release ./src/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
+
+      - name: Run Trivy scanner (table)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          scanners: vuln,secret,misconfig
+          skip-dirs: test
+
+      - name: Run Trivy scanner (sarif)
+        uses: aquasecurity/trivy-action@0.28.0
+        continue-on-error: ${{ github.ref == 'refs/heads/master' }}
+        with:
+          scan-type: fs
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          scanners: vuln,secret,misconfig
+          skip-dirs: test
+
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: 1
+          skip-setup-trivy: true
+
+      - name: Upload Trivy scan results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: ${{ github.ref == 'refs/heads/master' }}
+        with:
+          sarif_file: trivy-results.sarif
+          category: trivy-results

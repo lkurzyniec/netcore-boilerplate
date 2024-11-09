@@ -30,34 +30,34 @@ jobs:
       test-http-code: ${{ steps.test-container.outputs.HTTP_CODE }}
 
     steps:
-    - name: Setup Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-    - name: Build docker image
-      uses: docker/build-push-action@v6
-      with:
-        load: true
-        tags: ${{ env.BASE_TAG }}:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+      - name: Build docker image
+        uses: docker/build-push-action@v6
+        with:
+          load: true
+          tags: ${{ env.BASE_TAG }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-    - name: Test container
-      id: test-container
-      run: |
-        docker run -d --rm -p 5000:8080 ${{ env.BASE_TAG }}:latest
+      - name: Test container
+        id: test-container
+        run: |
+          docker run -d --rm -p 5000:8080 ${{ env.BASE_TAG }}:latest
 
-        echo "Taking a short nap..."
-        sleep 5s
+          echo "Taking a short nap..."
+          sleep 5s
 
-        echo "Checking health check endpoint..."
-        curl -Is http://localhost:5000/healthz/ready | head -n 1
-        HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000/healthz/ready)
-        echo "HTTP_CODE=$HTTP_CODE" >> $GITHUB_OUTPUT
+          echo "Checking health check endpoint..."
+          curl -Is http://localhost:5000/healthz/ready | head -n 1
+          HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:5000/healthz/ready)
+          echo "HTTP_CODE=$HTTP_CODE" >> $GITHUB_OUTPUT
 
-        echo "Validating response..."
-        if [ "$HTTP_CODE" = "200" ]; then
-          echo "All is valid!"
-        else
-          echo "Response is invalid!"
-          exit 1
-        fi
+          echo "Validating response..."
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "All is valid!"
+          else
+            echo "Response is invalid!"
+            exit 1
+          fi
