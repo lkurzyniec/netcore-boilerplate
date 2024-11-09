@@ -83,6 +83,9 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [Coverlet](https://github.com/tonerdo/coverlet)
         * [Codecov](https://codecov.io/)
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
+1. Security
+    * [NuGet Audit](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages)
+    * [Trivy](https://trivy.dev/)
 1. [Docker](https://www.docker.com/)
     * [Dockerfile](dockerfile)
     * [Docker-compose](docker-compose.yml)
@@ -97,11 +100,10 @@ At the end, You are in charge, so it's your decision to which path you would lik
     * Sink: [Async](https://github.com/serilog/serilog-sinks-async)
 1. [DbUp](http://dbup.github.io/) as a db migration tool
 1. Continuous integration
-    * ~~[Travis CI]~~(https://travis-ci.org/) ([travisci.yml](https://github.com/lkurzyniec/netcore-boilerplate/blob/bf65154b63f6a10d6753045c49cd378e53907816/.travis.yml))
-    * [GitHub Actions](https://github.com/features/actions)
-        * [dotnetcore.yml](.github/workflows/dotnetcore.yml)
-        * [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)
-        * [docker-build.yml](.github/workflows/docker-build.yml)
+    * [dotnetcore.yml](.github/workflows/dotnetcore.yml)
+    * [docker-build.yml](.github/workflows/docker-build.yml)
+    * [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)
+    * [scanners.yml](.github/workflows/scanners.yml)
 
 ## Run the solution
 
