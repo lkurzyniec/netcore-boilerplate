@@ -25,63 +25,63 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Print info
-      run: |
-        echo User $GITHUB_ACTOR triggered build on $GITHUB_REF by $GITHUB_SHA commit.
+      - name: Print info
+        run: |
+          echo User $GITHUB_ACTOR triggered build on $GITHUB_REF by $GITHUB_SHA commit.
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.x
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
 
-    - name: Build sln
-      run: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
+      - name: Build sln
+        run: dotnet build -c Release --no-cache ./HappyCode.NetCoreBoilerplate.sln
 
-    - name: Test sln
-      run: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
+      - name: Test sln
+        run: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.sln
 
   collect-unit-test-coverage:
     name: Unit test code coverage
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.x
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
 
-    - name: Collect code coverage
-      run: dotnet test --filter UnitTests "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
+      - name: Collect code coverage
+        run: dotnet test --filter UnitTests "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./test/coverage.opencover.xml
-        flags: unit
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./test/coverage.opencover.xml
+          flags: unit
 
   collect-integration-test-coverage:
     name: Integration test code coverage
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.x
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
 
-    - name: Collect code coverage
-      run: dotnet test --filter IntegrationTests "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
+      - name: Collect code coverage
+        run: dotnet test --filter IntegrationTests "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./test/coverage.opencover.xml
-        flags: integration
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./test/coverage.opencover.xml
+          flags: integration
