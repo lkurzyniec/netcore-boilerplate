@@ -36,29 +36,30 @@ jobs:
       - name: Build
         run: dotnet build -c Release ./src/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
 
+      - name: Manual Trivy Setup
+        uses: aquasecurity/setup-trivy@v0.2.2
+        with:
+          cache: true
+          version: v0.57.1
+
       - name: Run Trivy scanner (table)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.29.0
         with:
           scan-type: fs
-          severity: CRITICAL,HIGH
-          ignore-unfixed: true
-          scanners: vuln,secret,misconfig
-          skip-dirs: test
+          trivy-config: trivy.yaml
+          skip-setup-trivy: true
 
       - name: Run Trivy scanner (sarif)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.29.0
         continue-on-error: ${{ github.ref == 'refs/heads/master' }}
         with:
           scan-type: fs
-          severity: CRITICAL,HIGH
-          ignore-unfixed: true
-          scanners: vuln,secret,misconfig
-          skip-dirs: test
+          trivy-config: trivy.yaml
+          skip-setup-trivy: true
 
           format: sarif
           output: trivy-results.sarif
           exit-code: 1
-          skip-setup-trivy: true
 
       - name: Upload Trivy scan results to GitHub Security
         uses: github/codeql-action/upload-sarif@v3
