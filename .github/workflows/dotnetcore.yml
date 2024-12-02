@@ -61,7 +61,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./test/coverage.opencover.xml
+          files: ./test/coverage.opencover.xml
           flags: unit
 
   collect-integration-test-coverage:
@@ -83,5 +83,5 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./test/coverage.opencover.xml
+          files: ./test/coverage.opencover.xml
           flags: integration
