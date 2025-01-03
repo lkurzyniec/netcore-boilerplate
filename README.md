@@ -174,21 +174,23 @@ Generally it is totally up to you! But in case you do not have any plan, You can
   * DbContext (with MsSQL)
   * Swagger and SwaggerUI (Swashbuckle)
   * HostedService and HttpClient
+  * Core components and [Books module](#books-module) registration
   * FeatureManagement
   * HealthChecks
     * MySQL
     * MsSQL
-* Filters
-  * Simple `ApiKey` Authorization filter - [ApiKeyAuthorizationFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ApiKeyAuthorizationFilter.cs)
-  * Action filter to validate `ModelState` - [ValidateModelStateFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ValidateModelStateFilter.cs)
-  * Global exception filter - [HttpGlobalExceptionFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/HttpGlobalExceptionFilter.cs)
-* Configurations
+* Infrastructure
   * `Serilog` configuration place - [SerilogConfigurator.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Configurations/SerilogConfigurator.cs)
   * `Swagger` registration place - [SwaggerRegistration.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Registrations/SwaggerRegistration.cs)
     * Feature flag documentation filter - [FeatureFlagSwaggerDocumentFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/FeatureFlagSwaggerDocumentFilter.cs)
     * Security requirement operation filter - [SecurityRequirementSwaggerOperationFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/SecurityRequirementSwaggerOperationFilter.cs)
-* Logging
-  * Custom enricher to have version properties in logs - [VersionEnricher.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Logging/VersionEnricher.cs)
+  * Filters
+    * Simple `ApiKey` Authorization filter - [ApiKeyAuthorizationFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ApiKeyAuthorizationFilter.cs)
+    * Action filter to validate `ModelState` - [ValidateModelStateFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ValidateModelStateFilter.cs)
+    * Global exception filter - [HttpGlobalExceptionFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/HttpGlobalExceptionFilter.cs)
+  * Logging
+    * Custom enricher to have version properties in logs - [VersionEnricher.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Logging/VersionEnricher.cs)
+  * Simple custom middleware that logs connection info - [ConnectionInfoMiddleware.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Middlewares/ConnectionInfoMiddleware.cs)
 * Simple exemplary API controllers - [EmployeesController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/EmployeesController.cs), [CarsController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/CarsController.cs), [PingsController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/PingsController.cs)
 * Example of BackgroundService - [PingWebsiteBackgroundService.cs](src/HappyCode.NetCoreBoilerplate.Api/BackgroundServices/PingWebsiteBackgroundService.cs)
 

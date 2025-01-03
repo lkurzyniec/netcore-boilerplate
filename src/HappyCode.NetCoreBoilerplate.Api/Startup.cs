@@ -2,6 +2,7 @@ using System.Linq;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Middlewares;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
 using HappyCode.NetCoreBoilerplate.BooksModule;
 using HappyCode.NetCoreBoilerplate.Core;
@@ -79,6 +80,8 @@ namespace HappyCode.NetCoreBoilerplate.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddlewareForFeature<ConnectionInfoMiddleware>(FeatureFlags.ConnectionInfo.ToString());
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>

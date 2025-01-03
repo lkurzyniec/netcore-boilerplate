@@ -5,5 +5,6 @@ namespace HappyCode.NetCoreBoilerplate.Core
         ApiKey,
         DockerCompose,
         Santa,
+        ConnectionInfo,
     }
 }
