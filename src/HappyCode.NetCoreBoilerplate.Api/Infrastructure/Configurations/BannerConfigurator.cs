@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 
+[ExcludeFromCodeCoverage]
 public static class BannerConfigurator
 {
     private const string _cyan = "\x1b[96m";

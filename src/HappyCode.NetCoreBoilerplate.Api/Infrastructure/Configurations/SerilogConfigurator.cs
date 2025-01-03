@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Logging;
 using Microsoft.Extensions.Configuration;
 using Serilog;
@@ -5,6 +6,7 @@ using Serilog.Core;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
 {
+    [ExcludeFromCodeCoverage]
     public static class SerilogConfigurator
     {
         public static Logger CreateLogger()

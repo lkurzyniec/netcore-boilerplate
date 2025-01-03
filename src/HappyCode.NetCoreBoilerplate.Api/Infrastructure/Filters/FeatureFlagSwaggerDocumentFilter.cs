@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using HappyCode.NetCoreBoilerplate.Core;
 using Microsoft.FeatureManagement;
@@ -7,6 +8,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
 {
+    [ExcludeFromCodeCoverage]
     public class FeatureFlagSwaggerDocumentFilter : IDocumentFilter
     {
         private readonly IFeatureManager _featureManager;

@@ -2,9 +2,11 @@ using Microsoft.OpenApi.Models;
 using System.Linq;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
 {
+    [ExcludeFromCodeCoverage]
     public class SecurityRequirementSwaggerOperationFilter : IOperationFilter
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)

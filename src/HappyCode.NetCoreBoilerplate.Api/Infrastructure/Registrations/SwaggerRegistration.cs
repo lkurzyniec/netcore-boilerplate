@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.OpenApi.Models;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations
 {
+    [ExcludeFromCodeCoverage]
     public static class SwaggerRegistration
     {
         public static void AddSwagger(this IServiceCollection services, IConfiguration configuration)
