@@ -1,8 +1,8 @@
 ---
-# docker-compose up -d
-# docker-compose up --build
-# docker-compose down
-# docker-compose down -v
+# docker compose up -d
+# docker compose up --build
+# docker compose down
+# docker compose down -v
 
 services:
   mysql:

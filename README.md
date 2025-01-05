@@ -87,6 +87,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
 1. [Docker](https://www.docker.com/)
     * [Dockerfile](dockerfile)
+      * [Alpine Linux](https://github.com/dotnet/dotnet-docker/blob/main/samples/selecting-tags.md#alpine-linux) with [globalization](https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md)
     * [Docker-compose](docker-compose.yml)
         * `mysql:8` with DB initialization
         * `mcr.microsoft.com/mssql/server:2022-latest` with DB initialization
