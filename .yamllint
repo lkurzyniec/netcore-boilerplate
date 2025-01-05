@@ -1,0 +1,10 @@
+# https://yamllint.readthedocs.io/en/stable/rules.html
+---
+extends: default
+
+rules:
+  line-length: disable
+  truthy:
+    allowed-values: ["true", "false", "yes", "no", "on", "off"]
+  comments: disable
+  comments-indentation: disable

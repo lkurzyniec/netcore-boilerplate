@@ -11,6 +11,9 @@ insert_final_newline = true
 [*.{bat,cmd}]
 insert_final_newline = false
 
+[*.yml]
+end_of_line = lf
+
 [*.cs]
 indent_size = 4
 
