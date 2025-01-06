@@ -7,3 +7,4 @@
 db
 test
 src/HappyCode.NetCoreBoilerplate.Db
+**/appsettings.Development.json

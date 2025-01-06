@@ -34,7 +34,7 @@ RUN for projectFile in $(ls *.csproj); \
   mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
   done
 
-RUN dotnet restore /work/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
+RUN cd /work/HappyCode.NetCoreBoilerplate.Api && dotnet restore -r linux-musl-x64
 
 COPY src .
 
@@ -46,7 +46,8 @@ WORKDIR /work/HappyCode.NetCoreBoilerplate.Api
 ENV DOTNET_NOLOGO=true
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-RUN dotnet publish -c Release -o /app --no-restore
+RUN dotnet publish -c Release -r linux-musl-x64 \
+  -o /app --no-restore
 
 # --------------
 
@@ -65,6 +66,6 @@ ENV HC_VERSION=${VERSION}
 HEALTHCHECK --interval=5m --timeout=3s --start-period=10s --retries=1 \
   CMD curl --fail http://localhost:8080/healthz/live || exit 1
 
-RUN chown -R "$APP_UID":"$APP_UID" /app
+RUN chown "$APP_UID":"$APP_UID" /app
 USER $APP_UID
 ENTRYPOINT ["dotnet", "HappyCode.NetCoreBoilerplate.Api.dll"]
