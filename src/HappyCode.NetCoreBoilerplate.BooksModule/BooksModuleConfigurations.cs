@@ -1,4 +1,5 @@
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using HappyCode.NetCoreBoilerplate.BooksModule.Features.DeleteBook;
 using HappyCode.NetCoreBoilerplate.BooksModule.Features.GetBook;
 using HappyCode.NetCoreBoilerplate.BooksModule.Features.GetBooks;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HappyCode.NetCoreBoilerplate.BooksModule;
 
+[ExcludeFromCodeCoverage]
 public static class BooksModuleConfigurations
 {
     public static IServiceCollection AddBooksModule(this IServiceCollection services, IConfiguration configuration)

@@ -1,6 +1,7 @@
 using System.Data;
 using HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure.DataFeeders;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.FeatureManagement;
 
 namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure
 {
@@ -21,6 +22,7 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructu
                                 .AddInMemoryCollection(new Dictionary<string, string>(1) { { "ConnectionStrings:SqliteDb", $"Data Source=tests_tempdb_{DateTimeOffset.Now.ToUnixTimeSeconds()}.db" } })
                                 .Build();
                             services.AddRouting();
+                            services.AddFeatureManagement();
                             services.AddBooksModule(config);
                         })
                         .Configure(app =>

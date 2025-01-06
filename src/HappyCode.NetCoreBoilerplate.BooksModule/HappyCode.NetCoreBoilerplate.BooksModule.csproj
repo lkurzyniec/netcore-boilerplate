@@ -11,9 +11,6 @@
     <PackageReference Include="AspNetCore.HealthChecks.Sqlite" />
     <PackageReference Include="Dapper" />
     <PackageReference Include="Microsoft.Data.Sqlite" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage" />
+    <PackageReference Include="Microsoft.FeatureManagement" />
   </ItemGroup>
 </Project>

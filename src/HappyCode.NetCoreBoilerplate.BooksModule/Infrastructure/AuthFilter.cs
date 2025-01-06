@@ -1,25 +1,27 @@
 using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
+using Microsoft.FeatureManagement;
 
 namespace HappyCode.NetCoreBoilerplate.BooksModule.Infrastructure
 {
-    internal class AuthFilter : IEndpointFilter
+    internal partial class AuthFilter : IEndpointFilter
     {
-        private readonly IConfiguration _configuration;
-        private readonly IWebHostEnvironment _env;
+        [GeneratedRegex(@"APIKEY\s+", RegexOptions.IgnoreCase)]
+        private static partial Regex ApiKeyRegex();
 
-        public AuthFilter(IConfiguration configuration, IWebHostEnvironment env)
+        private readonly IConfiguration _configuration;
+        private readonly IFeatureManager _featureManager;
+
+        public AuthFilter(IConfiguration configuration, IFeatureManager featureManager)
         {
             _configuration = configuration;
-            _env = env;
+            _featureManager = featureManager;
         }
 
         public async ValueTask<object> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
         {
-            if (!_env.IsProduction())
+            if (!await _featureManager.IsEnabledAsync("ApiKey"))
             {
                 return await next(context);
             }
@@ -32,7 +34,7 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.Infrastructure
                 return Results.Unauthorized();
             }
 
-            var key = Regex.Replace(authorization, @"APIKEY\s+", string.Empty, RegexOptions.IgnoreCase);
+            var key = ApiKeyRegex().Replace(authorization, string.Empty);
 
             var secretKey = _configuration.GetValue<string>("ApiKey:SecretKey");
 

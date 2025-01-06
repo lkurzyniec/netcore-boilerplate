@@ -1,9 +1,11 @@
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using Dapper;
 using HappyCode.NetCoreBoilerplate.BooksModule.Dtos;
 
 namespace HappyCode.NetCoreBoilerplate.BooksModule.Infrastructure;
 
+[ExcludeFromCodeCoverage]
 internal class DbInitializer
 {
     private static readonly string _createBooks = @$"
