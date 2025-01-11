@@ -1,16 +1,20 @@
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions
 {
     internal static class HttpContentExtensions
     {
+        private static JsonSerializerOptions _jsonSerializerOptions = new ()
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        };
+
         public static async Task<T> ReadAsJsonAsync<T>(this HttpContent content)
         {
             string json = await content.ReadAsStringAsync();
-            var value = JsonConvert.DeserializeObject<T>(json);
+            var value = JsonSerializer.Deserialize<T>(json);
             return value;
         }
 
@@ -21,12 +25,6 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions
         }
 
         private static string ToJson(this object source)
-        {
-            return JsonConvert.SerializeObject(source, new JsonSerializerSettings
-            {
-                Formatting = Formatting.None,
-                NullValueHandling = NullValueHandling.Ignore,
-            });
-        }
+            => JsonSerializer.Serialize(source, _jsonSerializerOptions);
     }
 }
