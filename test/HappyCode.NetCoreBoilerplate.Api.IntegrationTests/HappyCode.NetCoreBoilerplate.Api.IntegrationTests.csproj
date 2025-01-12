@@ -1,8 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
-    <!--<OutputType>Exe</OutputType>
-    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>-->
   </PropertyGroup>
 
   <ItemGroup>
