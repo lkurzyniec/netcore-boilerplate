@@ -17,7 +17,7 @@ on:
 env:
   DOTNET_NOLOGO: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
-  EXCLUDE_PATHS: '\"**/Program.cs,**/Startup.cs,**/*Context.cs\"'
+  EXCLUDE_PATHS: '\"**/Program.cs,**/Startup.cs,**/*Context.cs,**/generated/**/*.g.*.cs\"'
 
 jobs:
   build-and-test:
