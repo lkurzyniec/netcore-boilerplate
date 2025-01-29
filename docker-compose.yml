@@ -36,7 +36,6 @@ services:
       - ./db/mssql/mssql-cars.sql:/db-init.sql
 
   netcore-boilerplate:
-    image: netcore-boilerplate:compose
     container_name: netcore-boilerplate
     build:
       context: .
