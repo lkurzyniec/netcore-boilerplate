@@ -4,5 +4,8 @@
   },
   "issueSettings": {
     "minSeverityLevel": "LOW"
-  }
+  },
+  "excludePatterns": [
+    "test/**"
+  ]
 }
