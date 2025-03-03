@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS base
 WORKDIR /app
 EXPOSE 8080
 
@@ -20,7 +20,7 @@ RUN apk add --upgrade --no-cache \
 
 # --------------
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS restore
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS restore
 WORKDIR /work
 
 ENV DOTNET_NOLOGO=true
