@@ -34,7 +34,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 9.x
 
       - name: Build sln
         run: dotnet build -c Release ./HappyCode.NetCoreBoilerplate.sln
@@ -52,7 +52,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 9.x
 
       - name: Collect code coverage
         run: dotnet test --filter UnitTests "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
@@ -74,7 +74,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 9.x
 
       - name: Collect code coverage
         run: dotnet test --filter IntegrationTests "/p:ExcludeByFile=${{ env.EXCLUDE_PATHS }}" /maxcpucount:1 /p:WarningLevel=0 /p:CollectCoverage=true /p:CoverletOutput="../" /p:MergeWith="../coverage.json" /p:CoverletOutputFormat=\"json,opencover\" ./HappyCode.NetCoreBoilerplate.sln
