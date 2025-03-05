@@ -80,7 +80,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
 
             //then
             result.EnsureSuccessStatusCode();
-            var emp = await result.Content.ReadAsJsonAsync<EmployeeDto>();
+            var emp = await result.Content.ReadFromJsonAsync<EmployeeDto>();
             emp.LastName.Should().Be("Smith");
         }
 
@@ -95,7 +95,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
 
             //then
             result.EnsureSuccessStatusCode();
-            var emp = await result.Content.ReadAsJsonAsync<EmployeeDto>();
+            var emp = await result.Content.ReadFromJsonAsync<EmployeeDto>();
             emp.LastName.Should().Be("Richardson");
 
             result.Headers.Location.ToString().Should().Contain("api/employees/100");

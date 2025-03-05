@@ -1,12 +1,17 @@
-using System.Net.Http;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Extensions
 {
     internal static class HttpContentExtensions
     {
+        private static readonly JsonSerializerOptions _jsonSerializerOptions = new()
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        };
+
         public static HttpContent ToStringContent(this object source)
         {
             string json = source.ToJson();
@@ -14,13 +19,6 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Extensions
         }
 
         private static string ToJson(this object source)
-        {
-            return JsonConvert.SerializeObject(source, new JsonSerializerSettings
-            {
-                Formatting = Formatting.None,
-                NullValueHandling = NullValueHandling.Ignore,
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-            });
-        }
+            => JsonSerializer.Serialize(source, _jsonSerializerOptions);
     }
 }
