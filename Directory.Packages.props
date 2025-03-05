@@ -3,6 +3,10 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <EnablePackageVersionOverride>false</EnablePackageVersionOverride>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.12.19" />
+  </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.Sqlite" Version="9.0.0" />
