@@ -23,7 +23,7 @@ internal static class Endpoint
                     return Results.NoContent();
                 })
             .Produces(StatusCodes.Status204NoContent)
-            .WithTags("Books");
+            .WithDescription("This is UPSERT operation");
         return endpoints;
     }
 }
