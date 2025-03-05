@@ -89,6 +89,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(HttpValidationProblemDetails), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PutAsync(
             [FromRoute] int id,
             [FromBody] EmployeePutDto employeePutDto,
@@ -104,6 +105,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(HttpValidationProblemDetails), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PostAsync(
             [FromBody] EmployeePostDto employeePostDto,
             CancellationToken cancellationToken = default)

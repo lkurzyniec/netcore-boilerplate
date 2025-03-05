@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Test"
+      },
+      "applicationUrl": "https://localhost:57677;http://localhost:57678"
+    }
+  }
+}

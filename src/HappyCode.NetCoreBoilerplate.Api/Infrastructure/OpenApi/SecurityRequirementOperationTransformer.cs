@@ -1,20 +1,23 @@
 using Microsoft.OpenApi.Models;
 using System.Linq;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.OpenApi;
 
-namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
+namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
 {
+    /// <summary>
+    /// Add security requirement
+    /// </summary>
     [ExcludeFromCodeCoverage]
-    public class SecurityRequirementSwaggerOperationFilter : IOperationFilter
+    internal class SecurityRequirementOperationTransformer : IOpenApiOperationTransformer
     {
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
         {
-            var hasAllowAnonymous = context.ApiDescription.CustomAttributes().OfType<IAllowAnonymous>().Any();
+            var hasAllowAnonymous = context.Description.ActionDescriptor.EndpointMetadata.OfType<IAllowAnonymous>().Any();
             if (hasAllowAnonymous)
             {
-                return;
+                return Task.CompletedTask;
             }
 
             operation.Security.Add(new OpenApiSecurityRequirement
@@ -34,6 +37,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters
                     Array.Empty<string>()
                 }
             });
+            return Task.CompletedTask;
         }
     }
 }

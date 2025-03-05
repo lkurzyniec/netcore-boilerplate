@@ -20,8 +20,7 @@ internal static class Endpoint
                 {
                     return Results.Ok(await db.GetBooksAsync(ct));
                 })
-            .Produces<IEnumerable<BookDto>>()
-            .WithTags("Books");
+            .Produces<IEnumerable<BookDto>>();
         return endpoints;
     }
 }

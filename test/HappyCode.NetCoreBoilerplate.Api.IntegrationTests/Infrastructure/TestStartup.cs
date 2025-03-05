@@ -21,10 +21,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
         {
             services
                 .AddHttpContextAccessor()
-                .AddMvcCore(options =>
-                {
-                    options.Filters.Add<ValidateModelStateFilter>();
-                })
+                .AddMvcCore()
                 .AddDataAnnotations();
 
             services.AddCoreComponents();
