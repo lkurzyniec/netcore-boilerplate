@@ -117,7 +117,7 @@ To run the solution, use one of the options:
 
 After successful start of the solution in any of above option, check useful endpoints:
 
-* swagger - <http://localhost:5000/swagger/>
+* API interactive documentation - <http://localhost:5000/api-doc/>
 * health check - <http://localhost:5000/healthz/ready>
 * version - <http://localhost:5000/version>
 
