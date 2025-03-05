@@ -104,7 +104,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 endpoints.MapOpenApi()
                     .CacheOutput();
 
-                endpoints.MapScalarApiReference();
+                endpoints.MapScalarApiReference("api-doc");
             });
 
             app.InitBooksModule();
