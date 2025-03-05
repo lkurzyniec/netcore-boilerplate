@@ -12,10 +12,11 @@
     <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.0.0" />
     <PackageVersion Include="Microsoft.FeatureManagement" Version="4.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageVersion Include="MinimalApis.Extensions" Version="0.11.0" />
     <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1" />
     <PackageVersion Include="Serilog.Sinks.Async" Version="2.1.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="8.1.0" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.0.23" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />

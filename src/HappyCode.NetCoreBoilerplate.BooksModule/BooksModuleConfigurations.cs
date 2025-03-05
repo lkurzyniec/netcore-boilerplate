@@ -27,7 +27,9 @@ public static class BooksModuleConfigurations
     public static IEndpointRouteBuilder MapBooksModule(this IEndpointRouteBuilder endpoints)
         => endpoints
             .MapGroup("/api/books")
+            .WithTags("Books")
             .AddEndpointFilter<AuthFilter>()
+            .WithParameterValidation()
             .MapGetBooksEndpoint()
             .MapGetBookEndpoint()
             .MapUpsertBookEndpoint()

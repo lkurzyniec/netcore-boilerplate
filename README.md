@@ -1,6 +1,6 @@
 # netcore-boilerplate
 
-Boilerplate of API in `.NET 8`
+Boilerplate of API in `.NET 9`
 
 | GitHub | Codecov | Docker Hub |
 |:------:|:-------:|:----------:|
@@ -46,7 +46,9 @@ At the end, You are in charge, so it's your decision to which path you would lik
 ## Source code contains
 
 1. [Central Package Management (CPM)](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management)
-1. [Swagger](https://swagger.io/) + [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)
+1. ~~[Swagger](https://swagger.io/) + [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)~~ (Removed in [PR488](https://github.com/lkurzyniec/netcore-boilerplate/pull/488))
+1. [OpenAPI](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/overview)
+1. [Scalar](https://scalar.com/)
 1. [FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet) (Feature Flags, Feature Toggles)
 1. [HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
 1. [EF Core](https://docs.microsoft.com/ef/)
@@ -170,10 +172,11 @@ Generally it is totally up to you! But in case you do not have any plan, You can
 
 * The entry point of the app - [Program.cs](src/HappyCode.NetCoreBoilerplate.Api/Program.cs)
 * Simple Startup class - [Startup.cs](src/HappyCode.NetCoreBoilerplate.Api/Startup.cs)
+  * Logging and Global exception middleware
   * MvcCore
   * DbContext (with MySQL)
   * DbContext (with MsSQL)
-  * Swagger and SwaggerUI (Swashbuckle)
+  * OpenAPI
   * HostedService and HttpClient
   * Core components and [Books module](#books-module) registration
   * FeatureManagement
@@ -181,16 +184,21 @@ Generally it is totally up to you! But in case you do not have any plan, You can
     * MySQL
     * MsSQL
 * Infrastructure
+  * `Banner` configuration place - [BannerConfigurator.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Configurations/BannerConfigurator.cs)
   * `Serilog` configuration place - [SerilogConfigurator.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Configurations/SerilogConfigurator.cs)
-  * `Swagger` registration place - [SwaggerRegistration.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Registrations/SwaggerRegistration.cs)
-    * Feature flag documentation filter - [FeatureFlagSwaggerDocumentFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/FeatureFlagSwaggerDocumentFilter.cs)
-    * Security requirement operation filter - [SecurityRequirementSwaggerOperationFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/SecurityRequirementSwaggerOperationFilter.cs)
   * Filters
     * Simple `ApiKey` Authorization filter - [ApiKeyAuthorizationFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ApiKeyAuthorizationFilter.cs)
-    * Action filter to validate `ModelState` - [ValidateModelStateFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/ValidateModelStateFilter.cs)
-    * Global exception filter - [HttpGlobalExceptionFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/HttpGlobalExceptionFilter.cs)
+    * MVC Global exception filter - [HttpGlobalExceptionFilter.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Filters/HttpGlobalExceptionFilter.cs)
   * Logging
     * Custom enricher to have version properties in logs - [VersionEnricher.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Logging/VersionEnricher.cs)
+  * Middlewares
+    * Simple middleware - [ConnectionInfoMiddleware.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Middlewares/ConnectionInfoMiddleware.cs)
+    * Global exception handler - [ExceptionMiddleware.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Middlewares/ExceptionMiddleware.cs)
+  * `OpenAPI`
+    * Registration place - [OpenApiRegistrations.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/OpenApi/OpenApiRegistrations.cs)
+    * Mark disabled feature as Deprecated - [FeatureFlagOperationTransformer.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/OpenApi/FeatureFlagOperationTransformer.cs)
+    * Remove Deprecated operations - [RemoveDeprecatedDocumentTransformer.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/OpenApi/RemoveDeprecatedDocumentTransformer.cs)
+    * Add security requirement - [SecurityRequirementOperationTransformer.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/OpenApi/SecurityRequirementOperationTransformer.cs)
   * Simple custom middleware that logs connection info - [ConnectionInfoMiddleware.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Middlewares/ConnectionInfoMiddleware.cs)
 * Simple exemplary API controllers - [EmployeesController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/EmployeesController.cs), [CarsController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/CarsController.cs), [PingsController.cs](src/HappyCode.NetCoreBoilerplate.Api/Controllers/PingsController.cs)
 * Example of BackgroundService - [PingWebsiteBackgroundService.cs](src/HappyCode.NetCoreBoilerplate.Api/BackgroundServices/PingWebsiteBackgroundService.cs)
