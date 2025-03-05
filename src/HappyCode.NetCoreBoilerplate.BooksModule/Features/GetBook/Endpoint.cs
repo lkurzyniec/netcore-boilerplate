@@ -25,8 +25,7 @@ internal static class Endpoint
                         : Results.NotFound();
                 })
             .Produces<BookDto>()
-            .Produces(StatusCodes.Status404NotFound)
-            .WithTags("Books");
+            .Produces(StatusCodes.Status404NotFound);
         return endpoints;
     }
 }

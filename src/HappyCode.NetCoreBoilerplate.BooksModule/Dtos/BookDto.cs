@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace HappyCode.NetCoreBoilerplate.BooksModule.Dtos;
 
-public record struct BookDto (int? Id, string Title);
+public record struct BookDto (int? Id, [property: Required] string Title);
