@@ -18,7 +18,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
                 options.AddDocumentTransformer((document, context, cancellationToken) =>
                 {
                     document.Info.Title = "Simple Api";
-                    document.Info.Description = $"ApiKey {secretKey}";
+                    document.Info.Description = $"Authorization: ApiKey {secretKey}";
                     document.Info.Contact = new OpenApiContact
                     {
                         Name = "Łukasz Kurzyniec",
