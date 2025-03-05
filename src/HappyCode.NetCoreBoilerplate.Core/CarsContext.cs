@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HappyCode.NetCoreBoilerplate.Core
 {
+    [ExcludeFromCodeCoverage]
     public partial class CarsContext : DbContext
     {
         public CarsContext(DbContextOptions<CarsContext> options)
