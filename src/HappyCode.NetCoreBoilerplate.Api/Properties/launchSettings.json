@@ -3,11 +3,11 @@
     "HappyCode.NetCoreBoilerplate.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "scalar",
+      "launchUrl": "api-doc",
       "environmentVariables": {
         "ASPNETCORE_URLS": "http://localhost:5000",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "HC_SHA": "2a6ba3cac8416214cfa84eb1f9092f130427479f",
+        "HC_SHA": "49e2cac0ab144f2d0b27fa72fd19d1ba9727ea25",
         "HC_VERSION": "4.0.0"
       }
     }
