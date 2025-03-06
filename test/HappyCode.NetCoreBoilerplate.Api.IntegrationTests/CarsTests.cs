@@ -1,6 +1,5 @@
 using System.Net;
 using FluentAssertions;
-using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 
@@ -24,7 +23,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
 
             //then
             result.StatusCode.Should().Be(HttpStatusCode.OK);
-            var cars = await result.Content.ReadAsJsonAsync<List<CarDto>>();
+            var cars = await result.Content.ReadFromJsonAsync<List<CarDto>>();
             cars.Count.Should().BeGreaterThan(0);
         }
 

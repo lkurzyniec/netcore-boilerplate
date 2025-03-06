@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "HappyCode.NetCoreBoilerplate.Api.IntegrationTests": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Test"
+      },
+      "applicationUrl": "https://localhost:57676;http://localhost:57679"
+    }
+  }
+}
