@@ -8,7 +8,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Azure.Identity" />
-  </ItemGroup>
 </Project>
