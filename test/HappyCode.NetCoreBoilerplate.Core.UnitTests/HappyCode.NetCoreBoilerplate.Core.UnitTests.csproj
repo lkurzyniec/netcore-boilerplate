@@ -5,7 +5,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoFixture" />
-    <PackageReference Include="AutoFixture.Xunit2" />
+    <PackageReference Include="AutoFixture.Xunit3" />
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="MockQueryable.Moq" />
     <PackageReference Include="Moq.AutoMock" />

@@ -20,11 +20,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public async Task Get_should_return_Ok_with_results()
         {
             //when
-            var result = await _client.GetAsync($"api/cars");
+            var result = await _client.GetAsync($"api/cars", TestContext.Current.CancellationToken);
 
             //then
             result.StatusCode.Should().Be(HttpStatusCode.OK);
-            var cars = await result.Content.ReadAsJsonAsync<List<CarDto>>();
+            var cars = await result.Content.ReadFromJsonAsync<List<CarDto>>(TestContext.Current.CancellationToken);
             cars.Count.Should().BeGreaterThan(0);
         }
 
@@ -32,7 +32,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public async Task Get_should_return_expected_json()
         {
             //when
-            var result = _client.GetAsync($"api/cars");
+            var result = _client.GetAsync($"api/cars", TestContext.Current.CancellationToken);
 
             //then
             await Verify(result);

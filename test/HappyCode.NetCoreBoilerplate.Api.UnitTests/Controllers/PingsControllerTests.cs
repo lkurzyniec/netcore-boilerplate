@@ -1,5 +1,6 @@
 using System.Net;
-using AutoFixture.Xunit2;
+using System.Threading.Tasks;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
@@ -12,7 +13,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
     public class PingsControllerTests : ControllerTestsBase<PingsController>
     {
         [Theory, AutoData]
-        public void GetWebsitePingStatusCode_should_return_Ok_with_expected_result(HttpStatusCode code)
+        public async Task GetWebsitePingStatusCode_should_return_Ok_with_expected_result(HttpStatusCode code)
         {
             //given
             var pingServiceMock = Mocker.GetMock<IPingService>();
@@ -20,7 +21,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Returns(code);
 
             //when
-            var result = Controller.GetWebsitePingStatusCode() as OkObjectResult;
+            var result = await Controller.GetWebsitePingStatusCodeAsync(TestContext.Current.CancellationToken) as OkObjectResult;
 
             //then
             result.Should().NotBeNull();
@@ -32,10 +33,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         }
 
         [Fact]
-        public void GetRandomStatusCode_should_return_Ok_with_expected_result()
+        public async Task GetRandomStatusCode_should_return_Ok_with_expected_result()
         {
             //when
-            var result = Controller.GetRandomStatusCode() as OkObjectResult;
+            var result = await Controller.GetRandomStatusCodeAsync(TestContext.Current.CancellationToken) as OkObjectResult;
 
             //then
             result.Should().NotBeNull();
