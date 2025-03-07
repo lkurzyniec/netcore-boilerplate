@@ -18,11 +18,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public async Task Get_website_should_return_Ok_with_result()
         {
             //when
-            var result = await _client.GetAsync("api/pings/website");
+            var result = await _client.GetAsync("api/pings/website", TestContext.Current.CancellationToken);
 
             //then
             result.EnsureSuccessStatusCode();
-            var status = await result.Content.ReadAsStringAsync();
+            var status = await result.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);
             status.Should().Contain(FakePingService.Result.ToString());
         }
 
@@ -30,11 +30,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public async Task Get_random_should_return_Ok_with_not_empty_result()
         {
             //when
-            var result = await _client.GetAsync("api/pings/random");
+            var result = await _client.GetAsync("api/pings/random", TestContext.Current.CancellationToken);
 
             //then
             result.EnsureSuccessStatusCode();
-            var status = await result.Content.ReadAsStringAsync();
+            var status = await result.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);
             status.Should().NotBeNullOrEmpty();
         }
     }

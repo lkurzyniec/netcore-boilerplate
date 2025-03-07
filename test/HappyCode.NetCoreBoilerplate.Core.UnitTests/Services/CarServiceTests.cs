@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Services;
@@ -41,7 +41,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Services
             _dbContextMock.Setup(x => x.Cars).Returns(cars.GetMockDbSetObject());
 
             //when
-            var result = await _service.GetAllSortedByPlateAsync(default);
+            var result = await _service.GetAllSortedByPlateAsync(TestContext.Current.CancellationToken);
 
             //then
             result.First().Id.Should().Be(expectedId);

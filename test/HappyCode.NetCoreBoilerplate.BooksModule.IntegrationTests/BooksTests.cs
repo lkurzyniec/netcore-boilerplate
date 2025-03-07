@@ -18,7 +18,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public Task GetAll_should_return_Ok_with_results()
         {
             //when
-            var result = _client.GetAsync("api/books");
+            var result = _client.GetAsync("api/books", TestContext.Current.CancellationToken);
 
             //then
             return VerifyResult(result);
@@ -28,7 +28,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public Task Get_should_return_NotFound_when_no_book()
         {
             //when
-            var result = _client.GetAsync($"api/books/{int.MaxValue}");
+            var result = _client.GetAsync($"api/books/{int.MaxValue}", TestContext.Current.CancellationToken);
 
             //then
             return VerifyResult(result);
@@ -38,7 +38,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public Task Get_should_return_Ok_and_expected_result()
         {
             //when
-            var result = _client.GetAsync("api/books/1");
+            var result = _client.GetAsync("api/books/1", TestContext.Current.CancellationToken);
 
             //then
             return VerifyResult(result);
@@ -51,7 +51,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var book = new BookDto { Title = "Some_test_title" };
 
             //when
-            var result = _client.PostAsync("api/books", book.ToStringContent());
+            var result = _client.PostAsync("api/books", book.ToStringContent(), TestContext.Current.CancellationToken);
 
             //then
             return VerifyResult(result);
@@ -61,7 +61,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public Task Delete_should_return_NoContent()
         {
             //when
-            var result = _client.DeleteAsync("api/books/1");
+            var result = _client.DeleteAsync("api/books/1", TestContext.Current.CancellationToken);
 
             //then
             return VerifyResult(result);
@@ -71,7 +71,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public Task Delete_should_return_NotFound_when_no_book()
         {
             //when
-            var result = _client.DeleteAsync($"api/books/{int.MaxValue}");
+            var result = _client.DeleteAsync($"api/books/{int.MaxValue}", TestContext.Current.CancellationToken);
 
             //then
             return VerifyResult(result);

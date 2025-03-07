@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
@@ -31,7 +31,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(cars);
 
             //when
-            var result = await Controller.GetAllAsync(default) as OkObjectResult;
+            var result = await Controller.GetAllAsync(TestContext.Current.CancellationToken) as OkObjectResult;
 
             //then
             result.Should().NotBeNull();

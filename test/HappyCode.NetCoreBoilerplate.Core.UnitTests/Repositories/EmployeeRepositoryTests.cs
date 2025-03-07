@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Models;
@@ -40,7 +40,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _dbContextMock.Setup(x => x.Employees).Returns(new[] { employee }.GetMockDbSetObject());
 
             //when
-            var emp = await _repository.GetByIdAsync(empId, default);
+            var emp = await _repository.GetByIdAsync(empId, TestContext.Current.CancellationToken);
 
             //then
             emp.Id.Should().Be(empId);
@@ -58,7 +58,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
 
             //when
-            var emp = await _repository.GetOldestAsync(default);
+            var emp = await _repository.GetOldestAsync(TestContext.Current.CancellationToken);
 
             //then
             var theOldest = employees.OrderBy(x => x.BirthDate).First();
@@ -76,7 +76,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _dbContextMock.Setup(x => x.Employees).Returns(Enumerable.Empty<Employee>().GetMockDbSetObject);
 
             //when
-            var result = await _repository.DeleteByIdAsync(99, default);
+            var result = await _repository.DeleteByIdAsync(99, TestContext.Current.CancellationToken);
 
             //then
             result.Should().Be(false);
@@ -100,7 +100,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
                 .ReturnsAsync(1);
 
             //when
-            var result = await _repository.DeleteByIdAsync(empId, default);
+            var result = await _repository.DeleteByIdAsync(empId, TestContext.Current.CancellationToken);
 
             //then
             result.Should().Be(true);
@@ -121,7 +121,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
 
             //when
-            var result = await _repository.InsertAsync(employeePostDto, default);
+            var result = await _repository.InsertAsync(employeePostDto, TestContext.Current.CancellationToken);
 
             //then
             result.Should().BeEquivalentTo(employeePostDto);
@@ -137,7 +137,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _dbContextMock.Setup(x => x.Employees).Returns(Enumerable.Empty<Employee>().GetMockDbSetObject);
 
             //when
-            var result = await _repository.UpdateAsync(empId, employeePutDto, default);
+            var result = await _repository.UpdateAsync(empId, employeePutDto, TestContext.Current.CancellationToken);
 
             //then
             result.Should().BeNull();
@@ -158,7 +158,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
 
             //when
-            var result = await _repository.UpdateAsync(empId, employeePutDto, default);
+            var result = await _repository.UpdateAsync(empId, employeePutDto, TestContext.Current.CancellationToken);
 
             //then
             result.LastName.Should().Be(employeePutDto.LastName);

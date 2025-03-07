@@ -9,22 +9,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions
         private static JsonSerializerOptions _jsonSerializerOptions = new ()
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         };
 
-        public static async Task<T> ReadAsJsonAsync<T>(this HttpContent content)
-        {
-            string json = await content.ReadAsStringAsync();
-            var value = JsonSerializer.Deserialize<T>(json);
-            return value;
-        }
-
         public static HttpContent ToStringContent(this object source)
-        {
-            string json = source.ToJson();
-            return new StringContent(json, Encoding.UTF8, "application/json");
-        }
-
-        private static string ToJson(this object source)
-            => JsonSerializer.Serialize(source, _jsonSerializerOptions);
+            => new StringContent(JsonSerializer.Serialize(source, _jsonSerializerOptions), Encoding.UTF8, "application/json");
     }
 }

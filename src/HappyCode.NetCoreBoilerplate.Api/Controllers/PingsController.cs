@@ -19,15 +19,17 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 
         [HttpGet("website")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        public IActionResult GetWebsitePingStatusCode()
+        public Task<IActionResult> GetWebsitePingStatusCodeAsync(
+            CancellationToken cancellationToken = default)
         {
             var result = _pingService.WebsiteStatusCode;
-            return Ok($"{(int)result} ({result})");
+            return Task.FromResult<IActionResult>(Ok($"{(int)result} ({result})"));
         }
 
         [HttpGet("random")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        public IActionResult GetRandomStatusCode()
+        public Task<IActionResult> GetRandomStatusCodeAsync(
+            CancellationToken cancellationToken = default)
         {
             var random = new Random(Guid.NewGuid().GetHashCode());
             int pretender;
@@ -35,7 +37,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
             {
                 pretender = random.Next(100, 600);
             } while (!Enum.IsDefined(typeof(HttpStatusCode), pretender));
-            return Ok($"{pretender} ({(HttpStatusCode)pretender})");
+            return Task.FromResult<IActionResult>(Ok($"{pretender} ({(HttpStatusCode)pretender})"));
         }
     }
 }
