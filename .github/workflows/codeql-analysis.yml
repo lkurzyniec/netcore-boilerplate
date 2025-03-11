@@ -42,7 +42,7 @@ jobs:
           queries: +security-and-quality
           config: |
             paths-ignore:
-              - '**/generated/**/*.g.*.cs'
+              - '**/generated/**/*.g.cs'
             query-filters:
               - exclude:
                   id:
