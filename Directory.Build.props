@@ -1,13 +1,14 @@
 <Project>
   <PropertyGroup>
-    <LangVersion>12</LangVersion>
-    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>net9.0</TargetFramework>
+    <NuGetAuditMode>all</NuGetAuditMode>
   </PropertyGroup>
 
   <PropertyGroup>
     <Authors>Łukasz Kurzyniec</Authors>
     <Copyright>Copyright © happy+code Łukasz Kurzyniec 2025</Copyright>
-    <Version>3.0.0</Version>
+    <Version>4.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -15,4 +16,32 @@
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)\HappyCode.NetCoreBoilerplate.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup Condition="'$(ProjectName.EndsWith(`Tests`))' == 'False'">
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(ProjectName.EndsWith(`Tests`))' == 'True'">
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.msbuild">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>

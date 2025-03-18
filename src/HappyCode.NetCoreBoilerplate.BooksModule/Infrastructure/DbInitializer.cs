@@ -12,7 +12,7 @@ internal class DbInitializer
 CREATE TABLE IF NOT EXISTS Books
 (
     {nameof(BookDto.Id)}        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    {nameof(BookDto.Title)}     TEXT
+    {nameof(BookDto.Title)}     TEXT NOT NULL
 )
 ";
 
