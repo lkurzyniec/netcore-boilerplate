@@ -33,7 +33,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.GetAsync("api/employees/1");
 
             //then
-            return Verifier.Verify(result);
+            return Verify(result);
         }
 
         [Fact]
