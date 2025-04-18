@@ -51,7 +51,7 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests
         public Task Delete_should_return_NoContent()
         {
             //when
-            var result = _client.DeleteAsync("api/books/1", TestContext.Current.CancellationToken);
+            var result = _client.DeleteAsync("api/books/2", TestContext.Current.CancellationToken);
 
             //then
             return VerifyResultAsync(result);
