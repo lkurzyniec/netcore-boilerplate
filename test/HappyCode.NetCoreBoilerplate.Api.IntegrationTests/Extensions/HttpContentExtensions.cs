@@ -6,7 +6,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions
 {
     internal static class HttpContentExtensions
     {
-        private static JsonSerializerOptions _jsonSerializerOptions = new ()
+        private static readonly JsonSerializerOptions _jsonSerializerOptions = new ()
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
