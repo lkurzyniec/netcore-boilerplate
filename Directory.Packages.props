@@ -32,8 +32,8 @@
     <PackageVersion Include="AutoFixture" Version="4.18.1" />
     <PackageVersion Include="AutoFixture.Xunit3" Version="4.19.0" />
     <PackageVersion Include="coverlet.msbuild" Version="6.0.4" />
-    <PackageVersion Include="FluentAssertions" Version="[7.0.0]" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageVersion Include="FluentAssertions" Version="[7.2.0]" />
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="8.0.11" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.10" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageVersion Include="MockQueryable.Moq" Version="7.0.3" />
