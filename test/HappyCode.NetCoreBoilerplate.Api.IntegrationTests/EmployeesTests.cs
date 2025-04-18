@@ -50,7 +50,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public async Task Delete_should_return_NotFound_when_no_employee()
         {
             //when
-            var result = await _client.DeleteAsync("api/employees/98765", TestContext.Current.CancellationToken);
+            var result = await _client.DeleteAsync($"api/employees/{int.MaxValue}", TestContext.Current.CancellationToken);
 
             //then
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);

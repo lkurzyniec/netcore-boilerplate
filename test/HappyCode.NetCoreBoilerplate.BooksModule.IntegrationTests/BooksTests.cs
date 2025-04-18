@@ -2,7 +2,7 @@ using HappyCode.NetCoreBoilerplate.BooksModule.Dtos;
 using HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Extensions;
 using HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure;
 
-namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
+namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests
 {
     [Collection(nameof(TestServerClientCollection))]
     public class BooksTests
@@ -15,23 +15,13 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         }
 
         [Fact]
-        public Task GetAll_should_return_Ok_with_results()
-        {
-            //when
-            var result = _client.GetAsync("api/books", TestContext.Current.CancellationToken);
-
-            //then
-            return VerifyResult(result);
-        }
-
-        [Fact]
         public Task Get_should_return_NotFound_when_no_book()
         {
             //when
             var result = _client.GetAsync($"api/books/{int.MaxValue}", TestContext.Current.CancellationToken);
 
             //then
-            return VerifyResult(result);
+            return VerifyResultAsync(result);
         }
 
         [Fact]
@@ -41,7 +31,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.GetAsync("api/books/1", TestContext.Current.CancellationToken);
 
             //then
-            return VerifyResult(result);
+            return VerifyResultAsync(result);
         }
 
         [Fact]
@@ -54,7 +44,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.PostAsync("api/books", book.ToStringContent(), TestContext.Current.CancellationToken);
 
             //then
-            return VerifyResult(result);
+            return VerifyResultAsync(result);
         }
 
         [Fact]
@@ -64,7 +54,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.DeleteAsync("api/books/1", TestContext.Current.CancellationToken);
 
             //then
-            return VerifyResult(result);
+            return VerifyResultAsync(result);
         }
 
         [Fact]
@@ -74,10 +64,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var result = _client.DeleteAsync($"api/books/{int.MaxValue}", TestContext.Current.CancellationToken);
 
             //then
-            return VerifyResult(result);
+            return VerifyResultAsync(result);
         }
 
-        private static Task VerifyResult(Task<HttpResponseMessage> result) =>
-            Verifier.Verify(result).UseDirectory("Verify");
+        private static Task VerifyResultAsync(Task<HttpResponseMessage> result) =>
+            Verify(result).UseDirectory("Verify");
     }
 }

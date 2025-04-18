@@ -1,6 +1,5 @@
 using System.Net;
 using FluentAssertions;
-using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 
@@ -29,13 +28,13 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         }
 
         [Fact]
-        public async Task Get_should_return_expected_json()
+        public Task Get_should_return_expected_json()
         {
             //when
             var result = _client.GetAsync($"api/cars", TestContext.Current.CancellationToken);
 
             //then
-            await Verify(result);
+            return Verify(result);
         }
     }
 }
