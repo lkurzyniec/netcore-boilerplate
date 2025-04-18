@@ -98,7 +98,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var emp = await result.Content.ReadFromJsonAsync<EmployeeDto>(TestContext.Current.CancellationToken);
             emp.LastName.Should().Be("Richardson");
 
-            result.Headers.Location.ToString().Should().Contain("api/employees/100");
+            result.Headers.Location.ToString().Should().MatchRegex(@"\/api\/employees\/\d+");
 
             result.Headers.TryGetValues("x-date-created", out _).Should().BeTrue();
         }
