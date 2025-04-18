@@ -14,6 +14,15 @@ insert_final_newline = false
 [*.yml]
 end_of_line = lf
 
+[*.{received,verified}.{txt}]
+charset = "utf-8-bom"
+end_of_line = lf
+indent_size = unset
+indent_style = unset
+insert_final_newline = false
+tab_width = unset
+trim_trailing_whitespace = false
+
 [*.cs]
 indent_size = 4
 
@@ -30,11 +39,5 @@ dotnet_naming_symbols.private_fields.applicable_accessibilities = private
 dotnet_naming_style.prefix_underscore.capitalization  = camel_case
 dotnet_naming_style.prefix_underscore.required_prefix = _
 
-[*.{received,verified}.{txt}]
-charset = "utf-8-bom"
-end_of_line = lf
-indent_size = unset
-indent_style = unset
-insert_final_newline = false
-tab_width = unset
-trim_trailing_whitespace = false
+# VSSpell001: Correct spelling of 'XXX'
+dotnet_diagnostic.VSSpell001.severity = suggestion

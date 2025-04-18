@@ -20,7 +20,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public async Task Get_should_return_NotFound_when_no_employee()
         {
             //when
-            var result = await _client.GetAsync($"api/employees/{int.MaxValue}");
+            var result = await _client.GetAsync($"api/employees/{int.MaxValue}", TestContext.Current.CancellationToken);
 
             //then
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -30,7 +30,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public Task Get_should_return_Ok_with_expected_result()
         {
             //when
-            var result = _client.GetAsync("api/employees/1");
+            var result = _client.GetAsync("api/employees/1", TestContext.Current.CancellationToken);
 
             //then
             return Verify(result);
@@ -40,7 +40,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public async Task Delete_should_return_NoContent_when_delete_employee()
         {
             //when
-            var result = await _client.DeleteAsync("api/employees/99");
+            var result = await _client.DeleteAsync("api/employees/99", TestContext.Current.CancellationToken);
 
             //then
             result.StatusCode.Should().Be(HttpStatusCode.NoContent);
@@ -50,7 +50,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
         public async Task Delete_should_return_NotFound_when_no_employee()
         {
             //when
-            var result = await _client.DeleteAsync("api/employees/98765");
+            var result = await _client.DeleteAsync($"api/employees/{int.MaxValue}", TestContext.Current.CancellationToken);
 
             //then
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -63,7 +63,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var request = new EmployeePutDto { LastName = "Smith" };
 
             //when
-            var result = await _client.PutAsync("api/employees/98765", request.ToStringContent());
+            var result = await _client.PutAsync("api/employees/98765", request.ToStringContent(), TestContext.Current.CancellationToken);
 
             //then
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -76,11 +76,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var request = new EmployeePutDto { LastName = "Smith" };
 
             //when
-            var result = await _client.PutAsync("api/employees/2", request.ToStringContent());
+            var result = await _client.PutAsync("api/employees/2", request.ToStringContent(), TestContext.Current.CancellationToken);
 
             //then
             result.EnsureSuccessStatusCode();
-            var emp = await result.Content.ReadAsJsonAsync<EmployeeDto>();
+            var emp = await result.Content.ReadFromJsonAsync<EmployeeDto>(TestContext.Current.CancellationToken);
             emp.LastName.Should().Be("Smith");
         }
 
@@ -91,14 +91,14 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests
             var request = new EmployeePostDto { FirstName = "Joann", LastName = "Richardson", Gender = "F", BirthDate = new DateTime(2003, 5, 1) };
 
             //when
-            var result = await _client.PostAsync("api/employees/", request.ToStringContent());
+            var result = await _client.PostAsync("api/employees/", request.ToStringContent(), TestContext.Current.CancellationToken);
 
             //then
             result.EnsureSuccessStatusCode();
-            var emp = await result.Content.ReadAsJsonAsync<EmployeeDto>();
+            var emp = await result.Content.ReadFromJsonAsync<EmployeeDto>(TestContext.Current.CancellationToken);
             emp.LastName.Should().Be("Richardson");
 
-            result.Headers.Location.ToString().Should().Contain("api/employees/100");
+            result.Headers.Location.ToString().Should().MatchRegex(@"\/api\/employees\/\d+");
 
             result.Headers.TryGetValues("x-date-created", out _).Should().BeTrue();
         }

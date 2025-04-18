@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoFixture.Xunit2;
+using AutoFixture.Xunit3;
 using FluentAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core;
@@ -32,7 +32,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(employees);
 
             //when
-            var result = await Controller.GetAllAsync(default) as OkObjectResult;
+            var result = await Controller.GetAllAsync(TestContext.Current.CancellationToken) as OkObjectResult;
 
             //then
             result.Should().NotBeNull();
@@ -49,7 +49,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             const int empId = 11;
 
             //when
-            await Controller.GetAsync(11, default);
+            await Controller.GetAsync(11, TestContext.Current.CancellationToken);
 
             //then
             _employeeRepositoryMock.Verify(x => x.GetByIdAsync(empId, It.IsAny<CancellationToken>()), Times.Once);
@@ -63,7 +63,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(() => null);
 
             //when
-            var result = await Controller.GetAsync(1, default) as StatusCodeResult;
+            var result = await Controller.GetAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
 
             //then
             result.Should().NotBeNull();
@@ -85,7 +85,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 });
 
             //when
-            var result = await Controller.GetAsync(1, default) as OkObjectResult;
+            var result = await Controller.GetAsync(1, TestContext.Current.CancellationToken) as OkObjectResult;
 
             //then
             result.Should().NotBeNull();
@@ -105,7 +105,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             const int empId = 11;
 
             //when
-            await Controller.DeleteAsync(11, default);
+            await Controller.DeleteAsync(11, TestContext.Current.CancellationToken);
 
             //then
             _employeeRepositoryMock.Verify(x => x.DeleteByIdAsync(empId, It.IsAny<CancellationToken>()), Times.Once);
@@ -119,7 +119,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(false);
 
             //when
-            var result = await Controller.DeleteAsync(1, default) as StatusCodeResult;
+            var result = await Controller.DeleteAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
 
             //then
             result.Should().NotBeNull();
@@ -134,7 +134,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(true);
 
             //when
-            var result = await Controller.DeleteAsync(1, default) as StatusCodeResult;
+            var result = await Controller.DeleteAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
 
             //then
             result.Should().NotBeNull();
@@ -150,7 +150,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Verifiable();
 
             //when
-            var result = await Controller.PutAsync(empId, employeePutDto, default) as StatusCodeResult;
+            var result = await Controller.PutAsync(empId, employeePutDto, TestContext.Current.CancellationToken) as StatusCodeResult;
 
             //then
             result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
@@ -167,7 +167,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Verifiable();
 
             //when
-            var result = await Controller.PutAsync(empId, employeePutDto, default) as OkObjectResult;
+            var result = await Controller.PutAsync(empId, employeePutDto, TestContext.Current.CancellationToken) as OkObjectResult;
 
             //then
             result.Value.Should().BeAssignableTo<EmployeeDto>()
@@ -185,7 +185,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Verifiable();
 
             //when
-            var result = await Controller.PostAsync(employeePostDto, default) as ObjectResult;
+            var result = await Controller.PostAsync(employeePostDto, TestContext.Current.CancellationToken) as ObjectResult;
 
             //then
             result.StatusCode.Should().Be(StatusCodes.Status201Created);
@@ -207,7 +207,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Verifiable();
 
             //when
-            var result = await Controller.GetOldestAsync(default) as ObjectResult;
+            var result = await Controller.GetOldestAsync(TestContext.Current.CancellationToken) as ObjectResult;
 
             //then
             result.Should().NotBeNull();

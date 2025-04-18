@@ -57,7 +57,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
 1. Tests
     * Integration tests with InMemory database
         * [FluentAssertions]
-        * [xUnit]
+        * [xUnit.v3]
         * [Verify](https://github.com/VerifyTests/Verify/)
         * [Verify.Http](https://github.com/VerifyTests/Verify.Http)
         * TestServer
@@ -66,7 +66,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [FluentAssertions]
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
-        * [xUnit]
+        * [xUnit.v3]
 1. Security
     * [Mend Bolt (WhiteSource Security Check)](https://www.mend.io/free-developer-tools/bolt/)
     * [NuGet Audit](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages)
@@ -74,7 +74,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
 1. Code quality
     * Architectural tests (conventional tests)
         * [NetArchTest](https://github.com/BenMorris/NetArchTest)
-        * [xUnit]
+        * [xUnit.v3]
     * Analyzers
         * [Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers)
         * [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers)
@@ -319,4 +319,4 @@ You are also very welcome to acknowledge my time by buying me a small coffee.
 [![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/lato-blue.png)](https://www.buymeacoffee.com/lkurzyniec)
 
 [FluentAssertions]: https://fluentassertions.com/
-[xUnit]: https://xunit.net/
+[xUnit.v3]: https://xunit.net/
