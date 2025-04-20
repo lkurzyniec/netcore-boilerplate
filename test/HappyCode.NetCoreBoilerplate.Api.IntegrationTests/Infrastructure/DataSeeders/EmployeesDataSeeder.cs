@@ -1,21 +1,38 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataFeeders
+namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataSeeders
 {
-    internal static class EmployeesContextDataFeeder
+    [ExcludeFromCodeCoverage]
+    internal static class EmployeesDataSeeder
     {
-        public static void Feed(EmployeesContext dbContext)
+        public static void Seed(DbContext dbContext, bool _)
+        {
+            Seed(dbContext);
+
+            dbContext.SaveChanges();
+        }
+
+        public static Task SeedAsync(DbContext dbContext, bool _, CancellationToken token)
+        {
+            Seed(dbContext);
+
+            return dbContext.SaveChangesAsync(token);
+        }
+
+        private static void Seed(DbContext dbContext)
         {
             var dept1 = new Department
             {
                 DeptNo = "D1",
                 DeptName = "Test department",
             };
-            dbContext.Departments.Add(dept1);
+            dbContext.Set<Department>().Add(dept1);
 
-            dbContext.Employees.Add(new Employee
+            dbContext.Set<Employee>().Add(new Employee
             {
                 EmpNo = 1,
                 FirstName = "Thomas",
@@ -25,7 +42,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataF
                 Department = dept1,
             });
 
-            dbContext.Employees.Add(new Employee
+            dbContext.Set<Employee>().Add(new Employee
             {
                 EmpNo = 2,
                 FirstName = "Jonathan",
@@ -35,7 +52,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataF
                 Department = dept1,
             });
 
-            dbContext.Employees.Add(new Employee
+            dbContext.Set<Employee>().Add(new Employee
             {
                 EmpNo = 99,
                 FirstName = "Person",
@@ -44,8 +61,6 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataF
                 Gender = "M",
                 Department = dept1,
             });
-
-            dbContext.SaveChanges();
         }
     }
 }

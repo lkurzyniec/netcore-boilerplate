@@ -1,5 +1,5 @@
 using System.Data;
-using HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure.DataFeeders;
+using HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure.DataSeeders;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.FeatureManagement;
 
@@ -32,7 +32,7 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructu
 
                             app.InitBooksModule();
                             var db = app.ApplicationServices.GetService<IDbConnection>();
-                            BooksDataFeeder.Feed(db);
+                            BooksDataSeeder.Seed(db);
                         })
                         .UseTestServer();
                 })
