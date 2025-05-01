@@ -37,7 +37,7 @@ jobs:
         run: dotnet build -c Release ./src/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
 
       - name: Manual Trivy Setup
-        uses: aquasecurity/setup-trivy@v0.2.2
+        uses: aquasecurity/setup-trivy@v0.2.3
         with:
           cache: true
           version: v0.57.1
