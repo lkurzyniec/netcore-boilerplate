@@ -39,6 +39,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using var employees = app.ApplicationServices.GetRequiredService<EmployeesContext>();
+            employees.Database.EnsureCreated();
+            using var cars = app.ApplicationServices.GetRequiredService<CarsContext>();
+            cars.Database.EnsureCreated();
+
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {

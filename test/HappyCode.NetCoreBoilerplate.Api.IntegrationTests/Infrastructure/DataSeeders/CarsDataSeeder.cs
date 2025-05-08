@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,11 +14,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataS
             dbContext.SaveChanges();
         }
 
-        public static Task SeedAsync(DbContext dbContext, bool _, CancellationToken token)
+        public static async Task SeedAsync(DbContext dbContext, bool _, CancellationToken token)
         {
             Seed(dbContext);
 
-            return dbContext.SaveChangesAsync(token);
+            await dbContext.SaveChangesAsync(token);
         }
 
 
