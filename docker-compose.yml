@@ -11,12 +11,15 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: SomeStrongPwd123
       MYSQL_DATABASE: employees
       MYSQL_USER: user
       MYSQL_PASSWORD: simplepwd
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -u user --password=simplepwd -e 'SELECT 1;'"]
+      start_period: 20s
     volumes:
-      - dbdata:/var/lib/mysql
+      - mysqldata:/var/lib/mysql
       - ./db/mysql/mysql-employees.sql:/docker-entrypoint-initdb.d/init.sql
 
   mssql:
@@ -29,8 +32,11 @@ services:
       - ACCEPT_EULA=Y
       - MSSQL_PID=Express
       - MSSQL_SA_PASSWORD=SomeStrongPwd123
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -U sa -P SomeStrongPwd123 -Q 'SELECT 1'"]
+      start_period: 20s
     volumes:
-      - dbdata:/var/opt/mssql/data
+      - mssqldata:/var/opt/mssql
       - ./db/mssql/docker-entrypoint.sh:/entrypoint.sh
       - ./db/mssql/docker-db-init.sh:/db-init.sh
       - ./db/mssql/mssql-cars.sql:/db-init.sql
@@ -48,4 +54,5 @@ services:
       - mssql
 
 volumes:
-  dbdata:
+  mssqldata:
+  mysqldata:

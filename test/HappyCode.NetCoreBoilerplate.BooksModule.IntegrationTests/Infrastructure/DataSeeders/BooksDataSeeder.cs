@@ -2,11 +2,11 @@ using Dapper;
 using HappyCode.NetCoreBoilerplate.BooksModule.Dtos;
 using System.Data;
 
-namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure.DataFeeders
+namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.Infrastructure.DataSeeders
 {
-    internal static class BooksDataFeeder
+    internal static class BooksDataSeeder
     {
-        public static void Feed(IDbConnection db)
+        public static void Seed(IDbConnection db)
         {
             db.Execute(@$"
 INSERT INTO Books ({nameof(BookDto.Id)}, {nameof(BookDto.Title)})

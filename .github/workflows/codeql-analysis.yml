@@ -33,7 +33,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 9.x
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
@@ -42,7 +42,7 @@ jobs:
           queries: +security-and-quality
           config: |
             paths-ignore:
-              - '**/generated/**/*.g.*.cs'
+              - '**/generated/**/*.g.cs'
             query-filters:
               - exclude:
                   id:

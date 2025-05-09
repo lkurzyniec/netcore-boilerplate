@@ -3,7 +3,7 @@ using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Middlewares;
-using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Registrations;
+using HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi;
 using HappyCode.NetCoreBoilerplate.BooksModule;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Providers;
@@ -19,7 +19,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
-using Swashbuckle.AspNetCore.SwaggerUI;
+using Serilog;
+using Scalar.AspNetCore;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -34,6 +35,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
+            services.AddSerilog();
+            services.AddSingleton<ExceptionMiddleware>();
+
             services
                 .AddHttpContextAccessor()
                 .AddRouting(options => options.LowercaseUrls = true);
@@ -41,18 +45,17 @@ namespace HappyCode.NetCoreBoilerplate.Api
             services.AddMvcCore(options =>
                 {
                     options.Filters.Add<HttpGlobalExceptionFilter>();
-                    options.Filters.Add<ValidateModelStateFilter>();
                     options.Filters.Add<ApiKeyAuthorizationFilter>();
                 })
                 .AddApiExplorer()
                 .AddDataAnnotations();
 
             //there is a difference between AddDbContext() and AddDbContextPool(), more info https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling and https://stackoverflow.com/questions/48443567/adddbcontext-or-adddbcontextpool
-            services.AddDbContext<EmployeesContext>(options => options.UseMySql(_configuration.GetConnectionString("MySqlDb"), ServerVersion.Parse("8.0")), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Singleton);
+            services.AddDbContext<EmployeesContext>(options => options.UseMySQL(_configuration.GetConnectionString("MySqlDb")), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Singleton);
             services.AddDbContextPool<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")), poolSize: 10);
 
             services.Configure<ApiKeySettings>(_configuration.GetSection("ApiKey"));
-            services.AddSwagger(_configuration);
+            services.AddOpenApi(_configuration);
 
             services.Configure<PingWebsiteSettings>(_configuration.GetSection("PingWebsite"));
             services.AddHttpClient(nameof(PingWebsiteBackgroundService));
@@ -76,11 +79,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseMiddlewareForFeature<ConnectionInfoMiddleware>(FeatureFlags.ConnectionInfo.ToString());
 
             app.UseRouting();
@@ -101,13 +100,11 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
                 endpoints.MapControllers();
                 endpoints.MapBooksModule();
-            });
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Simple Api V1");
-                c.DocExpansion(DocExpansion.None);
+                endpoints.MapOpenApi()
+                    .CacheOutput();
+
+                endpoints.MapScalarApiReference("api-doc");
             });
 
             app.InitBooksModule();

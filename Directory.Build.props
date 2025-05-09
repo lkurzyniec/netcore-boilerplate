@@ -1,13 +1,14 @@
 <Project>
   <PropertyGroup>
-    <LangVersion>12</LangVersion>
-    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>net9.0</TargetFramework>
+    <NuGetAuditMode>all</NuGetAuditMode>
   </PropertyGroup>
 
   <PropertyGroup>
     <Authors>Łukasz Kurzyniec</Authors>
     <Copyright>Copyright © happy+code Łukasz Kurzyniec 2025</Copyright>
-    <Version>3.0.0</Version>
+    <Version>4.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>

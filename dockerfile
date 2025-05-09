@@ -1,10 +1,10 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS base
 WORKDIR /app
 EXPOSE 8080
 
 LABEL org.opencontainers.image.authors="Łukasz Kurzyniec" \
       org.opencontainers.image.title="HappyCode.NetCoreBoilerplate" \
-      org.opencontainers.image.description="Simple API written in .NET 8."
+      org.opencontainers.image.description="Simple API written in .NET 9."
 
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
 ENV \
@@ -20,7 +20,7 @@ RUN apk add --upgrade --no-cache \
 
 # --------------
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS restore
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS restore
 WORKDIR /work
 
 ENV DOTNET_NOLOGO=true
@@ -57,7 +57,7 @@ COPY --from=publish /app .
 ENV DOTNET_NOLOGO=true
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-ARG VERSION=2.0.0
+ARG VERSION=4.0.0
 ARG SHA=none
 
 ENV HC_SHA=${SHA}

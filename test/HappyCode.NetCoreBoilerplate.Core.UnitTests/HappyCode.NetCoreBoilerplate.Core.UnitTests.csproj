@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RunSettingsFilePath>$(MSBuildProjectDirectory)\HappyCode.NetCoreBoilerplate.Core.UnitTests.runsettings</RunSettingsFilePath>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="AutoFixture" />
     <PackageReference Include="AutoFixture.Xunit3" />
@@ -10,6 +10,10 @@
     <PackageReference Include="MockQueryable.Moq" />
     <PackageReference Include="Moq.AutoMock" />
     <PackageReference Include="Moq" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Net.Http" />
+    <PackageReference Include="System.Text.RegularExpressions" />
   </ItemGroup>
 
   <ItemGroup>
