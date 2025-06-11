@@ -49,6 +49,8 @@ internal abstract class RepositoryBase<TEntity>
         // Use GetOrCreateAsync to get from cache or create if not found
         return await _cache.GetOrCreateAsync(cacheKey, async entry =>
         {
+
+            await Task.Delay(8000);
             var entities = await DbContext.Set<TEntity>()
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);

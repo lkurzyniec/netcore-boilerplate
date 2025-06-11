@@ -1,13 +1,14 @@
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement.Mvc;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 {
-    [FeatureGate(FeatureFlags.DockerCompose)]
+    [AllowAnonymous]
     [Route("api/cars")]
     public class CarsController : ApiControllerBase
     {

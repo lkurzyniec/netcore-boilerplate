@@ -1,6 +1,7 @@
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement;
@@ -8,7 +9,7 @@ using Microsoft.FeatureManagement.Mvc;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 {
-    [FeatureGate(FeatureFlags.DockerCompose)]
+    [AllowAnonymous]
     [Route("api/departments")]
     public class DepartmentsController : ApiControllerBase
     {
