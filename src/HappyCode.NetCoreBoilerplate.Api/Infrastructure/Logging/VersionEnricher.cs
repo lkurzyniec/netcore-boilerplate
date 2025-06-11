@@ -1,9 +1,11 @@
+using System.Diagnostics;
 using HappyCode.NetCoreBoilerplate.Core.Providers;
 using Serilog.Core;
 using Serilog.Events;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Logging;
 
+[DebuggerStepThrough]
 public class VersionEnricher : ILogEventEnricher
 {
     private readonly VersionProvider _versionProvider;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Services
         }
 
         [Theory, AutoData]
-        public async Task GetAllSortedByPlateAsync_should_return_expected_result(int rand1, int rand2, int expectedId)
+        public async Task GetAllSortedByPlateAsync_should_return_expected_result(int rand1, int rand2, Guid expectedId)
         {
             //given
             _fixture.Customize<Car>(c => c.Without(x => x.Owner));

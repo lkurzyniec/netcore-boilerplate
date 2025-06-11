@@ -34,7 +34,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         {
             return Ok(new CarDto
             {
-                Id = int.MaxValue,
+                Id = Guid.NewGuid(),
                 Model = "Magic Sleigh",
                 Plate = "XMas 12",
             });

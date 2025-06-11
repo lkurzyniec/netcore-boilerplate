@@ -21,30 +21,32 @@ namespace HappyCode.NetCoreBoilerplate.Core
 
             modelBuilder.Entity<Department>(entity =>
             {
-                entity.HasIndex(e => e.DeptName)
-                    .HasDatabaseName("dept_name")
-                    .IsUnique();
 
-                entity.HasIndex(e => e.MangerNo)
-                    .HasDatabaseName("manger_no");
+                entity.Property(e => e.Id)
+                .HasDefaultValueSql("NEWID()");
 
-                entity.Property(e => e.DeptNo).ValueGeneratedNever();
+                entity.HasIndex(e => e.MangerId);
+
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.DeptName).IsUnicode(false);
 
                 entity.HasOne(d => d.Manger)
                     .WithMany(p => p.LeadingDepartments)
-                    .HasForeignKey(d => d.MangerNo)
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasForeignKey(d => d.MangerId)
+                    .OnDelete(DeleteBehavior.NoAction)
                     .HasConstraintName("departments_ibfk_1");
             });
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasIndex(e => e.DeptNo)
-                    .HasDatabaseName("dept_no");
 
-                entity.Property(e => e.EmpNo).ValueGeneratedOnAdd();
+                entity.Property(e => e.Id)
+                .HasDefaultValueSql("NEWID()");
+
+                entity.HasIndex(e => e.DeptId);
+
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.FirstName).IsUnicode(false);
 
@@ -52,7 +54,7 @@ namespace HappyCode.NetCoreBoilerplate.Core
 
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.Employees)
-                    .HasForeignKey(d => d.DeptNo)
+                    .HasForeignKey(d => d.DeptId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("employees_ibfk_1");
             });

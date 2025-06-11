@@ -11,6 +11,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Registrations
         {
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ICarService, CarService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddSingleton<VersionProvider>();
 
             return services;

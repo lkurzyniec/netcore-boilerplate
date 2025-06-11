@@ -4,7 +4,6 @@ using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Middlewares;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi;
-using HappyCode.NetCoreBoilerplate.BooksModule;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Providers;
 using HappyCode.NetCoreBoilerplate.Core.Registrations;
@@ -21,6 +20,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
 using Serilog;
 using Scalar.AspNetCore;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
@@ -51,24 +51,42 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 .AddDataAnnotations();
 
             //there is a difference between AddDbContext() and AddDbContextPool(), more info https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling and https://stackoverflow.com/questions/48443567/adddbcontext-or-adddbcontextpool
-            services.AddDbContext<EmployeesContext>(options => options.UseMySQL(_configuration.GetConnectionString("MySqlDb")), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Singleton);
-            services.AddDbContextPool<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("MsSqlDb")), poolSize: 10);
+            services.AddDbContextPool<EmployeesContext>(options =>
+                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.EnableRetryOnFailure(
+                            maxRetryCount: 5,
+                            maxRetryDelay: TimeSpan.FromSeconds(30),
+                            errorNumbersToAdd: null);
+                    }),
+                poolSize: 10);
+            services.AddDbContextPool<CarsContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")), poolSize: 10);
 
             services.Configure<ApiKeySettings>(_configuration.GetSection("ApiKey"));
             services.AddOpenApi(_configuration);
+            services.AddHybridCache(o =>
+            {
+               o.DefaultEntryOptions = new HybridCacheEntryOptions
+                {
+                    LocalCacheExpiration = TimeSpan.FromMinutes(10),
+                    Expiration = TimeSpan.FromMinutes(5)
+                };
 
-            services.Configure<PingWebsiteSettings>(_configuration.GetSection("PingWebsite"));
-            services.AddHttpClient(nameof(PingWebsiteBackgroundService));
-            services.AddHostedService<PingWebsiteBackgroundService>();
-            services.AddSingleton(x => x.GetServices<IHostedService>().OfType<IPingService>().Single());
+            });
+      
+
+            //services.Configure<PingWebsiteSettings>(_configuration.GetSection("PingWebsite"));
+            //services.AddHttpClient(nameof(PingWebsiteBackgroundService));
+            //services.AddHostedService<PingWebsiteBackgroundService>();
+            //services.AddSingleton(x => x.GetServices<IHostedService>().OfType<IPingService>().Single());
 
             services.AddCoreComponents();
-            services.AddBooksModule(_configuration);
 
             services.AddFeatureManagement();
 
-            var healthChecksBuilder = services.AddHealthChecks()
-                .AddBooksModule(_configuration);
+            var healthChecksBuilder = services.AddHealthChecks();
+
             if (_configuration.GetValue<bool>($"FeatureManagement:{FeatureFlags.DockerCompose}"))
             {
                 healthChecksBuilder
@@ -99,7 +117,6 @@ namespace HappyCode.NetCoreBoilerplate.Api
                     .ExcludeFromDescription();
 
                 endpoints.MapControllers();
-                endpoints.MapBooksModule();
 
                 endpoints.MapOpenApi()
                     .CacheOutput();
@@ -107,7 +124,6 @@ namespace HappyCode.NetCoreBoilerplate.Api
                 endpoints.MapScalarApiReference("api-doc");
             });
 
-            app.InitBooksModule();
         }
     }
 }

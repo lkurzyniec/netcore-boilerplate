@@ -21,6 +21,9 @@ namespace HappyCode.NetCoreBoilerplate.Core
 
             modelBuilder.Entity<Car>(entity =>
             {
+                entity.Property(e => e.Id)
+                .HasDefaultValueSql("NEWID()");
+
                 entity.Property(e => e.Model).IsUnicode(false);
 
                 entity.Property(e => e.Plate).IsUnicode(false);
@@ -34,6 +37,10 @@ namespace HappyCode.NetCoreBoilerplate.Core
 
             modelBuilder.Entity<Owner>(entity =>
             {
+
+                entity.Property(e => e.Id)
+                .HasDefaultValueSql("NEWID()");
+
                 entity.Property(e => e.FirstName).IsUnicode(false);
 
                 entity.Property(e => e.FullName).IsUnicode(false);

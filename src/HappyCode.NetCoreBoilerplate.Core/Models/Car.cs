@@ -5,7 +5,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Models
 {
     public partial class Car
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -14,7 +14,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Models
         [StringLength(50)]
         public string Model { get; set; }
 
-        public int? OwnerId { get; set; }
+        public Guid? OwnerId { get; set; }
 
 
         [ForeignKey("OwnerId")]

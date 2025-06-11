@@ -1,41 +1,34 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HappyCode.NetCoreBoilerplate.Core.Models
+namespace HappyCode.NetCoreBoilerplate.Core.Models;
+
+[Table("employees", Schema = "employees")]
+public class Employee
 {
-    [Table("employees", Schema = "employees")]
-    public class Employee
-    {
-        [Key]
-        [Column("emp_no", TypeName = "int(11)")]
-        public int EmpNo { get; set; }
+    [Key]
+    public Guid Id { get; set; }
 
-        [Column("birth_date", TypeName = "date")]
-        public DateTime BirthDate { get; set; }
+    public DateTime BirthDate { get; set; } 
 
-        [Required]
-        [Column("first_name")]
-        [StringLength(14)]
-        public string FirstName { get; set; }
+    [Required]
+    [StringLength(100)]
+    public string FirstName { get; set; } = string.Empty;
 
-        [Required]
-        [Column("last_name")]
-        [StringLength(16)]
-        public string LastName { get; set; }
+    [Required]
+    [StringLength(100)]
+    public string LastName { get; set; } = string.Empty;
 
-        [Required]
-        [Column("gender", TypeName = "enum('M','F')")]
-        public string Gender { get; set; }
+    [Required]
+    [StringLength(1)]
+    public string Gender { get; set; } = "M"; 
 
-        [Column("dept_no", TypeName = "char(4)")]
-        public string DeptNo { get; set; }
+    public Guid? DeptId { get; set; }
 
+    [ForeignKey("DeptId")]
+    [InverseProperty("Employees")]
+    public virtual Department? Department { get; set; }
 
-        [ForeignKey("DeptNo")]
-        [InverseProperty("Employees")]
-        public virtual Department Department { get; set; }
-
-        [InverseProperty("Manger")]
-        public virtual ICollection<Department> LeadingDepartments { get; set; } = new HashSet<Department>();
-    }
+    [InverseProperty("Manger")]
+    public virtual ICollection<Department> LeadingDepartments { get; set; } = new HashSet<Department>();
 }

@@ -9,7 +9,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Extensions
         {
             return new EmployeeDto
             {
-                Id = source.EmpNo,
+                Id = source.Id,
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 BirthDate = source.BirthDate,

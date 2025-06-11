@@ -29,6 +29,9 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure
                     .UseSeeding(EmployeesDataSeeder.Seed)
                     .UseAsyncSeeding(EmployeesDataSeeder.SeedAsync);
             });
+
+
+
             services.AddDbContext<CarsContext>(options =>
             {
                 options.UseInMemoryDatabase("cars")

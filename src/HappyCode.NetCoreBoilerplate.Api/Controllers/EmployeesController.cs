@@ -34,7 +34,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [ProducesResponseType(typeof(EmployeeDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAsync(
-            int id,
+            Guid id,
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.GetByIdAsync(id, cancellationToken);
@@ -49,7 +49,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [ProducesResponseType(typeof(EmployeeDetailsDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetWithDetailsAsync(
-            int id,
+            Guid id,
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.GetByIdWithDetailsAsync(id, cancellationToken);
@@ -70,7 +70,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
             {
                 return Ok(new EmployeeDto
                 {
-                    Id = int.MaxValue,
+                    Id = Guid.NewGuid(),
                     FirstName = "Santa",
                     LastName = "Claus",
                     BirthDate = new DateTime(270, 3, 15),
@@ -91,7 +91,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(HttpValidationProblemDetails), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PutAsync(
-            [FromRoute] int id,
+            [FromRoute] Guid id,
             [FromBody] EmployeePutDto employeePutDto,
             CancellationToken cancellationToken = default)
         {
@@ -119,7 +119,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteAsync(
-            int id,
+            Guid id,
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.DeleteByIdAsync(id, cancellationToken);

@@ -5,7 +5,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.Models
 {
     public partial class Owner
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -17,7 +17,6 @@ namespace HappyCode.NetCoreBoilerplate.Core.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string FullName { get; set; }
-
 
         [InverseProperty("Owner")]
         public virtual ICollection<Car> Cars { get; set; } = new HashSet<Car>();

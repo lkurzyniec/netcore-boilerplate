@@ -5,18 +5,19 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Extensions;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HappyCode.NetCoreBoilerplate.Core.Repositories
 {
     public interface IEmployeeRepository
     {
         Task<List<EmployeeDto>> GetAllAsync(CancellationToken cancellationToken);
-        Task<EmployeeDto> GetByIdAsync(int id, CancellationToken cancellationToken);
-        Task<EmployeeDetailsDto> GetByIdWithDetailsAsync(object id, CancellationToken cancellationToken);
+        Task<EmployeeDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        Task<EmployeeDetailsDto> GetByIdWithDetailsAsync(Guid id, CancellationToken cancellationToken);
         Task<EmployeeDto> GetOldestAsync(CancellationToken cancellationToken);
-        Task<bool> DeleteByIdAsync(int id, CancellationToken cancellationToken);
+        Task<bool> DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<EmployeeDto> InsertAsync(EmployeePostDto employeePostDto, CancellationToken cancellationToken);
-        Task<EmployeeDto> UpdateAsync(int id, EmployeePutDto employeePutDto, CancellationToken cancellationToken);
+        Task<EmployeeDto> UpdateAsync(Guid id, EmployeePutDto employeePutDto, CancellationToken cancellationToken);
     }
 
     internal class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
@@ -28,49 +29,40 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
 
         public async Task<List<EmployeeDto>> GetAllAsync(CancellationToken cancellationToken)
         {
-            var employees = await DbContext.Employees
-                .AsNoTracking()
-                .ToListAsync(cancellationToken);
-
-            return employees.Select(EmployeeExtensions.MapToDto).ToList();
+            return await GetAllAsync<EmployeeDto>(
+                emp => emp.MapToDto(),
+                cancellationToken);
         }
 
-        public async Task<EmployeeDto> GetByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<EmployeeDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            var emp = await DbContext.Employees
-                .AsNoTracking()
-                .SingleOrDefaultAsync(x => x.EmpNo == id, cancellationToken);
-            if (emp == null)
-            {
-                return null;
-            }
-
-            return emp.MapToDto();
+            return await GetByIdAsync<EmployeeDto, Guid>(
+                id,
+                x => x.Id == id,
+                emp => emp.MapToDto(),
+                cancellationToken);
         }
 
-        public async Task<EmployeeDetailsDto> GetByIdWithDetailsAsync(object id, CancellationToken cancellationToken)
+        public async Task<EmployeeDetailsDto> GetByIdWithDetailsAsync(Guid id, CancellationToken cancellationToken)
         {
-            var emp = await DbContext.Employees
-                .Include(x => x.Department)
-                .SingleOrDefaultAsync(x => x.EmpNo == (int)id, cancellationToken);
-            if (emp == null)
-            {
-                return null;
-            }
-
-            return new EmployeeDetailsDto
-            {
-                Id = emp.EmpNo,
-                FirstName = emp.FirstName,
-                LastName = emp.LastName,
-                BirthDate = emp.BirthDate,
-                Gender = emp.Gender,
-                Department = new DepartmentDto
+            return await GetByIdWithDetailsAsync<EmployeeDetailsDto, Guid>(
+                id,
+                x => x.Id == id,
+                query => query.Include(x => x.Department),
+                emp => new EmployeeDetailsDto
                 {
-                    Id = emp.Department.DeptNo,
-                    Name = emp.Department.DeptName,
-                }
-            };
+                    Id = emp.Id,
+                    FirstName = emp.FirstName,
+                    LastName = emp.LastName,
+                    BirthDate = emp.BirthDate,
+                    Gender = emp.Gender,
+                    Department = emp.Department != null ? new DepartmentDto
+                    {
+                        Id = emp.Department.Id,
+                        Name = emp.Department.DeptName,
+                    } : null
+                },
+                cancellationToken);
         }
 
         public async Task<EmployeeDto> GetOldestAsync(CancellationToken cancellationToken)
@@ -88,47 +80,45 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
 
         public async Task<EmployeeDto> InsertAsync(EmployeePostDto employeePostDto, CancellationToken cancellationToken)
         {
-            var employee = new Employee
-            {
-                FirstName = employeePostDto.FirstName,
-                LastName = employeePostDto.LastName,
-                BirthDate = employeePostDto.BirthDate.Value,
-                Gender = employeePostDto.Gender,
-            };
+            return await InsertAsync<EmployeeDto, EmployeePostDto>(
+                employeePostDto,
+                dto => new Employee
+                {
+                    FirstName = dto.FirstName,
+                    LastName = dto.LastName,
+                    BirthDate = dto.BirthDate,
+                    Gender = dto.Gender,
+                    DeptId = dto.DeptId
 
-            await DbContext.Employees.AddAsync(employee, cancellationToken);
-            await DbContext.SaveChangesAsync(cancellationToken);
-
-            return employee.MapToDto();
+                },
+                emp => emp.MapToDto(),
+                cancellationToken);
         }
 
-        public async Task<EmployeeDto> UpdateAsync(int id, EmployeePutDto employeePutDto, CancellationToken cancellationToken)
+        public async Task<EmployeeDto> UpdateAsync(Guid id, EmployeePutDto employeePutDto, CancellationToken cancellationToken)
         {
-            var emp = await DbContext.Employees
-                .SingleOrDefaultAsync(x => x.EmpNo == id, cancellationToken);
-            if (emp is null)
-            {
-                return null;
-            }
-
-            emp.LastName = employeePutDto.LastName;
-
-            await DbContext.SaveChangesAsync(cancellationToken);
-
-            return emp.MapToDto();
+            return await UpdateAsync<EmployeeDto, EmployeePutDto, Guid>(
+                id,
+                employeePutDto,
+                x => x.Id == id,
+                (emp, dto) =>
+                {
+                    AssignIfNotNull(emp, value => emp.BirthDate = value, dto.BirthDate);
+                    AssignIfNotNullOrEmpty(emp, value => emp.LastName = value, dto.LastName);
+                    AssignIfNotNullOrEmpty(emp, value => emp.FirstName = value, dto.FirstName);
+                    AssignIfNotNullOrEmpty(emp, value => emp.Gender = value, dto.Gender);
+                    AssignIfNotNull(emp, value => emp.DeptId = value, dto.DeptId);
+                },
+                emp => emp.MapToDto(),
+                cancellationToken);
         }
 
-        public async Task<bool> DeleteByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            var emp = await DbContext.Employees
-                .SingleOrDefaultAsync(x => x.EmpNo == id, cancellationToken);
-            if (emp == null)
-            {
-                return false;
-            }
-
-            DbContext.Employees.Remove(emp);
-            return await DbContext.SaveChangesAsync(cancellationToken) > 0;
+            return await DeleteByIdAsync<Guid>(
+                id,
+                x => x.Id == id,
+                cancellationToken);
         }
     }
 }

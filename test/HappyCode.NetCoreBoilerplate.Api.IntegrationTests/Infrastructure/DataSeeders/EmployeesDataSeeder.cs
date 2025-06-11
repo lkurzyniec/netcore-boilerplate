@@ -26,14 +26,14 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataS
         {
             var dept1 = new Department
             {
-                DeptNo = "D1",
+                Id =  Guid.NewGuid(),
                 DeptName = "Test department",
             };
             dbContext.Set<Department>().Add(dept1);
 
             dbContext.Set<Employee>().Add(new Employee
             {
-                EmpNo = 1,
+                Id = Guid.NewGuid(),
                 FirstName = "Thomas",
                 LastName = "Anderson",
                 BirthDate = new DateTime(1962, 03, 11),
@@ -43,7 +43,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataS
 
             dbContext.Set<Employee>().Add(new Employee
             {
-                EmpNo = 2,
+                Id = Guid.NewGuid(),
                 FirstName = "Jonathan",
                 LastName = "Fountain",
                 BirthDate = new DateTime(1954, 07, 19),
@@ -53,7 +53,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.DataS
 
             dbContext.Set<Employee>().Add(new Employee
             {
-                EmpNo = 99,
+                Id = Guid.NewGuid(),
                 FirstName = "Person",
                 LastName = "ToDelete",
                 BirthDate = new DateTime(2019, 10, 13),

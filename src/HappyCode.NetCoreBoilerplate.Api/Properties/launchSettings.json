@@ -2,7 +2,6 @@
   "profiles": {
     "HappyCode.NetCoreBoilerplate.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "api-doc",
       "environmentVariables": {
         "ASPNETCORE_URLS": "http://localhost:5000",

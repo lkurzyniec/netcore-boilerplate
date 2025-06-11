@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,13 +30,13 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         }
 
         [Theory, AutoData]
-        public async Task GetByIdAsync_should_return_expected_employee(int empId)
+        public async Task GetByIdAsync_should_return_expected_employee(Guid empId)
         {
             //given
             var employee = _fixture.Build<Employee>()
                 .Without(x => x.LeadingDepartments)
                 .Without(x => x.Department)
-                .With(x => x.EmpNo, empId)
+                .With(x => x.Id, empId)
                 .Create();
             _dbContextMock.Setup(x => x.Employees).Returns(new[] { employee }.GetMockDbSetObject());
 
@@ -63,7 +64,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             //then
             var theOldest = employees.OrderBy(x => x.BirthDate).First();
 
-            emp.Id.Should().Be(theOldest.EmpNo);
+            emp.Id.Should().Be(theOldest.Id);
             emp.LastName.Should()
                 .NotBeNullOrEmpty()
                 .And.Be(theOldest.LastName);
@@ -76,7 +77,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             _dbContextMock.Setup(x => x.Employees).Returns(Enumerable.Empty<Employee>().GetMockDbSetObject);
 
             //when
-            var result = await _repository.DeleteByIdAsync(99, TestContext.Current.CancellationToken);
+            var result = await _repository.DeleteByIdAsync(Guid.NewGuid(), TestContext.Current.CancellationToken);
 
             //then
             result.Should().Be(false);
@@ -85,13 +86,13 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         }
 
         [Theory, AutoData]
-        public async Task DeleteByIdAsync_should_return_true_and_save_when_employee_found(int empId)
+        public async Task DeleteByIdAsync_should_return_true_and_save_when_employee_found(Guid empId)
         {
             //given
             var employees = _fixture.Build<Employee>()
                 .Without(x => x.LeadingDepartments)
                 .Without(x => x.Department)
-                .With(x => x.EmpNo, empId)
+                .With(x => x.Id, empId)
                 .CreateMany(1);
 
             _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());
@@ -105,7 +106,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             //then
             result.Should().Be(true);
 
-            _dbContextMock.Verify(x => x.Employees.Remove(It.Is<Employee>(y => y.EmpNo == empId)), Times.Once);
+            _dbContextMock.Verify(x => x.Employees.Remove(It.Is<Employee>(y => y.Id == empId)), Times.Once);
             _dbContextMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
 
@@ -131,7 +132,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         }
 
         [Theory, AutoData]
-        public async Task UpdateAsync_should_return_null_when_employee_not_found(int empId, EmployeePutDto employeePutDto)
+        public async Task UpdateAsync_should_return_null_when_employee_not_found(Guid empId, EmployeePutDto employeePutDto)
         {
             //given
             _dbContextMock.Setup(x => x.Employees).Returns(Enumerable.Empty<Employee>().GetMockDbSetObject);
@@ -146,13 +147,13 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         }
 
         [Theory, AutoData]
-        public async Task UpdateAsync_should_update_the_entity_and_save_when_employee_found(int empId, EmployeePutDto employeePutDto)
+        public async Task UpdateAsync_should_update_the_entity_and_save_when_employee_found(Guid empId, EmployeePutDto employeePutDto)
         {
             //given
             var employees = _fixture.Build<Employee>()
                 .Without(x => x.LeadingDepartments)
                 .Without(x => x.Department)
-                .With(x => x.EmpNo, empId)
+                .With(x => x.Id, empId)
                 .CreateMany(1);
 
             _dbContextMock.Setup(x => x.Employees).Returns(employees.GetMockDbSetObject());

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -46,10 +47,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         public async Task Get_should_call_GetByIdAsync_onto_repository()
         {
             //given
-            const int empId = 11;
+            Guid empId = Guid.NewGuid();
 
             //when
-            await Controller.GetAsync(11, TestContext.Current.CancellationToken);
+            await Controller.GetAsync(Guid.NewGuid(), TestContext.Current.CancellationToken);
 
             //then
             _employeeRepositoryMock.Verify(x => x.GetByIdAsync(empId, It.IsAny<CancellationToken>()), Times.Once);
@@ -59,11 +60,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         public async Task Get_should_return_NotFound_when_repository_return_null()
         {
             //given
-            _employeeRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+            _employeeRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => null);
 
             //when
-            var result = await Controller.GetAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
+            var result = await Controller.GetAsync(Guid.NewGuid(), TestContext.Current.CancellationToken) as StatusCodeResult;
 
             //then
             result.Should().NotBeNull();
@@ -74,10 +75,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         public async Task Get_should_return_Ok_with_expected_result_when_repository_return_object()
         {
             //given
-            const int empId = 22;
+            Guid empId = Guid.NewGuid();
             const string lastName = "Smith";
 
-            _employeeRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+            _employeeRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new EmployeeDto
                 {
                     Id = empId,
@@ -85,7 +86,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 });
 
             //when
-            var result = await Controller.GetAsync(1, TestContext.Current.CancellationToken) as OkObjectResult;
+            var result = await Controller.GetAsync(Guid.NewGuid(), TestContext.Current.CancellationToken) as OkObjectResult;
 
             //then
             result.Should().NotBeNull();
@@ -102,10 +103,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         public async Task Delete_should_call_DeleteByIdAsync_onto_repository()
         {
             //given
-            const int empId = 11;
+            Guid empId = Guid.NewGuid();
 
             //when
-            await Controller.DeleteAsync(11, TestContext.Current.CancellationToken);
+            await Controller.DeleteAsync(Guid.NewGuid(), TestContext.Current.CancellationToken);
 
             //then
             _employeeRepositoryMock.Verify(x => x.DeleteByIdAsync(empId, It.IsAny<CancellationToken>()), Times.Once);
@@ -115,11 +116,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         public async Task Delete_should_return_NotFound_when_repository_return_false()
         {
             //given
-            _employeeRepositoryMock.Setup(x => x.DeleteByIdAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+            _employeeRepositoryMock.Setup(x => x.DeleteByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(false);
 
             //when
-            var result = await Controller.DeleteAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
+            var result = await Controller.DeleteAsync(Guid.NewGuid(), TestContext.Current.CancellationToken) as StatusCodeResult;
 
             //then
             result.Should().NotBeNull();
@@ -130,11 +131,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         public async Task Delete_should_return_NoContent_when_repository_return_true()
         {
             //given
-            _employeeRepositoryMock.Setup(x => x.DeleteByIdAsync(It.IsAny<int>(), It.IsAny<CancellationToken>()))
+            _employeeRepositoryMock.Setup(x => x.DeleteByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(true);
 
             //when
-            var result = await Controller.DeleteAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
+            var result = await Controller.DeleteAsync(Guid.NewGuid(), TestContext.Current.CancellationToken) as StatusCodeResult;
 
             //then
             result.Should().NotBeNull();
@@ -142,7 +143,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         }
 
         [Theory, AutoData]
-        public async Task Put_should_return_NotFound_when_repository_return_null(int empId, EmployeePutDto employeePutDto)
+        public async Task Put_should_return_NotFound_when_repository_return_null(Guid empId, EmployeePutDto employeePutDto)
         {
             //given
             _employeeRepositoryMock.Setup(x => x.UpdateAsync(empId, employeePutDto, It.IsAny<CancellationToken>()))
@@ -159,7 +160,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
         }
 
         [Theory, AutoData]
-        public async Task Put_should_return_Ok_with_result_when_update_finished_with_success(int empId, EmployeePutDto employeePutDto, EmployeeDto employee)
+        public async Task Put_should_return_Ok_with_result_when_update_finished_with_success(Guid empId, EmployeePutDto employeePutDto, EmployeeDto employee)
         {
             //given
             _employeeRepositoryMock.Setup(x => x.UpdateAsync(empId, employeePutDto, It.IsAny<CancellationToken>()))
