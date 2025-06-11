@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.IdentityModel.Tokens;
 
 namespace HappyCode.NetCoreBoilerplate.Core.Repositories
@@ -23,8 +25,12 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
 
     internal class DepartmentRepository : RepositoryBase<Department>, IDepartmentRepository
     {
-        public DepartmentRepository(EmployeesContext dbContext) : base(dbContext)
+
+        private readonly HybridCache _distributedCache;
+
+        public DepartmentRepository(EmployeesContext dbContext, HybridCache cache) : base(dbContext, cache)
         {
+            _distributedCache = cache;
         }
 
         public async Task<List<DepartmentDto>> GetAllAsync(CancellationToken cancellationToken)

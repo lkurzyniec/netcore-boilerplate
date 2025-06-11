@@ -10,6 +10,9 @@ using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using HappyCode.NetCoreBoilerplate.Core.UnitTests.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
+using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using Xunit;
 
@@ -21,12 +24,14 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
 
         private readonly EmployeeRepository _repository;
         private readonly Mock<EmployeesContext> _dbContextMock;
+        private readonly HybridCache _cache;
 
         public EmployeeRepositoryTests()
         {
             _dbContextMock = new Mock<EmployeesContext>(new DbContextOptionsBuilder<EmployeesContext>().Options);
-
-            _repository = new EmployeeRepository(_dbContextMock.Object);
+            var distributedCacheMock = new Mock<IDistributedCache>();
+            var memoryCacheMock = new Mock<IMemoryCache>();
+            _repository = new EmployeeRepository(_dbContextMock.Object, _cache);
         }
 
         [Theory, AutoData]

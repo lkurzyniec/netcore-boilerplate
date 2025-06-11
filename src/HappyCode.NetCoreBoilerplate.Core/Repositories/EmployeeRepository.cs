@@ -1,10 +1,12 @@
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HappyCode.NetCoreBoilerplate.Core.Models;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Extensions;
+using HappyCode.NetCoreBoilerplate.Core.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.IdentityModel.Tokens;
 
 namespace HappyCode.NetCoreBoilerplate.Core.Repositories
@@ -22,10 +24,14 @@ namespace HappyCode.NetCoreBoilerplate.Core.Repositories
 
     internal class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
-        public EmployeeRepository(EmployeesContext dbContext) : base(dbContext)
-        {
 
+        private readonly HybridCache _distributedCache;
+
+        public EmployeeRepository(EmployeesContext dbContext, HybridCache cache) : base(dbContext, cache)
+        {
+            _distributedCache = cache;
         }
+
 
         public async Task<List<EmployeeDto>> GetAllAsync(CancellationToken cancellationToken)
         {

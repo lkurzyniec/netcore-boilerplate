@@ -65,16 +65,26 @@ namespace HappyCode.NetCoreBoilerplate.Api
 
             services.Configure<ApiKeySettings>(_configuration.GetSection("ApiKey"));
             services.AddOpenApi(_configuration);
+            
+            // Configure Redis cache
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = _configuration.GetSection("Redis")["Configuration"];
+            });
+            
+            // Configure HybridCache (fixed nested AddHybridCache call)
             services.AddHybridCache(o =>
             {
-               o.DefaultEntryOptions = new HybridCacheEntryOptions
+                o.DefaultEntryOptions = new HybridCacheEntryOptions
                 {
                     LocalCacheExpiration = TimeSpan.FromMinutes(10),
                     Expiration = TimeSpan.FromMinutes(5)
                 };
-
+                
+                // Configure to use the distributed cache (Redis)               
+                o.DisableCompression = false;
+                o.MaximumPayloadBytes = 1024 * 1024 * 5; // 5MB max payload size
             });
-      
 
             //services.Configure<PingWebsiteSettings>(_configuration.GetSection("PingWebsite"));
             //services.AddHttpClient(nameof(PingWebsiteBackgroundService));

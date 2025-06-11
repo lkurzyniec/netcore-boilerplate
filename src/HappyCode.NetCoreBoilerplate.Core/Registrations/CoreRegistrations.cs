@@ -1,6 +1,7 @@
 using HappyCode.NetCoreBoilerplate.Core.Providers;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
 using HappyCode.NetCoreBoilerplate.Core.Services;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HappyCode.NetCoreBoilerplate.Core.Registrations

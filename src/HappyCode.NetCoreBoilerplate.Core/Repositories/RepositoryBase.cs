@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace HappyCode.NetCoreBoilerplate.Core.Repositories;
 
@@ -10,38 +11,73 @@ internal abstract class RepositoryBase<TEntity>
     where TEntity : class
 {
     protected EmployeesContext DbContext { get; }
+    private readonly HybridCache _cache;
+    private readonly string _entityTypeName;
 
-    protected RepositoryBase(EmployeesContext dbContext)
+    protected RepositoryBase(EmployeesContext dbContext, HybridCache cache)
     {
         DbContext = dbContext;
+        _cache = cache;
+        _entityTypeName = typeof(TEntity).Name;
+    }
+
+    // Helper methods for cache key generation
+    protected virtual string GetAllCacheKey() => $"{_entityTypeName}:All";
+    protected virtual string GetByIdCacheKey<TKey>(TKey id) => $"{_entityTypeName}:{id}";
+    protected virtual string GetDetailsCacheKey<TKey>(TKey id) => $"{_entityTypeName}:Details:{id}";
+
+    // Invalidate all cache entries for this entity type
+    protected virtual async Task InvalidateCacheAsync()
+    {
+        await _cache.RemoveAsync(GetAllCacheKey());
+    }
+
+    // Invalidate cache entry for a specific entity
+    protected virtual async Task InvalidateEntityCacheAsync<TKey>(TKey id)
+    {
+        await _cache.RemoveAsync(GetByIdCacheKey(id));
+        await _cache.RemoveAsync(GetDetailsCacheKey(id));
+        await InvalidateCacheAsync(); // Also invalidate the collection cache
     }
 
     protected async Task<List<TDto>> GetAllAsync<TDto>(
       Func<TEntity, TDto> mapper,
       CancellationToken cancellationToken)
     {
-        var entities = await DbContext.Set<TEntity>()
-            .AsNoTracking()
-            .ToListAsync(cancellationToken);
+        var cacheKey = GetAllCacheKey();
 
-        return entities.Select(mapper).ToList();
+        // Use GetOrCreateAsync to get from cache or create if not found
+        return await _cache.GetOrCreateAsync(cacheKey, async entry =>
+        {
+            var entities = await DbContext.Set<TEntity>()
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
+
+            return entities.Select(mapper).ToList();
+        });
     }
 
-    // Generic method for GetByIdAsync
+    // Generic method for GetByIdAsync with GetOrCreateAsync
     protected async Task<TDto> GetByIdAsync<TDto, TKey>(
         TKey id,
         Expression<Func<TEntity, bool>> idPredicate,
         Func<TEntity, TDto> mapper,
         CancellationToken cancellationToken)
     {
-        var entity = await DbContext.Set<TEntity>()
-            .AsNoTracking()
-            .SingleOrDefaultAsync(idPredicate, cancellationToken);
+        var cacheKey = GetByIdCacheKey(id);
 
-        return entity == null ? default : mapper(entity);
+        // Use GetOrCreateAsync to get from cache or create if not found
+        return await _cache.GetOrCreateAsync(cacheKey, async entry =>
+        {
+            var entity = await DbContext.Set<TEntity>()
+                .AsNoTracking()
+                .SingleOrDefaultAsync(idPredicate, cancellationToken);
+
+            return entity == null ? default : mapper(entity);
+        });
     }
 
-    // Generic method for GetByIdWithDetailsAsync
+    // Generic method for GetByIdWithDetailsAsync with GetOrCreateAsync
     protected async Task<TDto> GetByIdWithDetailsAsync<TDto, TKey>(
         TKey id,
         Expression<Func<TEntity, bool>> idPredicate,
@@ -49,12 +85,18 @@ internal abstract class RepositoryBase<TEntity>
         Func<TEntity, TDto> mapper,
         CancellationToken cancellationToken)
     {
-        var query = DbContext.Set<TEntity>().AsQueryable();
-        query = includeFunc(query);
+        var cacheKey = GetDetailsCacheKey(id);
 
-        var entity = await query.SingleOrDefaultAsync(idPredicate, cancellationToken);
+        // Use GetOrCreateAsync to get from cache or create if not found
+        return await _cache.GetOrCreateAsync(cacheKey, async entry =>
+        {
+            var query = DbContext.Set<TEntity>().AsQueryable();
+            query = includeFunc(query);
 
-        return entity == null ? default : mapper(entity);
+            var entity = await query.SingleOrDefaultAsync(idPredicate, cancellationToken);
+
+            return entity == null ? default : mapper(entity);
+        });
     }
 
     protected async Task<TDto> InsertAsync<TDto, TCreateDto>(
@@ -67,6 +109,9 @@ internal abstract class RepositoryBase<TEntity>
 
         await DbContext.Set<TEntity>().AddAsync(entity, cancellationToken);
         await DbContext.SaveChangesAsync(cancellationToken);
+
+        // Invalidate cache after insert
+        await InvalidateCacheAsync();
 
         return resultMapper(entity);
     }
@@ -89,6 +134,10 @@ internal abstract class RepositoryBase<TEntity>
         updateAction(entity, updateDto);
 
         await DbContext.SaveChangesAsync(cancellationToken);
+
+        // Invalidate cache after update
+        await InvalidateEntityCacheAsync(id);
+
         return resultMapper(entity);
     }
 
@@ -105,7 +154,15 @@ internal abstract class RepositoryBase<TEntity>
             return false;
 
         DbContext.Set<TEntity>().Remove(entity);
-        return await DbContext.SaveChangesAsync(cancellationToken) > 0;
+        var result = await DbContext.SaveChangesAsync(cancellationToken) > 0;
+
+        // Invalidate cache after delete
+        if (result)
+        {
+            await InvalidateEntityCacheAsync(id);
+        }
+
+        return result;
     }
 
     protected void AssignIfNotNull<TValue>(TEntity entity, Action<TValue> setter, TValue? source) where TValue : struct

@@ -20,6 +20,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageVersion>
     <PackageVersion Include="Microsoft.Extensions.Caching.Hybrid" Version="9.6.0" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.6" />
     <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.1.0" />
     <PackageVersion Include="Microsoft.FeatureManagement" Version="4.1.0" />
     <PackageVersion Include="MinimalApis.Extensions" Version="0.11.0" />
