@@ -3,6 +3,9 @@ using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 {
@@ -38,6 +41,17 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
                 pretender = random.Next(100, 600);
             } while (!Enum.IsDefined(typeof(HttpStatusCode), pretender));
             return Task.FromResult<IActionResult>(Ok($"{pretender} ({(HttpStatusCode)pretender})"));
+        }
+
+        [HttpGet("nth-string")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public IActionResult GetNthString(List<string> strings, int n)
+        {
+            if (n < 0 || n >= strings.Count)
+            {
+                return BadRequest("Index must be non-negative and less than the size of the collection.");
+            }
+            return Ok(strings[n]);
         }
     }
 }
