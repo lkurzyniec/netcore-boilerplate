@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;

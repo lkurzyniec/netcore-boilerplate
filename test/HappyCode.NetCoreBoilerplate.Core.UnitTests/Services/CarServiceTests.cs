@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Models;
 using HappyCode.NetCoreBoilerplate.Core.Services;
 using HappyCode.NetCoreBoilerplate.Core.UnitTests.Extensions;

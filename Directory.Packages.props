@@ -34,7 +34,7 @@
     <PackageVersion Include="AutoFixture.Xunit3" Version="4.19.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="coverlet.msbuild" Version="6.0.4" />
-    <PackageVersion Include="FluentAssertions" Version="[7.2.0]" />
+    <PackageVersion Include="AwesomeAssertions" Version="9.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="9.0.6" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.6" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />

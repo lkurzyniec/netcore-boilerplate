@@ -1,5 +1,5 @@
 using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Logging;
 using HappyCode.NetCoreBoilerplate.Core.Providers;
 using Serilog.Events;

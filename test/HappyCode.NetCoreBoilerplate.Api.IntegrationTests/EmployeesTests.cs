@@ -1,5 +1,5 @@
 using System.Net;
-using FluentAssertions;
+using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Extensions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;

@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure;
 using HappyCode.NetCoreBoilerplate.Api.IntegrationTests.Infrastructure.Fakes;
 

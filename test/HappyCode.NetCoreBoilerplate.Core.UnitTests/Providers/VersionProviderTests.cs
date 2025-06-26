@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Core.Providers;
 using Xunit;
 

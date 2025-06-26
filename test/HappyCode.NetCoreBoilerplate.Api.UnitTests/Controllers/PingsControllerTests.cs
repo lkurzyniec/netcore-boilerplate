@@ -1,7 +1,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using AutoFixture.Xunit3;
-using FluentAssertions;
+using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using Microsoft.AspNetCore.Http;

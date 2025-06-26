@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using FluentAssertions;
+using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Filters;
 using HappyCode.NetCoreBoilerplate.Core;

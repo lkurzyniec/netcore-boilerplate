@@ -59,14 +59,14 @@ At the end, You are in charge, so it's your decision to which path you would lik
     * [Microsoft.Data.Sqlite](https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/)
 1. Tests
     * Integration tests with InMemory database
-        * [FluentAssertions]
+        * [AwesomeAssertions]
         * [xUnit.v3]
         * [Verify](https://github.com/VerifyTests/Verify/)
         * [Verify.Http](https://github.com/VerifyTests/Verify.Http)
         * TestServer
     * Unit tests
         * [AutoFixture](https://github.com/AutoFixture/AutoFixture)
-        * [FluentAssertions]
+        * [AwesomeAssertions]
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
         * [xUnit.v3]
@@ -327,5 +327,5 @@ You are also very welcome to acknowledge my time by buying me a small coffee.
 
 [![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/lato-blue.png)](https://www.buymeacoffee.com/lkurzyniec)
 
-[FluentAssertions]: https://fluentassertions.com/
+[AwesomeAssertions]: https://awesomeassertions.org/
 [xUnit.v3]: https://xunit.net/
