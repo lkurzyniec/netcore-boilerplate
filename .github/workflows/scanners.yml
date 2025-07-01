@@ -43,14 +43,14 @@ jobs:
           version: v0.57.1
 
       - name: Run Trivy scanner (table)
-        uses: aquasecurity/trivy-action@0.30.0
+        uses: aquasecurity/trivy-action@0.31.0
         with:
           scan-type: fs
           trivy-config: trivy.yaml
           skip-setup-trivy: true
 
       - name: Run Trivy scanner (sarif)
-        uses: aquasecurity/trivy-action@0.30.0
+        uses: aquasecurity/trivy-action@0.31.0
         continue-on-error: ${{ github.ref == 'refs/heads/master' }}
         with:
           scan-type: fs
