@@ -52,7 +52,6 @@ At the end, You are in charge, so it's your decision to which path you would lik
 1. [FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet) (Feature Flags, Feature Toggles)
 1. [HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
 1. [EF Core](https://docs.microsoft.com/ef/)
-    * ~~[MySQL provider from Pomelo Foundation](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)~~ (Removed in [PR488](https://github.com/lkurzyniec/netcore-boilerplate/pull/488))
     * [MySQL project (Oracle)](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core.html)
     * [MsSQL from Microsoft](https://github.com/aspnet/EntityFrameworkCore/)
 1. [Dapper](https://github.com/DapperLib/Dapper)
