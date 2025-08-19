@@ -35,7 +35,7 @@
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="coverlet.msbuild" Version="6.0.4" />
     <PackageVersion Include="AwesomeAssertions" Version="9.1.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="9.0.7" />
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="9.0.8" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.8" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="MockQueryable.Moq" Version="7.0.3" />
