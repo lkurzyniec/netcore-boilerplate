@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" VersionOverride="9.0.8" />
+    <PackageReference Include="MySql.EntityFrameworkCore" VersionOverride="9.0.6" />
     <ProjectReference Include="..\HappyCode.NetCoreBoilerplate.BooksModule\HappyCode.NetCoreBoilerplate.BooksModule.csproj" />
     <ProjectReference Include="..\HappyCode.NetCoreBoilerplate.Core\HappyCode.NetCoreBoilerplate.Core.csproj" />
   </ItemGroup>
