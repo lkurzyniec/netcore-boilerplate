@@ -11,6 +11,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.Sqlite" />
     <PackageReference Include="Dapper" />
     <PackageReference Include="Microsoft.Data.Sqlite" />
+  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" VersionOverride="9.0.8" />
     <PackageReference Include="Microsoft.FeatureManagement" />
     <PackageReference Include="MinimalApis.Extensions" />
   </ItemGroup>
