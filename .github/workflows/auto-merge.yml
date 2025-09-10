@@ -1,64 +1,42 @@
 ---
-name: Dependabot Approve and Merge
+name: Auto merge
 
 on:
-  pull_request_target:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 2 * * 1" # 02:30 on Monday
 
 permissions:
   pull-requests: write
   contents: write
-  issues: write
 
 jobs:
-  automerge:
+  auto-merge:
     name: Auto merge
     runs-on: ubuntu-latest
 
-    if: github.actor == 'dependabot[bot]'
     steps:
-      - name: Fetch config
-        id: fetch-config
+      - name: Auto merge
         env:
-          UPDATE_TYPES: ${{ vars.UPDATE_TYPES }}
-          OMIT_NAMES: ${{ vars.OMIT_NAMES }}
+          SLEEP_TIME: ${{ vars.AUTO_MERGE_SLEEP_TIME }}
         run: |
-          arr=(${UPDATE_TYPES//;/ })
-          count=${#arr[@]}
-          arr2=(${OMIT_NAMES//;/ })
+          counter=0
+          gh pr list --label "auto-merged" --json number,title | jq -c '.[]' | while read pr; do
+            number=$(echo $pr | jq -r '.number')
+            title=$(echo $pr | jq -r '.title')
 
-          echo "Types: ${arr[*]}"
-          echo "Omit: ${arr2[*]}"
+            echo "PR #$number: $title"
+            gh pr checkout $number
+            git rebase main
+            git push --force-with-lease
+            echo "Rebase completed!"
 
-          echo "types=${arr[*]}" >> $GITHUB_OUTPUT
-          echo "count=${count}" >> $GITHUB_OUTPUT
-          echo "omit=${arr2[*]}" >> $GITHUB_OUTPUT
+            echo "Time to a nap..."
+            sleep "${SLEEP_TIME}m"
+            echo "Break finished!"
+            ((counter++))
+          done
 
-      - name: Fetch Dependabot metadata
-        id: dependabot-metadata
-        if: fromJson(steps.fetch-config.outputs.count) > 0
-        uses: dependabot/fetch-metadata@v2.4.0
-
-      - name: Approve and auto-merge
-        id: auto-merge
-        if: |
-          fromJson(steps.fetch-config.outputs.count) > 0
-          && contains(steps.fetch-config.outputs.types, steps.dependabot-metadata.outputs.update-type)
-          && !contains(steps.fetch-config.outputs.omit, steps.dependabot-metadata.outputs.dependency-names)
-        run: |
-          gh pr review --approve "$PR_URL"
-          gh pr merge --auto --squash "$PR_URL"
-          gh pr edit "$PR_URL" --add-label "auto-merged"
-          echo "STATUS=true" >> $GITHUB_OUTPUT
+          echo "### Processed ${COUNTER} PRs :robot:" >> $GITHUB_STEP_SUMMARY
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Write summary
-        run: |
-          result="skip. :x:"
-          if [ "${STATUS}" == "true" ]; then
-              result=" auto-merge! :white_check_mark:"
-          fi
-          echo "### Done with ${result}" >> $GITHUB_STEP_SUMMARY
-        env:
-          STATUS: ${{ steps.auto-merge.outputs.STATUS }}
