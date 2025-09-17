@@ -19,7 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Dapper" Version="2.1.66" />
-    <PackageVersion Include="Microsoft.Data.Sqlite" Version="9.0.8" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="9.0.9" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
     <PackageVersion Include="MySql.EntityFrameworkCore" Version="9.0.6" />
   </ItemGroup>

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
     <ProjectReference Include="..\..\src\HappyCode.NetCoreBoilerplate.Api\HappyCode.NetCoreBoilerplate.Api.csproj" />
   </ItemGroup>
