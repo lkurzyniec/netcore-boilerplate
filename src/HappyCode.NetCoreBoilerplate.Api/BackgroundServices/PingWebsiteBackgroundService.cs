@@ -14,7 +14,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
 
     public class PingWebsiteBackgroundService : BackgroundService, IPingService
     {
-        private readonly PeriodicTimer _timer;
+        private PeriodicTimer _timer;
         private readonly HttpClient _client;
         private readonly ILogger<PingWebsiteBackgroundService> _logger;
         private readonly IOptions<PingWebsiteSettings> _configuration;
@@ -26,15 +26,15 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
             ILogger<PingWebsiteBackgroundService> logger,
             IOptions<PingWebsiteSettings> configuration)
         {
-            _client = httpClientFactory.CreateClient(nameof(PingWebsiteBackgroundService));
             _logger = logger;
             _configuration = configuration;
 
-             _timer = new PeriodicTimer(TimeSpan.FromMinutes(_configuration.Value.TimeIntervalInMinutes));
+            _client = httpClientFactory.CreateClient(nameof(PingWebsiteBackgroundService));
         }
 
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
+            _timer = new PeriodicTimer(TimeSpan.FromMinutes(_configuration.Value.TimeIntervalInMinutes));
             while (!cancellationToken.IsCancellationRequested)
             {
                 _logger.LogInformation("{BackgroundService} running at '{Date}', pinging '{URL}'",
@@ -53,6 +53,13 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
                 await _timer.WaitForNextTickAsync(cancellationToken);
             }
             _timer.Dispose();
+        }
+
+        public override async Task StopAsync(CancellationToken cancellationToken)
+        {
+            await base.StopAsync(cancellationToken);
+            _timer?.Dispose();
+            _client?.Dispose();
         }
     }
 }
