@@ -7,16 +7,17 @@
     {
       "name": "Debug API",
       "type": "coreclr",
+      "console": "externalTerminal",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/net8.0/HappyCode.NetCoreBoilerplate.Api.dll",
+      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/net9.0/HappyCode.NetCoreBoilerplate.Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api",
       "stopAtEntry": false,
       "serverReadyAction": {
         "action": "openExternally",
         "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-        "uriFormat": "%s/swagger"
+        "uriFormat": "%s/api-doc"
       },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development",
