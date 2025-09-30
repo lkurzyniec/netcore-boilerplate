@@ -1,0 +1,29 @@
+<Solution>
+  <Folder Name="/ci/">
+    <File Path=".github/workflows/codeql-analysis.yml" />
+    <File Path=".github/workflows/docker-build.yml" />
+    <File Path=".github/workflows/dotnetcore.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="docker-compose.yml" />
+    <File Path="dockerfile" />
+    <File Path="HappyCode.NetCoreBoilerplate.ruleset" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj" />
+    <Project Path="src/HappyCode.NetCoreBoilerplate.BooksModule/HappyCode.NetCoreBoilerplate.BooksModule.csproj" />
+    <Project Path="src/HappyCode.NetCoreBoilerplate.Core/HappyCode.NetCoreBoilerplate.Core.csproj" />
+    <Project Path="src/HappyCode.NetCoreBoilerplate.Db/HappyCode.NetCoreBoilerplate.Db.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests/HappyCode.NetCoreBoilerplate.Api.IntegrationTests.csproj" />
+    <Project Path="test/HappyCode.NetCoreBoilerplate.Api.UnitTests/HappyCode.NetCoreBoilerplate.Api.UnitTests.csproj" />
+    <Project Path="test/HappyCode.NetCoreBoilerplate.ArchitecturalTests/HappyCode.NetCoreBoilerplate.ArchitecturalTests.csproj" />
+    <Project Path="test/HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests/HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests.csproj" />
+    <Project Path="test/HappyCode.NetCoreBoilerplate.Core.UnitTests/HappyCode.NetCoreBoilerplate.Core.UnitTests.csproj" />
+  </Folder>
+</Solution>
