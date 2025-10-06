@@ -37,7 +37,7 @@
     <PackageVersion Include="AwesomeAssertions" Version="9.2.0" />
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="9.0.9" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.9" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
     <PackageVersion Include="MockQueryable.Moq" Version="8.0.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="Moq.AutoMock" Version="3.5.0" />
