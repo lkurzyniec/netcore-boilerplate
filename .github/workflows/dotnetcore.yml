@@ -37,14 +37,12 @@ jobs:
           dotnet-version: 9.x
 
       - name: Build sln
-        run: dotnet build -c Release ./HappyCode.NetCoreBoilerplate.slnx
-
-      - name: Test sln
-        run: dotnet test -c Release --no-build ./HappyCode.NetCoreBoilerplate.slnx
+        run: dotnet build ./HappyCode.NetCoreBoilerplate.slnx
 
   collect-unit-test-coverage:
     name: Unit test code coverage
     runs-on: ubuntu-latest
+    needs: build-and-test
 
     steps:
       - uses: actions/checkout@v5
@@ -67,6 +65,7 @@ jobs:
   collect-integration-test-coverage:
     name: Integration test code coverage
     runs-on: ubuntu-latest
+    needs: build-and-test
 
     steps:
       - uses: actions/checkout@v5

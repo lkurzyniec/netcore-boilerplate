@@ -46,8 +46,8 @@ WORKDIR /work/HappyCode.NetCoreBoilerplate.Api
 ENV DOTNET_NOLOGO=true
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-RUN dotnet publish -c Release -r linux-musl-x64 \
-  -o /app --no-restore
+RUN dotnet publish -r linux-musl-x64 \
+  -o /app --no-restore -p:WarningLevel=0
 
 # --------------
 
