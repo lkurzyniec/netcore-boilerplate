@@ -84,6 +84,8 @@ namespace HappyCode.NetCoreBoilerplate.Api
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseMiddlewareForFeature<ConnectionInfoMiddleware>(FeatureFlags.ConnectionInfo.ToString());
 
+            app.UseSerilogRequestLogging();
+
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {

@@ -3,6 +3,8 @@ using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Logging;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Core;
+using Serilog.Events;
+using Serilog.Filters;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
 {
@@ -14,7 +16,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
             var configuration = LoadAppConfiguration();
             return new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
-                .Enrich.With(new VersionEnricher(new ()))
+                .Filter.ByExcluding(Matching.WithProperty("RequestPath", "/"))
+                .Filter.ByIncludingOnly(e => e.Properties.TryGetValue("RequestPath", out var path) ? path.ToString().Contains("/healthz") && e.Level >= LogEventLevel.Warning : true)
+                .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Warning)
+                .MinimumLevel.Override("Microsoft.AspNetCore.Routing.EndpointMiddleware", LogEventLevel.Warning)
+                .Enrich.With(new VersionEnricher(new()))
                 .CreateLogger();
         }
 

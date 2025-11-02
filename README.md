@@ -69,7 +69,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
         * [xUnit.v3]
-    * [Microsoft.Testing.Platform (MTP)](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-intro)
+    * [Microsoft.Testing.Platform (MTP)](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-intro) ([PR551](https://github.com/lkurzyniec/netcore-boilerplate/pull/551))
 1. Security
     * [Mend Bolt (WhiteSource Security Check)](https://www.mend.io/free-developer-tools/bolt/)
     * [NuGet Audit](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages)

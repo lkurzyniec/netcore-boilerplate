@@ -52,14 +52,13 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
                 }
                 await _timer.WaitForNextTickAsync(cancellationToken);
             }
-            _timer.Dispose();
         }
 
-        public override async Task StopAsync(CancellationToken cancellationToken)
+        public override void Dispose()
         {
-            await base.StopAsync(cancellationToken);
             _timer?.Dispose();
             _client?.Dispose();
+            base.Dispose();
         }
     }
 }
