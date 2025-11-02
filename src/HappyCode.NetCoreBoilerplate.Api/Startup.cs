@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations;
@@ -24,6 +25,7 @@ using Scalar.AspNetCore;
 
 namespace HappyCode.NetCoreBoilerplate.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         private readonly IConfiguration _configuration;

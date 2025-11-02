@@ -69,6 +69,7 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [Moq](https://github.com/moq/moq4)
         * [Moq.AutoMock](https://github.com/moq/Moq.AutoMocker)
         * [xUnit.v3]
+    * [Microsoft.Testing.Platform (MTP)](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-intro)
 1. Security
     * [Mend Bolt (WhiteSource Security Check)](https://www.mend.io/free-developer-tools/bolt/)
     * [NuGet Audit](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages)
@@ -84,7 +85,8 @@ At the end, You are in charge, so it's your decision to which path you would lik
     * Code analysis rule set [HappyCode.NetCoreBoilerplate.ruleset](HappyCode.NetCoreBoilerplate.ruleset)
     * Code analysis with [CodeQL](https://codeql.github.com/)
     * Code coverage
-        * [Coverlet](https://github.com/tonerdo/coverlet)
+        * [MTP Code coverage extension](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-extensions-code-coverage)
+        * [ReportGenerator](https://github.com/danielpalme/ReportGenerator)
         * [Codecov](https://codecov.io/)
     * [EditorConfig](https://editorconfig.org/) ([.editorconfig](.editorconfig))
 1. [Docker](https://www.docker.com/)

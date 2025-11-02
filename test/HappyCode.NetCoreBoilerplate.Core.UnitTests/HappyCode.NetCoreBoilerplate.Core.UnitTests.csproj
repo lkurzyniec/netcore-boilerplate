@@ -1,8 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <RunSettingsFilePath>$(MSBuildProjectDirectory)\HappyCode.NetCoreBoilerplate.Core.UnitTests.runsettings</RunSettingsFilePath>
-  </PropertyGroup>
-  
   <ItemGroup>
     <PackageReference Include="AutoFixture" />
     <PackageReference Include="AutoFixture.Xunit3" />

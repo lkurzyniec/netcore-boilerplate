@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "HappyCode.NetCoreBoilerplate.Core.UnitTests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "TEST_ENV": "TEST_VALUE",
+        "HC_SHA": "36b90293",
+        "HC_VERSION": "9.9.9"
+      }
+    }
+  }
+}
