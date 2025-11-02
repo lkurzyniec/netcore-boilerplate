@@ -1,8 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <RunSettingsFilePath>$(MSBuildProjectDirectory)\HappyCode.NetCoreBoilerplate.Api.UnitTests.runsettings</RunSettingsFilePath>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AutoFixture" />
     <PackageReference Include="AutoFixture.Xunit3" />
@@ -16,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
     <ProjectReference Include="..\..\src\HappyCode.NetCoreBoilerplate.Api\HappyCode.NetCoreBoilerplate.Api.csproj" />
   </ItemGroup>
 </Project>
