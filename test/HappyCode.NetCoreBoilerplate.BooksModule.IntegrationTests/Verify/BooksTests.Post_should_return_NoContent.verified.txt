@@ -1,7 +1,8 @@
 ﻿{
-  Version: 1.1,
-  Status: 204 No Content,
-  RequestMessage: {
+  Response: {
+    Status: 204 No Content
+  },
+  Request: {
     Method: POST,
     Uri: http://localhost/api/books,
     Content: {

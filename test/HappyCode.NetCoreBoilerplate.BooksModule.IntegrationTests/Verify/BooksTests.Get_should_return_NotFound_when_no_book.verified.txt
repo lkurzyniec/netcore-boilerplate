@@ -1,5 +1,6 @@
 ﻿{
-  Version: 1.1,
-  Status: 404 Not Found,
-  RequestMessage: http://localhost/api/books/2147483647
+  Response: {
+    Status: 404 Not Found
+  },
+  Request: http://localhost/api/books/2147483647
 }
