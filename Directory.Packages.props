@@ -24,7 +24,7 @@
     <PackageVersion Include="MySql.EntityFrameworkCore" Version="9.0.9" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="dbup-sqlserver" Version="6.0.0" />
+    <PackageVersion Include="dbup-sqlserver" Version="6.0.16" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.10" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="9.0.10" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.10" />
