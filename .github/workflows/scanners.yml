@@ -50,7 +50,7 @@ jobs:
         uses: aquasecurity/trivy-action@0.33.1
         with:
           scan-type: fs
-          trivy-config: trivy.yaml
+          trivy-config: trivy.yml
           skip-setup-trivy: true
 
       - name: Run Trivy scanner (sarif)
@@ -58,7 +58,7 @@ jobs:
         continue-on-error: ${{ github.ref == 'refs/heads/master' }}
         with:
           scan-type: fs
-          trivy-config: trivy.yaml
+          trivy-config: trivy.yml
           skip-setup-trivy: true
 
           format: sarif
