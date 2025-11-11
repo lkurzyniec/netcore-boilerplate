@@ -37,9 +37,6 @@ jobs:
         with:
           dotnet-version: 9.x
 
-      - name: Build
-        run: dotnet build -c Release ./src/HappyCode.NetCoreBoilerplate.Api/HappyCode.NetCoreBoilerplate.Api.csproj
-
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
@@ -53,6 +50,9 @@ jobs:
               - exclude:
                   id:
                     - cs/dereferenced-value-may-be-null
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v4
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
