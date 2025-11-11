@@ -6,7 +6,6 @@ on:
     branches: [master]
     paths-ignore:
       - '**.md'
-      - '**.yml'
 
   pull_request:
     branches: [master]
@@ -17,6 +16,9 @@ on:
 
   schedule:
     - cron: '0 6 * * Sun'
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
   codeql-analyze:
