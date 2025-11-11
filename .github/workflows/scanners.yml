@@ -17,6 +17,10 @@ on:
   schedule:
     - cron: '0 5 * * Sun'
 
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
 jobs:
   trivy-scan:
     name: Trivy scan
