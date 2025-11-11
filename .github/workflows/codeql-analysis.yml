@@ -43,7 +43,7 @@ jobs:
           config: |
             paths-ignore:
               - '**/generated/**/*.g.cs'
-              - '**/test/**'
+              - test
             query-filters:
               - exclude:
                   id:
