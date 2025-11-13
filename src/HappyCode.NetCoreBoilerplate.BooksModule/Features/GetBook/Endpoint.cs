@@ -1,6 +1,7 @@
 using HappyCode.NetCoreBoilerplate.BooksModule.Dtos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Routing;
 using System.Data;
 
@@ -13,7 +14,7 @@ internal static class Endpoint
         endpoints
             .MapGet(
                 "/{id:int}",
-                async (
+                async Task<Results<Ok<BookDto>, NotFound>> (
                     int id,
                     IDbConnection db,
                     CancellationToken ct
@@ -21,11 +22,11 @@ internal static class Endpoint
                 {
                     var book = await db.GetBookAsync(id, ct);
                     return book.Id is not null
-                        ? Results.Ok(book)
-                        : Results.NotFound();
-                })
-            .Produces<BookDto>()
-            .Produces(StatusCodes.Status404NotFound);
+                        ? TypedResults.Ok(book)
+                        : TypedResults.NotFound();
+                });
+        // .Produces<BookDto>()
+        // .Produces(StatusCodes.Status404NotFound);
         return endpoints;
     }
 }
