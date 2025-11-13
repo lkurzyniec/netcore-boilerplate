@@ -31,7 +31,7 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.Infrastructure
 
             if (authorization is null)
             {
-                return Results.Unauthorized();
+                return TypedResults.Unauthorized();
             }
 
             var key = ApiKeyRegex().Replace(authorization, string.Empty);
@@ -42,7 +42,7 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.Infrastructure
             {
                 return await next(context);
             }
-            return Results.Unauthorized();
+            return TypedResults.Unauthorized();
         }
     }
 }
