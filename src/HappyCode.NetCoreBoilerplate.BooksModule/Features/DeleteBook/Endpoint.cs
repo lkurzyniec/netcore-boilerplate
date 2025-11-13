@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Routing;
 using System.Data;
 
@@ -12,7 +13,7 @@ internal static class Endpoint
         endpoints
             .MapDelete(
                 "/{id:int}",
-                async (
+                async Task<Results<NoContent, NotFound>> (
                     int id,
                     IDbConnection db,
                     CancellationToken ct
@@ -20,11 +21,11 @@ internal static class Endpoint
                 {
                     var affected = await db.DeleteBookAsync(id, ct);
                     return affected > 0
-                        ? Results.NoContent()
-                        : Results.NotFound();
-                })
-            .Produces(StatusCodes.Status204NoContent)
-            .Produces(StatusCodes.Status404NotFound);
+                        ? TypedResults.NoContent()
+                        : TypedResults.NotFound();
+                });
+        // .Produces(StatusCodes.Status204NoContent)
+        // .Produces(StatusCodes.Status404NotFound);
         return endpoints;
     }
 }
