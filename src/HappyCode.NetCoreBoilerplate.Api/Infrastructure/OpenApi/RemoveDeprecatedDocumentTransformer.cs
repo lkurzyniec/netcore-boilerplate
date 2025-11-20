@@ -1,7 +1,6 @@
 using Microsoft.OpenApi;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.OpenApi;
-using System.Linq;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
 {
@@ -13,6 +12,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
     {
         public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
         {
+            List<string> modelsToRemove = [];
             foreach (var path in document.Paths)
             {
                 var disabledOperations = path.Value.Operations.Where(o => o.Value.Deprecated).ToDictionary();
@@ -23,22 +23,64 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
 
                 if (path.Value.Operations.Count == disabledOperations.Count)
                 {
+                    modelsToRemove.AddRange(disabledOperations.SelectMany(o => GetModels(o.Value)));
                     document.Paths.Remove(path.Key);
                     continue;
                 }
 
                 foreach (var operation in disabledOperations)
                 {
+                    modelsToRemove.AddRange(GetModels(operation.Value));
                     path.Value.Operations.Remove(operation.Key);
                     continue;
                 }
             }
 
             var tags = document.Paths.SelectMany(p => p.Value.Operations.SelectMany(o => o.Value.Tags)).Select(t => t.Target);
-            document.Tags.Where(t => !tags.Contains(t)).ToList()
+            document.Tags.Where(t => !tags.Contains(t))
                 .Select(t => document.Tags.Remove(t)).ToList();
 
+            RemoveModels(modelsToRemove, document);
+
             return Task.CompletedTask;
+        }
+
+        private static IEnumerable<string> GetModels(OpenApiOperation operation)
+        {
+            var referencedComponents =
+                operation.Responses
+                .Select(r => r.Value.Content.First().Value.Schema?.Items as OpenApiSchemaReference);
+
+            referencedComponents = referencedComponents.Concat(
+                operation.Responses
+                .Select(r => r.Value.Content.First().Value.Schema as OpenApiSchemaReference)
+            );
+
+            referencedComponents = referencedComponents.Concat(
+                [operation.RequestBody?.Content.First().Value.Schema as OpenApiSchemaReference]
+            );
+
+            referencedComponents = referencedComponents.Where(r => r is not null);
+
+            if (!referencedComponents.Any())
+            {
+                return [];
+            }
+
+            return referencedComponents.Select(r => r.Reference.Id);
+        }
+
+        private static void RemoveModels(List<string> modelsToRemove, OpenApiDocument document)
+        {
+            var nestedModels = modelsToRemove.SelectMany(m => document.Components.Schemas[m].Properties.Select(p => p.Value as OpenApiSchemaReference))
+                .Where(r => r is not null)
+                .Select(r => r.Reference.Id)
+                .ToList();
+            modelsToRemove
+                .Concat(nestedModels)
+                .Except(["HttpValidationProblemDetails"])
+                .Distinct()
+                .Select(document.Components.Schemas.Remove).ToList();
         }
     }
 }

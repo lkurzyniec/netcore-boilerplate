@@ -14,7 +14,7 @@ internal static class Endpoint
         endpoints
             .MapPost(
                 "/",
-                async Task<NoContent> (
+                async Task<Results<NoContent, BadRequest<HttpValidationProblemDetails>>> (
                     BookDto book,
                     IDbConnection db,
                     CancellationToken ct
