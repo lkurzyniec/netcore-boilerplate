@@ -8,6 +8,5 @@
     <PackageReference Include="Dapper" />
     <PackageReference Include="Microsoft.Data.Sqlite" />
     <PackageReference Include="Microsoft.FeatureManagement" />
-    <PackageReference Include="MinimalApis.Extensions" />
   </ItemGroup>
 </Project>
