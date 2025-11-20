@@ -24,8 +24,6 @@ internal static class Endpoint
                         ? TypedResults.NoContent()
                         : TypedResults.NotFound();
                 });
-        // .Produces(StatusCodes.Status204NoContent)
-        // .Produces(StatusCodes.Status404NotFound);
         return endpoints;
     }
 }

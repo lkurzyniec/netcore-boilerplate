@@ -21,7 +21,6 @@ internal static class Endpoint
                 {
                     return TypedResults.Ok(await db.GetBooksAsync(ct));
                 });
-        // .Produces<>();
         return endpoints;
     }
 }
