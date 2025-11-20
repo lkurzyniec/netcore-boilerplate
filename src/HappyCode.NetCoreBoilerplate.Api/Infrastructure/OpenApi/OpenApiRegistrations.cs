@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
 {
