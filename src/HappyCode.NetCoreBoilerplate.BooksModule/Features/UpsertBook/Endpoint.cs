@@ -23,7 +23,6 @@ internal static class Endpoint
                     await db.UpsertBookAsync(book, ct);
                     return TypedResults.NoContent();
                 })
-            // .Produces(StatusCodes.Status204NoContent)
             .WithDescription("This is UPSERT operation");
         return endpoints;
     }
