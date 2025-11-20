@@ -9,13 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="System" />
-    <Using Include="System.Collections.Generic" />
-    <Using Include="System.Threading;" />
-    <Using Include="System.Threading.Tasks" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.MySql" />
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
