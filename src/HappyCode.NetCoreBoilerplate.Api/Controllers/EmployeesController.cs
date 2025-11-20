@@ -101,7 +101,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         {
             var result = await _employeeRepository.InsertAsync(employeePostDto, cancellationToken);
             Response.Headers.Append("x-date-created", DateTime.UtcNow.ToString("s"));
-            return TypedResults.Created($"api/employees/{result.Id}", result);
+            return TypedResults.Created($"/api/employees/{result.Id}", result);
         }
 
         [HttpDelete("{id}")]

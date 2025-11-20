@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.OpenApi;
 using System.Linq;
@@ -29,15 +29,15 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
 
                 foreach (var operation in disabledOperations)
                 {
-                    path.Value.Operations.Remove(operation);
+                    path.Value.Operations.Remove(operation.Key);
                     continue;
                 }
             }
 
-            var tags = document.Paths.SelectMany(p => p.Value.Operations.SelectMany(o => o.Value.Tags));
+            var tags = document.Paths.SelectMany(p => p.Value.Operations.SelectMany(o => o.Value.Tags)).Select(t => t.Target);
             document.Tags.Where(t => !tags.Contains(t)).ToList()
                 .Select(t => document.Tags.Remove(t)).ToList();
-            
+
             return Task.CompletedTask;
         }
     }

@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics.CodeAnalysis;
@@ -20,21 +20,12 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
                 return Task.CompletedTask;
             }
 
+            operation.Security ??= [];
             operation.Security.Add(new OpenApiSecurityRequirement
             {
                 {
-                    new OpenApiSecurityScheme
-                    {
-                        Name = "ApiKey",
-                        Type = SecuritySchemeType.ApiKey,
-                        In = ParameterLocation.Header,
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "ApiKey",
-                        },
-                    },
-                    Array.Empty<string>()
+                    new OpenApiSecuritySchemeReference("ApiKey"),
+                    []
                 }
             });
             return Task.CompletedTask;
