@@ -30,7 +30,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
             return TypedResults.Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = nameof(GetAsync))]
         public async Task<Results<Ok<EmployeeDto>, NotFound>> GetAsync(
             int id,
             CancellationToken cancellationToken = default)
@@ -95,13 +95,13 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<Results<Created<EmployeeDto>, BadRequest<HttpValidationProblemDetails>>> PostAsync(
+        public async Task<Results<CreatedAtRoute<EmployeeDto>, BadRequest<HttpValidationProblemDetails>>> PostAsync(
             [FromBody] EmployeePostDto employeePostDto,
             CancellationToken cancellationToken = default)
         {
             var result = await _employeeRepository.InsertAsync(employeePostDto, cancellationToken);
             Response.Headers.Append("x-date-created", DateTime.UtcNow.ToString("s"));
-            return TypedResults.Created($"/api/employees/{result.Id}", result);
+            return TypedResults.CreatedAtRoute(result, nameof(GetAsync), new RouteValueDictionary(new { id = result.Id }));
         }
 
         [HttpDelete("{id}")]

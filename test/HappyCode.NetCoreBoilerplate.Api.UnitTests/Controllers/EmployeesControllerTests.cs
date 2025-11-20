@@ -185,7 +185,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
             var result = await Controller.PostAsync(employeePostDto, TestContext.Current.CancellationToken);
 
             //then
-            result.Result.Should().BeOfType<Created<EmployeeDto>>()
+            result.Result.Should().BeOfType<CreatedAtRoute<EmployeeDto>>()
                 .Which.Value.Should().BeEquivalentTo(employee);
 
             Controller.HttpContext.Response.Headers.TryGetValue("x-date-created", out _).Should().BeTrue();
