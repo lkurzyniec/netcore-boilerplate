@@ -10,7 +10,7 @@
       "console": "externalTerminal",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/net9.0/HappyCode.NetCoreBoilerplate.Api.dll",
+      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/net10.0/HappyCode.NetCoreBoilerplate.Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api",
       "stopAtEntry": false,

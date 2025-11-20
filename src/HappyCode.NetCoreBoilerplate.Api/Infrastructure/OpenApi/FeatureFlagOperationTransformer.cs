@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.FeatureManagement;
