@@ -23,6 +23,37 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "http://localhost:5000",
       }
+    },
+    {
+      "name": "Debug API with Symbols",
+      "type": "coreclr",
+      "console": "externalTerminal",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "justMyCode": false,
+      "symbolOptions": {
+        "searchMicrosoftSymbolServer": true,
+        "searchNuGetOrgSymbolServer": true,
+        "moduleFilter": {
+          "mode": "loadOnlyIncluded",
+          "includedModules": [
+            "Microsoft.FeatureManagement*.dll"
+          ]
+        }
+      },
+      "program": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api/bin/Debug/net10.0/HappyCode.NetCoreBoilerplate.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/HappyCode.NetCoreBoilerplate.Api",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/api-doc"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000",
+      }
     }
   ]
 }
