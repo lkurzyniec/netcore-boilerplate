@@ -1,7 +1,7 @@
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement.Mvc;
 
@@ -9,30 +9,23 @@ namespace HappyCode.NetCoreBoilerplate.Api.Controllers
 {
     [FeatureGate(FeatureFlags.DockerCompose)]
     [Route("api/cars")]
-    public class CarsController : ApiControllerBase
+    public class CarsController(ICarService carService) : ApiControllerBase
     {
-        private readonly ICarService _carService;
-
-        public CarsController(ICarService carService)
-        {
-            _carService = carService;
-        }
+        private readonly ICarService _carService = carService;
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<CarDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllAsync(
+        public async Task<Ok<IEnumerable<CarDto>>> GetAllAsync(
             CancellationToken cancellationToken = default)
         {
             var result = await _carService.GetAllSortedByPlateAsync(cancellationToken);
-            return Ok(result);
+            return TypedResults.Ok(result);
         }
 
         [FeatureGate(FeatureFlags.Santa)]
         [HttpGet("santa")]
-        [ProducesResponseType(typeof(CarDto), StatusCodes.Status200OK)]
-        public IActionResult GetSantaCar()
+        public Ok<CarDto> GetSantaCar()
         {
-            return Ok(new CarDto
+            return TypedResults.Ok(new CarDto
             {
                 Id = int.MaxValue,
                 Model = "Magic Sleigh",

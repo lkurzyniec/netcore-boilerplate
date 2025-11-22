@@ -5,7 +5,6 @@ using AwesomeAssertions;
 using HappyCode.NetCoreBoilerplate.Api.BackgroundServices;
 using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
 namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
@@ -21,29 +20,27 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Returns(code);
 
             //when
-            var result = await Controller.GetWebsitePingStatusCodeAsync(TestContext.Current.CancellationToken) as OkObjectResult;
+            var result = await Controller.GetWebsitePingStatusCodeAsync(TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
             result.StatusCode.Should().Be(StatusCodes.Status200OK);
             result.Value.Should().BeAssignableTo<string>();
-            var value = result.Value as string;
-            value.Should().Contain(code.ToString());
-            value.Should().Contain(((int)code).ToString());
+            result.Value.Should().Contain(code.ToString());
+            result.Value.Should().Contain(((int)code).ToString());
         }
 
         [Fact]
         public async Task GetRandomStatusCode_should_return_Ok_with_expected_result()
         {
             //when
-            var result = await Controller.GetRandomStatusCodeAsync(TestContext.Current.CancellationToken) as OkObjectResult;
+            var result = await Controller.GetRandomStatusCodeAsync(TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
             result.StatusCode.Should().Be(StatusCodes.Status200OK);
             result.Value.Should().BeAssignableTo<string>();
-            var value = result.Value as string;
-            value.Should().NotBeNullOrEmpty();
+            result.Value.Should().NotBeNullOrEmpty();
         }
     }
 }

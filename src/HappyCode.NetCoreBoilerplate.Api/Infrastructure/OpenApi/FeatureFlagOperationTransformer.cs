@@ -1,8 +1,7 @@
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.FeatureManagement;
-using System.Linq;
 using Microsoft.FeatureManagement.Mvc;
 
 namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
