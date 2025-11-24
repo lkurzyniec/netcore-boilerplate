@@ -36,13 +36,16 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
                 }
             }
 
-            var tags = document.Paths.SelectMany(p => p.Value.Operations.SelectMany(o => o.Value.Tags)).Select(t => t.Target);
-            document.Tags.Where(t => !tags.Contains(t))
-                .Select(t => document.Tags.Remove(t)).ToList();
-
+            RemoveTags(document);
             RemoveModels(modelsToRemove, document);
 
             return Task.CompletedTask;
+        }
+
+        private static void RemoveTags(OpenApiDocument document)
+        {
+            var tags = document.Paths.SelectMany(p => p.Value.Operations.SelectMany(o => o.Value.Tags)).Select(t => t.Target);
+            document.Tags.Where(t => !tags.Contains(t)).ToList().ForEach(t => document.Tags.Remove(t));
         }
 
         private static IEnumerable<string> GetModels(OpenApiOperation operation)

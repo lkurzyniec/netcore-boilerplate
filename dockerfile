@@ -4,7 +4,7 @@ EXPOSE 8080
 
 LABEL org.opencontainers.image.authors="Łukasz Kurzyniec" \
       org.opencontainers.image.title="HappyCode.NetCoreBoilerplate" \
-      org.opencontainers.image.description="Simple API written in .NET 9."
+      org.opencontainers.image.description="Simple API written in .NET 10."
 
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
 ENV \
