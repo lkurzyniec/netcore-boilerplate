@@ -1,6 +1,6 @@
 # netcore-boilerplate
 
-Boilerplate of API in `.NET 9`
+Boilerplate of API in `.NET 10`
 
 | GitHub | Codecov | Docker Hub |
 |:------:|:-------:|:----------:|
