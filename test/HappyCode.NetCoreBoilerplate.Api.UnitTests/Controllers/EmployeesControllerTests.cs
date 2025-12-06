@@ -7,8 +7,7 @@ using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Repositories;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.FeatureManagement;
 using Moq;
 using Xunit;
@@ -32,7 +31,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(employees);
 
             //when
-            var result = await Controller.GetAllAsync(TestContext.Current.CancellationToken) as OkObjectResult;
+            var result = await Controller.GetAllAsync(TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
@@ -63,11 +62,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(() => null);
 
             //when
-            var result = await Controller.GetAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
+            var result = await Controller.GetAsync(1, TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
-            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+            result.Result.Should().BeOfType<NotFound>();
         }
 
         [Fact]
@@ -85,13 +84,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 });
 
             //when
-            var result = await Controller.GetAsync(1, TestContext.Current.CancellationToken) as OkObjectResult;
+            var result = await Controller.GetAsync(1, TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
-            result.StatusCode.Should().Be(StatusCodes.Status200OK);
-            result.Value.Should().BeAssignableTo<EmployeeDto>();
-            var emp = result.Value as EmployeeDto;
+            var emp = result.Result.Should().BeOfType<Ok<EmployeeDto>>().Which.Value;
             emp.Id.Should().Be(empId);
             emp.LastName.Should()
                 .NotBeNullOrEmpty()
@@ -119,11 +116,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(false);
 
             //when
-            var result = await Controller.DeleteAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
+            var result = await Controller.DeleteAsync(1, TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
-            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+            result.Result.Should().BeOfType<NotFound>();
         }
 
         [Fact]
@@ -134,11 +131,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(true);
 
             //when
-            var result = await Controller.DeleteAsync(1, TestContext.Current.CancellationToken) as StatusCodeResult;
+            var result = await Controller.DeleteAsync(1, TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
-            result.StatusCode.Should().Be(StatusCodes.Status204NoContent);
+            result.Result.Should().BeOfType<NoContent>();
         }
 
         [Theory, AutoData]
@@ -150,10 +147,10 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Verifiable();
 
             //when
-            var result = await Controller.PutAsync(empId, employeePutDto, TestContext.Current.CancellationToken) as StatusCodeResult;
+            var result = await Controller.PutAsync(empId, employeePutDto, TestContext.Current.CancellationToken);
 
             //then
-            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+            result.Result.Should().BeOfType<NotFound>();
 
             _employeeRepositoryMock.Verify();
         }
@@ -167,11 +164,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Verifiable();
 
             //when
-            var result = await Controller.PutAsync(empId, employeePutDto, TestContext.Current.CancellationToken) as OkObjectResult;
+            var result = await Controller.PutAsync(empId, employeePutDto, TestContext.Current.CancellationToken);
 
             //then
-            result.Value.Should().BeAssignableTo<EmployeeDto>()
-                .And.BeEquivalentTo(employee);
+            result.Result.Should().BeAssignableTo<Ok<EmployeeDto>>()
+                .Which.Value.Should().BeEquivalentTo(employee);
 
             _employeeRepositoryMock.Verify();
         }
@@ -185,12 +182,11 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Verifiable();
 
             //when
-            var result = await Controller.PostAsync(employeePostDto, TestContext.Current.CancellationToken) as ObjectResult;
+            var result = await Controller.PostAsync(employeePostDto, TestContext.Current.CancellationToken);
 
             //then
-            result.StatusCode.Should().Be(StatusCodes.Status201Created);
-            result.Value.Should().BeAssignableTo<EmployeeDto>()
-                .And.BeEquivalentTo(employee);
+            result.Result.Should().BeOfType<CreatedAtRoute<EmployeeDto>>()
+                .Which.Value.Should().BeEquivalentTo(employee);
 
             Controller.HttpContext.Response.Headers.TryGetValue("x-date-created", out _).Should().BeTrue();
 
@@ -207,13 +203,12 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .Verifiable();
 
             //when
-            var result = await Controller.GetOldestAsync(TestContext.Current.CancellationToken) as ObjectResult;
+            var result = await Controller.GetOldestAsync(TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
-            result.StatusCode.Should().Be(StatusCodes.Status200OK);
-            result.Value.Should().BeAssignableTo<EmployeeDto>()
-                .Which.FirstName.Should().Be("Santa");
+            result.Result.Should().BeOfType<Ok<EmployeeDto>>()
+                .Which.Value.FirstName.Should().Be("Santa");
         }
     }
 }

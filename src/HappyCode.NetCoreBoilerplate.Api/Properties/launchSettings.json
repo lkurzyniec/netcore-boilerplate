@@ -8,7 +8,7 @@
         "ASPNETCORE_URLS": "http://localhost:5000",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "HC_SHA": "49e2cac0ab144f2d0b27fa72fd19d1ba9727ea25",
-        "HC_VERSION": "4.0.0"
+        "HC_VERSION": "5.0.0"
       }
     }
   }
