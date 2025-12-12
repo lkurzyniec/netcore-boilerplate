@@ -7,10 +7,6 @@
     <PackageReference Include="Moq.AutoMock" />
     <PackageReference Include="Moq" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Net.Http" />
-    <PackageReference Include="System.Text.RegularExpressions" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\HappyCode.NetCoreBoilerplate.Core\HappyCode.NetCoreBoilerplate.Core.csproj" />

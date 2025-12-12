@@ -8,7 +8,6 @@ using HappyCode.NetCoreBoilerplate.Api.Controllers;
 using HappyCode.NetCoreBoilerplate.Core.Dtos;
 using HappyCode.NetCoreBoilerplate.Core.Services;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
@@ -31,14 +30,13 @@ namespace HappyCode.NetCoreBoilerplate.Api.UnitTests.Controllers
                 .ReturnsAsync(cars);
 
             //when
-            var result = await Controller.GetAllAsync(TestContext.Current.CancellationToken) as OkObjectResult;
+            var result = await Controller.GetAllAsync(TestContext.Current.CancellationToken);
 
             //then
             result.Should().NotBeNull();
             result.StatusCode.Should().Be(StatusCodes.Status200OK);
-            result.Value.Should().BeAssignableTo<IEnumerable<CarDto>>();
-            var value = result.Value as IEnumerable<CarDto>;
-            value.Should().HaveCount(cars.Count());
+            result.Value.Should().BeAssignableTo<IEnumerable<CarDto>>()
+                .And.HaveCount(cars.Count());
 
             _carServiceMock.VerifyAll();
         }

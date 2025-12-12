@@ -1,6 +1,6 @@
 # netcore-boilerplate
 
-Boilerplate of API in `.NET 9`
+Boilerplate of API in `.NET 10`
 
 | GitHub | Codecov | Docker Hub |
 |:------:|:-------:|:----------:|
@@ -142,15 +142,13 @@ Simply execute `docker run --rm -p 5000:8080 --name netcore-boilerplate lkurzyni
 
 #### Build your own image
 
-To run in docker with your own image, execute `docker build . -t netcore-boilerplate:local` in the root directory to build an image,
-and then `docker run --rm -p 5000:8080 --name netcore-boilerplate netcore-boilerplate:local` to spin up a container with it.
+To run in docker with your own image, execute `docker build -t netcore-boilerplate:local .` in the root directory to build an image.
 
 ### Docker compose
 
-> When running on `Linux` (i.e. [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)), make sure that all docker files
-([dockerfile](dockerfile), [docker-compose](docker-compose.yml) and all [mssql files](db/mssql)) have line endings `LF`.
+> Line endings matter! This solution works fine on free docker using [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)).
 
-Just execute `docker-compose up` command in the root directory.
+Just execute `docker compose up` command in the root directory.
 
 #### Migrations
 

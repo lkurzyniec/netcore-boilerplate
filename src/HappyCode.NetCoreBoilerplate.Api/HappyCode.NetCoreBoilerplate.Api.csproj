@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
@@ -9,13 +8,6 @@
     <NoWarn>$(NoWarn);1591;</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Using Include="System" />
-    <Using Include="System.Collections.Generic" />
-    <Using Include="System.Threading;" />
-    <Using Include="System.Threading.Tasks" />
-  </ItemGroup>
-  
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.MySql" />
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" />

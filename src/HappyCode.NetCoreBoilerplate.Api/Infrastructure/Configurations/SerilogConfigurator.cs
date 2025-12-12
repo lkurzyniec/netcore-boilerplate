@@ -1,7 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using HappyCode.NetCoreBoilerplate.Api.Infrastructure.Logging;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -21,6 +19,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.Configurations
                 .ReadFrom.Configuration(configuration)
                 .Filter.ByExcluding(Matching.WithProperty("RequestPath", "/"))
                 .Filter.ByIncludingOnly(e => e.Properties.TryGetValue("RequestPath", out var path) ? _pathsToOmit.Any(o => path.ToString().Contains(o)) ? e.Level >= LogEventLevel.Warning : true : true)
+                .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
                 .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.AspNetCore.Routing.EndpointMiddleware", LogEventLevel.Warning)
                 .Enrich.With(new VersionEnricher(new()))

@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.OpenApi;
 
@@ -13,6 +13,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
         public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
         {
             document.Components ??= new OpenApiComponents();
+            document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
             document.Components.SecuritySchemes.Add("ApiKey", new OpenApiSecurityScheme
             {
                 Description = "ApiKey needed to access the endpoints (eg: `Authorization: ApiKey xxx-xxx`)",

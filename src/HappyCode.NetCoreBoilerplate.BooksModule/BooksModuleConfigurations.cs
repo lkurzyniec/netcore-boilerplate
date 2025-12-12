@@ -20,6 +20,7 @@ public static class BooksModuleConfigurations
     public static IServiceCollection AddBooksModule(this IServiceCollection services, IConfiguration configuration)
         => services
             .AddEndpointsApiExplorer()
+            .AddValidation()
             .AddSingleton<IDbConnection>(sp => new SqliteConnection(configuration.GetConnectionString("SqliteDb")))
             .AddSingleton<DbInitializer>()
             ;
@@ -29,7 +30,6 @@ public static class BooksModuleConfigurations
             .MapGroup("/api/books")
             .WithTags("Books")
             .AddEndpointFilter<AuthFilter>()
-            .WithParameterValidation()
             .MapGetBooksEndpoint()
             .MapGetBookEndpoint()
             .MapUpsertBookEndpoint()
