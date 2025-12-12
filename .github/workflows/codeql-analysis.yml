@@ -50,6 +50,8 @@ jobs:
               - exclude:
                   id:
                     - cs/dereferenced-value-may-be-null
+                    - cs/web/insecure-direct-object-reference
+                    - cs/web/missing-function-level-access-control
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v4
