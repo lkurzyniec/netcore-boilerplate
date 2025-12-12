@@ -17,6 +17,7 @@ on:
 env:
   DOTNET_NOLOGO: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
+  TESTINGPLATFORM_TELEMETRY_OPTOUT: 1
 
 jobs:
   build:
@@ -57,7 +58,7 @@ jobs:
       - name: Collect code coverage
         run: |
           for ut in "test/HappyCode.NetCoreBoilerplate.Api.UnitTests" "test/HappyCode.NetCoreBoilerplate.Core.UnitTests"; do
-            dotnet run --project "$ut" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
+            dotnet test --project "$ut" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
           done
 
       - name: Generate report
@@ -89,7 +90,7 @@ jobs:
       - name: Collect code coverage
         run: |
           for it in "test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests" "test/HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests"; do
-            dotnet run --project "$it" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
+            dotnet test --project "$it" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
           done
 
       - name: Generate report
