@@ -12,12 +12,14 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
     {
         public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
         {
+            List<string> expectedModels = ["HttpValidationProblemDetails"];
             List<string> modelsToRemove = [];
             foreach (var path in document.Paths)
             {
                 var disabledOperations = path.Value.Operations.Where(o => o.Value.Deprecated).ToDictionary();
                 if (disabledOperations.Count == 0)
                 {
+                    expectedModels.AddRange(path.Value.Operations.SelectMany(o => GetModels(o.Value)));
                     continue;
                 }
 
@@ -37,7 +39,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
             }
 
             RemoveTags(document);
-            RemoveModels(modelsToRemove, document);
+            RemoveModels(document, modelsToRemove.Except(expectedModels));
 
             return Task.CompletedTask;
         }
@@ -52,10 +54,12 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
         {
             var referencedComponents =
                 operation.Responses
+                .Where(r => r.Value.Content.Count > 0)
                 .Select(r => r.Value.Content.First().Value.Schema?.Items as OpenApiSchemaReference);
 
             referencedComponents = referencedComponents.Concat(
                 operation.Responses
+                .Where(r => r.Value.Content.Count > 0)
                 .Select(r => r.Value.Content.First().Value.Schema as OpenApiSchemaReference)
             );
 
@@ -73,7 +77,7 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
             return referencedComponents.Select(r => r.Reference.Id);
         }
 
-        private static void RemoveModels(List<string> modelsToRemove, OpenApiDocument document)
+        private static void RemoveModels(OpenApiDocument document, IEnumerable<string> modelsToRemove)
         {
             var nestedModels = modelsToRemove.SelectMany(m => document.Components.Schemas[m].Properties.Select(p => p.Value as OpenApiSchemaReference))
                 .Where(r => r is not null)
@@ -81,7 +85,6 @@ namespace HappyCode.NetCoreBoilerplate.Api.Infrastructure.OpenApi
                 .ToList();
             modelsToRemove
                 .Concat(nestedModels)
-                .Except(["HttpValidationProblemDetails"])
                 .Distinct()
                 .Select(document.Components.Schemas.Remove).ToList();
         }
