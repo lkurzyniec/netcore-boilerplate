@@ -40,7 +40,7 @@ jobs:
         run: dotnet build ./HappyCode.NetCoreBoilerplate.slnx
 
       - name: Test architecture
-        run: dotnet run --project ./test/HappyCode.NetCoreBoilerplate.ArchitecturalTests
+        run: dotnet test --project ./test/HappyCode.NetCoreBoilerplate.ArchitecturalTests
 
   unit-tests:
     name: dotnet Unit tests
@@ -57,9 +57,7 @@ jobs:
 
       - name: Collect code coverage
         run: |
-          for ut in "test/HappyCode.NetCoreBoilerplate.Api.UnitTests" "test/HappyCode.NetCoreBoilerplate.Core.UnitTests"; do
-            dotnet test --project "$ut" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
-          done
+          dotnet test --filter-namespace "*UnitTests*" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
 
       - name: Generate report
         run: |
@@ -89,9 +87,7 @@ jobs:
 
       - name: Collect code coverage
         run: |
-          for it in "test/HappyCode.NetCoreBoilerplate.Api.IntegrationTests" "test/HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests"; do
-            dotnet test --project "$it" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
-          done
+          dotnet test --filter-namespace "*IntegrationTests*" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
 
       - name: Generate report
         run: |
