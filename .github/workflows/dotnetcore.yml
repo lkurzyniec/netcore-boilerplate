@@ -40,7 +40,7 @@ jobs:
         run: dotnet build ./HappyCode.NetCoreBoilerplate.slnx
 
       - name: Test architecture
-        run: dotnet run --project ./test/HappyCode.NetCoreBoilerplate.ArchitecturalTests
+        run: dotnet test --project ./test/HappyCode.NetCoreBoilerplate.ArchitecturalTests
 
   unit-tests:
     name: dotnet Unit tests
@@ -87,7 +87,7 @@ jobs:
 
       - name: Collect code coverage
         run: |
-          dotnet test -- --filter-namespace "*IntegrationTests*" /p:WarningLevel=0 --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
+          dotnet test --filter-namespace "*IntegrationTests*" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
 
       - name: Generate report
         run: |
