@@ -146,7 +146,7 @@ To run in docker with your own image, execute `docker build -t netcore-boilerpla
 
 ### Docker compose
 
-> Line endings matter! This solution works fine on free docker using [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)).
+> Line endings matter! This solution uses LF line endings, which works fine on free Docker using [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 Just execute `docker compose up` command in the root directory.
 
