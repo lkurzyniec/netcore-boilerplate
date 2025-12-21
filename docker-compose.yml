@@ -15,7 +15,7 @@ services:
       start_period: 20s
     volumes:
       - mysqldata:/var/lib/mysql
-      - ./db/mysql/mysql-employees.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/mysql-init/mysql-employees.sql:/docker-entrypoint-initdb.d/init.sql
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -32,9 +32,9 @@ services:
       start_period: 20s
     volumes:
       - mssqldata:/var/opt/mssql
-      - ./db/mssql/docker-entrypoint.sh:/entrypoint.sh
-      - ./db/mssql/docker-db-init.sh:/db-init.sh
-      - ./db/mssql/mssql-cars.sql:/db-init.sql
+      - ./db/mssql-init/docker-entrypoint.sh:/entrypoint.sh
+      - ./db/mssql-init/docker-db-init.sh:/db-init.sh
+      - ./db/mssql-init/mssql-cars.sql:/db-init.sql
 
   netcore-boilerplate:
     container_name: netcore-boilerplate

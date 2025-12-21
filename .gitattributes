@@ -1,0 +1,6 @@
+*.sh  text eol=lf
+*.bat text eol=lf
+*.sql text eol=lf
+
+# Verify
+*.verified.txt text eol=lf working-tree-encoding=UTF-8

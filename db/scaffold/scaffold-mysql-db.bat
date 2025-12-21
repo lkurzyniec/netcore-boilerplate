@@ -1,0 +1,3 @@
+@REM make sure that EF CLI is installed. if not, then install with: dotnet tool install --global dotnet-ef
+@REM add reference to the Microsoft.EntityFrameworkCore.Design within HappyCode.NetCoreBoilerplate.Api csproj
+dotnet ef dbcontext scaffold "server=localhost;Database=employees;Uid=user;Pwd=simplepwd" MySql.EntityFrameworkCore --project ..\..\src\HappyCode.NetCoreBoilerplate.Core\HappyCode.NetCoreBoilerplate.Core.csproj --startup-project ..\..\src\HappyCode.NetCoreBoilerplate.Api\HappyCode.NetCoreBoilerplate.Api.csproj --output-dir Models --context EmployeesContext --context-dir ./ --data-annotations --verbose
