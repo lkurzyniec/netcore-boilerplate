@@ -43,9 +43,6 @@ jobs:
           languages: csharp
           queries: +security-and-quality
           config: |
-            paths-ignore:
-              - '**/generated/**/*.g.cs'
-              - 'test/**'
             query-filters:
               - exclude:
                   id:
@@ -58,3 +55,21 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
+        with:
+          output: sarif-results
+          upload: failure-only
+
+      - name: Filter SARIF
+        uses: advanced-security/filter-sarif@v1
+        with:
+          patterns: |
+            +src/**/*
+            -test/**/*
+            -**/generated/**/*.g.cs
+          input: sarif-results/csharp.sarif
+          output: sarif-results/csharp.sarif
+
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: sarif-results/csharp.sarif
