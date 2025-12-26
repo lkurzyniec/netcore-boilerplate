@@ -79,8 +79,6 @@ At the end, You are in charge, so it's your decision to which path you would lik
         * [NetArchTest](https://github.com/BenMorris/NetArchTest)
         * [xUnit.v3]
     * Analyzers
-        * [Microsoft.CodeAnalysis.Analyzers](https://github.com/dotnet/roslyn-analyzers)
-        * [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://github.com/aspnet/AspNetCore/tree/master/src/Analyzers)
         * [Microsoft.VisualStudio.Threading.Analyzers](https://github.com/microsoft/vs-threading)
     * Code analysis rule set [HappyCode.NetCoreBoilerplate.ruleset](HappyCode.NetCoreBoilerplate.ruleset)
     * Code analysis with [CodeQL](https://codeql.github.com/)
@@ -328,3 +326,4 @@ You are also very welcome to acknowledge my time by buying me a small coffee.
 
 [AwesomeAssertions]: https://awesomeassertions.org/
 [xUnit.v3]: https://xunit.net/
+
