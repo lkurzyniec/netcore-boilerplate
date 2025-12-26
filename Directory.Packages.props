@@ -42,7 +42,6 @@
     <PackageVersion Include="Verify.Http" Version="7.4.0" />
     <PackageVersion Include="Verify.XunitV3" Version="31.7.2" />
     <PackageVersion Include="xunit.v3.mtp-v2" Version="3.2.1" />
-    <PackageVersion Include="xunit.analyzers" Version="1.26.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,9 +54,5 @@
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('Tests'))">
     <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
     <PackageReference Include="xunit.v3.mtp-v2" />
-    <PackageReference Include="xunit.analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 </Project>
