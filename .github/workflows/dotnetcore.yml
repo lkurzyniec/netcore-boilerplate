@@ -57,7 +57,7 @@ jobs:
 
       - name: Collect code coverage
         run: |
-          dotnet test --filter-namespace "*UnitTests*" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
+          dotnet test --filter-namespace "*UnitTests*" /p:WarningLevel=0 --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
 
       - name: Generate report
         run: |
@@ -87,7 +87,7 @@ jobs:
 
       - name: Collect code coverage
         run: |
-          dotnet test --filter-namespace "*IntegrationTests*" /p:WarningLevel=0 -- --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
+          dotnet test --filter-namespace "*IntegrationTests*" /p:WarningLevel=0 --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
 
       - name: Generate report
         run: |
