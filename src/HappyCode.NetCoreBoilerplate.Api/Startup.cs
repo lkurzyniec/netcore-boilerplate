@@ -31,7 +31,9 @@ namespace HappyCode.NetCoreBoilerplate.Api
         public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddSerilog();
-            services.AddSingleton<ExceptionMiddleware>();
+            services
+                .AddSingleton<ExceptionMiddleware>()
+                .AddSingleton<BadHttpRequestExceptionMiddleware>();
 
             services
                 .AddHttpContextAccessor()
@@ -75,6 +77,7 @@ namespace HappyCode.NetCoreBoilerplate.Api
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<BadHttpRequestExceptionMiddleware>();
             app.UseMiddlewareForFeature<ConnectionInfoMiddleware>(FeatureFlags.ConnectionInfo.ToString());
 
             app.UseSerilogRequestLogging();
