@@ -20,7 +20,7 @@
     <PackageVersion Include="Dapper" Version="2.1.66" />
     <PackageVersion Include="Microsoft.Data.Sqlite" Version="10.0.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
-    <PackageVersion Include="MySql.EntityFrameworkCore" Version="10.0.0-rc" />
+    <PackageVersion Include="MySql.EntityFrameworkCore" Version="10.0.1" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="dbup-sqlserver" Version="6.0.16" />
