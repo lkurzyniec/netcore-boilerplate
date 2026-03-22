@@ -109,7 +109,7 @@ jobs:
           exit-code: 1
 
       - name: Create issue
-        if: ${{ github.ref == 'refs/heads/master' && failure() }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           jq -r '.runs[].results[] | [.ruleId, .message.text] | @tsv' trivy-results.sarif |
           while read -r id msg; do
