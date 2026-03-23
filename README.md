@@ -1,10 +1,13 @@
-# netcore-boilerplate
-
-Boilerplate of API in `.NET 10`
+<div align="center">
+<img src=".assets/logo.png" alt="netcore-boilerplate" />
 
 | GitHub | Codecov | Docker Hub |
 |:------:|:-------:|:----------:|
 | [![Build & Test](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml) [![Build docker image](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) | [![Docker Image Version](https://img.shields.io/docker/v/lkurzyniec/netcore-boilerplate?logo=docker)](https://hub.docker.com/r/lkurzyniec/netcore-boilerplate) |
+
+# Boilerplate of API in `.NET 10`
+
+</div>
 
 Boilerplate is a piece of code that helps you to quickly kick-off a project or start writing your source code.
 It is kind of a template - instead of starting an empty project and adding the same snippets each time,
@@ -190,7 +193,8 @@ Generally it is totally up to you! But in case you do not have any plan, You can
   * Logging
     * Custom enricher to have version properties in logs - [VersionEnricher.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Logging/VersionEnricher.cs)
   * Middlewares
-    * Simple middleware - [ConnectionInfoMiddleware.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Middlewares/ConnectionInfoMiddleware.cs)
+    * Simple middleware behind a feature flag (percentage) - [ConnectionInfoMiddleware.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Middlewares/ConnectionInfoMiddleware.cs)
+    * Middleware to handle bad HTTP requests - [BadHttpRequestExceptionMiddleware.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Middlewares/BadHttpRequestExceptionMiddleware.cs)
     * Global exception handler - [ExceptionMiddleware.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/Middlewares/ExceptionMiddleware.cs)
   * `OpenAPI`
     * Registration place - [OpenApiRegistrations.cs](src/HappyCode.NetCoreBoilerplate.Api/Infrastructure/OpenApi/OpenApiRegistrations.cs)
