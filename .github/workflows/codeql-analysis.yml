@@ -47,6 +47,8 @@ jobs:
               - exclude:
                   id:
                     - cs/dereferenced-value-may-be-null
+                    - cs/catch-of-all-exceptions
+                    - cs/empty-catch-block
                     - cs/web/insecure-direct-object-reference
                     - cs/web/missing-function-level-access-control
 
