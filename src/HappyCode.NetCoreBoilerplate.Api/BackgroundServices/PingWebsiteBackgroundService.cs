@@ -45,12 +45,14 @@ namespace HappyCode.NetCoreBoilerplate.Api.BackgroundServices
                     WebsiteStatusCode = response.StatusCode;
                     _logger.LogInformation("Is '{Host}' responding: {Status}",
                         _configuration.Value.Url.Authority, response.IsSuccessStatusCode);
+
+                    await _timer.WaitForNextTickAsync(cancellationToken);
                 }
+                catch (OperationCanceledException) { }
                 catch (Exception ex)
                 {
                     _logger.LogWarning(ex, "Error during ping");
                 }
-                await _timer.WaitForNextTickAsync(cancellationToken);
             }
         }
 
