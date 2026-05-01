@@ -38,7 +38,7 @@ jobs:
           dotnet-version: 10.x
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@v4.35.2
         with:
           languages: csharp
           queries: +security-and-quality
@@ -53,10 +53,10 @@ jobs:
                     - cs/web/missing-function-level-access-control
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@v4
+        uses: github/codeql-action/autobuild@v4.35.2
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
+        uses: github/codeql-action/analyze@v4.35.2
         with:
           output: sarif-results
           upload: failure-only
@@ -73,6 +73,6 @@ jobs:
           output: sarif-results/csharp.sarif
 
       - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@v4.35.2
         with:
           sarif_file: sarif-results/csharp.sarif
