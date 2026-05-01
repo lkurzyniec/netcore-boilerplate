@@ -66,7 +66,7 @@ jobs:
           exit-code: 1
 
       - name: Upload Trivy scan results to GitHub Security
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@v4.35.2
         if: ${{ github.ref == 'refs/heads/master' }}
         with:
           sarif_file: trivy-results.sarif
@@ -126,7 +126,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Trivy scan results to GitHub Security
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@v4.35.2
         if: ${{ github.ref == 'refs/heads/master' }}
         with:
           sarif_file: trivy-results.sarif
