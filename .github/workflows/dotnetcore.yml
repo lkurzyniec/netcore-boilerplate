@@ -65,7 +65,7 @@ jobs:
           reportgenerator -reports:"**/cobertura.xml" -targetdir:"./test/coverage" -reporttypes:Cobertura -filefilters:"-*.g.cs"
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./test/coverage/Cobertura.xml
@@ -95,7 +95,7 @@ jobs:
           reportgenerator -reports:"**/cobertura.xml" -targetdir:"./test/coverage" -reporttypes:Cobertura -filefilters:"-*.g.cs"
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./test/coverage/Cobertura.xml
