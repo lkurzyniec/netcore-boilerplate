@@ -30,7 +30,7 @@ jobs:
       security-events: write
 
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -81,7 +81,7 @@ jobs:
       issues: write
 
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
 
       - name: Manual Trivy Setup
         uses: aquasecurity/setup-trivy@v0.2.6
