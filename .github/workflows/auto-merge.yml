@@ -4,16 +4,18 @@ name: Dependabot Approve and Merge
 on:
   pull_request_target:
 
-permissions:
-  pull-requests: write
-  contents: write
-
 jobs:
   automerge:
     name: Auto merge
     runs-on: ubuntu-latest
 
-    if: github.actor == 'dependabot[bot]'
+    permissions:
+      pull-requests: write
+      contents: write
+
+    if: |
+      github.actor == 'dependabot[bot]' &&
+      github.event.pull_request.user.login == 'dependabot[bot]'
     steps:
       - name: Fetch config
         id: fetch-config

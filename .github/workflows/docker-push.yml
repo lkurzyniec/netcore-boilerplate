@@ -45,13 +45,18 @@ jobs:
           fi
 
       - name: Grab a version
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          EVENT_NAME: ${{ github.event_name }}
+          REF: ${{ github.ref }}
         run: |
           date=$(date --rfc-3339=date)
           echo "DATE=${date}" >> $GITHUB_ENV
 
-          version="${{ github.event_name == 'release' && github.ref || format('{0}.', inputs.version) }}"
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            version="${version}${date}"
+          if [ "$EVENT_NAME" = "release" ]; then
+            version="$REF"
+          else
+            version="${INPUT_VERSION}.${date}"
           fi
           version="${version/refs\/tags\/v/}"
 
