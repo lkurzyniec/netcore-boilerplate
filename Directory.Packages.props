@@ -29,7 +29,7 @@
     <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.9" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.OpenApi" Version="2.10.0" />
+    <PackageVersion Include="Microsoft.OpenApi" Version="3.8.0" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="AutoFixture" Version="4.18.1" />
