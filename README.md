@@ -3,7 +3,7 @@
 
 | GitHub | Codecov | Docker Hub |
 |:------:|:-------:|:----------:|
-| [![Build & Test](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml) [![Build docker image](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) | [![Docker Image Version](https://img.shields.io/docker/v/lkurzyniec/netcore-boilerplate?logo=docker)](https://hub.docker.com/r/lkurzyniec/netcore-boilerplate) |
+| [![Build & Test](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/dotnetcore.yml)<br/>[![Build docker image](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml/badge.svg)](https://github.com/lkurzyniec/netcore-boilerplate/actions/workflows/docker-build.yml) | [![codecov](https://codecov.io/gh/lkurzyniec/netcore-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/lkurzyniec/netcore-boilerplate) | [![Docker Image Version](https://img.shields.io/docker/v/lkurzyniec/netcore-boilerplate?logo=docker)](https://hub.docker.com/r/lkurzyniec/netcore-boilerplate)<br/>![Docker Pulls](https://img.shields.io/docker/pulls/lkurzyniec/netcore-boilerplate?logo=docker) |
 
 # Boilerplate of API in `.NET 10`
 
