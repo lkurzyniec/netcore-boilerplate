@@ -57,7 +57,7 @@ jobs:
 
       - name: Collect code coverage
         run: |
-          dotnet test --filter-namespace "*UnitTests*" /p:WarningLevel=0 --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
+          dotnet test --filter-namespace "*UnitTests*" /p:WarningLevel=0 --coverage --coverage-output-format cobertura
 
       - name: Generate report
         run: |
@@ -74,7 +74,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: unit-tests-cobertura
-          archive: false
           path: |
             test/coverage/Cobertura.xml
 
@@ -101,7 +100,7 @@ jobs:
 
       - name: Collect code coverage
         run: |
-          dotnet test --filter-namespace "*IntegrationTests*" /p:WarningLevel=0 --coverage --coverage-output-format cobertura --coverage-output cobertura.xml
+          dotnet test --filter-namespace "*IntegrationTests*" /p:WarningLevel=0 --coverage --coverage-output-format cobertura
 
       - name: Generate report
         run: |
@@ -112,7 +111,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: integration-tests-cobertura
-          archive: false
           path: |
             test/coverage/Cobertura.xml
 
