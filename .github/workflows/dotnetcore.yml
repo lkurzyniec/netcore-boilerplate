@@ -62,12 +62,19 @@ jobs:
       - name: Generate report
         run: |
           dotnet tool install --ignore-failed-sources -g dotnet-reportgenerator-globaltool
-          reportgenerator -reports:"./**/cobertura.xml" -targetdir:"./test/coverage" -reporttypes:Cobertura -filefilters:"-*.g.cs;-*.generated.cs"
+          reportgenerator -reports:"./**/cobertura.xml" -targetdir:"./test/coverage" -reporttypes:Cobertura -filefilters:"-*.g.cs;-*.generated.cs" -verbosity:Verbose
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-tests-coberturas
+          path: ./**/TestResults/cobertura.xml
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: unit-tests-cobertura
+          archive: false
           path: |
             test/coverage/Cobertura.xml
 
@@ -105,6 +112,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: integration-tests-cobertura
+          archive: false
           path: |
             test/coverage/Cobertura.xml
 
