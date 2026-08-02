@@ -2,6 +2,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS base
 WORKDIR /app
 EXPOSE 8080
 
+ENV DOTNET_NOLOGO=true
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
+
 LABEL org.opencontainers.image.authors="Łukasz Kurzyniec" \
       org.opencontainers.image.title="HappyCode.NetCoreBoilerplate" \
       org.opencontainers.image.description="Simple API written in .NET 10"
@@ -43,9 +46,6 @@ COPY src .
 FROM restore AS publish
 WORKDIR /work/HappyCode.NetCoreBoilerplate.Api
 
-ENV DOTNET_NOLOGO=true
-ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
-
 RUN dotnet publish -r linux-musl-x64 \
   -o /app --no-restore -p:UseAppHost=false -p:WarningLevel=0
 
@@ -53,9 +53,6 @@ RUN dotnet publish -r linux-musl-x64 \
 
 FROM base AS final
 COPY --from=publish /app .
-
-ENV DOTNET_NOLOGO=true
-ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 ARG VERSION=5.0.0
 ARG SHA=none

@@ -30,7 +30,7 @@ jobs:
       security-events: write
 
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
@@ -44,7 +44,7 @@ jobs:
         uses: aquasecurity/setup-trivy@v0.3.1
         with:
           cache: true
-          version: v0.70.0
+          version: v0.72.0
 
       - name: Run Trivy scanner (table)
         uses: aquasecurity/trivy-action@v0.36.0
@@ -81,13 +81,13 @@ jobs:
       issues: write
 
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7
 
       - name: Manual Trivy Setup
         uses: aquasecurity/setup-trivy@v0.3.1
         with:
           cache: true
-          version: v0.70.0
+          version: v0.72.0
 
       - name: Run Trivy scanner (table)
         uses: aquasecurity/trivy-action@v0.36.0
