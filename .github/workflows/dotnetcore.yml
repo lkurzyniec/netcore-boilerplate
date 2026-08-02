@@ -99,7 +99,7 @@ jobs:
       - name: Generate report
         run: |
           dotnet tool install --ignore-failed-sources -g dotnet-reportgenerator-globaltool
-          reportgenerator -reports:"./**/cobertura.xml" -targetdir:"./test/coverage" -reporttypes:Cobertura -filefilters:"-*.g.cs;*.generated.cs"
+          reportgenerator -reports:"./**/cobertura.xml" -targetdir:"./test/coverage" -reporttypes:Cobertura -filefilters:"-*.g.cs;-*.generated.cs"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
