@@ -44,7 +44,7 @@ jobs:
         uses: aquasecurity/setup-trivy@v0.3.1
         with:
           cache: true
-          version: v0.72.0
+          version: v0.74.0
 
       - name: Run Trivy scanner (table)
         uses: aquasecurity/trivy-action@v0.36.0
@@ -87,7 +87,7 @@ jobs:
         uses: aquasecurity/setup-trivy@v0.3.1
         with:
           cache: true
-          version: v0.72.0
+          version: v0.74.0
 
       - name: Run Trivy scanner (table)
         uses: aquasecurity/trivy-action@v0.36.0
