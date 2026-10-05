@@ -2,11 +2,11 @@
 name: Dependabot Approve and Merge
 
 on:
-  pull_request_target:
+  pull_request:
 
 jobs:
   automerge:
-    name: Auto merge
+    name: Approve and Merge
     runs-on: ubuntu-latest
 
     permissions:
@@ -14,7 +14,7 @@ jobs:
       contents: write
 
     if: |
-      github.actor == 'dependabot[bot]' &&
+      github.repository == 'lkurzyniec/netcore-boilerplate' &&
       github.event.pull_request.user.login == 'dependabot[bot]'
     steps:
       - name: Fetch config
@@ -47,12 +47,11 @@ jobs:
           && !contains(steps.fetch-config.outputs.omit, steps.dependabot-metadata.outputs.dependency-names)
         run: |
           gh pr review --approve "$PR_URL"
-          gh pr merge --auto --squash "$PR_URL"
           gh pr edit "$PR_URL" --add-label "auto-merged"
+          gh pr merge --auto --squash "$PR_URL"
           echo "STATUS=true" >> $GITHUB_OUTPUT
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Write summary
         run: |
