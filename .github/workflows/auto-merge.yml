@@ -52,6 +52,7 @@ jobs:
           echo "STATUS=true" >> $GITHUB_OUTPUT
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ github.token }}
 
       - name: Write summary
         run: |
