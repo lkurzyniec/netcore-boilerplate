@@ -1,15 +1,15 @@
 ﻿{
   Status: 201 Created,
   Headers: {
-    Location: http://localhost/api/books/2
+    Location: http://localhost/api/books/99
   },
   Content: {
     Headers: {
-      Content-Length: 34,
+      Content-Length: 35,
       Content-Type: application/json; charset=utf-8
     },
     Value: {
-      id: 2,
+      id: 99,
       title: Some_test_title
     }
   }

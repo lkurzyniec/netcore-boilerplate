@@ -35,10 +35,10 @@ namespace HappyCode.NetCoreBoilerplate.BooksModule.IntegrationTests
         }
 
         [Fact]
-        public Task Post_should_return_NoContent()
+        public Task Post_should_return_Created()
         {
             //given
-            var book = new BookDto { Title = "Some_test_title" };
+            var book = new BookDto { Id = 99, Title = "Some_test_title" };
 
             //when
             var result = _client.PostAsync("api/books", book.ToStringContent(), TestContext.Current.CancellationToken);
