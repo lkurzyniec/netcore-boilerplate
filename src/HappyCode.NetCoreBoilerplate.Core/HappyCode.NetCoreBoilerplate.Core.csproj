@@ -3,4 +3,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="MySql.EntityFrameworkCore" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
 </Project>

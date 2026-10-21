@@ -30,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.OpenApi" Version="2.12.2" />
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="AutoFixture" Version="4.18.1" />
