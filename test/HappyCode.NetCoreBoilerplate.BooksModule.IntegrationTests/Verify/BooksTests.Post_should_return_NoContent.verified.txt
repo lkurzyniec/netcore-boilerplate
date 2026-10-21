@@ -1,18 +1,16 @@
 ﻿{
-  Response: {
-    Status: 204 No Content
+  Status: 201 Created,
+  Headers: {
+    Location: http://localhost/api/books/2
   },
-  Request: {
-    Method: POST,
-    Uri: http://localhost/api/books,
-    Content: {
-      Headers: {
-        Content-Length: 27,
-        Content-Type: application/json; charset=utf-8
-      },
-      Value: {
-        title: Some_test_title
-      }
+  Content: {
+    Headers: {
+      Content-Length: 34,
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: {
+      id: 2,
+      title: Some_test_title
     }
   }
 }

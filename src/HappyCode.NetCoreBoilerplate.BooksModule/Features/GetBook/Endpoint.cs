@@ -24,7 +24,8 @@ internal static class Endpoint
                     return book.Id is not null
                         ? TypedResults.Ok(book)
                         : TypedResults.NotFound();
-                });
+                })
+            .WithName(nameof(GetBook));
         return endpoints;
     }
 }

@@ -25,8 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="books.db" />
+    <None Remove="data/books.db" />
   </ItemGroup>
+  <Target Name="CreateDataFolder" AfterTargets="Build">
+    <MakeDir Directories="data" />
+  </Target>
 
   <ItemGroup>
     <ProjectReference Include="..\HappyCode.NetCoreBoilerplate.BooksModule\HappyCode.NetCoreBoilerplate.BooksModule.csproj" />

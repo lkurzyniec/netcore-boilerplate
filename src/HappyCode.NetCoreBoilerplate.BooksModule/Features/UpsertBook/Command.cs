@@ -17,7 +17,7 @@ SELECT IFNULL(MAX({nameof(BookDto.Id)}), 0) + 1
     FROM Books
 ";
 
-    public static async Task UpsertBookAsync(this IDbConnection db, BookDto book, CancellationToken cancellationToken)
+    public static async Task<int> UpsertBookAsync(this IDbConnection db, BookDto book, CancellationToken cancellationToken)
     {
         var id = book.Id ?? await db.ExecuteScalarAsync<int>(new CommandDefinition(_nextId, cancellationToken: cancellationToken));
 
@@ -26,5 +26,7 @@ SELECT IFNULL(MAX({nameof(BookDto.Id)}), 0) + 1
             id = id,
             title = book.Title,
         }, cancellationToken: cancellationToken));
+
+        return id;
     }
 }

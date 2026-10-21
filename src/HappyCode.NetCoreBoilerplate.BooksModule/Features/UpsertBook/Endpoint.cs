@@ -14,14 +14,15 @@ internal static class Endpoint
         endpoints
             .MapPost(
                 "/",
-                async Task<Results<NoContent, BadRequest<HttpValidationProblemDetails>>> (
+                async Task<Results<CreatedAtRoute<BookDto>, BadRequest<HttpValidationProblemDetails>>> (
                     BookDto book,
                     IDbConnection db,
                     CancellationToken ct
                 ) =>
                 {
-                    await db.UpsertBookAsync(book, ct);
-                    return TypedResults.NoContent();
+                    var id = await db.UpsertBookAsync(book, ct);
+                    book.Id = id;
+                    return TypedResults.CreatedAtRoute(book, nameof(GetBook), new { id });
                 })
             .WithDescription("This is UPSERT operation");
         return endpoints;

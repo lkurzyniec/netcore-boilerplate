@@ -15,15 +15,15 @@ ENV \
   LC_ALL=en_US.UTF-8 \
   LANG=en_US.UTF-8
 
-RUN apk add --upgrade --no-cache \
+RUN apk add --no-cache \
   icu-data-full \
   icu-libs \
-  tzdata \
-  curl
+  tzdata
 
 # --------------
 
-FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS restore
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS restore
+ARG TARGETARCH
 WORKDIR /work
 
 ENV DOTNET_NOLOGO=true
@@ -34,10 +34,11 @@ COPY ./Directory.Packages.props ./
 COPY src/*/*.csproj ./
 RUN for projectFile in $(ls *.csproj); \
   do \
-  mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
+    mkdir -p ${projectFile%.*}/ && mv $projectFile ${projectFile%.*}/; \
   done
 
-RUN cd /work/HappyCode.NetCoreBoilerplate.Api && dotnet restore -r linux-musl-x64
+RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
+  cd /work/HappyCode.NetCoreBoilerplate.Api && dotnet restore -a $TARGETARCH
 
 COPY src .
 
@@ -46,13 +47,14 @@ COPY src .
 FROM restore AS publish
 WORKDIR /work/HappyCode.NetCoreBoilerplate.Api
 
-RUN dotnet publish -r linux-musl-x64 \
-  -o /app --no-restore -p:UseAppHost=false -p:WarningLevel=0
+RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
+  dotnet publish -a $TARGETARCH -o /app --no-restore -p:UseAppHost=false -p:WarningLevel=0
 
 # --------------
 
 FROM base AS final
-COPY --from=publish /app .
+COPY --from=publish --chown=$APP_UID:$APP_UID /app .
+RUN mkdir -p /app/data && chown $APP_UID:$APP_UID /app/data
 
 ARG VERSION=5.0.0
 ARG SHA=none
@@ -60,9 +62,8 @@ ARG SHA=none
 ENV HC_SHA=${SHA}
 ENV HC_VERSION=${VERSION}
 
-HEALTHCHECK --interval=5m --timeout=3s --start-period=10s --retries=1 \
-  CMD curl --fail http://localhost:8080/healthz/live || exit 1
+HEALTHCHECK --interval=5m --timeout=3s --start-period=10s --start-interval=5s --retries=1 \
+  CMD wget -q --spider http://localhost:8080/healthz/live || exit 1
 
-RUN chown "$APP_UID":"$APP_UID" /app
 USER $APP_UID
 ENTRYPOINT ["dotnet", "HappyCode.NetCoreBoilerplate.Api.dll"]
