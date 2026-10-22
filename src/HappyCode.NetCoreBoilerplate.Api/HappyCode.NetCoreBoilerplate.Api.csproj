@@ -27,8 +27,8 @@
   <ItemGroup>
     <None Remove="data/books.db" />
   </ItemGroup>
-  <Target Name="CreateDataFolder" AfterTargets="Build">
-    <MakeDir Directories="data" />
+  <Target Name="CreateDataFolder" AfterTargets="Build;Publish">
+    <MakeDir Directories="data;$(PublishDir)data" />
   </Target>
 
   <ItemGroup>

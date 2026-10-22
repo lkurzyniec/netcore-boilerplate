@@ -54,7 +54,6 @@ RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
 
 FROM base AS final
 COPY --from=publish --chown=$APP_UID:$APP_UID /app .
-RUN mkdir -p /app/data && chown $APP_UID:$APP_UID /app/data
 
 ARG VERSION=5.0.0
 ARG SHA=none
